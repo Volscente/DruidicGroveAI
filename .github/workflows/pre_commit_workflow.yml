@@ -1,0 +1,28 @@
+name: Pre-commit Workflow
+run-name: ${{ github.actor }} Pre-commit Workflow 🚀
+on: [push]
+jobs:
+    PyLint:
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          python-version: ["3.10"]
+      steps:
+        - run: echo "Running ${{ github.job }} in branch ${{ github.ref_name }}"
+        - name: Checkout
+          uses: actions/checkout@v4
+        - name: Set up Python ${{ matrix.python-version }}
+          uses: actions/setup-python@v4.7.0
+          with:
+            python-version: ${{ matrix.python-version }}
+        - name: Install pip
+          run: | 
+            python -m pip install --upgrade pip
+        - name: Install PyLint and Poetry
+          run: | 
+            pip install pylint poetry
+        - name: Install Dependencies
+          run: poetry install --no-interaction --no-ansi
+        - name: Lint with PyLint
+          run: | 
+            poetry run pylint --output-format=colorized --msg-template='Rule: {msg_id} - Position: [{line},{column}] -  {msg}' ./src

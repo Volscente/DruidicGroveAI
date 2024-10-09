@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "ds-repository-template"
+version = "0.1.0"
+description = "Data Science repository template"
+authors = ["Simone Porreca <porrecasimone@gmail.com>"]
+readme = "README.md"
+packages = [
+    {include="general_utils", from="src"},
+    {include="bigquery_utils", from="src"},
+    {include="logging_module", from="src"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+# Filter deprecation warning from google-cloud-bigquery
+filterwarnings = [
+    "ignore:Deprecated call to `pkg_resources\\.declare_namespace\\('.*'\\):DeprecationWarning",
+    "ignore::DeprecationWarning:google.rpc",
+]
+pythonpath = [
+  "src"
+]
