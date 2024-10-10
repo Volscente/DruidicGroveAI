@@ -18,7 +18,7 @@ def get_logger(logger_name: str,
         configuration_file_path: pathlib.Path location of the configuration file
 
     Returns:
-        logging.Logger logger object
+        logger: logging.Logger object
     """
 
     if configuration_file_path.exists():
