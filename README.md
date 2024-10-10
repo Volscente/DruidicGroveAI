@@ -1,61 +1,33 @@
-# ds-repository-template
+![Inspiring Image](https://repository-images.githubusercontent.com/870284572/b9b19342-1938-46cf-9eac-ab31a92682ba)
 
-# Introduction
-The repository includes the code for providing utils modules and functions.
-
-# Installation
-- Ensure to have `gcloud` installed
-- Ensure to have the latest version of Poetry installed
-```bash
-poetry self update
-```
-- Setup the authentication to the Artifact Repository following [this guide](https://cloud.google.com/artifact-registry/docs/python/authentication?_ga=2.246859213.-858896186.1676536949#before_you_begin)
-  - Install the following libraries
-  ```bash
-  poetry add twine keyring keyrings.google-artifactregistry-auth
-  ```
-  - Run the following command
-  ```bash
-  gcloud artifacts print-settings python --project=PROJECT \
-    --repository=REPOSITORY \
-    --location=LOCATION
-  ```
-  - Copy the output to the respective files (`$HOME/.pypirc` and `./venv/pip.conf`)
-    - The `./venv/pip.conf` might be in the repository folder or in the `$HOME/Library/Caches/pypoetry/virtualenvs/<name_of_the_venv`)
-  - Login into `gcloud`
-  ```bash
-  gcloud auth login
-  ```
-- Add the Artifact Repository as a source to the `pyproject.toml`
-```bash
-poetry source add --priority=supplemental <choose_name_for_the_source> https://<LOCATION>-python.pkg.dev><PROJECT_ID>/<ARTIFACT_REPOSITORY_NAME>/simple
-
-# Example
-poetry source add --priority=supplemental vg-ds-utils-artifact-repository-source https://europe-west3-python.pkg.dev/dh-vp-stg-7026/vg-ds-utils-artifact-repository/simple/
-```
-**NOTE:** Sometimes the addition of the `/simple` might fix the impossibility of finding the remote source
-- Add the Python Package to the dependencies
-```bash
-poetry add --source <name_of_the_choosen_source> <package_name_to_install>
-
-# Example
-poetry add --source vg-ds-utils-artifact-repository-source vg-ds-utils
-```
+# DruidicGroveAI
+DruidicGroveAI is a research-focused repository dedicated to exploring the latest advancements in deep learning. 
+This project serves as a hub for experimenting with state-of-the-art models, algorithms, 
+and techniques, aiming to push the boundaries of AI innovation.
 
 # Setup
-
 ## Update PYTHONPATH
 Add the current directory to the `PYTHONPATH` environment variables.
 ``` bash
-export PYTHONPATH="$PYTHONPATH:/<absolute_path>/<parent_folder>"
+export PYTHONPATH="$PYTHONPATH:/<absolute_path>/DruidicGroveAI"
 ```
 
-## Install gcloud CLI
-Follow this [documentation](https://cloud.google.com/sdk/docs/install-sdk) to install the gcloud CLI.
+## Justfile
+> `just` is a handy way to save and run project-specific commands
+> 
+> The main benefit it to keep all configuration and scripts in one place.
+> 
+> It uses the `.env` file for ingesting variables.
 
-**NOTE:** Ensure to run the `gcloud init` command to initialise the CLI.
+You can install it by following the [Documentation](https://just.systems/man/en/chapter_4.html).
+Afterward, you can execute existing commands located in the `justfile`.
+
+Type `just` to list all available commands.
+
 
 ## Poetry
+
+> Python packaging and dependency management made easy
 
 ### Installation
 
@@ -70,11 +42,6 @@ For **MacOS** with ZSH add the `.local/bin` to the `PATH` environment variable. 
 
 ``` bash
 export PATH="$HOME/.local/bin:$PATH"
-```
-
-### Init Repository
-```bash
-poetry init
 ```
 
 ### Add Dependency
@@ -95,4 +62,3 @@ poetry install
 # Use the option '--without test,docs,dev' if you want to esclude the specified group from install
 poetry install --without test,docs,dev
 ```
-
