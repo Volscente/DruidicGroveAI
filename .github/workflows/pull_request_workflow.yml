@@ -1,12 +1,18 @@
-name: Pre-commit Workflow
-run-name: ${{ github.actor }} Pre-commit Workflow 🚀
-on: [push]
+# Workflow triggered on PRs that runs PyLint and PyTest
+name: Pull Request Workflow
+run-name: ${{ github.actor }} Pull Request Workflow 🚀
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
 jobs:
-    PyLint:
+    pr_workflow:
+      name: pr_workflow
       runs-on: ubuntu-latest
       strategy:
         matrix:
-          python-version: ["3.10"]
+          python-version: ["3.12"]
       steps:
         - run: echo "Running ${{ github.job }} in branch ${{ github.ref_name }}"
         - name: Checkout
@@ -16,13 +22,19 @@ jobs:
           with:
             python-version: ${{ matrix.python-version }}
         - name: Install pip
-          run: | 
-            python -m pip install --upgrade pip
-        - name: Install PyLint and Poetry
-          run: | 
-            pip install pylint poetry
+          run: python -m pip install --upgrade pip
+        - name: Install Poetry
+          run: pip install poetry
         - name: Install Dependencies
           run: poetry install --no-interaction --no-ansi
         - name: Lint with PyLint
-          run: | 
-            poetry run pylint --output-format=colorized --msg-template='Rule: {msg_id} - Position: [{line},{column}] -  {msg}' ./src
+          run: |
+            poetry run pylint \
+            --disable='C0301, R0903, R0801' \
+            --source-roots=./src \
+            --output-format=colorized \
+            --msg-template='Rule: {msg_id} - Position: [{line},{column}] -  {msg}' \
+            ./src ./tests
+        - name: Run Unit Tests with PyTest
+          run: |
+            poetry run pytest
