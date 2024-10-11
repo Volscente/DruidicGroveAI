@@ -9,7 +9,6 @@ readme = "README.md"
 python = "^3.12"
 pytest = "^8.3.3"
 pandas = "^2.2.3"
-google-cloud-bigquery = "^3.26.0"
 pyaml = "^24.9.0"
 
 
