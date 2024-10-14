@@ -1,0 +1,3 @@
+[pytest]
+client.project_id = 'test-project'
+client.location = 'europe-west1'
