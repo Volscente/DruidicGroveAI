@@ -12,8 +12,7 @@ class BigQueryClientConfig(BaseModel):
     configuration
 
     Attributes:
-        project_id: String value of the GCP project id
-        location: String value of the GCP project location
+
     """
     project_id: Literal['deep-learning-438509']
     location: Literal['europe-west1']

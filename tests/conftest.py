@@ -9,13 +9,14 @@ from dynaconf import Dynaconf
 
 # Import Package Modules
 from src.types import BigQueryClientConfig
+from src.bigquery_connector.bigquery_connector import BigQueryConnector
 
 # Read configuration file
 config = Dynaconf(settings_files=[pathlib.Path(__file__).parents[1]
                                   / 'configuration'
                                   / 'settings.toml'],
                   environments=True,
-                  env=['pytest'])
+                  env='pytest')
 
 
 @pytest.fixture
