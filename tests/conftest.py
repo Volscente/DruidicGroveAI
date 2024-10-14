@@ -39,4 +39,17 @@ def fixture_bigquery_client_config(project_id: str = config['client']['project_i
 
 
 @pytest.fixture
-def 
+def fixture_bigquery_connector(fixture_bigquery_client_config: BigQueryClientConfig) -> BigQueryConnector:
+    """
+    This fixture returns a BigQueryConnector object
+
+    Args:
+        fixture_bigquery_client_config:
+
+    Returns:
+        bigquery_connector: BigQueryConnector object
+    """
+    # Instance a BigQueryConnector object
+    bigquery_connector = BigQueryConnector(client_config=fixture_bigquery_client_config)
+
+    return bigquery_connector
