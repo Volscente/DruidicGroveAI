@@ -28,11 +28,12 @@ class BigQueryConnector:
         Constructor of the class BigqueryConnector
 
         Args:
-
+            client_config: BigQueryClientConfig including all necessary variables for
+                           instance a BigQuery Client instance
         """
         # Setup logger
         self.logger = get_logger(__class__.__name__,
-                                 pathlib.Path(__file__).parents[1] /
+                                 Path(__file__).parents[1] /
                                  'logging_module' /
                                  'log_configuration.yaml')
 
@@ -42,7 +43,7 @@ class BigQueryConnector:
         self.client_config = client_config
 
         # Set the client
-        _set_client()
+        self._set_client()
 
     def _set_client(self):
         """
@@ -62,8 +63,6 @@ class BigQueryConnector:
         )
 
         self.logger.debug('_set_client - End')
-
-
 
     def read_from_query_config(self):
         # TODO
