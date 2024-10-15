@@ -14,7 +14,7 @@ loggers:
     level: INFO
     handlers: [ console ]
     propagate: no
-  BigqueryConnector:
+  BigQueryConnector:
     level: INFO
     handlers: [ console ]
     propagate: no
