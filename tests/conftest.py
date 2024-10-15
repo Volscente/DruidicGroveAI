@@ -45,7 +45,7 @@ def fixture_bigquery_connector(fixture_bigquery_client_config: BigQueryClientCon
     This fixture returns a BigQueryConnector object
 
     Args:
-        fixture_bigquery_client_config:
+        fixture_bigquery_client_config: BigQueryClientConfig object for instancing a BigQuery client
 
     Returns:
         bigquery_connector: BigQueryConnector object
