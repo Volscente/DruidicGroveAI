@@ -64,6 +64,58 @@ class BigQueryConnector:
 
         self.logger.debug('_set_client - End')
 
+    def _build_query_parameters(self,
+                                query_parameters: dict) -> list:
+        """
+        Build BigQuery query parameters from a dictionary in which each key
+        is a BigQuery Parameter like:
+            name: <name_of_the_query_parameter>
+            array_type: <type_of_the_parameter>
+            value: <value_of_the_parameter>
+
+        Args:
+            query_parameters: dict parameters
+
+        Returns
+            bigquery_query_parameters: list BigQuery query parameters
+        """
+
+        self.logger.debug('build_bigquery_query_parameters_from_dictionary - Start')
+
+        # Initialise empty list BigQuery query parameters
+        bigquery_query_parameters = []
+
+        self.logger.info('build_bigquery_query_parameters_from_dictionary - Fetch BigQuery query parameters')
+
+        # Fetch all query parameters
+        for query_parameter_key in query_parameters.keys():
+
+            # Check if the ScalarQueryParameter or ArrayQueryParameter is required
+            # The difference is in the type of values passed (No list: scalar, list: array)
+            if isinstance(query_parameters[query_parameter_key]['value'], list):
+
+                # Build the parameter
+                bigquery_parameter = bigquery.ArrayQueryParameter(
+                    query_parameters[query_parameter_key]['name'],
+                    query_parameters[query_parameter_key]['type'],
+                    query_parameters[query_parameter_key]['value']
+                )
+            else:
+                # Build the parameter
+                bigquery_parameter = bigquery.ScalarQueryParameter(
+                    query_parameters[query_parameter_key]['name'],
+                    query_parameters[query_parameter_key]['type'],
+                    query_parameters[query_parameter_key]['value']
+                )
+            # Append to the list of parameters
+            bigquery_query_parameters.append(bigquery_parameter)
+
+        self.logger.info('build_bigquery_query_parameters_from_dictionary - Successfully built BigQuery query parameters')
+
+        self.logger.debug('build_bigquery_query_parameters_from_dictionary - End')
+
+        return bigquery_query_parameters
+
     def read_from_query_config(self):
         # TODO
         pass
