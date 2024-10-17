@@ -54,3 +54,15 @@ def fixture_bigquery_connector(fixture_bigquery_client_config: BigQueryClientCon
     bigquery_connector = BigQueryConnector(client_config=fixture_bigquery_client_config)
 
     return bigquery_connector
+
+
+@pytest.fixture
+def fixture_dictionary_query_parameters():
+    # TODO
+    pass
+
+
+@pytest.fixture
+def fixture_bigquery_parameters():
+    # TODO
+    pass

@@ -24,3 +24,8 @@ def test_set_client(fixture_bigquery_connector: BigQueryConnector) -> bool:
     credentials = fixture_bigquery_connector.client._credentials
 
     assert credentials is not None
+
+
+def test_build_query_parameters():
+    # TODO
+    pass
