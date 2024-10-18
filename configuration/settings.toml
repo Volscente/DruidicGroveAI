@@ -1,3 +1,6 @@
 [pytest]
-client.project_id = 'deep-learning-438509'
-client.location = 'europe-west1'
+[pytest.client]
+project_id = 'deep-learning-438509'
+location = 'europe-west1'
+[pytest.query_config]
+query_path = 'queries/test_queries/test_access_bigquery_query.sql'
