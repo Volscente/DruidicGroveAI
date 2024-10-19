@@ -1,8 +1,8 @@
 -- Query for testing purposes
 SELECT
     id,
-    status
+    display_name
 FROM
-    `placeholder`
+    `bigquery-public-data.stackoverflow.users`
 WHERE
     id = @test_parameter
