@@ -45,8 +45,10 @@ def test_read_file_from_path(input_path: pathlib.Path,
      'wrong_file.sql',
      FileNotFoundError)
 ])
-def test_read_file_from_path_exceptions(input_path: pathlib.Path,
-                                        expected_exception: Exception) -> bool:
+def test_read_file_from_path_exceptions(
+        input_path: pathlib.Path,
+        expected_exception: Exception
+) -> bool:
     """
     Test the exceptions to the function
     src.general_utils.general_utils.read_file_from_path
