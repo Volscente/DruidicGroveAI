@@ -57,12 +57,18 @@ def fixture_bigquery_connector(fixture_bigquery_client_config: BigQueryClientCon
 
 
 @pytest.fixture
-def fixture_dictionary_query_parameters():
-    # TODO
-    pass
+def fixture_dictionary_query_parameters(query_config: dict = config['query_config']['query_parameters']):
+    """
+    Fixture for a Dictionary Query Parameter with structure:
+        name: <name_of_the_query_parameter>
+        array_type: <type_of_the_parameter>
+        value: <value_of_the_parameter>
 
+    Args:
+        query_config: Dictionary of query parameters
 
-@pytest.fixture
-def fixture_bigquery_parameters():
-    # TODO
-    pass
+    Returns:
+        query_parameters: Dictionary of query parameters
+    """
+
+    return query_config
