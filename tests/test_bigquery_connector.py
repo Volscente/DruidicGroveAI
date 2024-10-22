@@ -24,7 +24,7 @@ def test_set_client(
     Returns:
     """
     # Retrieve credentials
-    credentials = fixture_bigquery_connector.client._credentials
+    credentials = fixture_bigquery_connector._client._credentials
 
     assert credentials is not None
 
@@ -39,7 +39,7 @@ def test_build_query_parameters(
         bigquery_parameter: bigquery.ScalarQueryParameter
 ) -> bool:
     """
-    Test the function src.bigquery_connector.bigquery_connector.BigQueryConnector._build_query_parameters
+    Test the function src/bigquery_connector/bigquery_connector.BigQueryConnector._build_query_parameters
     by checking if the test bigquery_parameter is among the built ones
 
     Args:
@@ -56,3 +56,22 @@ def test_build_query_parameters(
     )
 
     assert bigquery_parameter in built_bigquery_parameters
+
+
+def test_read_from_query_config(fixture_bigquery_connector: BigQueryConnector,
+                                fixture_query_config: dict) -> bool:
+    """
+    Test the function
+    src/bigquery_connector/bigquery_connector.BigQueryConnector._read_from_query_config
+    by reading the data from BigQuery and comparing them with expected values
+
+    Args:
+        fixture_bigquery_connector: BigQueryConnector object
+        fixture_query_config: Dictionary of query configurations
+
+    Returns:
+    """
+    # Read data
+    data = fixture_bigquery_connector.read_from_query_config(query_config=fixture_query_config)
+
+    assert data is not None
