@@ -3,12 +3,16 @@ Defines the BigqueryConnector class in order to query BigQuery
 datasets and tables
 """
 # Import Standard Modules
+import pandas as pd
 from google.cloud import bigquery
 from pathlib import Path
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
 from src.types import BigQueryClientConfig
+from src.general_utils.general_utils import (
+    read_file_from_path
+)
 
 
 class BigQueryConnector:
@@ -57,7 +61,7 @@ class BigQueryConnector:
         self.logger.info('_set_client - Set the BigQuery client')
 
         # Set the client
-        self.client = bigquery.Client(
+        self._client = bigquery.Client(
             project=self.client_config.project_id,
             location=self.client_config.location
         )
@@ -116,6 +120,52 @@ class BigQueryConnector:
 
         return bigquery_query_parameters
 
-    def read_from_query_config(self):
-        # TODO
-        pass
+    def read_from_query_config(self, query_config: dict) -> pd.DataFrame:
+        """
+        Read the query from local path and retrieve data from BigQuery
+
+        Args:
+            query_config: Dictionary query configurations (path and parameters)
+
+        Returns
+            data: pd.DataFrame retrieved data
+        """
+        self.logger.info('read_from_query_config - Start')
+
+        # Retrieve query path
+        query_path = Path(query_config['query_path'])
+
+        self.logger.info('read_from_query_config - Reading query file: %s',
+                         query_path.as_posix())
+
+        # Read query
+        query = read_file_from_path(query_path)
+
+        # Check if there are parameters
+        if 'query_parameters' not in query_config.keys():
+
+            self.logger.info('read_from_query_config - Querying BigQuery without Parameters')
+
+            # Read data from BigQuery
+            data = self._client.query(query)
+
+        else:
+
+            # Retrieve BigQuery query parameters
+            parameters = self._build_query_parameters(query_config['query_parameters'])
+
+            self.logger.info('read_from_query_config - Querying BigQuery with Parameters')
+
+            # Read data from BigQuery with parameters
+            data = self._client.query(query=query,
+                                      job_config=bigquery.QueryJobConfig(query_parameters=parameters))
+
+        self.logger.info('read_from_query_config - Successfully retrieve data')
+        self.logger.info('read_from_query_config - Converting data to Pandas DataFrame')
+
+        # Convert data to a Pandas DataFrame
+        data = data.to_dataframe()
+
+        self.logger.info('read_from_query_config - End')
+
+        return data
