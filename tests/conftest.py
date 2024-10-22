@@ -72,3 +72,25 @@ def fixture_dictionary_query_parameters(query_config: dict = config['query_confi
     """
 
     return query_config
+
+
+@pytest.fixture
+def fixture_query_config(
+        query_config: dict = config['query_config']
+) -> dict:
+    """
+    Fixture for a Dictionary Query Configurations with structure:
+        query_path: <path_of_the_query_file>
+        query_parameters:
+            name: <name_of_the_query_parameter>
+            array_type: <type_of_the_parameter>
+            value: <value_of_the_parameter>
+
+    Args:
+        query_config: Dictionary of query configurations
+
+    Returns:
+        query_config: Dictionary of query configurations
+    """
+
+    return query_config

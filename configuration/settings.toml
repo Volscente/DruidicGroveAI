@@ -5,7 +5,7 @@ project_id = 'deep-learning-438509'
 location = 'europe-west1'
 
 [pytest.query_config]
-query_path = 'queries/test_queries/test_access_bigquery_query.sql'
+query_path = './../queries/test_queries/test_access_bigquery_query.sql'
 query_parameters.id.name = 'id'
 query_parameters.id.type = 'INTEGER'
 query_parameters.id.value = 3863
