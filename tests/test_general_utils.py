@@ -22,7 +22,7 @@ from src.general_utils.general_utils import (
 def test_read_file_from_path(input_path: pathlib.Path,
                              expected_first_line: str) -> bool:
     """
-    Test the function src.general_utils.general_utils.read_file_from_path
+    Test the function src/general_utils/general_utils.read_file_from_path
     by reading a local file and compare the first line
 
     Args:
@@ -51,7 +51,7 @@ def test_read_file_from_path_exceptions(
 ) -> bool:
     """
     Test the exceptions to the function
-    src.general_utils.general_utils.read_file_from_path
+    src/general_utils/general_utils.read_file_from_path
 
     Args:
         input_path: pathlib.Path wrong local file path

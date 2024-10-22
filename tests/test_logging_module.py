@@ -19,7 +19,7 @@ def test_get_logger(input_logger: str,
                     input_config_path: pathlib.Path,
                     expected_name: str) -> bool:
     """
-    Test the function src.logging_module.logging_module.get_logger
+    Test the function src/logging_module/logging_module.get_logger
 
     Args:
         input_logger: str logger name
@@ -45,7 +45,7 @@ def test_get_logger_exceptions(input_logger: str,
                                expected_exception: Exception) -> bool:
     """
     Test the exceptions trigger by the
-    function src.logging_module.logging_module.get_logger
+    function src/logging_module/logging_module.get_logger
 
     Args:
         input_logger: str logger name
