@@ -17,7 +17,7 @@ from src.general_utils.general_utils import (
      'queries' /
      'test_queries' /
      'test_access_bigquery_query.sql',
-     '-- Query for testing purposes')
+     '/*')
 ])
 def test_read_file_from_path(input_path: pathlib.Path,
                              expected_first_line: str) -> bool:
