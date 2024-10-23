@@ -63,7 +63,6 @@ class BigQueryConnector:
         # Set the client
         self._client = bigquery.Client(
             project=self.client_config.project_id,
-            location=self.client_config.location
         )
 
         self.logger.debug('_set_client - End')

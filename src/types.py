@@ -15,4 +15,3 @@ class BigQueryClientConfig(BaseModel):
 
     """
     project_id: Literal['deep-learning-438509']
-    location: Literal['us-west1']

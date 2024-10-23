@@ -20,21 +20,20 @@ config = Dynaconf(settings_files=[pathlib.Path(__file__).parents[1]
 
 
 @pytest.fixture
-def fixture_bigquery_client_config(project_id: str = config['client']['project_id'],
-                                   location: str = config['client']['location']) -> BigQueryClientConfig:
+def fixture_bigquery_client_config(
+        project_id: str = config['client']['project_id']
+) -> BigQueryClientConfig:
     """
     This fixture returns a BigQueryClientConfig object
 
     Args:
         project_id: String value of the GCP project id
-        location: String value of the GCP project location
 
     Returns:
         client_config: BigQueryClientConfig object
     """
     # Instance a BigQueryClientConfig object
-    client_config = BigQueryClientConfig(project_id=project_id,
-                                         location=location)
+    client_config = BigQueryClientConfig(project_id=project_id)
 
     return client_config
 
