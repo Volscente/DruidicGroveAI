@@ -28,7 +28,7 @@ def read_file_from_path(file_path: pathlib.Path) -> str:
         file_read: str read file
     """
 
-    logger.info('read_file_from_path - Start')
+    logger.debug('read_file_from_path - Start')
 
     # Check if the file_path exists
     if file_path.exists():
@@ -43,6 +43,6 @@ def read_file_from_path(file_path: pathlib.Path) -> str:
 
     logger.info('read_file_from_path - Successfully file read from %s', file_path.as_posix())
 
-    logger.info('read_file_from_path - Start')
+    logger.debug('read_file_from_path - End')
 
     return file_read
