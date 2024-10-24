@@ -129,7 +129,7 @@ class BigQueryConnector:
         Returns
             data: pd.DataFrame retrieved data
         """
-        self.logger.info('read_from_query_config - Start')
+        self.logger.debug('read_from_query_config - Start')
 
         # Retrieve query path
         query_path = Path(query_config['query_path'])
@@ -165,6 +165,6 @@ class BigQueryConnector:
         # Convert data to a Pandas DataFrame
         data = data.to_dataframe()
 
-        self.logger.info('read_from_query_config - End')
+        self.logger.debug('read_from_query_config - End')
 
         return data
