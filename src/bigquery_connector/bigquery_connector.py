@@ -3,9 +3,9 @@ Defines the BigqueryConnector class in order to query BigQuery
 datasets and tables
 """
 # Import Standard Modules
+from pathlib import Path
 import pandas as pd
 from google.cloud import bigquery
-from pathlib import Path
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger

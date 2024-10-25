@@ -2,8 +2,8 @@
 This module includes Pydantic types for the whole project
 """
 # Import Standard Modules
-from pydantic import BaseModel, validator
 from typing import Literal
+from pydantic import BaseModel, validator
 
 
 class BigQueryClientConfig(BaseModel):

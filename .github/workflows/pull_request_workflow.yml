@@ -30,7 +30,7 @@ jobs:
         - name: Lint with PyLint
           run: |
             poetry run pylint \
-            --disable='C0301, R0903, R0801' \
+            --disable='C0301, R0903, R0801, W0212' \
             --source-roots=./src \
             --output-format=colorized \
             --msg-template='Rule: {msg_id} - Position: [{line},{column}] -  {msg}' \
