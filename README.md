@@ -12,6 +12,28 @@ Add the current directory to the `PYTHONPATH` environment variables.
 export PYTHONPATH="$PYTHONPATH:/<absolute_path>/DruidicGroveAI"
 ```
 
+## Setup gcloud CLI
+Install `gcloud` on the local machine ([Guide](https://cloud.google.com/sdk/docs/install)).
+
+Authenticate locally to GCP:
+```bash
+gcloud auth login
+```
+
+Set the project ID.
+```bash
+# List all the projects
+gcloud projects list
+
+# Set the project
+gcloud config set project <project_id>
+```
+
+Create authentication keys.
+```bash
+gcloud auth application-default login
+```
+
 ## Justfile
 > `just` is a handy way to save and run project-specific commands
 > 
