@@ -39,7 +39,9 @@ def fixture_bigquery_client_config(
 
 
 @pytest.fixture
-def fixture_bigquery_connector(fixture_bigquery_client_config: BigQueryClientConfig) -> BigQueryConnector:
+def fixture_bigquery_connector(
+        fixture_bigquery_client_config: BigQueryClientConfig
+) -> BigQueryConnector:
     """
     This fixture returns a BigQueryConnector object
 
