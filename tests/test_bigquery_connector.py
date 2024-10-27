@@ -10,6 +10,9 @@ import pytest
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 
 
+@pytest.mark.skip(
+    reason="This test is skipped because we don't want store GCP credentials on GitHub Secret"
+)
 def test_set_client(
         fixture_bigquery_connector: BigQueryConnector
 ) -> bool:
@@ -29,6 +32,9 @@ def test_set_client(
     assert credentials is not None
 
 
+@pytest.mark.skip(
+    reason="This test is skipped because we don't want store GCP credentials on GitHub Secret"
+)
 @pytest.mark.parametrize('bigquery_parameter', [
     (bigquery.ScalarQueryParameter(name='id', type_='INTEGER', value=3863)),
     (bigquery.ScalarQueryParameter(name='display_name', type_='STRING', value='Adam Hughes'))
@@ -58,6 +64,9 @@ def test_build_query_parameters(
     assert bigquery_parameter in built_bigquery_parameters
 
 
+@pytest.mark.skip(
+    reason="This test is skipped because we don't want store GCP credentials on GitHub Secret"
+)
 @pytest.mark.parametrize('index, expected_id, expected_display_name', [
     (0, 3863, 'Adam Hughes'),
 ])
