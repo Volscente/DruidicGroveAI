@@ -12,3 +12,11 @@ query_parameters.display_name.name = 'display_name'
 query_parameters.display_name.type = 'STRING'
 query_parameters.display_name.value = 'Adam Hughes'
 # --------------------------------
+
+# -------- Exploratory Data Analysis --------
+[eda]
+[eda.relevant_users]
+query_path = 'queries/stackoverflow/eda/users/relevant_users.sql'
+query_parameters.hours_interval.name = 'hours_interval'
+query_parameters.hours_interval.type = 'INTEGER'
+query_parameters.hours_interval.value = 8

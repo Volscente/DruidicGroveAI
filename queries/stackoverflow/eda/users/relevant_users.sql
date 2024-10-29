@@ -16,7 +16,7 @@ _most_recent_last_access_users AS (
         `bigquery-public-data.stackoverflow.users` AS stackoverflow_user,
         _max_last_access_date
     WHERE
-        stackoverflow_user.last_access_date BETWEEN TIMESTAMP(DATE_SUB(_max_last_access_date.max_last_access_date, INTERVAL 8 HOUR))
+        stackoverflow_user.last_access_date BETWEEN TIMESTAMP(DATE_SUB(_max_last_access_date.max_last_access_date, INTERVAL @hours_interval HOUR))
         AND _max_last_access_date.max_last_access_date
 )
 
