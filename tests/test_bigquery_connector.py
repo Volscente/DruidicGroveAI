@@ -64,9 +64,9 @@ def test_build_query_parameters(
     assert bigquery_parameter in built_bigquery_parameters
 
 
-@pytest.mark.skip(
-    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-)
+# @pytest.mark.skip(
+#     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+# )
 @pytest.mark.parametrize('index, expected_id, expected_display_name', [
     (0, 3863, 'Adam Hughes'),
 ])
