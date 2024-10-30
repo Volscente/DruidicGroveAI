@@ -31,6 +31,7 @@ def read_file_from_path(file_path: pathlib.Path) -> str:
     logger.debug('read_file_from_path - Start')
 
     # Retrieve root directory path
+    # TODO: Check test test_read_from_query_config
     root_path = pathlib.Path(os.getenv('PYTHONPATH'))
 
     logger.debug('read_file_from_path - Root directory: %s', root_path.as_posix())
