@@ -11,6 +11,11 @@ Add the project root directory as `DRUIDIC_GROVE_AI_ROOT_PATH` environment varia
 ``` bash
 export DRUIDIC_GROVE_AI_ROOT_PATH="/<absolute_path>/DruidicGroveAI"
 ```
+Create a `.env` file in the root folder like
+```
+# Set the Root Path
+DRUIDIC_GROVE_AI_ROOT_PATH="/<absolute_path>/DruidicGroveAI"
+```
 
 ## Setup gcloud CLI
 Install `gcloud` on the local machine ([Guide](https://cloud.google.com/sdk/docs/install)).
