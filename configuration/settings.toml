@@ -15,6 +15,7 @@ query_parameters.display_name.value = 'Adam Hughes'
 
 # -------- Exploratory Data Analysis --------
 [eda]
+read_local = true
 [eda.bigquery_client]
 project_id = 'deep-learning-438509'
 [eda.relevant_users]
@@ -22,3 +23,4 @@ query_path = 'queries/stackoverflow/eda/users/relevant_users.sql'
 query_parameters.hours_interval.name = 'hours_interval'
 query_parameters.hours_interval.type = 'INTEGER'
 query_parameters.hours_interval.value = 8
+local_path = 'data/stackoverflow/relevant_users.csv'
