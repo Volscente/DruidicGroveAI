@@ -6,6 +6,9 @@ on:
     branches:
       - main
       - dev
+env:
+  DRUIDIC_GROVE_AI_ROOT_PATH: '/'
+
 jobs:
     pr_workflow:
       name: pr_workflow
