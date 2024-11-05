@@ -1,3 +1,8 @@
+v.1.0.2
+-------
+- [x] Add Query `relevant_users.sql` in `queries/stackoverflow/eda/users`
+- [x] Add Notebook `stackoverflow_eda` in `notebooks/stackoverflow/eda`
+
 v.1.0.1
 -------
 - [x] Add Module `bigquery_connector` in `src`
