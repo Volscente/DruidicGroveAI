@@ -6,10 +6,15 @@ This project serves as a hub for experimenting with state-of-the-art models, alg
 and techniques, aiming to push the boundaries of AI innovation.
 
 # Setup
-## Update PYTHONPATH
-Add the current directory to the `PYTHONPATH` environment variables.
+## Environment Variables
+Add the project root directory as `DRUIDIC_GROVE_AI_ROOT_PATH` environment variable.
 ``` bash
-export PYTHONPATH="$PYTHONPATH:/<absolute_path>/DruidicGroveAI"
+export DRUIDIC_GROVE_AI_ROOT_PATH="/<absolute_path>/DruidicGroveAI"
+```
+Create a `.env` file in the root folder like
+```
+# Set the Root Path
+DRUIDIC_GROVE_AI_ROOT_PATH="/<absolute_path>/DruidicGroveAI"
 ```
 
 ## Setup gcloud CLI

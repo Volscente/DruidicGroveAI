@@ -30,6 +30,19 @@ def read_file_from_path(file_path: pathlib.Path) -> str:
 
     logger.debug('read_file_from_path - Start')
 
+    # Check if the required environment variable is set
+    if os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH'):
+        # Retrieve the root path
+        root_path = pathlib.Path(os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH'))
+    else:
+        logger.error('read_file_from_path - DRUIDIC_GROVE_AI_ROOT_PATH is not set')
+        raise EnvironmentError("Environment variable 'DRUIDIC_GROVE_AI_ROOT_PATH' is not set")
+
+    logger.debug('read_file_from_path - Root directory: %s', root_path.as_posix())
+
+    # Update the file_path with the project root directory
+    file_path = root_path / file_path
+
     # Check if the file_path exists
     if file_path.exists():
 
