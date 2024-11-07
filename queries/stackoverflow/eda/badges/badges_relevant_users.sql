@@ -14,7 +14,7 @@ _badges AS (
     FROM
         `bigquery-public-data.stackoverflow.badges` AS badges
     WHERE
-        badges.date BETWEEN TIMESTAMP(DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR))
+        badges.date BETWEEN TIMESTAMP(DATE_SUB(CURRENT_DATE(), INTERVAL @years_interval YEAR))
         AND TIMESTAMP(CURRENT_DATE())
 ),
 
@@ -38,11 +38,11 @@ _badges_relevant_users AS (
         badges.class AS badge_class,
         badges.tag_based AS badge_tag_based
     FROM
-        _badges as badges
-    RIGHT JOIN _relevant_users AS users
-        ON badges.user_id = users.id
+        _relevant_users AS users
+    LEFT JOIN _badges AS badges
+        ON users.id = badges.user_id
 )
 
 -- Select all the badge information retrieve
-SELECT COUNT(*)
+SELECT *
 FROM _badges_relevant_users
