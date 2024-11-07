@@ -8,11 +8,14 @@ WITH _relevant_users AS (
         `deep-learning-438509.dim_stackoverflow_data_model.relevant_users`
 ),
 
--- Retrieve badge information
+-- Retrieve badge information from the last years
 _badges AS (
     SELECT *
     FROM
-        `bigquery-public-data.stackoverflow.badges`
+        `bigquery-public-data.stackoverflow.badges` AS badges
+    WHERE
+        badges.date BETWEEN TIMESTAMP(DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR))
+        AND TIMESTAMP(CURRENT_DATE())
 ),
 
 -- Retrieve badge information of relevant users
@@ -35,11 +38,11 @@ _badges_relevant_users AS (
         badges.class AS badge_class,
         badges.tag_based AS badge_tag_based
     FROM
-        _badges AS badges
-    INNER JOIN _relevant_users AS users
+        _badges as badges
+    RIGHT JOIN _relevant_users AS users
         ON badges.user_id = users.id
 )
 
 -- Select all the badge information retrieve
-SELECT *
+SELECT COUNT(*)
 FROM _badges_relevant_users
