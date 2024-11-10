@@ -8,7 +8,7 @@ WITH _relevant_users AS (
         `deep-learning-438509.dim_stackoverflow_data_model.relevant_users`
 ),
 
--- Retrieve badge information from the last years
+-- Retrieve badge information from the last year
 _badges AS (
     SELECT *
     FROM
@@ -36,13 +36,18 @@ _badges_relevant_users AS (
         badges.name AS badge_name,
         badges.date AS badge_date,
         badges.class AS badge_class,
-        badges.tag_based AS badge_tag_based
+        badges.tag_based AS badge_tag_based,
+        # Compute the number of badges per user
+        ROW_NUMBER() OVER (PARTITION BY users.id ORDER BY badges.date DESC) AS badge_rank
     FROM
         _relevant_users AS users
     LEFT JOIN _badges AS badges
         ON users.id = badges.user_id
 )
 
--- Select all the badge information retrieve
+-- Select only latest 3 badges per user
 SELECT *
-FROM _badges_relevant_users
+FROM _badges_relevant_users AS users_badge
+WHERE
+    users_badge.badge_name IS NOT NULL
+    AND users_badge.badge_rank <= 3
