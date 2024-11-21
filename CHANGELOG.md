@@ -1,10 +1,23 @@
-v.1.0.2
+# v.1.0.3
+
+------
+
+- [x] Add Query `relevant_users_view.sql` in `queries/stackoverflow/eda/views`
+- [x] Add Query `badges_relevant_users.sql` in `queries/stackoverflow/eda/badges`
+- [x] Add Query `number_badges_relevant_users.sql` in `queries/stackoverflow/eda/badges`
+- [x] Update Notebook `stackoverflow_eda.ipynb` in `notebooks/stackoverflow/eda` by adding the section `Badges`
+
+# v.1.0.2
+
 -------
+
 - [x] Add Query `relevant_users.sql` in `queries/stackoverflow/eda/users`
 - [x] Add Notebook `stackoverflow_eda` in `notebooks/stackoverflow/eda`
 
-v.1.0.1
+# v.1.0.1
+
 -------
+
 - [x] Add Module `bigquery_connector` in `src`
 - [x] Add Pydantic Type `BigQueryClientConfig` in `src/types.py`
 - [x] Add Function `_set_client` in `src/bigquery_connector/bigquery_connector.BigQueryConnector`
@@ -21,6 +34,8 @@ v.1.0.1
 - [x] Add PyTest Fixture `fixture_query_config` in `tests/conftest.py`
 - [x] Add PyTest `test_read_from_query_config` in `tests/test_bigquery_connector.py`
 
-v.0.1.0
+# v.0.1.0
+
 -------
+
 - [x] Poetry init
