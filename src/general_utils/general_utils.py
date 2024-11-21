@@ -12,7 +12,8 @@ from src.logging_module.logging_module import get_logger
 
 # Setup logger
 logger = get_logger(os.path.basename(__file__).split('.')[0],
-                    pathlib.Path(__file__).parents[1] /
+                    pathlib.Path(os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH')) /
+                    'src' /
                     'logging_module' /
                     'log_configuration.yaml')
 

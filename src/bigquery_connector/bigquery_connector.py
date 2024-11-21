@@ -3,6 +3,7 @@ Defines the BigqueryConnector class in order to query BigQuery
 datasets and tables
 """
 # Import Standard Modules
+import os
 from pathlib import Path
 import pandas as pd
 from google.cloud import bigquery
@@ -37,7 +38,8 @@ class BigQueryConnector:
         """
         # Setup logger
         self.logger = get_logger(__class__.__name__,
-                                 Path(__file__).parents[1] /
+                                 Path(os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH')) /
+                                 'src' /
                                  'logging_module' /
                                  'log_configuration.yaml')
 

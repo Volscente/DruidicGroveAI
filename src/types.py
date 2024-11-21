@@ -14,4 +14,4 @@ class BigQueryClientConfig(BaseModel):
     Attributes:
 
     """
-    project_id: Literal['deep-learning-438509']
+    project_id: str = Literal['deep-learning-438509']
