@@ -30,3 +30,9 @@ query_parameters.hours_interval.name = 'years_interval'
 query_parameters.hours_interval.type = 'INTEGER'
 query_parameters.hours_interval.value = 3
 local_path = 'data/stackoverflow/badges_relevant_users.csv'
+[eda.number_badges_relevant_users]
+query_path = 'queries/stackoverflow/eda/badges/number_badges_relevant_users.sql'
+query_parameters.hours_interval.name = 'years_interval'
+query_parameters.hours_interval.type = 'INTEGER'
+query_parameters.hours_interval.value = 10
+local_path = 'data/stackoverflow/number_badges_relevant_users.csv'
