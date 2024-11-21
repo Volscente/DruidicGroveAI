@@ -33,5 +33,6 @@ _count_badges_relevant_users AS (
     LEFT JOIN _badges AS badges
         ON users.id = badges.user_id
 )
+
 SELECT *
 FROM _count_badges_relevant_users
