@@ -1,6 +1,6 @@
 /*
- * Retrieve badge information of the relevant users
-*/
+ * Retrieve badge information of the relevant users in the last @years_interval years
+ */
 -- Retrieve relevant users
 WITH _relevant_users AS (
     SELECT *
