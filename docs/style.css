@@ -1,3 +1,6 @@
+/*
+ * Main section
+ */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -57,4 +60,44 @@ h2.sticky-header {
 
 div {
     margin-bottom: 10px;
+}
+
+/*
+ * Sidebar
+ */
+.sidebar {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-right: 1px solid #ccc;
+    height: 100vh; /* Full height */
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 5px 0;
+}
+
+.sidebar ul li ul {
+    padding-left: 15px;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+}
+
+.sidebar a:hover {
+    color: #007bff;
+    text-decoration: underline;
 }
