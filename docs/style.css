@@ -67,9 +67,10 @@ div {
  */
 .sidebar {
     width: 200px;
-    background-color: #f4f4f4;
+    background-color: #3c5a40; /* Green background */
+    color: white; /* White text for contrast */
     padding: 15px;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #2e4633; /* Slightly darker green for the border */
     height: 100vh; /* Full height */
     box-sizing: border-box;
 }
@@ -77,6 +78,7 @@ div {
 .sidebar h2 {
     font-size: 1.5em;
     margin-top: 0;
+    color: white; /* White text */
 }
 
 .sidebar ul {
@@ -94,10 +96,10 @@ div {
 
 .sidebar a {
     text-decoration: none;
-    color: #333;
+    color: #f9f9f9; /* Lighter greenish-white for links */
 }
 
 .sidebar a:hover {
-    color: #007bff;
+    color: #d4e2d0; /* Lighter green for hover effect */
     text-decoration: underline;
 }
