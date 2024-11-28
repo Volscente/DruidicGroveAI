@@ -77,7 +77,7 @@ h2.sticky-header {
 }
 
 .sidebar {
-    width: 200px; /* Fixed width for sidebar */
+    width: 300px; /* Fixed width for sidebar */
     background-color: #f4f4f4;
     padding: 15px;
     border-right: 1px solid #2e4633; /* Slightly darker green for the border */
@@ -91,7 +91,6 @@ h2.sticky-header {
 }
 
 .sidebar ul {
-    list-style: none;
     padding: 0;
 }
 
@@ -100,15 +99,14 @@ h2.sticky-header {
 }
 
 .sidebar ul li ul {
-    padding-left: 15px;
+    padding-left: 0;
 }
 
 .sidebar a {
-    text-decoration: none;
-    color: #f9f9f9; /* Lighter greenish-white for links */
+    color: #333;; /* Lighter greenish-white for links */
 }
 
 .sidebar a:hover {
-    color: #d4e2d0; /* Lighter green for hover effect */
+    color: #3c5a40; /* Lighter green for hover effect */
     text-decoration: underline;
 }
