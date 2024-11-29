@@ -63,6 +63,7 @@ h2.sticky-header {
 
 .content {
     padding: 10px;
+    width: calc(100% - 300px); /* Adjust to occupy remaining space */
 }
 
 /*
