@@ -39,17 +39,40 @@
     <div id="Content" class="content">
       <h2 class="sticky-header">Users</h2>
         <h3>Information</h3>
-          <b>Dataset:</b>
+          <b>Dataset:</b> <i>bigquery-public-data.stackoverflow.users</i>
           <br>
           <b>Queries:</b>
           <ul>
-            <li>query_path - Filters:</li>
+            <li><i>queries/stackoverflow/eda/users/relevant_users.sql</i> &rarr;
+              Retrieve all the users that have not null values in their information
+              from the ones who recently performed their last access into the platform</li>
           </ul>
         <h3>General</h3>
+          <ul>
+            <li>Shape &rarr; (33517, 12)</li>
+            <li>No IDs columns &rarr; All are potential features</li>
+          </ul>
         <h3>Null Values</h3>
+          <ul>
+            <li>6 columns have null values</li>
+            <li>Column `age` has only null values &rarr; Discard</li>
+            <li>Columns `about_me` and `website_url` have more than 50% null values &rarr; Discard</li>
+          </ul>
         <h3>Numerical Features Distribution</h3>
+          <ul>
+            <li>Numerical features have a very high Standard Deviation and different scales &rarr; Require Standardisation</li>
+            <li>Identify outliers through the z-score computation &rarr; Few outliers, drop them</li>
+          </ul>
         <h3>Categorical Features Distribution</h3>
+          <ul>
+            <li>`Location` features has too many values and of poor quality.
+              There is both `USA` and `United States`, or both `India` and `Bangalore, Karnataka, India`
+              &rarr; Try with encoding. Similar values should have similar encodings.</li>
+          </ul>
         <h3>Datetime Features Distribution</h3>
+          <ul>
+            <li>There is huge interval of `creation_date` &rarr;Use only the year has a feature</li>
+          </ul>
       <h2 class="sticky-header">Badges</h2>
         <h3>Information</h3>
           <b>Dataset:</b>
@@ -63,7 +86,7 @@
         <h3>Numerical Features Distribution</h3>
         <h3>Categorical Features Distribution</h3>
         <h3>Datetime Features Distribution</h3>
-
+      <h2 class="sticky-header">Conclusions</h2>
     </div>
   </div>
 </main>
