@@ -37,8 +37,77 @@
     </nav>
     <!-- Content -->
     <div id="Content" class="content">
-      <h2 class="sticky-header">Users</h2>
-
+      <div id="Legend">
+        <h2 class="sticky-header">Legend</h2>
+        <h3>Status Legend</h3>
+        <table class="table">
+          <tr class="header_row">
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Status</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Description</b></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">🔎 Discovery 🔎</td>
+            <td style="border: 1px solid; padding: 8px;">The table's fields are being explored</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">⚙️ Progress ⚙️</td>
+            <td style="border: 1px solid; padding: 8px;">The table's fields have been partially explored and no further discovery is required at the moment</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">🍻 Explored 🍻</td>
+            <td style="border: 1px solid; padding: 8px;">All table's fields have been explored and evaluated</td>
+          </tr>
+        </table>
+        <h3>Fields Tag legend</h3>
+        <table class="table">
+          <tr class="header_row">
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Tag</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Description</b></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">Sample ID</td>
+            <td style="border: 1px solid; padding: 8px;">The field is used in order to uniquely identify the data sample</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">Time Frame	</td>
+            <td style="border: 1px solid; padding: 8px;">The field is used in order to filter the data samples for a specific time interval</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">Label</td>
+            <td style="border: 1px solid; padding: 8px;">The field is used in order to define the label</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">Filter</td>
+            <td style="border: 1px solid; padding: 8px;">The field is used in order to filter the data points, excluding potential non-relevant ones</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">Feature</td>
+            <td style="border: 1px solid; padding: 8px;">The field can become a feature or be used in the Feature Engineering process</td>
+          </tr>
+        </table>
+        <h3>Field Status Legend</h3>
+        <table class="table">
+          <tr class="header_row">
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Status</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Description</b></td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">✅</td>
+            <td style="border: 1px solid; padding: 8px;">Field can be included in the data source</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">Field needs more analysis or can be used with restrictions</td>
+          </tr>
+          <tr>
+            <td style="border: 1px solid; padding: 8px;">❌</td>
+            <td style="border: 1px solid; padding: 8px;">Field is not useful and will not be included in the data source</td>
+          </tr>
+        </table>
+      </div>
+      <div id="Input">
+        <h2 class="sticky-header">Input</h2>
+      </div>
     </div>
   </div>
 </main>

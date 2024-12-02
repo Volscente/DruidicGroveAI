@@ -111,3 +111,15 @@ h2.sticky-header {
     color: #3c5a40; /* Lighter green for hover effect */
     text-decoration: underline;
 }
+/*
+ * Table
+ */
+.table {
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid green;
+}
+
+.header_row {
+    background-color: rgba(60, 90, 64, 0.2);
+}
