@@ -5,6 +5,13 @@ DruidicGroveAI is a research-focused repository dedicated to exploring the lates
 This project serves as a hub for experimenting with state-of-the-art models, algorithms, 
 and techniques, aiming to push the boundaries of AI innovation.
 
+# Resources
+The full documentation of the project can be found in the dedicated [GitHub Pages](https://volscente.github.io/DruidicGroveAI/).
+
+For the developers, check the wiki [Package & Modules](https://github.com/Volscente/DruidicGroveAI/wiki/Packages-&-Modules) Section.
+
+Please refer to this [Contributing Guidelines](https://github.com/Volscente/DruidicGroveAI/wiki/Contributing-Guidelines) in order to contribute to the repository.
+
 # Setup
 ## Environment Variables
 Add the project root directory as `DRUIDIC_GROVE_AI_ROOT_PATH` environment variable.
