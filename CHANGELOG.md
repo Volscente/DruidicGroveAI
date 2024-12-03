@@ -1,3 +1,16 @@
+# v.1.0.4
+
+------
+
+- [x] Add Document `index.html` in `docs`
+- [x] Add Document `use_cases.html` in `docs`
+- [x] Add Document `general.html` in `docs/stackoverflow_answer_score_classification`
+- [x] Add Document `style.css` in `docs`
+- [x] Add Navigation in `style.css`
+- [x] Add Document `exploratory_data_analysis.html` in `docs/stackoverflow_answer_score_classification`
+- [x] Add Document `development_v.1.0.x.html` in `docs/stackoverflow_answer_score_classification`
+- [x] Add Document `input_data_sources.html` in `docs/stackoverflow_answer_score_classification`
+
 # v.1.0.3
 
 ------
