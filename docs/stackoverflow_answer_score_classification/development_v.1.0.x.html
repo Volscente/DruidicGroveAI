@@ -3,46 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Druidic Grove AI | Stack Overflow Answer Score Classification | v.1.0.x</title>
+  <title>v.1.0.x</title>
   <link rel="stylesheet" href="./../style.css">
 </head>
 <body>
 <header>
-  <h1>Druidic Grove AI | Stack Overflow Answer Score Classification | v.1.0.x</h1>
+  <h1>v.1.0.x</h1>
   <p>Exploring real-world applications of AI innovation</p>
 </header>
 <main>
-  <section>
-    <h2>General Information</h2>
-    <div>
-      <b>Start Date:</b> 06/10/2024
-      <br>
-      <b>End Date:</b> 👷 In Progress 👷
-      <br>
-      <b>Goal:</b> Develop a simple Deep Neural Network to predict the quality of Stack Overflow answers in order to have a baseline model.
-    </div>
-    <div>
-      <b>Used Technologies:</b>
+  <div id="main" class="container">
+    <!-- Sidebar -->
+    <nav id="Sidebar" class="sidebar">
+      <h2>Navigation</h2>
       <ul>
-        <li>👷 TBD👷</li>
+        <li><a href="./../index.html">Home</a></li>
+        <li><a href="./../use_cases.html">Use Cases</a>
+        <ul>
+          <li><a href="general.html">Stack Overflow Answer Score Classification</a>
+          <ul>
+            <li><a href="exploratory_data_analysis.html">Exploratory Data Analysis</a></li>
+            <li><a href="data_sources.html">Data Sources</a></li>
+            <li>Developments
+            <ul>
+              <li><a href="development_v.1.0.x.html"><b>v.1.0.x</b></a></li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
       </ul>
+    </nav>
+    <!-- Content -->
+    <div id="Content" class="content">
+      <div id="General">
+        <h2 class="sticky-header">General</h2>
+        <b>Start Date:</b>
+        <br>
+        <b>End Date:</b>
+        <br>
+        <b>Goal:</b>
+        <br>
+        <b>Technologies Used:</b>
+        <!-- TODO: Use the GitHub chips here! -->
+        <br>
+      </div>
+      <div id="Data Preparation">
+        <h2 class="sticky-header">Data Preparation</h2>
+      </div>
+      <div id="Training Dataset">
+        <h2 class="sticky-header">Training Dataset</h2>
+      </div>
+      <div id="Model Training">
+        <h2 class="sticky-header">Model Training</h2>
+      </div>
+      <div id="Model Evaluation">
+        <h2 class="sticky-header">Model Evaluation</h2>
+      </div>
+      <div id="Model Deployment">
+        <h2 class="sticky-header">Model Deployment</h2>
+      </div>
     </div>
-  </section>
-  <section>
-    <h2>Training Dataset</h2>
-    <div></div>
-  </section>
-
-
-  <br></br>
-  <h4>Version: 1.0.x</h4>
-  <ul>
-    <li><strong>Training Dataset:</strong> Curated historical Stack Overflow answers.</li>
-    <li><strong>Data Preparation:</strong> Data cleaning, feature extraction, and preprocessing.</li>
-    <li><strong>Model Training:</strong> Experiment with classification models (e.g., transformer-based and tree-based models).</li>
-    <li><strong>Model Evaluation:</strong> Validate against holdout test sets and compute performance metrics.</li>
-    <li><strong>Model Serving:</strong> Deploy via REST API or other scalable solutions.</li>
-  </ul>
+  </div>
 </main>
 <footer>
   <p>&copy; 2024 Druidic Grove AI | Crafted with ❤️ for AI enthusiasts</p>
