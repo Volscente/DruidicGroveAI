@@ -26,12 +26,8 @@ _latest_posts_answers AS (
 
 -- Filter for relevant users and add users information
 _relevant_users_answers AS (
-    SELECT
-        *
-
+    -- TODO
 )
 
 -- Select only relevant information
-SELECT
-    *
-FROM _relevant_post_answers AS relevant_posts_answers
+-- TODO
