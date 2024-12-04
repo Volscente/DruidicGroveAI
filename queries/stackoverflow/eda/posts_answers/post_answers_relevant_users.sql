@@ -14,7 +14,7 @@ WITH _relevant_users AS (
 _latest_posts_answers AS (
     SELECT *
     FROM
-      `bigquery-public-data.stackoverflow.posts_answers` AS posts_answers
+        `bigquery-public-data.stackoverflow.posts_answers` AS posts_answers
     WHERE
         -- Filter for time frame
         posts_answers.creation_date BETWEEN TIMESTAMP(DATE_SUB(DATE(2022, 11, 25), INTERVAL 4 MONTH)) AND TIMESTAMP(CURRENT_DATE())
@@ -26,10 +26,12 @@ _latest_posts_answers AS (
 
 -- Filter for relevant users and add users information
 _relevant_users_answers AS (
-    SELECT *
+    SELECT
+        posts_answers.*,
+        users.*
     FROM
         _latest_posts_answers AS posts_answers
-    JOIN _relevant_users AS users
+    INNER JOIN _relevant_users AS users
         ON posts_answers.owner_user_id = users.id
 )
 
@@ -37,7 +39,7 @@ _relevant_users_answers AS (
 SELECT
     posts_answers.title AS answer_title,
     posts_answers.body AS answer_body,
-    posts_answers.answer_count AS answer_count,
+    posts_answers.answer_count,
     posts_answers.comment_count AS answer_comment_count,
     posts_answers.creation_date AS answer_creation_date,
     posts_answers.favorite_count AS answer_favorite_count,
@@ -52,6 +54,6 @@ SELECT
     posts_answers.up_votes AS user_up_votes,
     posts_answers.down_votes AS user_down_votes,
     posts_answers.views AS user_views,
-    posts_answers.score AS answer_score,
+    posts_answers.score AS answer_score
 FROM
     _relevant_users_answers AS posts_answers
