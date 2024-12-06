@@ -1,3 +1,11 @@
+# v.1.0.5
+
+------
+
+- [x] Add Query `post_answers_relevant_users.sql` in `queries/stackoverflow/eda/posts_answers`
+- [x] Add Section `Post Answers` in Notebook `notebooks/stackoverflow/eda/stackoverflow_eda.ipynb`
+- [x] Add Section `Post Answers` in Document `docs/stackoverflow_answer_score_classification/exploratory_data_analysis.html`
+
 # v.1.0.4
 
 ------
