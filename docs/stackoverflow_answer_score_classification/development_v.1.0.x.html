@@ -57,13 +57,73 @@
       </div>
       <div id="Data Preparation">
         <h2 class="sticky-header">Data Preparation</h2>
-        <div id="Input Tables">
-          <h3>Input Tables</h3>
-          <b>Users</b>
+        <div id="Input Table">
+          <h3>Input Table</h3>
+          The required input table is defined in the SQL query <i>queries/stackoverflow/data_preparation/input_table.sql</i>
+          Below the schema of it:
           <table class="table">
             <tr class="header_row">
-              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Status</b></td>
-              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Description</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Name</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Data Type</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Source Table</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Notes</b></td>
+            </tr>
+            <tr id="user_name">
+              <td style="border: 1px solid; padding: 8px;">001</td>
+              <td style="border: 1px solid; padding: 8px;">user_name</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">Username on Stack Overflow</td>
+            </tr>
+            <tr id="user_about_me">
+              <td style="border: 1px solid; padding: 8px;">002</td>
+              <td style="border: 1px solid; padding: 8px;">user_about_me</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The "About Me" section on user profile</td>
+            </tr>
+            <tr id="user_creation_date">
+              <td style="border: 1px solid; padding: 8px;">003</td>
+              <td style="border: 1px solid; padding: 8px;">user_creation_date</td>
+              <td style="border: 1px solid; padding: 8px;">Datetime</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The datetime when the user was created</td>
+            </tr>
+            <tr id="user_location">
+              <td style="border: 1px solid; padding: 8px;">004</td>
+              <td style="border: 1px solid; padding: 8px;">user_location</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The location on user profile</td>
+            </tr>
+            <tr id="user_reputation">
+              <td style="border: 1px solid; padding: 8px;">005</td>
+              <td style="border: 1px solid; padding: 8px;">user_reputation</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user reputation value</td>
+            </tr>
+            <tr id="user_up_votes">
+              <td style="border: 1px solid; padding: 8px;">006</td>
+              <td style="border: 1px solid; padding: 8px;">user_up_votes</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user up votes value</td>
+            </tr>
+            <tr id="user_down_votes">
+              <td style="border: 1px solid; padding: 8px;">007</td>
+              <td style="border: 1px solid; padding: 8px;">user_down_votes</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user down votes value</td>
+            </tr>
+            <tr id="user_views">
+              <td style="border: 1px solid; padding: 8px;">008</td>
+              <td style="border: 1px solid; padding: 8px;">user_views</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user number of views value</td>
             </tr>
           </table>
         </div>
