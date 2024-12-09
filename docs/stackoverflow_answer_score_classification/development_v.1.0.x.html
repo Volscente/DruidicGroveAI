@@ -55,12 +55,50 @@
         </ul>
         <br>
       </div>
-      <div id="Data Preparation">
-        <h2 class="sticky-header">Data Preparation</h2>
-        <div id="Input Table">
-          <h3>Input Table</h3>
-          The required input table is defined in the SQL query <i>queries/stackoverflow/data_preparation/input_table.sql</i>
-          Below the schema of it:
+      <div id="Input Tables">
+        <h2 class="sticky-header">Input Tables</h2>
+        <div id="Top 10 Rarest Badges">
+          <h3>Top 10 Rarest Badges</h3>
+          The <i>Top 10 Rarest Badges</i> input table is defined in the SQL query <i>queries/stackoverflow/data_preparation/top_10_rarest_badges.sql</i>
+          <br>
+          <b>NOTE:</b> The table contains only information between the following dates ⚠️ TBD ⚠️
+          <br>
+          <br>
+          <b>Data Schema:</b>
+          <br>
+          <table class="table">
+            <tr class="header_row">
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Name</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Data Type</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Source Table</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Notes</b></td>
+            </tr>
+            <tr id="badge_name">
+              <td style="border: 1px solid; padding: 8px;">001</td>
+              <td style="border: 1px solid; padding: 8px;">badge_name</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.badges</td>
+              <td style="border: 1px solid; padding: 8px;">The badge name</td>
+            </tr>
+            <tr id="badge_rarity">
+              <td style="border: 1px solid; padding: 8px;">002</td>
+              <td style="border: 1px solid; padding: 8px;">badge_rarity</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.badges</td>
+              <td style="border: 1px solid; padding: 8px;">The badge rarity identifies the total number of users having this same badge</td>
+            </tr>
+          </table>
+        </div>
+        <div id="Users Information">
+          <h3>Users Information</h3>
+          The <i>Users Information</i> input table is defined in the SQL query <i>queries/stackoverflow/data_preparation/users_information.sql</i>
+          <br>
+          <b>NOTE:</b> The table contains only information about the users who last access was between ⚠️ TBD ⚠️
+          <br>
+          <br>
+          <b>Data Schema:</b>
+          <br>
           <table class="table">
             <tr class="header_row">
               <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
@@ -124,6 +162,20 @@
               <td style="border: 1px solid; padding: 8px;">Integer</td>
               <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
               <td style="border: 1px solid; padding: 8px;">The user number of views value</td>
+            </tr>
+            <tr id="user_profile_image_url">
+              <td style="border: 1px solid; padding: 8px;">009</td>
+              <td style="border: 1px solid; padding: 8px;">user_profile_image_url</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user profile image url</td>
+            </tr>
+            <tr id="user_website_url">
+              <td style="border: 1px solid; padding: 8px;">010</td>
+              <td style="border: 1px solid; padding: 8px;">user_website_url</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user profile website url</td>
             </tr>
           </table>
         </div>
