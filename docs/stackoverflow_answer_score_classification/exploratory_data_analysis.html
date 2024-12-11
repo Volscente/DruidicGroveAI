@@ -56,8 +56,8 @@
         <h3>Null Values</h3>
           <ul>
             <li>6 columns have null values</li>
-            <li>Column `age` has only null values &rarr; Discard</li>
-            <li>Columns `about_me` and `website_url` have more than 50% null values &rarr; Discard</li>
+            <li>Column <b>age</b> has only null values &rarr; Discard</li>
+            <li>Columns <b>about_me</b> and <b>website_url</b> have more than 50% null values &rarr; Discard</li>
           </ul>
         <h3>Numerical Features Distribution</h3>
           <ul>
@@ -66,13 +66,13 @@
           </ul>
         <h3>Categorical Features Distribution</h3>
           <ul>
-            <li>`Location` features has too many values and of poor quality.
-              There is both `USA` and `United States`, or both `India` and `Bangalore, Karnataka, India`
+            <li><b>Location</b> features has too many values and of poor quality.
+              There is both <b>USA</b> and <b>United States</b>, or both <b>India</b> and <b>Bangalore, Karnataka, India</b>
               &rarr; Try with encoding. Similar values should have similar encodings.</li>
           </ul>
         <h3>Datetime Features Distribution</h3>
           <ul>
-            <li>There is huge interval of `creation_date` &rarr;Use only the year has a feature</li>
+            <li>There is huge interval of <b>creation_date</b> &rarr;Use only the year has a feature</li>
           </ul>
       </div>
       <div id="Badges">
@@ -95,9 +95,9 @@
             </ul>
           <h3>Categorical Features Distribution</h3>
             <ul>
-              <li>The `badge_name` feature is well curated &rarr; Use it through an encoding/embedding</li>
-              <li>The most rare badge has indeed quite above the average values for any `raw_numerical_features` &rarr; Engineer a feature called `has_most_rare_badges` by including the top 10 rarest badges</li>
-              <li>The feature `badge_count` has a strong correlation with `user_reputation`, `user_up_votes` and `user_views` &rarr; Engineer a feature called `badge_count`</li>
+              <li>The <b>badge_name</b> feature is well curated &rarr; Use it through an encoding/embedding</li>
+              <li>The most rare badge has indeed quite above the average values for any <b>raw_numerical_features</b> &rarr; Engineer a feature called <b>has_most_rare_badges</b> by including the top 10 rarest badges</li>
+              <li>The feature <b>badge_count</b> has a strong correlation with <b>user_reputation</b>, <b>user_up_votes</b> and <b>user_views</b> &rarr; Engineer a feature called <b>badge_count</b></li>
             </ul>
       </div>
       <div id="Post Answers">
@@ -117,11 +117,11 @@
         </ul>
         <h3>Null Values</h3>
         <ul>
-          <li>The columns `answer_title`, `answer_count`, `answer_favourite_count`, `answer_view_count` and `answer_tag` are all null &rarr; Drop them</li>
+          <li>The columns <b>answer_title</b>, <b>answer_count</b>, <b>answer_favourite_count</b>, <b>answer_view_count</b> and <b>answer_tag</b> are all null &rarr; Drop them</li>
         </ul>
         <h3>Numerical Features</h3>
         <ul>
-          <li>The `answer_score` is extremely skewed &rarr; There might the need to define the label with also other information a part from the score</li>
+          <li>The <b>answer_score</b> is extremely skewed &rarr; There might the need to define the label with also other information a part from the score</li>
           <li style="list-style-image: none; list-style-type: none;">
             <img src="./images/answer_score_density.png" alt="Answer Score Density" />
           </li>
@@ -130,15 +130,15 @@
       <div id="Conclusions">
         <h2 class="sticky-header">Conclusions</h2>
           <ul>
-            <li>Drop the `age` column from Users</li>
-            <li>Drop outliers with the z-score from the columns: `reputation`, `up_votes`, `down_votes` and `views`</li>
-            <li>Encode the feature `location`</li>
-            <li>Engineer a features called `creation_year` by extracting the year from the `creation_date`</li>
-            <li>Engineer a feature called `has_most_rare_badges` by including the top 10 rarest badges</li>
-            <li>Engineer a feature called `badge_count` as the total number of badges per user in the last 10 years</li>
-            <li>Drop `answer_title`, `answer_count`, `answer_favourite_count`, `answer_view_count` and `answer_tag` from Post Answers</li>
-            <li>Engineer a feature called `has_profile_image` from the `user_profile_image_url` using a boolean to denote when the field is non-null</li>
-            <li>Engineer a feature called `has_website` from the `user_website_url` using a boolean to denote when the field is non-null</li>
+            <li>Drop the <b>age</b> column from Users</li>
+            <li>Drop outliers with the z-score from the columns: <b>reputation</b>, <b>up_votes</b>, <b>down_votes</b> and <b>views</b></li>
+            <li>Encode the feature <b>location</b></li>
+            <li>Engineer a features called <b>creation_year</b> by extracting the year from the <b>creation_date</b></li>
+            <li>Engineer a feature called <b>has_most_rare_badges</b> by including the top 10 rarest badges</li>
+            <li>Engineer a feature called <b>badge_count</b> as the total number of badges per user in the last 10 years</li>
+            <li>Drop <b>answer_title</b>, <b>answer_count</b>, <b>answer_favourite_count</b>, <b>answer_view_count</b> and <b>answer_tag</b> from Post Answers</li>
+            <li>Engineer a feature called <b>has_profile_image</b> from the <b>user_profile_image_url</b> using a boolean to denote when the field is non-null</li>
+            <li>Engineer a feature called <b>has_website</b> from the <b>user_website_url</b> using a boolean to denote when the field is non-null</li>
           </ul>
       </div>
     </div>
