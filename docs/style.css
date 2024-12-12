@@ -120,6 +120,12 @@ h2.sticky-header {
     border: 1px solid green;
 }
 
+.big_table {
+    border-collapse: collapse;
+    width: 90%;
+    border: 1px solid green;
+}
+
 .header_row {
     background-color: rgba(60, 90, 64, 0.2);
 }
