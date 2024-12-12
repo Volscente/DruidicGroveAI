@@ -131,15 +131,15 @@
         <h2 class="sticky-header">Conclusions</h2>
           <ul>
             <li>Drop the <b>age</b> column from Users</li>
-            <li>Drop outliers with the z-score and apply standardisation to the columns: <b>reputation</b>, <b>up_votes</b>, <b>down_votes</b> and <b>views</b></li>
-            <li>Encode the feature <b>location</b></li>
-            <li>Encode the feature <b>user_about_me</b></li>
-            <li>Engineer a features called <b>creation_year</b> by extracting the year from the <b>creation_date</b></li>
+            <li>Drop <b>answer_title</b>, <b>answer_count</b>, <b>answer_favourite_count</b>, <b>answer_view_count</b> and <b>answer_tag</b> from Post Answers</li>
+            <li>Drop outliers with the z-score and apply standardisation to the columns: <b>user_reputation</b>, <b>user_up_votes</b>, <b>user_down_votes</b> and <b>user_views</b></li>
+            <li>Encode the feature <b>location</b> in <b>user_location_encoded</b></li>
+            <li>Encode the feature <b>user_about_me</b> in <b>user_about_me_encoded</b></li>
+            <li>Engineer a features called <b>user_creation_year</b> by extracting the year from the <b>creation_date</b></li>
             <li>Engineer a feature called <b>has_most_rare_badges</b> by including the top 10 rarest badges</li>
             <li>Engineer a feature called <b>badge_count</b> as the total number of badges per user in the last 10 years</li>
-            <li>Drop <b>answer_title</b>, <b>answer_count</b>, <b>answer_favourite_count</b>, <b>answer_view_count</b> and <b>answer_tag</b> from Post Answers</li>
-            <li>Engineer a feature called <b>has_profile_image</b> from the <b>user_profile_image_url</b> using a boolean to denote when the field is non-null</li>
-            <li>Engineer a feature called <b>has_website</b> from the <b>user_website_url</b> using a boolean to denote when the field is non-null</li>
+            <li>Engineer a feature called <b>user_has_profile_image_url</b> from the <b>user_profile_image_url</b> using a boolean to denote when the field is non-null</li>
+            <li>Engineer a feature called <b>user_has_website_url</b> from the <b>user_website_url</b> using a boolean to denote when the field is non-null</li>
           </ul>
       </div>
     </div>
