@@ -59,13 +59,17 @@
         <h2 class="sticky-header">Input Tables</h2>
         <div id="Top 10 Rarest Badges">
           <h3>Top 10 Rarest Badges</h3>
-          The <i>Top 10 Rarest Badges</i> input table is defined in the SQL query <i>queries/stackoverflow/data_preparation/top_10_rarest_badges.sql</i>
+          <b>Definition:</b> It includes the top 10 rarest badges in a predefined interval of dates.
           <br>
-          <b>NOTE:</b> The table contains only information between the following dates ⚠️ TBD ⚠️
+          <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/top_10_rarest_badges.sql</i>
           <br>
+          <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.top_10_rarest_badges</i>
           <br>
+          <b>Comments:</b>
+          <ul style="margin-top: 0; margin-bottom: 0">
+            <li>The table contains only information between the following dates ⚠️ TBD ⚠️</li>
+          </ul>
           <b>Data Schema:</b>
-          <br>
           <table class="table">
             <tr class="header_row">
               <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
@@ -92,13 +96,17 @@
         </div>
         <div id="Users Information">
           <h3>Users Information</h3>
-          The <i>Users Information</i> input table is defined in the SQL query <i>queries/stackoverflow/data_preparation/users_information.sql</i>
+          <b>Definition:</b> It includes users relevant information in a predefined interval of dates.
           <br>
-          <b>NOTE:</b> The table contains only information about the users who last access was between ⚠️ TBD ⚠️
+          <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/users_information.sql</i>
           <br>
+          <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.users_information</i>
           <br>
+          <b>Comments:</b>
+          <ul style="margin-top: 0; margin-bottom: 0">
+            <li>The table contains only information about the users who last access was between ⚠️ TBD ⚠️</li>
+          </ul>
           <b>Data Schema:</b>
-          <br>
           <table class="table">
             <tr class="header_row">
               <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
@@ -195,15 +203,18 @@
         </div>
         <div id="Post Answers">
           <h3>Post Answers</h3>
-          The <i>Post Answers</i> input table is defined in the SQL query <i>queries/stackoverflow/data_preparation/post_answers.sql</i>
+          <b>Definition:</b> It includes post answers relevant information in a predefined interval of dates.
           <br>
-          <b>NOTE:</b> The table contains only information between the following dates ⚠️ TBD ⚠️
+          <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/post_answers.sql</i>
           <br>
-          <b>NOTE:</b> The table contains only information from <i>Users Information</i> table of filtered user
+          <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.post_answers</i>
           <br>
-          <br>
+          <b>Comments:</b>
+          <ul style="margin-top: 0; margin-bottom: 0">
+            <li>The table contains only information between the following dates ⚠️ TBD ⚠️</li>
+            <li>The table contains only information from <i>Users Information</i> table of filtered user</li>
+          </ul>
           <b>Data Schema:</b>
-          <br>
           <table class="table">
             <tr class="header_row">
               <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
@@ -233,8 +244,63 @@
               <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.posts_answers</td>
               <td style="border: 1px solid; padding: 8px;">The body of the answer posted by the user</td>
             </tr>
+            <tr id="answer_creation_date">
+              <td style="border: 1px solid; padding: 8px;">004</td>
+              <td style="border: 1px solid; padding: 8px;">answer_creation_date</td>
+              <td style="border: 1px solid; padding: 8px;">Datetime</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.posts_answers</td>
+              <td style="border: 1px solid; padding: 8px;">The datetime in which the answer has been posted</td>
+            </tr>
+            <tr id="answer_score">
+              <td style="border: 1px solid; padding: 8px;">005</td>
+              <td style="border: 1px solid; padding: 8px;">answer_score</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.posts_answers</td>
+              <td style="border: 1px solid; padding: 8px;">The score given to the answer (Up votes minus Down votes)</td>
+            </tr>
           </table>
         </div>
+      </div>
+      <div id="Date Preparation">
+        <h2 class="sticky-header">Date Preparation</h2>
+        <b>Definition:</b> It includes post answers data with relevant users and badges information in a predefined interval of dates.
+        <br>
+        <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/training_dataset.sql</i>
+        <br>
+        <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.training_dataset</i>
+        <br>
+        <b>Comments:</b>
+        <ul style="margin-top: 0; margin-bottom: 0">
+          <li>The table contains only information between the following dates ⚠️ TBD ⚠️</li>
+          <li>The table contains only information from <i>Users Information</i> table of filtered user</li>
+        </ul>
+        <b>Data Schema:</b>
+        <table class="table">
+          <tr class="header_row">
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Name</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Data Type</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Source Table</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Role</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Notes</b></td>
+          </tr>
+          <tr id="training_user_name">
+            <td style="border: 1px solid; padding: 8px;">001</td>
+            <td style="border: 1px solid; padding: 8px;">user_name</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The user display name</td>
+          </tr>
+          <tr id="training_user_about_me_encoded">
+            <td style="border: 1px solid; padding: 8px;">002</td>
+            <td style="border: 1px solid; padding: 8px;">user_about_me_encoded</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The encoded value of the user about me section</td>
+          </tr>
+        </table>
       </div>
       <div id="Training Dataset">
         <h2 class="sticky-header">Training Dataset</h2>
