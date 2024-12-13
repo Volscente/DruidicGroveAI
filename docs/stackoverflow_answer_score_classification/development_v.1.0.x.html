@@ -262,6 +262,20 @@
       </div>
       <div id="Date Preparation">
         <h2 class="sticky-header">Date Preparation</h2>
+        <h3>Transformations</h3>
+        <ul>
+          <li>Encode <b>user_about_me</b> in <b>user_about_me_encoded</b></li>
+          <li>Extract year from <b>user_creation_date</b> in <b>user_creation_year</b></li>
+          <li>Encode <b>user_location</b> in <b>user_location_encoded</b></li>
+          <li>Standardise and remove outliers from: <b>user_reputation, user_up_votes, user_down_votes, user_views</b></li>
+          <li>Engineer the flag <b>user_has_profile_image_url</b> when the user has the <b>user_profile_image_url</b> filled</li>
+          <li>Engineer the flag <b>user_has_website_url</b> when the user has the <b>user_website_url</b> filled</li>
+          <li>Compute the value <b>user_badge_count</b> as the amount of badges earned by the user</li>
+          <li>Engineer <b>has_most_rare_badges</b> if the user has one of the most rare badges from Table <i>curated_stackoverflow_data_model.top_10_rarest_badges</i></li>
+          <li>Encode the <b>answer_body</b> in <b>answer_body_encoded</b></li>
+          <li>Extract year from <b>answer_creation_date</b> in <b>answer_creation_year</b></li>
+          <li>Extract month from <b>answer_creation_date</b> in <b>answer_creation_month</b></li>
+        </ul>
       </div>
       <div id="Training Dataset">
         <h2 class="sticky-header">Training Dataset</h2>
