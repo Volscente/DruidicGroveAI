@@ -1,3 +1,12 @@
+# v.1.0.6
+
+------
+
+- [x] Add Section `General` in Document `docs/stackoverflow_answer_score_classification/development_v.1.0.x.html`
+- [x] Add Section `Input Tables` in Document `docs/stackoverflow_answer_score_classification/development_v.1.0.x.html`
+- [x] Add Section `Data Preparation` in Document `docs/stackoverflow_answer_score_classification/development_v.1.0.x.html`
+- [x] Add Section `Training Dataset` in Document `docs/stackoverflow_answer_score_classification/development_v.1.0.x.html`
+
 # v.1.0.5
 
 ------
