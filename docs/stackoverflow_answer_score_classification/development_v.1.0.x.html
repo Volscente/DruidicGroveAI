@@ -39,21 +39,404 @@
     <div id="Content" class="content">
       <div id="General">
         <h2 class="sticky-header">General</h2>
-        <b>Start Date:</b>
+        <b>Start Date:</b> 06/10/2023
         <br>
         <b>End Date:</b>
         <br>
         <b>Goal:</b>
         <br>
         <b>Technologies Used:</b>
-        <!-- TODO: Use the GitHub chips here! -->
-        <br>
+        <ul>
+          <li style="list-style-image: none; list-style-type: none;">
+            <img src="https://img.shields.io/badge/Pandas-0d5df2?&style=flat&logo=pandas&logoColor=white" height="22" alt="Pandas"/>
+            <img src="https://img.shields.io/badge/Matplotlib-dd1d1d?&style=flat&logoColor=white" height="22" alt="Matplotlib"/>
+            <img src="https://img.shields.io/badge/Seaborn-1dc0dd?&style=flat" height="22" alt="Seaborn"/>
+          </li>
+        </ul>
       </div>
-      <div id="Data Preparation">
-        <h2 class="sticky-header">Data Preparation</h2>
+      <div id="Input Tables">
+        <h2 class="sticky-header">Input Tables</h2>
+        <div id="Top 10 Rarest Badges">
+          <h3>Top 10 Rarest Badges</h3>
+          <b>Definition:</b> It includes the top 10 rarest badges in a predefined interval of dates.
+          <br>
+          <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/top_10_rarest_badges.sql</i>
+          <br>
+          <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.top_10_rarest_badges</i>
+          <br>
+          <b>Comments:</b>
+          <ul style="margin-top: 0; margin-bottom: 0">
+            <li>The table contains only information between the following dates ⚠️ TBD ⚠️</li>
+          </ul>
+          <b>Data Schema:</b>
+          <table class="table">
+            <tr class="header_row">
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Name</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Data Type</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Source Table</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Notes</b></td>
+            </tr>
+            <tr id="badge_name">
+              <td style="border: 1px solid; padding: 8px;">001</td>
+              <td style="border: 1px solid; padding: 8px;">badge_name</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.badges</td>
+              <td style="border: 1px solid; padding: 8px;">The badge name</td>
+            </tr>
+            <tr id="badge_rarity">
+              <td style="border: 1px solid; padding: 8px;">002</td>
+              <td style="border: 1px solid; padding: 8px;">badge_rarity</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.badges</td>
+              <td style="border: 1px solid; padding: 8px;">The badge rarity identifies the total number of users having this same badge</td>
+            </tr>
+          </table>
+        </div>
+        <div id="Users Information">
+          <h3>Users Information</h3>
+          <b>Definition:</b> It includes users relevant information in a predefined interval of dates.
+          <br>
+          <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/users_information.sql</i>
+          <br>
+          <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.users_information</i>
+          <br>
+          <b>Comments:</b>
+          <ul style="margin-top: 0; margin-bottom: 0">
+            <li>The table contains only information about the users who last access was between ⚠️ TBD ⚠️</li>
+          </ul>
+          <b>Data Schema:</b>
+          <table class="table">
+            <tr class="header_row">
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Name</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Data Type</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Source Table</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Notes</b></td>
+            </tr>
+            <tr id="user_id">
+              <td style="border: 1px solid; padding: 8px;">001</td>
+              <td style="border: 1px solid; padding: 8px;">user_id</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">User ID on Stack Overflow</td>
+            </tr>
+            <tr id="user_name">
+              <td style="border: 1px solid; padding: 8px;">002</td>
+              <td style="border: 1px solid; padding: 8px;">user_name</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">Username on Stack Overflow</td>
+            </tr>
+            <tr id="user_about_me">
+              <td style="border: 1px solid; padding: 8px;">003</td>
+              <td style="border: 1px solid; padding: 8px;">user_about_me</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The "About Me" section on user profile</td>
+            </tr>
+            <tr id="user_creation_date">
+              <td style="border: 1px solid; padding: 8px;">004</td>
+              <td style="border: 1px solid; padding: 8px;">user_creation_date</td>
+              <td style="border: 1px solid; padding: 8px;">Datetime</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The datetime when the user was created</td>
+            </tr>
+            <tr id="user_location">
+              <td style="border: 1px solid; padding: 8px;">005</td>
+              <td style="border: 1px solid; padding: 8px;">user_location</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The location on user profile</td>
+            </tr>
+            <tr id="user_reputation">
+              <td style="border: 1px solid; padding: 8px;">006</td>
+              <td style="border: 1px solid; padding: 8px;">user_reputation</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user reputation value</td>
+            </tr>
+            <tr id="user_up_votes">
+              <td style="border: 1px solid; padding: 8px;">007</td>
+              <td style="border: 1px solid; padding: 8px;">user_up_votes</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user up votes value</td>
+            </tr>
+            <tr id="user_down_votes">
+              <td style="border: 1px solid; padding: 8px;">008</td>
+              <td style="border: 1px solid; padding: 8px;">user_down_votes</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user down votes value</td>
+            </tr>
+            <tr id="user_views">
+              <td style="border: 1px solid; padding: 8px;">009</td>
+              <td style="border: 1px solid; padding: 8px;">user_views</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user number of views value</td>
+            </tr>
+            <tr id="user_profile_image_url">
+              <td style="border: 1px solid; padding: 8px;">010</td>
+              <td style="border: 1px solid; padding: 8px;">user_profile_image_url</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user profile image url</td>
+            </tr>
+            <tr id="user_website_url">
+              <td style="border: 1px solid; padding: 8px;">011</td>
+              <td style="border: 1px solid; padding: 8px;">user_website_url</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The user profile website url</td>
+            </tr>
+            <tr id="badge_count">
+              <td style="border: 1px solid; padding: 8px;">012</td>
+              <td style="border: 1px solid; padding: 8px;">badge_count</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.badges</td>
+              <td style="border: 1px solid; padding: 8px;">The user number of badges in the last years</td>
+            </tr>
+          </table>
+        </div>
+        <div id="Post Answers">
+          <h3>Post Answers</h3>
+          <b>Definition:</b> It includes post answers relevant information in a predefined interval of dates.
+          <br>
+          <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/post_answers.sql</i>
+          <br>
+          <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.post_answers</i>
+          <br>
+          <b>Comments:</b>
+          <ul style="margin-top: 0; margin-bottom: 0">
+            <li>The table contains only information between the following dates ⚠️ TBD ⚠️</li>
+            <li>The table contains only information from <i>Users Information</i> table of filtered user</li>
+          </ul>
+          <b>Data Schema:</b>
+          <table class="table">
+            <tr class="header_row">
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Name</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Data Type</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Source Table</b></td>
+              <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Notes</b></td>
+            </tr>
+            <tr id="answer_user_id">
+              <td style="border: 1px solid; padding: 8px;">001</td>
+              <td style="border: 1px solid; padding: 8px;">answer_user_id</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
+              <td style="border: 1px solid; padding: 8px;">The ID of the user who answered the post</td>
+            </tr>
+            <tr id="answer_body">
+              <td style="border: 1px solid; padding: 8px;">002</td>
+              <td style="border: 1px solid; padding: 8px;">answer_body</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.posts_answers</td>
+              <td style="border: 1px solid; padding: 8px;">The body of the answer posted by the user</td>
+            </tr>
+            <tr id="answer_comment_count">
+              <td style="border: 1px solid; padding: 8px;">003</td>
+              <td style="border: 1px solid; padding: 8px;">answer_comment_count</td>
+              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.posts_answers</td>
+              <td style="border: 1px solid; padding: 8px;">The body of the answer posted by the user</td>
+            </tr>
+            <tr id="answer_creation_date">
+              <td style="border: 1px solid; padding: 8px;">004</td>
+              <td style="border: 1px solid; padding: 8px;">answer_creation_date</td>
+              <td style="border: 1px solid; padding: 8px;">Datetime</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.posts_answers</td>
+              <td style="border: 1px solid; padding: 8px;">The datetime in which the answer has been posted</td>
+            </tr>
+            <tr id="answer_score">
+              <td style="border: 1px solid; padding: 8px;">005</td>
+              <td style="border: 1px solid; padding: 8px;">answer_score</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
+              <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.posts_answers</td>
+              <td style="border: 1px solid; padding: 8px;">The score given to the answer (Up votes minus Down votes)</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div id="Date Preparation">
+        <h2 class="sticky-header">Date Preparation</h2>
+        <h3>Transformations</h3>
+        <ul>
+          <li>Encode <b>user_about_me</b> in <b>user_about_me_encoded</b></li>
+          <li>Extract year from <b>user_creation_date</b> in <b>user_creation_year</b></li>
+          <li>Encode <b>user_location</b> in <b>user_location_encoded</b></li>
+          <li>Standardise and remove outliers from: <b>user_reputation, user_up_votes, user_down_votes, user_views</b></li>
+          <li>Engineer the flag <b>user_has_profile_image_url</b> when the user has the <b>user_profile_image_url</b> filled</li>
+          <li>Engineer the flag <b>user_has_website_url</b> when the user has the <b>user_website_url</b> filled</li>
+          <li>Compute the value <b>user_badge_count</b> as the amount of badges earned by the user</li>
+          <li>Engineer <b>has_most_rare_badges</b> if the user has one of the most rare badges from Table <i>curated_stackoverflow_data_model.top_10_rarest_badges</i></li>
+          <li>Encode the <b>answer_body</b> in <b>answer_body_encoded</b></li>
+          <li>Extract year from <b>answer_creation_date</b> in <b>answer_creation_year</b></li>
+          <li>Extract month from <b>answer_creation_date</b> in <b>answer_creation_month</b></li>
+        </ul>
       </div>
       <div id="Training Dataset">
         <h2 class="sticky-header">Training Dataset</h2>
+        <b>Definition:</b> It includes post answers data with relevant users and badges information in a predefined interval of dates.
+        <br>
+        <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/training_dataset.sql</i>
+        <br>
+        <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.training_dataset</i>
+        <br>
+        <b>Comments:</b>
+        <ul style="margin-top: 0; margin-bottom: 0">
+          <li>The table contains only information between the following dates ⚠️ TBD ⚠️</li>
+          <li>The table contains only information from <i>Users Information</i> table of filtered user</li>
+        </ul>
+        <b>Data Schema:</b>
+        <table class="big_table">
+          <tr class="header_row">
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Name</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Data Type</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Source Table</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Role</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Notes</b></td>
+          </tr>
+          <tr id="training_user_name">
+            <td style="border: 1px solid; padding: 8px;">001</td>
+            <td style="border: 1px solid; padding: 8px;">user_name</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The user display name</td>
+          </tr>
+          <tr id="training_user_about_me_encoded">
+            <td style="border: 1px solid; padding: 8px;">002</td>
+            <td style="border: 1px solid; padding: 8px;">user_about_me_encoded</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The encoded value of the user about me section</td>
+          </tr>
+          <tr id="training_user_creation_year">
+            <td style="border: 1px solid; padding: 8px;">003</td>
+            <td style="border: 1px solid; padding: 8px;">user_creation_year</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The extracted year value of the user creation date</td>
+          </tr>
+          <tr id="training_user_location_encoded">
+            <td style="border: 1px solid; padding: 8px;">004</td>
+            <td style="border: 1px solid; padding: 8px;">user_location_encoded</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The encoded value of the user location</td>
+          </tr>
+          <tr id="training_user_reputation">
+            <td style="border: 1px solid; padding: 8px;">005</td>
+            <td style="border: 1px solid; padding: 8px;">user_reputation</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The user standardised reputation value without outliers</td>
+          </tr>
+          <tr id="training_user_up_votes">
+            <td style="border: 1px solid; padding: 8px;">006</td>
+            <td style="border: 1px solid; padding: 8px;">user_up_votes</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The user standardised up votes value without outliers</td>
+          </tr>
+          <tr id="training_user_down_votes">
+            <td style="border: 1px solid; padding: 8px;">007</td>
+            <td style="border: 1px solid; padding: 8px;">user_down_votes</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The user standardised down votes value without outliers</td>
+          </tr>
+          <tr id="training_user_views">
+            <td style="border: 1px solid; padding: 8px;">008</td>
+            <td style="border: 1px solid; padding: 8px;">user_views</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">The user standardised views value without outliers</td>
+          </tr>
+          <tr id="training_user_has_profile_image_url">
+            <td style="border: 1px solid; padding: 8px;">009</td>
+            <td style="border: 1px solid; padding: 8px;">user_has_profile_image_url</td>
+            <td style="border: 1px solid; padding: 8px;">Boolean</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">Flag indicating whether the user has a profile image url or not</td>
+          </tr>
+          <tr id="training_user_has_website_url">
+            <td style="border: 1px solid; padding: 8px;">010</td>
+            <td style="border: 1px solid; padding: 8px;">user_has_website_url</td>
+            <td style="border: 1px solid; padding: 8px;">Boolean</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">Flag indicating whether the user has a website url or not</td>
+          </tr>
+          <tr id="training_user_badge_count">
+            <td style="border: 1px solid; padding: 8px;">011</td>
+            <td style="border: 1px solid; padding: 8px;">user_badge_count</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">Number indicating the amount of badges earned by the user</td>
+          </tr>
+          <tr id="training_has_most_rare_badges">
+            <td style="border: 1px solid; padding: 8px;">012</td>
+            <td style="border: 1px solid; padding: 8px;">has_most_rare_badges</td>
+            <td style="border: 1px solid; padding: 8px;">Boolean</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.top_10_rarest_badges</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">Flag indicating whether the user has one of the most rare badges (Just one is enough)</td>
+          </tr>
+          <tr id="training_answer_body_encoded">
+            <td style="border: 1px solid; padding: 8px;">013</td>
+            <td style="border: 1px solid; padding: 8px;">answer_body_encoded</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">Encoding of the post answer body</td>
+          </tr>
+          <tr id="training_answer_comment_count">
+            <td style="border: 1px solid; padding: 8px;">014</td>
+            <td style="border: 1px solid; padding: 8px;">answer_comment_count</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">Number of comments on the post answer</td>
+          </tr>
+          <tr id="training_answer_creation_year">
+            <td style="border: 1px solid; padding: 8px;">015</td>
+            <td style="border: 1px solid; padding: 8px;">answer_creation_year</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">Year of the post answer creation date</td>
+          </tr>
+          <tr id="training_answer_creation_month">
+            <td style="border: 1px solid; padding: 8px;">016</td>
+            <td style="border: 1px solid; padding: 8px;">answer_creation_month</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
+            <td style="border: 1px solid; padding: 8px;">Month of the post answer creation date</td>
+          </tr>
+          <tr id="training_answer_score">
+            <td style="border: 1px solid; padding: 8px;">017</td>
+            <td style="border: 1px solid; padding: 8px;">answer_score</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/LABEL-06402B" alt="Label"/></td>
+            <td style="border: 1px solid; padding: 8px;">Answer score value</td>
+          </tr>
+        </table>
       </div>
       <div id="Model Training">
         <h2 class="sticky-header">Model Training</h2>
