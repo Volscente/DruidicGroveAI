@@ -1,5 +1,5 @@
 /*
- * Create a table including the top 10 rarest badges between the
+ * Create a table including the top 100 rarest badges between the
  * time interval @date_start and @date_end
  */
 -- TODO: Testing purpose - Remove afterward
@@ -33,5 +33,3 @@ ORDER BY
     count ASC,  -- Rarest badges first
     badges.name ASC    -- Break ties alphabetically
 LIMIT 100;
--- TODO: Change to "Top 100" -> Query name, query docstring, GitHub issue, documentation input table
--- TODO: Add Engineer feature "badges_encoded" -> EDA, EDA conclusion documentation, documentation training dataset, documentation data preparation
