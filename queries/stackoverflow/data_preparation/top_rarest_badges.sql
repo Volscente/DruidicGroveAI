@@ -3,15 +3,7 @@
  * time interval @date_start and @date_end
  * and that at least @min_users_earned users earned it
  */
- -- TODO: Testing purpose - Remove afterward
--- Declare variables for the date range
-DECLARE date_start TIMESTAMP;
-DECLARE date_end TIMESTAMP;
-
--- Set values to the variables for testing purposes
-SET date_start = TIMESTAMP("2013-01-01 00:00:00");
-SET date_end = TIMESTAMP("2023-12-31 23:59:59");
-
+CREATE OR REPLACE TABLE `deep-learning-438509.curated_stackoverflow_data_model.top_rarest_badges` AS
 -- Retrieve badges from the specified time interval
 WITH _date_filtered_badges AS (
     SELECT
@@ -19,8 +11,8 @@ WITH _date_filtered_badges AS (
     FROM
         `bigquery-public-data.stackoverflow.badges` AS badges
     WHERE
-        badges.date BETWEEN TIMESTAMP(date_start)
-        AND TIMESTAMP(date_end)
+        badges.date BETWEEN TIMESTAMP(@date_start)
+        AND TIMESTAMP(@date_end)
         and badges.class = 1 -- Only gold badges
 ),
 
@@ -45,5 +37,3 @@ FROM
 WHERE
   badges.badge_rarity > @min_users_earned
 LIMIT @top_rarest_badges
-
--- TODO: make parametrise to top_k and min_users -> change Query name, query docstring, eda, eda conclusions, documentation

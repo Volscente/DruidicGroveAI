@@ -42,3 +42,25 @@ query_parameters.hours_interval.name = 'months_interval'
 query_parameters.hours_interval.type = 'INTEGER'
 query_parameters.hours_interval.value = 4
 local_path = 'data/stackoverflow/post_answers_relevant_users.csv'
+# -------------------------------------------
+
+# ------------ Data Preparation -------------
+[data_preparation]
+read_local = true
+[data_preparation.bigquery_client]
+project_id = 'deep-learning-438509'
+[data_preparation.top_rarest_badges]
+query_path = 'queries/stackoverflow/data_preparation/top_rarest_badges.sql'
+query_parameters.date_start.name = 'date_start'
+query_parameters.date_start.type = 'DATE'
+query_parameters.date_start.value = '2013-01-01'
+query_parameters.date_end.name = 'date_end'
+query_parameters.date_end.type = 'DATE'
+query_parameters.date_end.value = '2023-12-31'
+query_parameters.min_users_earned.name = 'min_users_earned'
+query_parameters.min_users_earned.type = 'INTEGER'
+query_parameters.min_users_earned.value = '20'
+query_parameters.top_rarest_badges.name = 'top_rarest_badges'
+query_parameters.top_rarest_badges.type = 'INTEGER'
+query_parameters.top_rarest_badges.value = '100'
+local_path = 'data/stackoverflow/top_rarest_badges.sql.csv'
