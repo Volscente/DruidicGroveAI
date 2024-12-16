@@ -1,7 +1,7 @@
 /*
- * Create a table including the top 100 rarest gold badges between the
+ * Create a table including the @top_rarest_badges rarest gold badges between the
  * time interval @date_start and @date_end
- * and that at least 100 users earned it
+ * and that at least @min_users_earned users earned it
  */
  -- TODO: Testing purpose - Remove afterward
 -- Declare variables for the date range
@@ -37,14 +37,13 @@ _badges_rarity AS (
       badge_rarity
 )
 
--- Select top 100 most rare badges earned by at least 100 users
+-- Select top  most rare badges earned by at least a certain number of users
 SELECT
   *
 FROM
   _badges_rarity AS badges
 WHERE
-  badges.badge_rarity > 20
-LIMIT 100
+  badges.badge_rarity > @min_users_earned
+LIMIT @top_rarest_badges
 
--- TODO: Change name "badge_rarity" because it goes from 1 (very rare) -> Query, Documentation input tables, training dataset
 -- TODO: make parametrise to top_k and min_users -> change Query name, query docstring, eda, eda conclusions, documentation

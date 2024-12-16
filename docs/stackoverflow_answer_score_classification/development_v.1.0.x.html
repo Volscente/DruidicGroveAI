@@ -56,13 +56,13 @@
       </div>
       <div id="Input Tables">
         <h2 class="sticky-header">Input Tables</h2>
-        <div id="Top 100 Rarest Badges">
-          <h3>Top 100 Rarest Badges</h3>
-          <b>Definition:</b> It includes the top 100 rarest badges in a predefined interval of dates.
+        <div id="Top Rarest Badges">
+          <h3>Top Rarest Badges</h3>
+          <b>Definition:</b> It includes the top rarest badges in a predefined interval of dates.
           <br>
-          <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/top_100_rarest_badges.sql</i>
+          <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/top_rarest_badges.sql</i>
           <br>
-          <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.top_100_rarest_badges</i>
+          <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.top_rarest_badges</i>
           <br>
           <b>Comments:</b>
           <ul style="margin-top: 0; margin-bottom: 0">
@@ -278,7 +278,7 @@
           <li>Engineer the flag <b>user_has_profile_image_url</b> when the user has the <b>user_profile_image_url</b> filled</li>
           <li>Engineer the flag <b>user_has_website_url</b> when the user has the <b>user_website_url</b> filled</li>
           <li>Compute the value <b>user_badge_count</b> as the amount of badges earned by the user</li>
-          <li>Engineer <b>has_most_rare_badges</b> if the user has one of the most rare badges from Table <i>curated_stackoverflow_data_model.top_100_rarest_badges</i></li>
+          <li>Engineer <b>has_most_rare_badges</b> if the user has one of the most rare badges from Table <i>curated_stackoverflow_data_model.top_rarest_badges</i></li>
           <li>Encode the <b>answer_body</b> in <b>answer_body_encoded</b></li>
           <li>Extract year from <b>answer_creation_date</b> in <b>answer_creation_year</b></li>
           <li>Extract month from <b>answer_creation_date</b> in <b>answer_creation_month</b></li>
@@ -400,7 +400,7 @@
             <td style="border: 1px solid; padding: 8px;">012</td>
             <td style="border: 1px solid; padding: 8px;">has_most_rare_badges</td>
             <td style="border: 1px solid; padding: 8px;">Boolean</td>
-            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.top_100_rarest_badges</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.top_rarest_badges</td>
             <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
             <td style="border: 1px solid; padding: 8px;">Flag indicating whether the user has one of the most rare badges (Just one is enough)</td>
           </tr>
