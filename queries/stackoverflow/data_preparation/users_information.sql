@@ -3,14 +3,7 @@
  * Such users performed their last access within the last @hours_interval hours
  * from the maximum last access datetime of all users.
  */
--- TODO: Remove after testing
--- CREATE OR REPLACE TABLE `deep-learning-438509.curated_stackoverflow_data_model.users_information` AS
--- TODO: Testing purpose - Remove afterward
--- Declare variables for the date range
-DECLARE hours_interval INT64;
-
--- Set values to the variables for testing purposes
-SET hours_interval = 8;
+CREATE OR REPLACE TABLE `deep-learning-438509.curated_stackoverflow_data_model.users_information` AS
 
 -- Compute the latest access datetime
 WITH _max_last_access_date AS (
@@ -31,8 +24,9 @@ _most_recent_last_access_users AS (
     WHERE
         -- Filter for last access date
         users.last_access_date BETWEEN TIMESTAMP(DATE_SUB(
-                _max_last_access_date.max_last_access_date,
-                INTERVAL hours_interval HOUR))
+            _max_last_access_date.max_last_access_date,
+            INTERVAL @hours_interval HOUR
+        ))
         AND _max_last_access_date.max_last_access_date
         -- Filter for relevant information filled
         AND users.display_name IS NOT NULL
@@ -78,10 +72,9 @@ SELECT
     users.views AS user_views,
     users.profile_image_url AS user_profile_image_url,
     users.website_url AS user_website_url,
-    badges.badge_count AS badge_count,
-    badges.badges_list AS badges_list
+    badges.badge_count,
+    badges.badges_list
 FROM
     _most_recent_last_access_users AS users
-    LEFT JOIN _badges_aggregated AS badges
-        ON users.id = badges.badge_user_id
-LIMIT 1;
+LEFT JOIN _badges_aggregated AS badges
+    ON users.id = badges.badge_user_id
