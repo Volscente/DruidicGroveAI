@@ -25,7 +25,9 @@ class BigQueryConnector:
         client_config: BigQueryClientConfig including all necessary variables for instance a BigQuery Client instance
 
     Methods:
-
+        _set_client: Set the attribute 'client' with an instance of the BigQuery Client
+        _build_query_parameters: Build BigQuery query parameters from a dictionary in which each key is a BigQuery Parameter
+        read_from_query_config: Read the query from local path and retrieve data from BigQuery
     """
     def __init__(self,
                  client_config: BigQueryClientConfig):
