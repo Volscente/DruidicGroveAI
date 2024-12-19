@@ -22,6 +22,7 @@ class BigQueryConnector:
     in order to query BigQuery datasets and tables
 
     Attributes:
+        logger: logging.Logger object used for logging purposes
         client_config: BigQueryClientConfig including all necessary variables for instance a BigQuery Client instance
 
     Methods:

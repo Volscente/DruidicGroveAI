@@ -11,15 +11,24 @@ class StackOverflowDataPreparation:
     Answer Score Classification use case
 
     Attributes:
+        logger: logging.Logger object used for logging purposes
 
     Methods:
     """
-    def __init__(self):
+    def __init__(self,
+                 config: dict):
         """
         Constructor of the class StackOverflowDataPreparation
 
         Args:
+            config: dict configuration
         """
+        # Setup logger
+        self.logger = get_logger(__class__.__name__,
+                                 Path(os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH')) /
+                                 'src' /
+                                 'logging_module' /
+                                 'log_configuration.yaml')
         pass
     def _load_input_tables(self):
         # TODO: Switch if the tables already exist, otherwise call _create_input_tables
