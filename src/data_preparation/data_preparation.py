@@ -16,12 +16,13 @@ class StackOverflowDataPreparation:
     Methods:
     """
     def __init__(self,
-                 config: dict):
+                 input_tables_config: dict):
         """
         Constructor of the class StackOverflowDataPreparation
+        # TODO: Add a BigQueryConnector object
 
         Args:
-            config: dict configuration
+            input_tables_config: dict with Input Tables (including raw data) configuration
         """
         # Setup logger
         self.logger = get_logger(__class__.__name__,
@@ -31,9 +32,6 @@ class StackOverflowDataPreparation:
                                  'log_configuration.yaml')
         pass
     def _load_input_tables(self):
-        # TODO: Switch if the tables already exist, otherwise call _create_input_tables
-        pass
-
-    def _create_input_tables(self):
-        # TODO:
+        # TODO_URGENT: Check if we can use BigQueryConnector.read_from_query_config and, if yes, rename it
+        # TODO: Switch if the tables already exist, otherwise call BigQueryConnector.
         pass
