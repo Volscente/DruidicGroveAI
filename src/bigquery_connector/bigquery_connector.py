@@ -40,16 +40,16 @@ class BigQueryConnector:
                            instance a BigQuery Client instance
         """
         # Setup logger
-        self.logger = get_logger(__class__.__name__,
+        self._logger = get_logger(__class__.__name__,
                                  Path(os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH')) /
                                  'src' /
                                  'logging_module' /
                                  'log_configuration.yaml')
 
-        self.logger.debug('__init__ - Initialise object attributes')
+        self._logger.debug('__init__ - Initialise object attributes')
 
         # Initialise attributes
-        self.client_config = client_config
+        self._client_config = client_config
 
         # Set the client
         self._set_client()
@@ -61,16 +61,16 @@ class BigQueryConnector:
         Returns:
             client: bigquery.Client object
         """
-        self.logger.debug('_set_client - Start')
+        self._logger.debug('_set_client - Start')
 
-        self.logger.info('_set_client - Set the BigQuery client')
+        self._logger.info('_set_client - Set the BigQuery client')
 
         # Set the client
         self._client = bigquery.Client(
-            project=self.client_config.project_id,
+            project=self._client_config.project_id,
         )
 
-        self.logger.debug('_set_client - End')
+        self._logger.debug('_set_client - End')
 
     def _build_query_parameters(self,
                                 query_parameters: dict) -> list:
@@ -88,12 +88,12 @@ class BigQueryConnector:
             bigquery_query_parameters: list BigQuery query parameters
         """
 
-        self.logger.debug('build_bigquery_query_parameters_from_dictionary - Start')
+        self._logger.debug('build_bigquery_query_parameters_from_dictionary - Start')
 
         # Initialise empty list BigQuery query parameters
         bigquery_query_parameters = []
 
-        self.logger.info('build_bigquery_query_parameters_from_dictionary - Fetch BigQuery query parameters')
+        self._logger.info('build_bigquery_query_parameters_from_dictionary - Fetch BigQuery query parameters')
 
         # Fetch all query parameters
         for query_parameter_key in query_parameters.keys():
@@ -118,9 +118,9 @@ class BigQueryConnector:
             # Append to the list of parameters
             bigquery_query_parameters.append(bigquery_parameter)
 
-        self.logger.info('build_bigquery_query_parameters_from_dictionary - Successfully built BigQuery query parameters')
+        self._logger.info('build_bigquery_query_parameters_from_dictionary - Successfully built BigQuery query parameters')
 
-        self.logger.debug('build_bigquery_query_parameters_from_dictionary - End')
+        self._logger.debug('build_bigquery_query_parameters_from_dictionary - End')
 
         return bigquery_query_parameters
 
@@ -134,12 +134,12 @@ class BigQueryConnector:
         Returns
             data: pd.DataFrame retrieved data
         """
-        self.logger.debug('read_from_query_config - Start')
+        self._logger.debug('read_from_query_config - Start')
 
         # Retrieve query path
         query_path = Path(query_config['query_path'])
 
-        self.logger.info('read_from_query_config - Reading query file: %s',
+        self._logger.info('read_from_query_config - Reading query file: %s',
                          query_path.as_posix())
 
         # Read query
@@ -148,7 +148,7 @@ class BigQueryConnector:
         # Check if there are parameters
         if 'query_parameters' not in query_config.keys():
 
-            self.logger.info('read_from_query_config - Querying BigQuery without Parameters')
+            self._logger.info('read_from_query_config - Querying BigQuery without Parameters')
 
             # Read data from BigQuery
             data = self._client.query(query)
@@ -158,18 +158,18 @@ class BigQueryConnector:
             # Retrieve BigQuery query parameters
             parameters = self._build_query_parameters(query_config['query_parameters'])
 
-            self.logger.info('read_from_query_config - Querying BigQuery with Parameters')
+            self._logger.info('read_from_query_config - Querying BigQuery with Parameters')
 
             # Read data from BigQuery with parameters
             data = self._client.query(query=query,
                                       job_config=bigquery.QueryJobConfig(query_parameters=parameters))
 
-        self.logger.info('read_from_query_config - Successfully retrieve data')
-        self.logger.info('read_from_query_config - Converting data to Pandas DataFrame')
+        self._logger.info('read_from_query_config - Successfully retrieve data')
+        self._logger.info('read_from_query_config - Converting data to Pandas DataFrame')
 
         # Convert data to a Pandas DataFrame
         data = data.to_dataframe()
 
-        self.logger.debug('read_from_query_config - End')
+        self._logger.debug('read_from_query_config - End')
 
         return data
