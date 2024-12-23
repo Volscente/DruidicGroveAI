@@ -134,6 +134,11 @@ class BigQueryConnector:
         Returns
             data: pd.DataFrame retrieved data
         """
+        # TODO: Change the name to 'execute_query_from_config'
+        # TODO: Change Typing and Return Type
+        # TODO: Change Docstring
+        # TODO: Check response if there is a flag indicating table creation successful
+        # TODO: Modify the return to switch between read data and table creation
         self._logger.debug('read_from_query_config - Start')
 
         # Retrieve query path
