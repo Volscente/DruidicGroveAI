@@ -35,6 +35,5 @@ class StackOverflowDataPreparation:
         self._input_tables_config = input_tables_config
 
     def _load_input_tables(self):
-        # TODO_URGENT: Check if we can use BigQueryConnector.read_from_query_config and, if yes, rename it
         # TODO: Switch if the tables already exist, otherwise call BigQueryConnector.
         pass
