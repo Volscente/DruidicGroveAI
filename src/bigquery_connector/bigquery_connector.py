@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import pandas as pd
 from google.cloud import bigquery
+from typing import Union
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
@@ -124,9 +125,10 @@ class BigQueryConnector:
 
         return bigquery_query_parameters
 
-    def read_from_query_config(self, query_config: dict) -> pd.DataFrame:
+    def execute_query_from_config(self,
+                                  query_config: dict) -> Union[pd.DataFrame, int]:
         """
-        Read the query from local path and retrieve data from BigQuery
+        Execute a query from local path and with a certain set of parameter configurations
 
         Args:
             query_config: Dictionary query configurations (path and parameters)
@@ -134,9 +136,6 @@ class BigQueryConnector:
         Returns
             data: pd.DataFrame retrieved data
         """
-        # TODO: Change the name to 'execute_query_from_config'
-        # TODO: Change Typing and Return Type
-        # TODO: Change Docstring
         # TODO: Check response if there is a flag indicating table creation successful
         # TODO: Modify the return to switch between read data and table creation
         self._logger.debug('read_from_query_config - Start')
