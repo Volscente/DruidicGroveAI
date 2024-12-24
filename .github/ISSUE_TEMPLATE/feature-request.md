@@ -13,4 +13,9 @@ I want to ...,
 In order to ...
 
 # Changelog
-- [] <Changed Files>
+- [ ] Update Wiki
+- [ ] Update Documentation
+- [ ] Update `CHANGELOG.md`
+- [ ] Update `README.md`
+- [ ] Update project version
+- [ ] PR to dev
