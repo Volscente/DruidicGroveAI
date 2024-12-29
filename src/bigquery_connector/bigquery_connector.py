@@ -126,9 +126,10 @@ class BigQueryConnector:
         return bigquery_query_parameters
 
     def execute_query_from_config(self,
-                                  query_config: dict) -> Union[pd.DataFrame, int]:
+                                  query_config: dict) -> Union[pd.DataFrame, bool]:
         """
-        Execute a query from local path and with a certain set of parameter configurations
+        Execute a query from local path and with a certain set of parameter configurations.
+        The query can either read data or create a table on BigQuery.
         Parameter configurations structure:
             query_path: <query_local_path>
             query_parameters:
@@ -141,9 +142,16 @@ class BigQueryConnector:
             query_config: Dictionary query configurations (path and parameters)
 
         Returns
-            data: pd.DataFrame retrieved data
+            Union[pd.DataFrame, bool]: The result of the query execution.
+                - pd.DataFrame: When the query is executed successfully and returns data.
+                - bool: `True` if the query executes successfully but does not return data
+                  (e.g., a table creation query), or `False` if the execution fails.
         """
         # TODO: Modify the return to switch between read data and table creation
+        # TODO: Refactor "data" with "job"
+        # TODO: Add switch
+        # CREATE_TABLE_AS_SELECT
+        # SELECT
         self._logger.debug('read_from_query_config - Start')
 
         # Retrieve query path

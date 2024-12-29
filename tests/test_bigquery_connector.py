@@ -71,7 +71,7 @@ def test_build_query_parameters(
     (0, 3863, 'Adam Hughes'),
 ])
 def test_read_from_query_config(fixture_bigquery_connector: BigQueryConnector,
-                                fixture_create_table_query_config: dict,
+                                fixture_query_config: dict,
                                 index: int,
                                 expected_id: int,
                                 expected_display_name: str) -> bool:
@@ -94,7 +94,7 @@ def test_read_from_query_config(fixture_bigquery_connector: BigQueryConnector,
     Returns:
     """
     # Read data
-    data = fixture_bigquery_connector.execute_query_from_config(query_config=fixture_create_table_query_config)
+    data = fixture_bigquery_connector.execute_query_from_config(query_config=fixture_query_config)
 
     # Retrieve id and display_name
     row_id, row_display_name = data.loc[index, 'id'], data.loc[index, 'display_name']
