@@ -11,6 +11,15 @@ query_parameters.id.value = 3863
 query_parameters.display_name.name = 'display_name'
 query_parameters.display_name.type = 'STRING'
 query_parameters.display_name.value = 'Adam Hughes'
+
+[pytest.create_table_query_config]
+query_path = 'queries/test_queries/test_create_table_query.sql'
+query_parameters.id.name = 'id'
+query_parameters.id.type = 'INTEGER'
+query_parameters.id.value = 1
+query_parameters.display_name.name = 'display_name'
+query_parameters.display_name.type = 'STRING'
+query_parameters.display_name.value = 'test_name'
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------

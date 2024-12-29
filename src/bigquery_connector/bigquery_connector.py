@@ -129,6 +129,13 @@ class BigQueryConnector:
                                   query_config: dict) -> Union[pd.DataFrame, int]:
         """
         Execute a query from local path and with a certain set of parameter configurations
+        Parameter configurations structure:
+            query_path: <query_local_path>
+            query_parameters:
+                <parameter_name>:
+                    name: <parameter_name>
+                    type: <parameter_bigquery_type>
+                    value: <parameter_value>
 
         Args:
             query_config: Dictionary query configurations (path and parameters)
@@ -136,7 +143,6 @@ class BigQueryConnector:
         Returns
             data: pd.DataFrame retrieved data
         """
-        # TODO: Check response if there is a flag indicating table creation successful
         # TODO: Modify the return to switch between read data and table creation
         self._logger.debug('read_from_query_config - Start')
 

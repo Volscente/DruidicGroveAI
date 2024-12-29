@@ -83,12 +83,14 @@ def fixture_query_config(
     # TODO: Rename the fixture
     # TODO: Modify the docstring
     """
-    Fixture for a Dictionary Query Configurations with structure:
-        query_path: <path_of_the_query_file>
-        query_parameters:
-            name: <name_of_the_query_parameter>
-            array_type: <type_of_the_parameter>
-            value: <value_of_the_parameter>
+    Fixture for a Dictionary including reading query configurations.
+    Parameter configurations structure:
+            query_path: <query_local_path>
+            query_parameters:
+                <parameter_name>:
+                    name: <parameter_name>
+                    type: <parameter_bigquery_type>
+                    value: <parameter_value>
 
     Args:
         query_config: Dictionary of query configurations
@@ -105,13 +107,14 @@ def fixture_create_table_query_config(
         query_config: dict = config['create_table_query_config']
 ) -> dict:
     """
-    Fixture for a Dictionary Query Configurations that creates a table.
-    Configuration Structure:
-        query_path: <path_of_the_query_file>
-        query_parameters:
-            name: <name_of_the_query_parameter>
-            array_type: <type_of_the_parameter>
-            value: <value_of_the_parameter>
+    Fixture for a Dictionary including creating table query configurations.
+    Parameter configurations structure:
+            query_path: <query_local_path>
+            query_parameters:
+                <parameter_name>:
+                    name: <parameter_name>
+                    type: <parameter_bigquery_type>
+                    value: <parameter_value>
 
     Args:
         query_config: Dictionary query configuration
@@ -119,5 +122,5 @@ def fixture_create_table_query_config(
     Returns:
         query_config: Dictionary of query configurations
     """
-    # TODO: Implement
-    pass
+
+    return query_config
