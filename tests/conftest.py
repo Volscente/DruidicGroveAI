@@ -76,12 +76,9 @@ def fixture_dictionary_query_parameters(query_config: dict = config['query_confi
 
 
 @pytest.fixture
-def fixture_query_config(
-        query_config: dict = config['query_config']
+def fixture_read_query_config(
+        query_config: dict = config['read_query_config']
 ) -> dict:
-    # TODO: Rename the configuration in the "settings.toml" file
-    # TODO: Rename the fixture
-    # TODO: Modify the docstring
     """
     Fixture for a Dictionary including reading query configurations.
     Parameter configurations structure:
