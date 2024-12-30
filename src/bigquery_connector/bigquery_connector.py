@@ -29,7 +29,7 @@ class BigQueryConnector:
     Methods:
         _set_client: Set the attribute 'client' with an instance of the BigQuery Client
         _build_query_parameters: Build BigQuery query parameters from a dictionary in which each key is a BigQuery Parameter
-        read_from_query_config: Read the query from local path and retrieve data from BigQuery
+        execute_query_from_config: Read the query from local path and retrieve data from BigQuery
     """
     def __init__(self,
                  client_config: BigQueryClientConfig):
@@ -142,22 +142,20 @@ class BigQueryConnector:
             query_config: Dictionary query configurations (path and parameters)
 
         Returns
-            Union[pd.DataFrame, bool]: The result of the query execution.
+            result: Union[pd.DataFrame, bool] The result of the query execution.
                 - pd.DataFrame: When the query is executed successfully and returns data.
                 - bool: `True` if the query executes successfully but does not return data
                   (e.g., a table creation query), or `False` if the execution fails.
         """
-        # TODO: Modify the return to switch between read data and table creation
-        # TODO: Refactor "data" with "job"
-        # TODO: Add switch
-        # CREATE_TABLE_AS_SELECT
-        # SELECT
-        self._logger.debug('read_from_query_config - Start')
+        self._logger.debug('execute_query_from_config - Start')
+
+        # Initialise result to return
+        result = None
 
         # Retrieve query path
         query_path = Path(query_config['query_path'])
 
-        self._logger.info('read_from_query_config - Reading query file: %s',
+        self._logger.info('execute_query_from_config - Reading query file: %s',
                          query_path.as_posix())
 
         # Read query
@@ -166,28 +164,39 @@ class BigQueryConnector:
         # Check if there are parameters
         if 'query_parameters' not in query_config.keys():
 
-            self._logger.info('read_from_query_config - Querying BigQuery without Parameters')
+            self._logger.info('execute_query_from_config - Querying BigQuery without Parameters')
 
-            # Read data from BigQuery
-            data = self._client.query(query)
+            # Execute the job in BigQuery
+            job = self._client.query(query)
 
         else:
 
             # Retrieve BigQuery query parameters
             parameters = self._build_query_parameters(query_config['query_parameters'])
 
-            self._logger.info('read_from_query_config - Querying BigQuery with Parameters')
+            self._logger.info('execute_query_from_config - Querying BigQuery with Parameters')
 
-            # Read data from BigQuery with parameters
-            data = self._client.query(query=query,
+            # Execute the job BigQuery with parameters
+            job = self._client.query(query=query,
                                       job_config=bigquery.QueryJobConfig(query_parameters=parameters))
 
-        self._logger.info('read_from_query_config - Successfully retrieve data')
-        self._logger.info('read_from_query_config - Converting data to Pandas DataFrame')
+        self._logger.info('execute_query_from_config - Successfully query executed')
 
-        # Convert data to a Pandas DataFrame
-        data = data.to_dataframe()
+        # Switch between a read query and a table creation query
+        if job.statement_type == 'CREATE_TABLE_AS_SELECT':
 
-        self._logger.debug('read_from_query_config - End')
+            self._logger.info('execute_query_from_config - Created table from query')
 
-        return data
+            # Return table creation status
+            result = job.done()
+
+        else:
+
+            self._logger.info('execute_query_from_config - Converting data to Pandas DataFrame')
+
+            # Convert data to a Pandas DataFrame
+            result = job.result().to_dataframe()
+
+        self._logger.debug('execute_query_from_config - End')
+
+        return result
