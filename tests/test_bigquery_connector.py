@@ -70,19 +70,18 @@ def test_build_query_parameters(
 @pytest.mark.parametrize('index, expected_id, expected_display_name', [
     (0, 3863, 'Adam Hughes'),
 ])
-def test_read_from_query_config(fixture_bigquery_connector: BigQueryConnector,
+def test_execute_query_from_config(fixture_bigquery_connector: BigQueryConnector,
                                 fixture_query_config: dict,
                                 index: int,
                                 expected_id: int,
                                 expected_display_name: str) -> bool:
-    # TODO: Change name
     # TODO: Modify the docstring (if necessary)
     # TODO: Parametrise the fixture to use
     # TODO: Switch for checking whether it is a reading or a writing
     """
     Test the function
-    src/bigquery_connector/bigquery_connector.BigQueryConnector._read_from_query_config
-    by reading the data from BigQuery and comparing them with expected values
+    src/bigquery_connector/bigquery_connector.BigQueryConnector.execute_query_from_config
+
 
     Args:
         fixture_bigquery_connector: BigQueryConnector object
