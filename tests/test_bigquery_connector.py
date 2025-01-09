@@ -67,15 +67,14 @@ def test_build_query_parameters(
 # @pytest.mark.skip(
 #     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
 # )
-@pytest.mark.parametrize('index, expected_id, expected_display_name', [
-    (0, 3863, 'Adam Hughes'),
+@pytest.mark.parametrize('fixture_name, expected_output', [
+    ('fixture_read_query_config', {'index': 0, 'id': 3863, 'name': 'Adam Hughes'}),
+    ('fixture_create_table_query_config', {'table_created': True})
 ])
 def test_execute_query_from_config(fixture_bigquery_connector: BigQueryConnector,
-                                fixture_query_config: dict,
-                                index: int,
-                                expected_id: int,
-                                expected_display_name: str) -> bool:
-    # TODO: Modify the docstring (if necessary)
+                                   fixture_name: str,
+                                   expected_output: dict,
+                                   request: FixtureRequest) -> bool:
     # TODO: Parametrise the fixture to use
     # TODO: Switch for checking whether it is a reading or a writing
     """
@@ -85,13 +84,15 @@ def test_execute_query_from_config(fixture_bigquery_connector: BigQueryConnector
 
     Args:
         fixture_bigquery_connector: BigQueryConnector object
-        fixture_query_config: Dictionary of query configurations
-        index: Integer DataFrame row index
-        expected_id: Integer DataFrame for row 'id' value
-        expected_display_name: String DataFrame for row 'display_name' value
+        fixture_name: String name of the fixture to use
+        expected_output: Dictionary of expected output
+        request: FixtureRequest object to load the required fixture
 
     Returns:
     """
+    # Load fixture
+    query = request.getfixturevalue(fixture_name)
+
     # Read data
     data = fixture_bigquery_connector.execute_query_from_config(query_config=fixture_query_config)
 
