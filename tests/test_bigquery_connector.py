@@ -10,10 +10,9 @@ import pytest
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 
 
-# TODO: Remove comments
-#@pytest.mark.skip(
-#    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-#)
+@pytest.mark.skip(
+   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+)
 def test_set_client(
         fixture_bigquery_connector: BigQueryConnector
 ) -> bool:
@@ -33,10 +32,9 @@ def test_set_client(
     assert credentials is not None
 
 
-# TODO: Remove comments
-#@pytest.mark.skip(
-#    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-#)
+@pytest.mark.skip(
+   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+)
 @pytest.mark.parametrize('bigquery_parameter', [
     (bigquery.ScalarQueryParameter(name='id', type_='INTEGER', value=3863)),
     (bigquery.ScalarQueryParameter(name='display_name', type_='STRING', value='Adam Hughes'))
@@ -60,16 +58,15 @@ def test_build_query_parameters(
 
     # Built BigQuery parameters
     built_bigquery_parameters = fixture_bigquery_connector._build_query_parameters(
-        query_parameters=fixture_read_query_config
+        query_parameters=fixture_read_query_config['query_parameters']
     )
 
     assert bigquery_parameter in built_bigquery_parameters
 
 
-# TODO: Remove comments
-# @pytest.mark.skip(
-#     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-# )
+@pytest.mark.skip(
+    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+)
 @pytest.mark.parametrize('fixture_name, expected_output', [
     ('fixture_read_query_config', {'index': 0, 'id': 3863, 'name': 'Adam Hughes'}),
     ('fixture_create_table_query_config', {'table_created': True})
@@ -105,6 +102,6 @@ def test_execute_query_from_config(fixture_bigquery_connector: BigQueryConnector
     else:
 
         # Retrieve id and display_name
-        row_id, row_display_name = data.loc[index, 'id'], data.loc[index, 'display_name']
+        row_id, row_display_name = result.loc[expected_output['index'], 'id'], result.loc[expected_output['index'], 'display_name']
 
-        assert expected_id == row_id and expected_display_name == row_display_name
+        assert expected_output['id'] == row_id and expected_output['name'] == row_display_name

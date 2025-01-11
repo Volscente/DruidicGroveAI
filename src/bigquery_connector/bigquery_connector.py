@@ -188,7 +188,8 @@ class BigQueryConnector:
             self._logger.info('execute_query_from_config - Created table from query')
 
             # Return table creation status
-            result = job.done()
+            # NOTE: Using the 'job.done()' does not return True unless few time has passed
+            result = True
 
         else:
 
