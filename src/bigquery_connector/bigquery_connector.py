@@ -5,9 +5,9 @@ datasets and tables
 # Import Standard Modules
 import os
 from pathlib import Path
+from typing import Union
 import pandas as pd
 from google.cloud import bigquery
-from typing import Union
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
