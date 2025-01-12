@@ -3,42 +3,87 @@
 [pytest.client]
 project_id = 'deep-learning-438509'
 
-[pytest.query_config]
-query_path = 'queries/test_queries/test_access_bigquery_query.sql'
+[pytest.read_query_config]
+query_path = 'queries/test_queries/test_read_query.sql'
 query_parameters.id.name = 'id'
 query_parameters.id.type = 'INTEGER'
 query_parameters.id.value = 3863
 query_parameters.display_name.name = 'display_name'
 query_parameters.display_name.type = 'STRING'
 query_parameters.display_name.value = 'Adam Hughes'
+
+[pytest.create_table_query_config]
+query_path = 'queries/test_queries/test_create_table_query.sql'
+query_parameters.id.name = 'id'
+query_parameters.id.type = 'INTEGER'
+query_parameters.id.value = 1
+query_parameters.display_name.name = 'display_name'
+query_parameters.display_name.type = 'STRING'
+query_parameters.display_name.value = 'test_name'
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------
 [eda]
 read_local = true
+
 [eda.bigquery_client]
 project_id = 'deep-learning-438509'
+
 [eda.relevant_users]
 query_path = 'queries/stackoverflow/eda/users/relevant_users.sql'
 query_parameters.hours_interval.name = 'hours_interval'
 query_parameters.hours_interval.type = 'INTEGER'
 query_parameters.hours_interval.value = 8
-local_path = 'data/stackoverflow/relevant_users.csv'
+local_path = 'data/stackoverflow/eda/relevant_users.csv'
+
 [eda.badges_relevant_users]
 query_path = 'queries/stackoverflow/eda/badges/badges_relevant_users.sql'
 query_parameters.hours_interval.name = 'years_interval'
 query_parameters.hours_interval.type = 'INTEGER'
 query_parameters.hours_interval.value = 3
-local_path = 'data/stackoverflow/badges_relevant_users.csv'
+local_path = 'data/stackoverflow/eda/badges_relevant_users.csv'
+
 [eda.number_badges_relevant_users]
 query_path = 'queries/stackoverflow/eda/badges/number_badges_relevant_users.sql'
 query_parameters.hours_interval.name = 'years_interval'
 query_parameters.hours_interval.type = 'INTEGER'
 query_parameters.hours_interval.value = 10
-local_path = 'data/stackoverflow/number_badges_relevant_users.csv'
+local_path = 'data/stackoverflow/eda/number_badges_relevant_users.csv'
+
 [eda.post_answers]
 query_path = 'queries/stackoverflow/eda/posts_answers/post_answers_relevant_users.sql'
 query_parameters.hours_interval.name = 'months_interval'
 query_parameters.hours_interval.type = 'INTEGER'
 query_parameters.hours_interval.value = 4
-local_path = 'data/stackoverflow/post_answers_relevant_users.csv'
+local_path = 'data/stackoverflow/eda/post_answers_relevant_users.csv'
+# -------------------------------------------
+
+# ------------ Data Preparation -------------
+[data_preparation]
+read_local = true
+
+[data_preparation.bigquery_client]
+project_id = 'deep-learning-438509'
+
+[data_preparation.top_rarest_badges]
+query_path = 'queries/stackoverflow/data_preparation/top_rarest_badges.sql'
+query_parameters.date_start.name = 'date_start'
+query_parameters.date_start.type = 'DATE'
+query_parameters.date_start.value = '2013-01-01'
+query_parameters.date_end.name = 'date_end'
+query_parameters.date_end.type = 'DATE'
+query_parameters.date_end.value = '2023-12-31'
+query_parameters.min_users_earned.name = 'min_users_earned'
+query_parameters.min_users_earned.type = 'INTEGER'
+query_parameters.min_users_earned.value = '20'
+query_parameters.top_rarest_badges.name = 'top_rarest_badges'
+query_parameters.top_rarest_badges.type = 'INTEGER'
+query_parameters.top_rarest_badges.value = '100'
+local_path = 'data/stackoverflow/data_preparation/top_rarest_badges.sql.csv'
+
+[data_preparation.users_information]
+query_path = 'queries/stackoverflow/data_preparation/users_information.sql'
+query_parameters.hours_interval.name = 'hours_interval'
+query_parameters.hours_interval.type = 'INTEGER'
+query_parameters.hours_interval.value = 8
+local_path = 'data/stackoverflow/data_preparation/users_information.csv'

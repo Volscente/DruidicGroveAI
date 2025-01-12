@@ -58,37 +58,45 @@ def fixture_bigquery_connector(
 
 
 @pytest.fixture
-def fixture_dictionary_query_parameters(query_config: dict = config['query_config']['query_parameters']):
+def fixture_read_query_config(
+        query_config: dict = config['read_query_config']
+) -> dict:
     """
-    Fixture for a Dictionary Query Parameter with structure:
-        name: <name_of_the_query_parameter>
-        array_type: <type_of_the_parameter>
-        value: <value_of_the_parameter>
+    Fixture for a Dictionary including reading query configurations.
+    Parameter configurations structure:
+            query_path: <query_local_path>
+            query_parameters:
+                <parameter_name>:
+                    name: <parameter_name>
+                    type: <parameter_bigquery_type>
+                    value: <parameter_value>
 
     Args:
-        query_config: Dictionary of query parameters
+        query_config: Dictionary of query configurations
 
     Returns:
-        query_parameters: Dictionary of query parameters
+        query_config: Dictionary of query configurations
     """
 
     return query_config
 
 
 @pytest.fixture
-def fixture_query_config(
-        query_config: dict = config['query_config']
+def fixture_create_table_query_config(
+        query_config: dict = config['create_table_query_config']
 ) -> dict:
     """
-    Fixture for a Dictionary Query Configurations with structure:
-        query_path: <path_of_the_query_file>
-        query_parameters:
-            name: <name_of_the_query_parameter>
-            array_type: <type_of_the_parameter>
-            value: <value_of_the_parameter>
+    Fixture for a Dictionary including creating table query configurations.
+    Parameter configurations structure:
+            query_path: <query_local_path>
+            query_parameters:
+                <parameter_name>:
+                    name: <parameter_name>
+                    type: <parameter_bigquery_type>
+                    value: <parameter_value>
 
     Args:
-        query_config: Dictionary of query configurations
+        query_config: Dictionary query configuration
 
     Returns:
         query_config: Dictionary of query configurations

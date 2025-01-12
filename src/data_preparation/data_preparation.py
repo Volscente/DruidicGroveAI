@@ -1,0 +1,41 @@
+"""
+The module includes Data Preparation class definitions
+"""
+# Import Standard Libraries
+import os
+from pathlib import Path
+
+# Import Package Modules
+from src.logging_module.logging_module import get_logger
+
+class StackOverflowDataPreparation:
+    """
+    The class implements a Data Preparation object for the Stack Overflow
+    Answer Score Classification use case
+
+    Attributes:
+        logger: logging.Logger object used for logging purposes
+
+    Methods:
+    """
+    def __init__(self,
+                 input_tables_config: dict):
+        """
+        Constructor of the class StackOverflowDataPreparation
+        # TODO: Add a BigQueryConnector object
+
+        Args:
+            input_tables_config: dict with Input Tables (including raw data) configuration
+        """
+        # Setup logger
+        self.logger = get_logger(__class__.__name__,
+                                 Path(os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH')) /
+                                 'src' /
+                                 'logging_module' /
+                                 'log_configuration.yaml')
+
+        # Initialise attributes
+        self._input_tables_config = input_tables_config
+
+    def _load_input_tables(self):
+        pass

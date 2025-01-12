@@ -16,7 +16,7 @@ from src.general_utils.general_utils import (
     (pathlib.Path(__file__).parents[1] /
      'queries' /
      'test_queries' /
-     'test_access_bigquery_query.sql',
+     'test_read_query.sql',
      '/*')
 ])
 def test_read_file_from_path(input_path: pathlib.Path,

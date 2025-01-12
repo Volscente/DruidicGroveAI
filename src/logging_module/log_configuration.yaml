@@ -18,3 +18,7 @@ loggers:
     level: INFO
     handlers: [ console ]
     propagate: no
+  StackOverflowDataPreparation:
+    level: INFO
+    handlers: [ console ]
+    propagate: no
