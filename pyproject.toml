@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "druidicgroveai"
-version = "1.0.6"
+version = "1.0.7"
 description = "DruidicGroveAI is a research-focused repository dedicated to exploring the latest advancements in deep learning."
 authors = ["Simone Porreca <porrecasimone@gmail.com>"]
 readme = "README.md"
