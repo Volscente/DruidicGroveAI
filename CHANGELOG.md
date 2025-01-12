@@ -1,3 +1,13 @@
+# v.1.0.7
+
+------
+
+- [x] Refactor Function `read_from_query_config` in `src/bigquery_connector/bigquery_connector.BigQueryConnector`
+- [x] Refactor PyTest Fixture `fixture_query_config` in `tests/conftest.py`
+- [x] Add PyTest Fixture `fixture_create_table_query_config`  in `tests/conftest.py`
+- [x] Refactor PyTest `test_read_from_query_config` in `tests/test_bigquery_connector.py`
+- [x] Change used functions in `notebooks/stackoverflow/eda/stackoverflow_eda.ipynb`
+
 # v.1.0.6
 
 ------
