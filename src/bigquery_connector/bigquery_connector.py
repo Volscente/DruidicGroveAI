@@ -215,4 +215,19 @@ class BigQueryConnector:
         Returns:
             exist: Boolean indicating if the table exists
         """
-        # TODO: Implement
+        self._logger.info('table_exists - Start')
+
+        self._logger.info('table_exists - Retrieve list of tables for dataset: %s', dataset_name)
+
+        # Retrieve list of tables
+        tables = self._client.list_tables(dataset_name)
+
+        # Check if the table exist
+        if table_name in tables:
+            exist = True
+        else:
+            exist = False
+
+        self._logger.info('table_exists - End')
+
+        return exist

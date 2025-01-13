@@ -30,7 +30,7 @@ class StackOverflowDataPreparation:
             bigquery_client_config: BigQueryClientConfig including BigQuery client configurations for initialise it
         """
         # Setup logger
-        self.logger = get_logger(__class__.__name__,
+        self._logger = get_logger(__class__.__name__,
                                  Path(os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH')) /
                                  'src' /
                                  'logging_module' /
@@ -39,14 +39,14 @@ class StackOverflowDataPreparation:
         # Initialise attributes
         self._input_tables_config = input_tables_config
 
-        self.logger.info('__init__ - Start')
+        self._logger.info('__init__ - Start')
 
-        self.logger.info('__init__ - Initialise the BigQueryConnector object')
+        self._logger.info('__init__ - Initialise the BigQueryConnector object')
 
         # Init a BigQueryConnector object based on the configurations stored in bigquery_client_config
         self.bigquery_connector = BigQueryConnector(bigquery_client_config)
 
-        self.logger.info('__init__ - End')
+        self._logger.info('__init__ - End')
 
 
     def _load_input_tables(self):
@@ -56,14 +56,14 @@ class StackOverflowDataPreparation:
 
         Returns:
         """
-        self.logger.info('_load_input_tables - Start')
+        self._logger.info('_load_input_tables - Start')
 
-        self.logger.info('_load_input_tables - Fetch input tables')
+        self._logger.info('_load_input_tables - Fetch input tables')
 
         # Fetch input tables stored in the self._input_tables_config
         for input_table in self._input_tables_config:
 
-            self.logger.info('_load_input_tables - Input table: %s', input_table)
+            self._logger.info('_load_input_tables - Input table: %s', input_table)
 
             # Check if the table already exist, otherwise create it
             # TODO: Add the switch
