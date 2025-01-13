@@ -66,3 +66,4 @@ class StackOverflowDataPreparation:
             self.logger.info('_load_input_tables - Input table: %s', input_table)
 
             # Check if the table already exist, otherwise create it
+            # TODO: Add the switch
