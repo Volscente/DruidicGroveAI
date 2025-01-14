@@ -222,11 +222,16 @@ class BigQueryConnector:
         # Retrieve list of tables
         tables = self._client.list_tables(dataset_name)
 
+        # Retrieve list of table names
+        table_names = [table.table_id for table in tables]
+
         # Check if the table exist
-        if table_name in tables:
+        if table_name in table_names:
             exist = True
         else:
             exist = False
+
+        self._logger.info('table_exists - Table %s exists: %s', table_name, exist)
 
         self._logger.info('table_exists - End')
 
