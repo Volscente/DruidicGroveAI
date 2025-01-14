@@ -1,3 +1,10 @@
+# v.1.0.8
+
+------
+
+- [x] Add Function `table_exists` in the class `src/bigquery_connector/bigquery_connector.BigQueryConnector`
+- [x] Add PyTest `test_table_exists` in `tests/test_bigquery_connector.py`
+
 # v.1.0.7
 
 ------
