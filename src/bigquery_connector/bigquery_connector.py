@@ -213,7 +213,7 @@ class BigQueryConnector:
             dataset_name: String with the name of the dataset
 
         Returns:
-            exist: Boolean indicating if the table exists
+            exists: Boolean indicating if the table exists
         """
         self._logger.info('table_exists - Start')
 
@@ -226,13 +226,10 @@ class BigQueryConnector:
         table_names = [table.table_id for table in tables]
 
         # Check if the table exist
-        if table_name in table_names:
-            exist = True
-        else:
-            exist = False
+        exists = table_name in table_names
 
         self._logger.info('table_exists - Table %s exists: %s', table_name, exist)
 
         self._logger.info('table_exists - End')
 
-        return exist
+        return exists
