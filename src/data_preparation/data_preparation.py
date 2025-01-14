@@ -8,6 +8,7 @@ from pathlib import Path
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
 from src.types import BigQueryClientConfig
+from src.bigquery_connector.bigquery_connector import BigQueryConnector
 
 class StackOverflowDataPreparation:
     """
@@ -64,6 +65,3 @@ class StackOverflowDataPreparation:
         for input_table in self._input_tables_config:
 
             self._logger.info('_load_input_tables - Input table: %s', input_table)
-
-            # Check if the table already exist, otherwise create it
-            # TODO: Add the switch

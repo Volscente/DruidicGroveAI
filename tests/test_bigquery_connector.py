@@ -107,9 +107,9 @@ def test_execute_query_from_config(fixture_bigquery_connector: BigQueryConnector
         assert expected_output['id'] == row_id and expected_output['name'] == row_display_name
 
 
-# @pytest.mark.skip(
-#    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-# )
+@pytest.mark.skip(
+   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+)
 @pytest.mark.parametrize('table_name, dataset_name, expected_output', [
     ('test_table_creation', 'dim_stackoverflow_data_model', True),
     ('wrong_table', 'dim_stackoverflow_data_model', False)

@@ -228,7 +228,7 @@ class BigQueryConnector:
         # Check if the table exist
         exists = table_name in table_names
 
-        self._logger.info('table_exists - Table %s exists: %s', table_name, exist)
+        self._logger.info('table_exists - Table %s exists: %s', table_name, exists)
 
         self._logger.info('table_exists - End')
 
