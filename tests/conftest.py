@@ -14,7 +14,7 @@ from src.bigquery_connector.bigquery_connector import BigQueryConnector
 # Read configuration file
 config = Dynaconf(settings_files=[pathlib.Path(__file__).parents[1]
                                   / 'configuration'
-                                  / 'settings.toml'],
+                                  / 'stackoverflow_settings.toml'],
                   environments=True,
                   env='pytest')
 

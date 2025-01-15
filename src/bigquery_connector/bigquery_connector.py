@@ -201,3 +201,35 @@ class BigQueryConnector:
         self._logger.debug('execute_query_from_config - End')
 
         return result
+
+    def table_exists(self,
+                     table_name: str,
+                     dataset_name: str) -> bool:
+        """
+        Check if a table exists in a dataset
+
+        Args:
+            table_name: String with the name of the table
+            dataset_name: String with the name of the dataset
+
+        Returns:
+            exists: Boolean indicating if the table exists
+        """
+        self._logger.info('table_exists - Start')
+
+        self._logger.info('table_exists - Retrieve list of tables for dataset: %s', dataset_name)
+
+        # Retrieve list of tables
+        tables = self._client.list_tables(dataset_name)
+
+        # Retrieve list of table names
+        table_names = [table.table_id for table in tables]
+
+        # Check if the table exist
+        exists = table_name in table_names
+
+        self._logger.info('table_exists - Table %s exists: %s', table_name, exists)
+
+        self._logger.info('table_exists - End')
+
+        return exists
