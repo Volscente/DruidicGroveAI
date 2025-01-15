@@ -61,6 +61,7 @@ local_path = 'data/stackoverflow/eda/post_answers_relevant_users.csv'
 # ------------ Data Preparation -------------
 [data_preparation]
 read_local = true
+dataset_name = 'curated_stackoverflow_data_model'
 
 [data_preparation.bigquery_client]
 project_id = 'deep-learning-438509'
