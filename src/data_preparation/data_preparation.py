@@ -85,3 +85,10 @@ class StackOverflowDataPreparation:
         self._logger.info('__load_input_tables - Input tables successfully created')
 
         self._logger.info('__load_input_tables - End')
+
+# TODO: I need to understand how to make the class StackOverflowDataPreparation suitable
+# for a local run and a Metaflow pipeline.
+# Maybe define all the steps as functions, then another function like "run_pipeline_locally".
+# In this function it will call all the other functions.
+# For the Metaflow pipeline, each @step will call the "step" function and never call the
+# "run_pipeline_locally".
