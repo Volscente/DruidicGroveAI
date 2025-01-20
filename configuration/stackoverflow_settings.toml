@@ -20,6 +20,12 @@ query_parameters.id.value = 1
 query_parameters.display_name.name = 'display_name'
 query_parameters.display_name.type = 'STRING'
 query_parameters.display_name.value = 'test_name'
+
+[pytest.data_preparation]
+dataset_name = 'dim_stackoverflow_data_model'
+
+[pytest.test_input_tables.test_users_information]
+
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------

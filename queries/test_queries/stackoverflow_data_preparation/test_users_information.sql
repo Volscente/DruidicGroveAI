@@ -26,7 +26,7 @@ SELECT
   2 AS user_id,
   'Itachi Uchiha' AS user_name,
   '<p>I am a front-edv developer with 5+ years of experience and specialised in JS/ReactJS. I also like skiing.</p>' AS user_about_me,
-  TIMESTAMP('2015-02-020 12:49:34') AS user_creation_date,
+  TIMESTAMP('2015-02-02 12:49:34') AS user_creation_date,
   'California' AS user_location,
   2500 AS user_reputation,
   300 AS user_up_votes,
