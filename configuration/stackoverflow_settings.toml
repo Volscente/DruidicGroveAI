@@ -24,8 +24,10 @@ query_parameters.display_name.value = 'test_name'
 [pytest.data_preparation]
 dataset_name = 'dim_stackoverflow_data_model'
 
-[pytest.test_input_tables.test_users_information]
-
+[pytest.test_input_tables]
+test_users_information.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_users_information.sql'
+test_top_rarest_badges.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_top_rarest_badges.sql'
+test_post_answers.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_post_answers.sql'
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------
