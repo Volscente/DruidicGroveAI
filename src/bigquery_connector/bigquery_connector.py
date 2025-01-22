@@ -192,7 +192,7 @@ class BigQueryConnector:
 
             # Return table creation status
             # NOTE: Using the 'job.done()' does not return True unless few time has passed
-            result = True
+            result = job.done()
 
         else:
 
