@@ -6,6 +6,7 @@
 CREATE OR REPLACE TABLE `deep-learning-438509.curated_stackoverflow_data_model.users_information` AS
 
 -- Compute the latest access datetime
+-- TODO: Select a time range, do not use the latest access for now (No data contract -> Data can change)
 WITH _max_last_access_date AS (
     SELECT MAX(users.last_access_date) AS max_last_access_date
     FROM
