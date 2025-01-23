@@ -25,4 +25,4 @@ SELECT
 FROM
     `bigquery-public-data.stackoverflow.posts_answers` AS posts_answers
 WHERE
-    posts_answers.owner_user_id IN (SELECT user_id FROM _users)
+    posts_answers.owner_user_id IN (SELECT users.user_id FROM _users AS users)

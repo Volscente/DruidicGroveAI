@@ -6,9 +6,9 @@ CREATE OR REPLACE TABLE `deep-learning-438509.dim_stackoverflow_data_model.test_
 
 -- Retrieve users
 WITH _users AS (
-    SELECT user.user_id
+    SELECT users.user_id
     FROM
-        `deep-learning-438509.dim_stackoverflow_data_model.test_users_information` AS user
+        `deep-learning-438509.dim_stackoverflow_data_model.test_users_information` AS users
 ),
 
 -- Define test post answers
@@ -43,4 +43,4 @@ SELECT *
 FROM
     _post_answers
 WHERE
-    answer_user_id IN (SELECT user_id FROM _users)
+    answer_user_id IN (SELECT users.user_id FROM _users AS users)
