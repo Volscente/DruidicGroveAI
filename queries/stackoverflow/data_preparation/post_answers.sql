@@ -10,8 +10,7 @@ CREATE OR REPLACE TABLE `deep-learning-438509.curated_stackoverflow_data_model.p
 
 -- Retrieve relevant users IDs
 WITH _users AS (
-    SELECT
-        user_id
+    SELECT user_id
     FROM
         `deep-learning-438509.curated_stackoverflow_data_model.users_information`
 )

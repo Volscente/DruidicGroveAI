@@ -8,9 +8,9 @@ import pytest
 # Import Package Modules
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 
-# @pytest.mark.skip(
-#    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-# )
+@pytest.mark.skip(
+   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+)
 def test_load_input_tables(
         fixture_stackoverflow_data_preparation: StackOverflowDataPreparation
 ) -> bool:
