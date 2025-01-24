@@ -92,7 +92,10 @@ local_path = 'data/stackoverflow/data_preparation/top_rarest_badges.sql.csv'
 
 [data_preparation.input_tables.users_information]
 query_path = 'queries/stackoverflow/data_preparation/users_information.sql'
-query_parameters.hours_interval.name = 'hours_interval'
-query_parameters.hours_interval.type = 'INTEGER'
-query_parameters.hours_interval.value = 8
+query_parameters.last_access_starts_at.name = 'last_access_starts_at'
+query_parameters.hours_interval.type = 'TIMESTAMP'
+query_parameters.hours_interval.value = '2022-09-24 21:55:00 UTC'
+query_parameters.last_access_ends_at.name = 'last_access_ends_at'
+query_parameters.hours_interval.type = 'TIMESTAMP'
+query_parameters.hours_interval.value = '2022-09-25 6:00:00 UTC'
 local_path = 'data/stackoverflow/data_preparation/users_information.csv'
