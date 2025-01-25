@@ -1,8 +1,7 @@
 /*
  * Create a table including information from post answers for users in the table
  * deep-learning-438509.curated_stackoverflow_data_model.users_information.
- * They are retrieve from the latest post answer's creation date
- * and @months_interval months before.
+ * They are retrieve from the time interval between @creation_date_start and @creation_date_end.
  * NOTE: The latest post answer's creation date is 25/09/2022 (Checked on 04/12/2024)
  * NOTE: 'owner_user_id' is the 'id' column of the user who posted the answer
  */
@@ -29,4 +28,10 @@ _post_aswers AS (
         posts_answers.owner_user_id IN (SELECT users.user_id FROM _users AS users)
 )
 
--- Filter just for the last @
+-- Filter for the specific time interval
+SELECT
+    *
+FROM
+    _post_aswers
+WHERE
+    answer_creation_date BETWEEN @creation_date_start AND @creation_date_end
