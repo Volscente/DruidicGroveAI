@@ -1,3 +1,21 @@
+# v.1.0.9
+
+------
+
+- [x] Add Query `test_create_table.sql` in `queries/test_queries/bigquery_connector`
+- [x] Add Module `data_preparation` in `src`
+- [x] Add Class `StackOverflowDataPreparation` in `src/data_preparation/data_preparation.py`
+- [x] Add Function `_load_input_tables` in `src/data_preparation/data_preparation.StackOverflowDataPreparation`
+- [x] Add Query `test_users_information.sql` in `queries/test_queries/stackoverflow_data_preparation`
+- [x] Add Query `test_top_rarest_badges.sql` in `queries/test_queries/stackoverflow_data_preparation`
+- [x] Add Query `test_post_answers.sql` in `queries/test_queries/stackoverflow_data_preparation`
+- [x] Add PyTest Fixture `fixture_stackoverflow_data_preparation` in `tests/conftest.py`
+- [x] Add PyTest `test_load_input_tables` in `tests/test_data_preparation.py`
+- [x] Add Query `top_rarest_badges.sql` in `queries/stackoverflow/data_preparation`
+- [x] Add Query `users_information.sql` in `queries/stackoverflow/data_preparation`
+- [x] Add Query `post_answers.sql` in `queries/stackoverflow/data_preparation`
+
+
 # v.1.0.8
 
 ------
