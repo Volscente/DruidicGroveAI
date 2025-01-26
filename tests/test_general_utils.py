@@ -16,6 +16,7 @@ from src.general_utils.general_utils import (
     (pathlib.Path(__file__).parents[1] /
      'queries' /
      'test_queries' /
+     'bigquery_connector' /
      'test_read_query.sql',
      '/*')
 ])

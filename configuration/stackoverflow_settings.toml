@@ -4,7 +4,7 @@
 project_id = 'deep-learning-438509'
 
 [pytest.read_query_config]
-query_path = 'queries/test_queries/test_read_query.sql'
+query_path = 'queries/test_queries/bigquery_connector/test_read_query.sql'
 query_parameters.id.name = 'id'
 query_parameters.id.type = 'INTEGER'
 query_parameters.id.value = 3863
@@ -13,13 +13,21 @@ query_parameters.display_name.type = 'STRING'
 query_parameters.display_name.value = 'Adam Hughes'
 
 [pytest.create_table_query_config]
-query_path = 'queries/test_queries/test_create_table_query.sql'
+query_path = 'queries/test_queries/bigquery_connector/test_create_table_query.sql'
 query_parameters.id.name = 'id'
 query_parameters.id.type = 'INTEGER'
 query_parameters.id.value = 1
 query_parameters.display_name.name = 'display_name'
 query_parameters.display_name.type = 'STRING'
 query_parameters.display_name.value = 'test_name'
+
+[pytest.data_preparation]
+dataset_name = 'dim_stackoverflow_data_model'
+
+[pytest.data_preparation.input_tables]
+test_users_information.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_users_information.sql'
+test_top_rarest_badges.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_top_rarest_badges.sql'
+test_post_answers.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_post_answers.sql'
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------
@@ -61,6 +69,7 @@ local_path = 'data/stackoverflow/eda/post_answers_relevant_users.csv'
 # ------------ Data Preparation -------------
 [data_preparation]
 read_local = true
+dataset_name = 'curated_stackoverflow_data_model'
 
 [data_preparation.bigquery_client]
 project_id = 'deep-learning-438509'
@@ -83,7 +92,20 @@ local_path = 'data/stackoverflow/data_preparation/top_rarest_badges.sql.csv'
 
 [data_preparation.input_tables.users_information]
 query_path = 'queries/stackoverflow/data_preparation/users_information.sql'
-query_parameters.hours_interval.name = 'hours_interval'
-query_parameters.hours_interval.type = 'INTEGER'
-query_parameters.hours_interval.value = 8
+query_parameters.last_access_starts_at.name = 'last_access_starts_at'
+query_parameters.last_access_starts_at.type = 'TIMESTAMP'
+query_parameters.last_access_starts_at.value = '2022-09-24 21:55:00 UTC'
+query_parameters.last_access_ends_at.name = 'last_access_ends_at'
+query_parameters.last_access_ends_at.type = 'TIMESTAMP'
+query_parameters.last_access_ends_at.value = '2022-09-25 6:00:00 UTC'
 local_path = 'data/stackoverflow/data_preparation/users_information.csv'
+
+[data_preparation.input_tables.post_answers]
+query_path = 'queries/stackoverflow/data_preparation/post_answers.sql'
+query_parameters.creation_date_start.name = 'creation_date_start'
+query_parameters.creation_date_start.type = 'TIMESTAMP'
+query_parameters.creation_date_start.value = '2022-05-25 00:00:00 UTC'
+query_parameters.creation_date_end.name = 'creation_date_end'
+query_parameters.creation_date_end.type = 'TIMESTAMP'
+query_parameters.creation_date_end.value = '2022-09-25 00:00:00 UTC'
+local_path = 'data/stackoverflow/data_preparation/post_answers.csv'

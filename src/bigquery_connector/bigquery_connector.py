@@ -182,6 +182,9 @@ class BigQueryConnector:
 
         self._logger.info('execute_query_from_config - Successfully query executed')
 
+        # Extract the job result
+        result = job.result()
+
         # Switch between a read query and a table creation query
         if job.statement_type == 'CREATE_TABLE_AS_SELECT':
 
@@ -189,14 +192,14 @@ class BigQueryConnector:
 
             # Return table creation status
             # NOTE: Using the 'job.done()' does not return True unless few time has passed
-            result = True
+            result = job.done()
 
         else:
 
             self._logger.info('execute_query_from_config - Converting data to Pandas DataFrame')
 
             # Convert data to a Pandas DataFrame
-            result = job.result().to_dataframe()
+            result = result.to_dataframe()
 
         self._logger.debug('execute_query_from_config - End')
 

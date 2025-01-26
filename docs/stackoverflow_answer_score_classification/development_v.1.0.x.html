@@ -51,6 +51,7 @@
             <img src="https://img.shields.io/badge/Pandas-0d5df2?&style=flat&logo=pandas&logoColor=white" height="22" alt="Pandas"/>
             <img src="https://img.shields.io/badge/Matplotlib-dd1d1d?&style=flat&logoColor=white" height="22" alt="Matplotlib"/>
             <img src="https://img.shields.io/badge/Seaborn-1dc0dd?&style=flat" height="22" alt="Seaborn"/>
+            <img src="https://img.shields.io/badge/Google_Cloud_Platform-Vertex_AI_|_BigQuery-4285F4?&style=flat&logo=googlecloud&logoColor=white" height="22" />
           </li>
         </ul>
       </div>
@@ -103,7 +104,7 @@
           <br>
           <b>Comments:</b>
           <ul style="margin-top: 0; margin-bottom: 0">
-            <li>The table contains only information about the users who last access was between ⚠️ TBD ⚠️</li>
+            <li>The table contains only information about the users who last access was between <b>2022-09-24 21:55:00 UTC</b> and <b>2022-09-25 6:00:00 UTC</b></li>
           </ul>
           <b>Data Schema:</b>
           <table class="table">
@@ -138,9 +139,9 @@
             <tr id="user_creation_date">
               <td style="border: 1px solid; padding: 8px;">004</td>
               <td style="border: 1px solid; padding: 8px;">user_creation_date</td>
-              <td style="border: 1px solid; padding: 8px;">Datetime</td>
+              <td style="border: 1px solid; padding: 8px;">Timestamp</td>
               <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.users</td>
-              <td style="border: 1px solid; padding: 8px;">The datetime when the user was created</td>
+              <td style="border: 1px solid; padding: 8px;">The timestamp when the user was created</td>
             </tr>
             <tr id="user_location">
               <td style="border: 1px solid; padding: 8px;">005</td>
@@ -217,7 +218,7 @@
           <br>
           <b>Comments:</b>
           <ul style="margin-top: 0; margin-bottom: 0">
-            <li>The table contains only information between the following dates ⚠️ TBD ⚠️</li>
+            <li>The table contains only information between the following dates <b>25/05/20222</b> and <b>25/09/2022</b>️</li>
             <li>The table contains only information from <i>Users Information</i> table of filtered user</li>
           </ul>
           <b>Data Schema:</b>
@@ -246,16 +247,16 @@
             <tr id="answer_comment_count">
               <td style="border: 1px solid; padding: 8px;">003</td>
               <td style="border: 1px solid; padding: 8px;">answer_comment_count</td>
-              <td style="border: 1px solid; padding: 8px;">String</td>
+              <td style="border: 1px solid; padding: 8px;">Integer</td>
               <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.posts_answers</td>
-              <td style="border: 1px solid; padding: 8px;">The body of the answer posted by the user</td>
+              <td style="border: 1px solid; padding: 8px;">Number of comments on the post answer</td>
             </tr>
             <tr id="answer_creation_date">
               <td style="border: 1px solid; padding: 8px;">004</td>
               <td style="border: 1px solid; padding: 8px;">answer_creation_date</td>
-              <td style="border: 1px solid; padding: 8px;">Datetime</td>
+              <td style="border: 1px solid; padding: 8px;">Timestamp</td>
               <td style="border: 1px solid; padding: 8px;">bigquery-public-data.stackoverflow.posts_answers</td>
-              <td style="border: 1px solid; padding: 8px;">The datetime in which the answer has been posted</td>
+              <td style="border: 1px solid; padding: 8px;">The timestamp in which the answer has been posted</td>
             </tr>
             <tr id="answer_score">
               <td style="border: 1px solid; padding: 8px;">005</td>

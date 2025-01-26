@@ -10,6 +10,7 @@ from dynaconf import Dynaconf
 # Import Package Modules
 from src.types import BigQueryClientConfig
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
+from src.data_preparation.data_preparation import StackOverflowDataPreparation
 
 # Read configuration file
 config = Dynaconf(settings_files=[pathlib.Path(__file__).parents[1]
@@ -103,3 +104,32 @@ def fixture_create_table_query_config(
     """
 
     return query_config
+
+
+@pytest.fixture
+def fixture_stackoverflow_data_preparation(
+        fixture_bigquery_client_config: BigQueryClientConfig,
+        dataset_name: str = config['data_preparation']['dataset_name'],
+        input_tables_config: dict = config['data_preparation']['input_tables']
+) -> StackOverflowDataPreparation:
+    """
+    Fixture for a StackOverflowDataPreparation object
+    from src/data_preparation/data_preparation.StackOverflowDataPreparation class definition.
+
+    Args:
+        fixture_bigquery_client_config: BigQueryClientConfig object for instancing a BigQueryConnector object
+        dataset_name: String value of the dataset name
+        input_tables_config: Dictionary including input table query configurations
+
+    Returns:
+        stackoverflow_data_preparation: StackOverflowDataPreparation object
+    """
+
+    # Instance a StackOverflowDataPreparation object
+    stackoverflow_data_preparation = StackOverflowDataPreparation(
+        dataset_name=dataset_name,
+        input_tables_config=input_tables_config,
+        bigquery_client_config=fixture_bigquery_client_config
+    )
+
+    return stackoverflow_data_preparation

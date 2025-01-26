@@ -1,33 +1,18 @@
 /*
  * Create a table including information from relevant users
- * Such users performed their last access within the last @hours_interval hours
+ * Such users performed their last access between @last_access_starts_at and @last_access_ends_at
  * from the maximum last access datetime of all users.
  */
 CREATE OR REPLACE TABLE `deep-learning-438509.curated_stackoverflow_data_model.users_information` AS
 
--- Compute the latest access datetime
-WITH _max_last_access_date AS (
-    SELECT MAX(users.last_access_date) AS max_last_access_date
-    FROM
-        `bigquery-public-data.stackoverflow.users` AS users
-),
-
-/*
- * Select only users for which the last access is maximum 8 hours greater than the max_last_access_date
- * and that have relevant information filled
-*/
-_most_recent_last_access_users AS (
+-- Select most relevant users with last access date in a given interval
+WITH _most_recent_last_access_users AS (
     SELECT users.*
     FROM
-        `bigquery-public-data.stackoverflow.users` AS users,
-        _max_last_access_date
+        `bigquery-public-data.stackoverflow.users` AS users
     WHERE
         -- Filter for last access date
-        users.last_access_date BETWEEN TIMESTAMP(DATE_SUB(
-            _max_last_access_date.max_last_access_date,
-            INTERVAL @hours_interval HOUR
-        ))
-        AND _max_last_access_date.max_last_access_date
+        users.last_access_date BETWEEN @last_access_starts_at AND @last_access_ends_at
         -- Filter for relevant information filled
         AND users.display_name IS NOT NULL
         AND users.location IS NOT NULL
