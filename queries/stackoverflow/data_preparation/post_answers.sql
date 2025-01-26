@@ -29,8 +29,7 @@ _post_aswers AS (
 )
 
 -- Filter for the specific time interval
-SELECT
-    *
+SELECT *
 FROM
     _post_aswers
 WHERE
