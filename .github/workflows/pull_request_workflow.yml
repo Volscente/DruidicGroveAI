@@ -6,6 +6,10 @@ on:
     branches:
       - main
       - dev
+env:
+  DRUIDIC_GROVE_AI_ROOT_PATH: './'
+
+
 jobs:
     pr_workflow:
       name: pr_workflow
@@ -26,11 +30,12 @@ jobs:
         - name: Install Poetry
           run: pip install poetry
         - name: Install Dependencies
-          run: poetry install --no-interaction --no-ansi
+          run: poetry install --no-interaction --no-ansi --no-root
         - name: Lint with PyLint
           run: |
             poetry run pylint \
-            --disable='C0301, R0903, R0801' \
+            --load-plugins pylint_pytest \
+            --disable='C0301, R0903, R0801, W0212, W0511' \
             --source-roots=./src \
             --output-format=colorized \
             --msg-template='Rule: {msg_id} - Position: [{line},{column}] -  {msg}' \

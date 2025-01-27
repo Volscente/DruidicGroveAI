@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploratory Data Analysis</title>
+  <link rel="stylesheet" href="./../style.css">
+</head>
+<body>
+<header>
+  <h1>Exploratory Data Analysis</h1>
+  <p>Exploring real-world applications of AI innovation</p>
+</header>
+<main>
+  <div id="main" class="container">
+    <!-- Sidebar -->
+    <nav id="Sidebar" class="sidebar">
+      <h2>Navigation</h2>
+      <ul>
+        <li><a href="./../index.html">Home</a></li>
+        <li><a href="./../use_cases.html">Use Cases</a>
+        <ul>
+          <li><a href="general.html">Stack Overflow Answer Score Classification</a>
+          <ul>
+            <li><a href="exploratory_data_analysis.html"><b>Exploratory Data Analysis</b></a></li>
+            <li><a href="data_sources.html">Data Sources</a></li>
+            <li>Developments
+            <ul>
+              <li><a href="development_v.1.0.x.html">v.1.0.x</a></li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- Content -->
+    <div id="Content" class="content">
+      <div id="Users">
+        <h2 class="sticky-header">Users</h2>
+        <h3>Information</h3>
+          <b>Dataset:</b> <i>bigquery-public-data.stackoverflow.users</i>
+          <br>
+          <b>Queries:</b>
+          <ul>
+            <li><i>queries/stackoverflow/eda/users/relevant_users.sql</i> &rarr;
+              Retrieve all the users that have not null values in their information
+              from the ones who recently performed their last access into the platform</li>
+          </ul>
+        <h3>General</h3>
+          <ul>
+            <li>Shape &rarr; (33517, 12)</li>
+            <li>No IDs columns &rarr; All are potential features</li>
+          </ul>
+        <h3>Null Values</h3>
+          <ul>
+            <li>6 columns have null values</li>
+            <li>Column <b>age</b> has only null values &rarr; Discard</li>
+            <li>Columns <b>about_me</b> and <b>website_url</b> have more than 50% null values &rarr; Discard</li>
+          </ul>
+        <h3>Numerical Features Distribution</h3>
+          <ul>
+            <li>Numerical features have a very high Standard Deviation and different scales &rarr; Require Standardisation</li>
+            <li>Identify outliers through the z-score computation &rarr; Few outliers, drop them</li>
+          </ul>
+        <h3>Categorical Features Distribution</h3>
+          <ul>
+            <li><b>Location</b> features has too many values and of poor quality.
+              There is both <b>USA</b> and <b>United States</b>, or both <b>India</b> and <b>Bangalore, Karnataka, India</b>
+              &rarr; Try with encoding. Similar values should have similar encodings.</li>
+          </ul>
+        <h3>Datetime Features Distribution</h3>
+          <ul>
+            <li>There is huge interval of <b>creation_date</b> &rarr;Use only the year has a feature</li>
+          </ul>
+      </div>
+      <div id="Badges">
+        <h2 class="sticky-header">Badges</h2>
+          <h3>Information</h3>
+            <b>Dataset:</b> <i>bigquery-public-data.stackoverflow.badges</i>
+            <br>
+            <b>Queries:</b>
+            <ul>
+              <li><i>queries/stackoverflow/eda/badges/badges_relevant_users.sql</i> - Retrieve badge information of the relevant users</li>
+              <li><i>queries/stackoverflow/eda/badges/number_badges_relevant_users.sql</i> - Retrieve the number of badges obtained by each user in relevant users</li>
+            </ul>
+          <h3>General</h3>
+            <ul>
+              <li>Shape &rarr; (44865, 17)</li>
+            </ul>
+          <h3>Null Values</h3>
+            <ul>
+              <li>Same as users table</li>
+            </ul>
+          <h3>Categorical Features Distribution</h3>
+            <ul>
+              <li>The <b>badge_name</b> feature is well curated &rarr; Use it through an encoding/embedding</li>
+              <li>The most rare badge has indeed quite above the average values for any <b>raw_numerical_features</b> &rarr; Engineer a feature called <b>has_most_rare_badges</b> by including the top rarest badges</li>
+              <li>The feature <b>badge_count</b> has a strong correlation with <b>user_reputation</b>, <b>user_up_votes</b> and <b>user_views</b> &rarr; Engineer a feature called <b>badge_count</b></li>
+            </ul>
+      </div>
+      <div id="Post Answers">
+        <h2 class="sticky-header">Post Answers</h2>
+        <h3>Information</h3>
+        <b>Dataset:</b> <i>bigquery-public-data.stackoverflow.posts_answers</i>
+          <br>
+          <b>Queries:</b>
+          <ul>
+            <li><i>queries/stackoverflow/eda/posts_answers/post_answers_relevant_users.sql</i> &rarr;
+              Retrieve post answers of the relevant users in the last time frame from the latest post answer's creation date
+            </li>
+          </ul>
+        <h3>General</h3>
+        <ul>
+          <li>Shape &rarr; (55881, 18)</li>
+        </ul>
+        <h3>Null Values</h3>
+        <ul>
+          <li>The columns <b>answer_title</b>, <b>answer_count</b>, <b>answer_favourite_count</b>, <b>answer_view_count</b> and <b>answer_tag</b> are all null &rarr; Drop them</li>
+        </ul>
+        <h3>Numerical Features</h3>
+        <ul>
+          <li>The <b>answer_score</b> is extremely skewed &rarr; There might the need to define the label with also other information a part from the score</li>
+          <li style="list-style-image: none; list-style-type: none;">
+            <img src="./images/answer_score_density.png" alt="Answer Score Density" />
+          </li>
+        </ul>
+      </div>
+      <div id="Conclusions">
+        <h2 class="sticky-header">Conclusions</h2>
+          <ul>
+            <li>Drop the <b>age</b> column from Users</li>
+            <li>Drop <b>answer_title</b>, <b>answer_count</b>, <b>answer_favourite_count</b>, <b>answer_view_count</b> and <b>answer_tag</b> from Post Answers</li>
+            <li>Drop outliers with the z-score and apply standardisation to the columns: <b>user_reputation</b>, <b>user_up_votes</b>, <b>user_down_votes</b> and <b>user_views</b></li>
+            <li>Encode the feature <b>location</b> in <b>user_location_encoded</b></li>
+            <li>Encode the feature <b>user_about_me</b> in <b>user_about_me_encoded</b></li>
+            <li>Engineer a features called <b>user_creation_year</b> by extracting the year from the <b>creation_date</b></li>
+            <li>Engineer a feature called <b>has_most_rare_badges</b> by including the top rarest badges</li>
+            <li>Engineer a feature called <b>badge_count</b> as the total number of badges per user in the last years</li>
+            <li>Engineer a feature called <b>user_has_profile_image_url</b> from the <b>user_profile_image_url</b> using a boolean to denote when the field is non-null</li>
+            <li>Engineer a feature called <b>user_has_website_url</b> from the <b>user_website_url</b> using a boolean to denote when the field is non-null</li>
+            <li>Engineer a feature called <b>answer_body_encoded</b> by encoding the field <b>answer_body</b></li>
+            <li>Add the feature <b>answer_comment_count</b></li>
+            <li>Engineer a feature called <b>answer_creation_year</b> from <b>answer_creation_date</b></li>
+            <li>Engineer a feature called <b>answer_creation_month</b> from <b>answer_creation_date</b></li>
+            <li>Engineer a feature called <b>badges_encoded</b> from <b>badges_list</b></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2024 Druidic Grove AI | Crafted with ❤️ for AI enthusiasts</p>
+</footer>
+</body>
+</html>

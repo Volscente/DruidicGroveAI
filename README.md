@@ -5,11 +5,45 @@ DruidicGroveAI is a research-focused repository dedicated to exploring the lates
 This project serves as a hub for experimenting with state-of-the-art models, algorithms, 
 and techniques, aiming to push the boundaries of AI innovation.
 
+# Resources
+The full documentation of the project can be found in the dedicated [GitHub Pages](https://volscente.github.io/DruidicGroveAI/).
+
+For the developers, check the wiki [Package & Modules](https://github.com/Volscente/DruidicGroveAI/wiki/Packages-&-Modules) Section.
+
+Please refer to this [Contributing Guidelines](https://github.com/Volscente/DruidicGroveAI/wiki/Contributing-Guidelines) in order to contribute to the repository.
+
 # Setup
-## Update PYTHONPATH
-Add the current directory to the `PYTHONPATH` environment variables.
+## Environment Variables
+Add the project root directory as `DRUIDIC_GROVE_AI_ROOT_PATH` environment variable.
 ``` bash
-export PYTHONPATH="$PYTHONPATH:/<absolute_path>/DruidicGroveAI"
+export DRUIDIC_GROVE_AI_ROOT_PATH="/<absolute_path>/DruidicGroveAI"
+```
+Create a `.env` file in the root folder like
+```
+# Set the Root Path
+DRUIDIC_GROVE_AI_ROOT_PATH="/<absolute_path>/DruidicGroveAI"
+```
+
+## Setup gcloud CLI
+Install `gcloud` on the local machine ([Guide](https://cloud.google.com/sdk/docs/install)).
+
+Authenticate locally to GCP:
+```bash
+gcloud auth login
+```
+
+Set the project ID.
+```bash
+# List all the projects
+gcloud projects list
+
+# Set the project
+gcloud config set project <project_id>
+```
+
+Create authentication keys.
+```bash
+gcloud auth application-default login
 ```
 
 ## Justfile
