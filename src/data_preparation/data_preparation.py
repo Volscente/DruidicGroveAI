@@ -86,6 +86,13 @@ class StackOverflowDataPreparation:
 
         self._logger.info('__load_input_tables - End')
 
+    def __load_raw_dataset(self):
+        """
+
+        Returns:
+
+        """
+
 # TODO: I need to understand how to make the class StackOverflowDataPreparation suitable
 # for a local run and a Metaflow pipeline.
 # Maybe define all the steps as functions, then another function like "run_pipeline_locally".

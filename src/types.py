@@ -15,3 +15,17 @@ class BigQueryClientConfig(BaseModel):
 
     """
     project_id: str = Literal['deep-learning-438509']
+
+class BigQueryQueryParameters(BaseModel):
+    pass
+class BigQueryQueryConfig(BaseModel):
+    """
+    The class implements a Pydantic type for a BigQuery Query
+    configuration
+
+    Attributes:
+
+    """
+    query_path: str
+    query_parameters: BigQueryQueryParameters
+    local_path: str
