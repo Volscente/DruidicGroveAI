@@ -2,7 +2,7 @@
 This module includes Pydantic types for the whole project
 """
 # Import Standard Modules
-from typing import Literal, Optional, Union
+from typing import Literal, Optional, Union, List
 from pydantic import BaseModel
 
 
