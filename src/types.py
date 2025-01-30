@@ -2,7 +2,7 @@
 This module includes Pydantic types for the whole project
 """
 # Import Standard Modules
-from typing import Literal
+from typing import Literal, Optional, Union
 from pydantic import BaseModel
 
 
@@ -19,18 +19,31 @@ class BigQueryClientConfig(BaseModel):
 
 
 class BigQueryQueryParameter(BaseModel):
-    pass
+    """
+    The class implements a Pydantic type for a BigQuery Query
+    parameter
 
-class BigQueryQueryParametersList(BaseModel):
-    pass
+    Attributes:
+        name: (String) Parameter name
+        type: (String) Parameter type
+        value: (Union[str, int, float]): The value of the parameter, which
+               can be a string, integer, or float.
+    """
+    name: str
+    type: str
+    value: Union[str, int, float]
+
+
 class BigQueryQueryConfig(BaseModel):
     """
     The class implements a Pydantic type for a BigQuery Query
     configuration
 
     Attributes:
-
+        query_path: (String) Query file path
+        query_parameters: [Optional](List[BigQueryQueryParameter] List of BigQuery parameters
+        local_path: (String)
     """
     query_path: str
-    query_parameters: BigQueryQueryParametersList
+    query_parameters: Optional[List[BigQueryQueryParameter]] = None
     local_path: str
