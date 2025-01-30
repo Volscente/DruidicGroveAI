@@ -28,3 +28,7 @@ def test_load_input_tables(
     fixture_stackoverflow_data_preparation._load_input_tables()
 
     assert True
+
+def test_load_raw_dataset_exceptions():
+    # TODO: Test when the Pydantic model is wrong
+    pass

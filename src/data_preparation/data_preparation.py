@@ -16,10 +16,10 @@ class StackOverflowDataPreparation:
     Answer Score Classification use case
 
     Attributes:
-        _logger: logging.Logger object used for logging purposes
-        _input_tables_config: Dictionary with input table configurations
-        _dataset_name: Name of the dataset to use
-        _bigquery_connector: BigQueryConnector object for interacting with BigQuery
+        _logger: (logging.Logger) Object used for logging purposes
+        _input_tables_config: (Dictionary) Input table configurations
+        _dataset_name: (String) Dataset name to use
+        _bigquery_connector: (BigQueryConnector) Object for interacting with BigQuery
 
 
     Methods:

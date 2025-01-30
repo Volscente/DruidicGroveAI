@@ -9,14 +9,19 @@ from pydantic import BaseModel
 class BigQueryClientConfig(BaseModel):
     """
     The class implements a Pydantic type for a BigQuery Client
-    configuration
+    configuration.
 
     Attributes:
-
+        project_id: (String) The Google Cloud project ID, which is
+            restricted to 'deep-learning-438509'.
     """
     project_id: str = Literal['deep-learning-438509']
 
-class BigQueryQueryParameters(BaseModel):
+
+class BigQueryQueryParameter(BaseModel):
+    pass
+
+class BigQueryQueryParametersList(BaseModel):
     pass
 class BigQueryQueryConfig(BaseModel):
     """
@@ -27,5 +32,5 @@ class BigQueryQueryConfig(BaseModel):
 
     """
     query_path: str
-    query_parameters: BigQueryQueryParameters
+    query_parameters: BigQueryQueryParametersList
     local_path: str
