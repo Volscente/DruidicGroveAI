@@ -24,9 +24,9 @@ class BigQueryQueryParameter(BaseModel):
     parameter
 
     Attributes:
-        name: (String) Parameter name
-        type: (String) Parameter type
-        value: (Union[str, int, float]): The value of the parameter, which
+        name (String): Parameter name
+        type (String): Parameter type
+        value (Union[str, int, float]): The value of the parameter, which
                can be a string, integer, or float.
     """
     name: str
@@ -40,8 +40,8 @@ class BigQueryQueryConfig(BaseModel):
     configuration
 
     Attributes:
-        query_path: (String) Query file path
-        query_parameters: [Optional](List[BigQueryQueryParameter] List of BigQuery parameters
+        query_path (String): Query file path
+        query_parameters [Optional](List[BigQueryQueryParameter]): List of BigQuery parameters
         local_path: (String)
     """
     query_path: str
