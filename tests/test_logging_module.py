@@ -22,9 +22,9 @@ def test_get_logger(input_logger: str,
     Test the function src/logging_module/logging_module.get_logger
 
     Args:
-        input_logger: str logger name
-        input_config_path: pathlib.Path local file path to the logging configuration
-        expected_name: str expected logger name
+        input_logger (String): Logger name
+        input_config_path (pathlib.Path): Local file path to the logging configuration
+        expected_name (String): Expected logger name
 
     Returns:
     """
@@ -48,9 +48,9 @@ def test_get_logger_exceptions(input_logger: str,
     function src/logging_module/logging_module.get_logger
 
     Args:
-        input_logger: str logger name
-        input_config_path: pathlib.Path local wrong file path to the logging configuration
-        expected_exception: Exception expected
+        input_logger (String): Logger name
+        input_config_path (pathlib.Path): Local wrong file path to the logging configuration
+        expected_exception (Exception): Expected triggered exception
 
     Returns:
     """

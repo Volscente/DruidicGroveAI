@@ -19,7 +19,7 @@ def test_load_input_tables(
     src/data_preparation/data_preparation.StackOverflowDataPreparation._load_input_tables
 
     Args:
-        fixture_stackoverflow_data_preparation: StackOverflowDataPreparation object
+        fixture_stackoverflow_data_preparation (StackOverflowDataPreparation): Object for data preparation
 
     Returns:
     """
@@ -28,7 +28,3 @@ def test_load_input_tables(
     fixture_stackoverflow_data_preparation._load_input_tables()
 
     assert True
-
-def test_load_raw_dataset_exceptions():
-    # TODO: Test when the Pydantic model is wrong
-    pass

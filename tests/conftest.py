@@ -28,10 +28,10 @@ def fixture_bigquery_client_config(
     This fixture returns a BigQueryClientConfig object
 
     Args:
-        project_id: String value of the GCP project id
+        project_id (String): GCP project id
 
     Returns:
-        client_config: BigQueryClientConfig object
+        client_config (BigQueryClientConfig): BigQuery object
     """
     # Instance a BigQueryClientConfig object
     client_config = BigQueryClientConfig(project_id=project_id)
@@ -47,10 +47,10 @@ def fixture_bigquery_connector(
     This fixture returns a BigQueryConnector object
 
     Args:
-        fixture_bigquery_client_config: BigQueryClientConfig object for instancing a BigQuery client
+        fixture_bigquery_client_config (BigQueryClientConfig): Configurations of BigQuery client
 
     Returns:
-        bigquery_connector: BigQueryConnector object
+        bigquery_connector (BigQueryConnector): BigQuery Connector object
     """
     # Instance a BigQueryConnector object
     bigquery_connector = BigQueryConnector(client_config=fixture_bigquery_client_config)
@@ -73,10 +73,10 @@ def fixture_read_query_config(
                     value: <parameter_value>
 
     Args:
-        query_config: Dictionary of query configurations
+        query_config (Dictionary): Query configurations
 
     Returns:
-        query_config: Dictionary of query configurations
+        query_config (Dictionary): Query configurations
     """
 
     return query_config
@@ -97,10 +97,10 @@ def fixture_create_table_query_config(
                     value: <parameter_value>
 
     Args:
-        query_config: Dictionary query configuration
+        query_config (Dictionary): Query configurations
 
     Returns:
-        query_config: Dictionary of query configurations
+        query_config (Dictionary): Query configurations
     """
 
     return query_config
@@ -117,12 +117,12 @@ def fixture_stackoverflow_data_preparation(
     from src/data_preparation/data_preparation.StackOverflowDataPreparation class definition.
 
     Args:
-        fixture_bigquery_client_config: BigQueryClientConfig object for instancing a BigQueryConnector object
-        dataset_name: String value of the dataset name
-        input_tables_config: Dictionary including input table query configurations
+        fixture_bigquery_client_config (BigQueryClientConfig): Configurations for a BigQueryConnector object
+        dataset_name (String): Dataset name
+        input_tables_config (Dictionary): Input table query configurations
 
     Returns:
-        stackoverflow_data_preparation: StackOverflowDataPreparation object
+        stackoverflow_data_preparation (StackOverflowDataPreparation): Object for data preparation
     """
 
     # Instance a StackOverflowDataPreparation object

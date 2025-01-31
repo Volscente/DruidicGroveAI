@@ -26,9 +26,9 @@ def test_bigquery_query_parameter(
     Test the class BigQueryQueryParameter
 
     Args:
-        name: (String) Parameter name
-        parameter_type: (String) Parameter type
-        value: (String) The value of the parameter
+        name (String): Parameter name
+        parameter_type (String): Parameter type
+        value (String): Value of the parameter
 
     Returns:
     """
@@ -54,8 +54,8 @@ def test_bigquery_query_parameter_exceptions(
     Test the class BigQueryQueryParameter for exceptions
 
     Args:
-        name: (String) Parameter name
-        value: (String) The value of the parameter
+        name (String): Parameter name
+        value (String): Value of the parameter
 
     Returns:
     """
@@ -83,4 +83,5 @@ def test_bigquery_query_config(
     Returns:
 
     """
+    pass
 

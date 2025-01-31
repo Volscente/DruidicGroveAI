@@ -22,7 +22,7 @@ def test_set_client(
     by instantiating a BigQueryConnector object and check the "client" attribute
 
     Args:
-        fixture_bigquery_connector: BigQueryConnector object
+        fixture_bigquery_connector (BigQueryConnector):  BigQuery Connector object
 
     Returns:
     """
@@ -49,9 +49,9 @@ def test_build_query_parameters(
     by checking if the test bigquery_parameter is among the built ones
 
     Args:
-        fixture_bigquery_connector: BigQueryConnector object
-        fixture_read_query_config: Dictionary of query parameters
-        bigquery_parameter: bigquery.ScalarQueryParameter BigQuery Parameter
+        fixture_bigquery_connector (BigQueryConnector): BigQueryConnector object
+        fixture_read_query_config (Dictionary): Query parameters
+        bigquery_parameter (bigquery.ScalarQueryParameter): BigQuery Parameter
 
     Returns:
     """
@@ -81,10 +81,10 @@ def test_execute_query_from_config(fixture_bigquery_connector: BigQueryConnector
 
 
     Args:
-        fixture_bigquery_connector: BigQueryConnector object
-        fixture_name: String name of the fixture to use
-        expected_output: Dictionary of expected output
-        request: FixtureRequest object to load the required fixture
+        fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
+        fixture_name (String): Name of the fixture to use
+        expected_output (Dictionary): Expected output
+        request (FixtureRequest): Object to load the required fixture
 
     Returns:
     """
@@ -124,10 +124,10 @@ def test_table_exists(fixture_bigquery_connector: BigQueryConnector,
     by checking combination of table_name and dataset_name
 
     Args:
-        fixture_bigquery_connector: BigQueryConnector object
-        table_name: String name of the table to check
-        dataset_name: String name of the dataset in which the table is located
-        expected_output: Boolean of expected outcome of the function table_exists
+        fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
+        table_name (String ): Name of the table to check
+        dataset_name (String): Name of the dataset in which the table is located
+        expected_output (Boolean): Expected outcome of the function table_exists
 
     Returns:
     """

@@ -27,8 +27,8 @@ def test_read_file_from_path(input_path: pathlib.Path,
     by reading a local file and compare the first line
 
     Args:
-        input_path: pathlib.Path local file path
-        expected_first_line: str of file first line
+        input_path (pathlib.Path): Local file path
+        expected_first_line (String): File first line
 
     Returns:
     """
@@ -55,8 +55,8 @@ def test_read_file_from_path_exceptions(
     src/general_utils/general_utils.read_file_from_path
 
     Args:
-        input_path: pathlib.Path wrong local file path
-        expected_exception: Exception instance
+        input_path (pathlib.Path): Wrong local file path
+        expected_exception (Exception): Instance of triggered exception
 
     Returns:
     """
