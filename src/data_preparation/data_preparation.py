@@ -16,10 +16,10 @@ class StackOverflowDataPreparation:
     Answer Score Classification use case
 
     Attributes:
-        _logger: (logging.Logger) Object used for logging purposes
-        _input_tables_config: (Dictionary) Input table configurations
-        _dataset_name: (String) Dataset name to use
-        _bigquery_connector: (BigQueryConnector) Object for interacting with BigQuery
+        _logger (logging.Logger): Object used for logging purposes
+        _input_tables_config (Dictionary): Input table configurations
+        _dataset_name (String): Dataset name to use
+        _bigquery_connector (BigQueryConnector): Object for interacting with BigQuery
 
 
     Methods:
@@ -32,9 +32,9 @@ class StackOverflowDataPreparation:
         Constructor of the class StackOverflowDataPreparation
 
         Args:
-            input_tables_config: dict with Input Tables (including raw data) configuration
-            dataset_name: Name of the dataset to use
-            bigquery_client_config: BigQueryClientConfig including BigQuery client configurations for initialise it
+            input_tables_config (Dictionary): Input Tables (including raw data) configuration
+            dataset_name (String): Name of the dataset to use
+            bigquery_client_config (BigQueryClientConfig): BigQuery client configurations for initialise it
         """
         # Setup logger
         self._logger = get_logger(__class__.__name__,
@@ -57,7 +57,7 @@ class StackOverflowDataPreparation:
         self._logger.info('__init__ - End')
 
 
-    def _load_input_tables(self):
+    def _load_input_tables(self) -> None:
         """
         Fetch the input tables in 'self._input_tables_config',
         check if they already exist and, in case not, create them.
@@ -85,17 +85,3 @@ class StackOverflowDataPreparation:
         self._logger.info('__load_input_tables - Input tables successfully created')
 
         self._logger.info('__load_input_tables - End')
-
-    def __load_raw_dataset(self):
-        """
-
-        Returns:
-
-        """
-
-# TODO: I need to understand how to make the class StackOverflowDataPreparation suitable
-# for a local run and a Metaflow pipeline.
-# Maybe define all the steps as functions, then another function like "run_pipeline_locally".
-# In this function it will call all the other functions.
-# For the Metaflow pipeline, each @step will call the "step" function and never call the
-# "run_pipeline_locally".

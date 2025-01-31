@@ -5,6 +5,7 @@ module src.types
 # Import Standard Libraries
 import pytest
 from pydantic import ValidationError
+from typing import Tuple
 
 # Import Package Modules
 from src.types import (
@@ -14,7 +15,7 @@ from src.types import (
 
 
 @pytest.mark.parametrize('name, parameter_type, value', [
-    ('test_name', 'test_type', 'test_value)')
+    ('test_name', 'test_type', 'test_value')
 ])
 def test_bigquery_query_parameter(
         name: str,
@@ -40,8 +41,10 @@ def test_bigquery_query_parameter(
     assert bigquery_query_parameter.type == parameter_type
     assert bigquery_query_parameter.value == value
 
+
+# noinspection PyArgumentList
 @pytest.mark.parametrize('name, value', [
-    ('test_name', 'test_value)')
+    ('test_name', 'test_value')
 ])
 def test_bigquery_query_parameter_exceptions(
         name: str,
@@ -60,3 +63,24 @@ def test_bigquery_query_parameter_exceptions(
     with pytest.raises(ValidationError):
         BigQueryQueryParameter(name=name,
                                value=value)
+
+
+@pytest.mark.parametrize('query_path, query_parameters, local_path', [
+    ('test_query_path', ('test_name', 'test_type', 'test_value'), 'test_local_path')
+])
+def test_bigquery_query_config(
+        query_path: str,
+        query_parameters: Tuple[str, str, str],
+        local_path: str) -> bool:
+    """
+    Test the class BigQueryQueryConfig
+
+    Args:
+        query_path: (String)
+        query_parameters:
+        local_path:
+
+    Returns:
+
+    """
+

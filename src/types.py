@@ -12,7 +12,7 @@ class BigQueryClientConfig(BaseModel):
     configuration.
 
     Attributes:
-        project_id: (String) The Google Cloud project ID, which is
+        project_id (String): The Google Cloud project ID, which is
             restricted to 'deep-learning-438509'.
     """
     project_id: str = Literal['deep-learning-438509']

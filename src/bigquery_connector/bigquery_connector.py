@@ -23,8 +23,8 @@ class BigQueryConnector:
     in order to query BigQuery datasets and tables
 
     Attributes:
-        logger: (logging.Logger) Object used for logging purposes
-        client_config: (BigQueryClientConfig) It includes all necessary variables for instance a BigQuery Client instance
+        logger (logging.Logger): Object used for logging purposes
+        client_config (BigQueryClientConfig): It includes all necessary variables for instance a BigQuery Client instance
 
     Methods:
         _set_client: Set the attribute 'client' with an instance of the BigQuery Client
@@ -37,8 +37,8 @@ class BigQueryConnector:
         Constructor of the class BigqueryConnector
 
         Args:
-            client_config: BigQueryClientConfig including all necessary variables for
-                           instance a BigQuery Client instance
+            client_config (BigQueryClientConfig):  Config for
+                           instance a BigQuery Client
         """
         # Setup logger
         self._logger = get_logger(__class__.__name__,
@@ -60,7 +60,7 @@ class BigQueryConnector:
         Set the attribute 'client' with an instance of the BigQuery Client
 
         Returns:
-            client: bigquery.Client object
+            client (bigquery.Client): BigQuery Client object
         """
         self._logger.debug('_set_client - Start')
 
@@ -83,10 +83,12 @@ class BigQueryConnector:
             value: <value_of_the_parameter>
 
         Args:
-            query_parameters: dict parameters
+            query_parameters (Dictionary): Query parameters
 
         Returns
-            bigquery_query_parameters: list BigQuery query parameters
+            bigquery_query_parameters (List[Union[bigquery.ArrayQueryParameter,
+                                                  bigquery.ScalarQueryParameter]]):
+                BigQuery list of parameters
         """
 
         self._logger.debug('build_bigquery_query_parameters_from_dictionary - Start')
@@ -139,10 +141,10 @@ class BigQueryConnector:
                     value: <parameter_value>
 
         Args:
-            query_config: Dictionary query configurations (path and parameters)
+            query_config (Dictionary): Query configurations (path and parameters)
 
         Returns
-            result: Union[pd.DataFrame, bool] The result of the query execution.
+            result (Union[pd.DataFrame, bool]): The result of the query execution.
                 - pd.DataFrame: When the query is executed successfully and returns data.
                 - bool: `True` if the query executes successfully but does not return data
                   (e.g., a table creation query), or `False` if the execution fails.
@@ -212,11 +214,11 @@ class BigQueryConnector:
         Check if a table exists in a dataset
 
         Args:
-            table_name: String with the name of the table
-            dataset_name: String with the name of the dataset
+            table_name (String): Name of the table
+            dataset_name (String): Name of the dataset
 
         Returns:
-            exists: Boolean indicating if the table exists
+            exists (Boolean): Flag indicating if the table exists
         """
         self._logger.info('table_exists - Start')
 
