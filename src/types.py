@@ -42,7 +42,7 @@ class BigQueryQueryConfig(BaseModel):
     Attributes:
         query_path (String): Query file path
         query_parameters [Optional](List[BigQueryQueryParameter]): List of BigQuery parameters
-        local_path: (String)
+        local_path (String): Local path where to save the data
     """
     query_path: str
     query_parameters: Optional[List[BigQueryQueryParameter]] = None

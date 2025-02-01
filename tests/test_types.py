@@ -76,12 +76,24 @@ def test_bigquery_query_config(
     Test the class BigQueryQueryConfig
 
     Args:
-        query_path: (String)
-        query_parameters:
-        local_path:
+        query_path (String): Query file path
+        query_parameters (Tuple[str, str, str]): List of BigQuery parameters
+        local_path (String): Local path where to save the data
 
     Returns:
-
     """
-    pass
+    # Create the BigQueryQueryParameter object
+    bigquery_query_parameter = BigQueryQueryParameter(name=query_parameters[0],
+                                                      type=query_parameters[1],
+                                                      value=query_parameters[2])
 
+    # Create the BigQueryQueryConfig object
+    bigquery_query_config = BigQueryQueryConfig(query_path=query_path,
+                                                query_parameters=[bigquery_query_parameter],
+                                                local_path=local_path)
+
+    assert bigquery_query_config.query_path == query_path
+    assert bigquery_query_config.query_parameters[0].name == query_parameters[0]
+    assert bigquery_query_config.query_parameters[0].type == query_parameters[1]
+    assert bigquery_query_config.query_parameters[0].value == query_parameters[2]
+    assert bigquery_query_config.local_path == local_path
