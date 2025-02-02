@@ -4,7 +4,8 @@
  * 2. `deep-learning-438509.dim_stackoverflow_data_model.test_top_rarest_badges`
  * 3. `deep-learning-438509.dim_stackoverflow_data_model.test_post_answers`
  */
-CREATE OR REPLACE TABLE `deep-learning-438509.dim_stackoverflow_data_model.test_raw_dataset` AS
+-- CREATE OR REPLACE TABLE `deep-learning-438509.dim_stackoverflow_data_model.test_raw_dataset` AS
+-- TODO: Test it on BigQuery
 -- Retrieve users information
 WITH _users AS (
     SELECT *
