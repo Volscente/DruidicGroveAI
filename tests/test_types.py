@@ -97,3 +97,29 @@ def test_bigquery_query_config(
     assert bigquery_query_config.query_parameters[0].type == query_parameters[1]
     assert bigquery_query_config.query_parameters[0].value == query_parameters[2]
     assert bigquery_query_config.local_path == local_path
+
+
+# noinspection PyArgumentList
+@pytest.mark.parametrize('query_path, query_parameters', [
+    ('test_query_path', ('test_name', 'test_type', 'test_value'))
+])
+def test_bigquery_query_config_exceptions(query_path: str,
+                                          query_parameters: Tuple[str, str, str]) -> bool:
+    """
+    Test the class BigQueryQueryConfig for exceptions
+
+    Args:
+        query_path (String): Query file path
+        query_parameters (Tuple[str, str, str]): List of BigQuery parameters
+
+    Returns:
+    """
+    # Test for missing local_path
+    bigquery_query_parameter = BigQueryQueryParameter(
+        name=query_parameters[0],
+        type=query_parameters[1],
+        value=query_parameters[2]
+    )
+    with pytest.raises(ValidationError):
+        BigQueryQueryConfig(query_path=query_path,
+                            query_parameters=[bigquery_query_parameter])
