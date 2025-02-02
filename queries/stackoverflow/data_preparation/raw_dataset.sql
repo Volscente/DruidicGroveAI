@@ -4,7 +4,7 @@
  * 2. `deep-learning-438509.curated_stackoverflow_data_model.top_rarest_badges`
  * 3. `deep-learning-438509.curated_stackoverflow_data_model.post_answers`
  */
-
+CREATE OR REPLACE TABLE `deep-learning-438509.curated_stackoverflow_data_model.raw_dataset` AS
 -- Retrieve users information
 WITH _users AS (
     SELECT *
