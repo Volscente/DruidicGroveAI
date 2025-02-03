@@ -60,12 +60,6 @@ class StackOverflowDataPreparation:
         # Init a BigQueryConnector object based on the configurations stored in bigquery_client_config
         self._bigquery_connector = BigQueryConnector(bigquery_client_config)
 
-        # Load the input tables
-        self._load_input_tables()
-
-        # Load the raw dataset
-        self._load_raw_dataset()
-
         self._logger.info('__init__ - End')
 
 
