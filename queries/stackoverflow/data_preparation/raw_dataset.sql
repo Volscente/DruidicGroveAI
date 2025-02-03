@@ -66,7 +66,7 @@ _users_with_post_answers AS (
     FROM
         _users_badges AS users
     LEFT JOIN _posts AS posts
-        ON _users_badges.user_id = posts.answer_user_id
+        ON users.user_id = posts.answer_user_id
 )
 
 -- Filter for users without post answers
