@@ -164,6 +164,8 @@ class BigQueryConnector:
         query = read_file_from_path(query_path)
 
         # Check if there are parameters
+        # TODO: Implement changes for the new BigQueryQyeryConfig type
+        # TODO: Extend the change also in the Notebooks and everywhere the 'execute_query_from_config' is used
         if 'query_parameters' not in query_config.keys():
 
             self._logger.info('execute_query_from_config - Querying BigQuery without Parameters')
@@ -180,7 +182,7 @@ class BigQueryConnector:
 
             # Execute the job BigQuery with parameters
             job = self._client.query(query=query,
-                                      job_config=bigquery.QueryJobConfig(query_parameters=parameters))
+                                     job_config=bigquery.QueryJobConfig(query_parameters=parameters))
 
         self._logger.info('execute_query_from_config - Successfully query executed')
 
