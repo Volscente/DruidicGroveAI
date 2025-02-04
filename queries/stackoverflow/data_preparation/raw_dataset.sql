@@ -70,8 +70,7 @@ _users_with_post_answers AS (
 )
 
 -- Filter for users without post answers
-SELECT
-    *
+SELECT *
 FROM
     _users_with_post_answers
 WHERE
