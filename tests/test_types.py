@@ -100,17 +100,17 @@ def test_bigquery_query_config(
 
 
 # noinspection PyArgumentList
-@pytest.mark.parametrize('query_path, query_parameters', [
-    ('test_query_path', ('test_name', 'test_type', 'test_value'))
+@pytest.mark.parametrize('query_parameters, local_path', [
+    (('test_name', 'test_type', 'test_value'), 'test_local_path')
 ])
-def test_bigquery_query_config_exceptions(query_path: str,
-                                          query_parameters: Tuple[str, str, str]) -> bool:
+def test_bigquery_query_config_exceptions(query_parameters: Tuple[str, str, str],
+                                          local_path: str) -> bool:
     """
     Test the class BigQueryQueryConfig for exceptions
 
     Args:
-        query_path (String): Query file path
         query_parameters (Tuple[str, str, str]): List of BigQuery parameters
+        local_path (String): Local path where to save the data
 
     Returns:
     """
@@ -121,5 +121,5 @@ def test_bigquery_query_config_exceptions(query_path: str,
         value=query_parameters[2]
     )
     with pytest.raises(ValidationError):
-        BigQueryQueryConfig(query_path=query_path,
-                            query_parameters=[bigquery_query_parameter])
+        BigQueryQueryConfig(query_parameters=[bigquery_query_parameter],
+                            local_path=local_path)

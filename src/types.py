@@ -46,4 +46,4 @@ class BigQueryQueryConfig(BaseModel):
     """
     query_path: str
     query_parameters: Optional[List[BigQueryQueryParameter]] = None
-    local_path: str
+    local_path: Optional[str] = None

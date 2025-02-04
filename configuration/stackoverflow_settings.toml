@@ -28,6 +28,10 @@ dataset_name = 'dim_stackoverflow_data_model'
 test_users_information.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_users_information.sql'
 test_top_rarest_badges.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_top_rarest_badges.sql'
 test_post_answers.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_post_answers.sql'
+
+[pytest.data_preparation.raw_dataset]
+query_path = 'queries/stackoverflow/data_preparation/raw_dataset.sql'
+
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------
