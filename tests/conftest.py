@@ -8,7 +8,10 @@ import pytest
 from dynaconf import Dynaconf
 
 # Import Package Modules
-from src.types import BigQueryClientConfig
+from src.types import (
+    BigQueryClientConfig,
+    BigQueryQueryConfig
+)
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 
@@ -107,8 +110,24 @@ def fixture_create_table_query_config(
 
 
 @pytest.fixture
+def fixture_raw_dataset_config(
+        query_config: dict = config['data_preparation']['raw_dataset']
+) -> BigQueryQueryConfig:
+    """
+    Fixture for a BigQueryQueryConfig object including the Test Raw Dataset configurations
+    Args:
+        query_config (Dictionary): Query configurations
+
+    Returns:
+        raw_dataset_config (BigQueryQueryConfig): Query configurations
+    """
+    return BigQueryQueryConfig(**query_config)
+
+
+@pytest.fixture
 def fixture_stackoverflow_data_preparation(
         fixture_bigquery_client_config: BigQueryClientConfig,
+        fixture_raw_dataset_config: BigQueryQueryConfig,
         dataset_name: str = config['data_preparation']['dataset_name'],
         input_tables_config: dict = config['data_preparation']['input_tables']
 ) -> StackOverflowDataPreparation:
@@ -118,6 +137,7 @@ def fixture_stackoverflow_data_preparation(
 
     Args:
         fixture_bigquery_client_config (BigQueryClientConfig): Configurations for a BigQueryConnector object
+        fixture_raw_dataset_config (BigQueryQueryConfig): Configurations for a BigQueryQueryConfig object for raw dataset
         dataset_name (String): Dataset name
         input_tables_config (Dictionary): Input table query configurations
 
@@ -129,6 +149,7 @@ def fixture_stackoverflow_data_preparation(
     stackoverflow_data_preparation = StackOverflowDataPreparation(
         dataset_name=dataset_name,
         input_tables_config=input_tables_config,
+        raw_dataset_config=fixture_raw_dataset_config,
         bigquery_client_config=fixture_bigquery_client_config
     )
 
