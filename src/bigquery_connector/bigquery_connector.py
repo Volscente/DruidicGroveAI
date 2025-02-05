@@ -155,7 +155,7 @@ class BigQueryConnector:
         result = None
 
         # Retrieve query path
-        query_path = Path(query_config['query_path'])
+        query_path = Path(query_config.query_path)
 
         self._logger.info('execute_query_from_config - Reading query file: %s',
                          query_path.as_posix())
@@ -166,7 +166,7 @@ class BigQueryConnector:
         # Check if there are parameters
         # TODO: Implement changes for the new BigQueryQyeryConfig type
         # TODO: Extend the change also in the Notebooks and everywhere the 'execute_query_from_config' is used
-        if 'query_parameters' not in query_config.keys():
+        if query_config.query_parameters is None:
 
             self._logger.info('execute_query_from_config - Querying BigQuery without Parameters')
 
