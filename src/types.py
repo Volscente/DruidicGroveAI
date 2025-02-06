@@ -31,7 +31,7 @@ class BigQueryQueryParameter(BaseModel):
     """
     name: str
     type: str
-    value: Union[str, int, float]
+    value: Union[str, int, float, List]
 
 
 class BigQueryQueryConfig(BaseModel):
