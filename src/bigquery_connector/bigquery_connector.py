@@ -121,20 +121,13 @@ class BigQueryConnector:
         return bigquery_query_parameters
 
     def execute_query_from_config(self,
-                                  query_config: dict) -> Union[pd.DataFrame, bool]:
+                                  query_config: BigQueryQueryConfig) -> Union[pd.DataFrame, bool]:
         """
         Execute a query from local path and with a certain set of parameter configurations.
         The query can either read data or create a table on BigQuery.
-        Parameter configurations structure:
-            query_path: <query_local_path>
-            query_parameters:
-                <parameter_name>:
-                    name: <parameter_name>
-                    type: <parameter_bigquery_type>
-                    value: <parameter_value>
 
         Args:
-            query_config (Dictionary): Query configurations (path and parameters)
+            query_config (BigQueryQueryConfig): Query configurations (path and parameters)
 
         Returns
             result (Union[pd.DataFrame, bool]): The result of the query execution.
@@ -157,8 +150,6 @@ class BigQueryConnector:
         query = read_file_from_path(query_path)
 
         # Check if there are parameters
-        # TODO: Implement changes for the new BigQueryQyeryConfig type
-        # TODO: Extend the change also in the Notebooks and everywhere the 'execute_query_from_config' is used
         if query_config.query_parameters is None:
 
             self._logger.info('execute_query_from_config - Querying BigQuery without Parameters')
@@ -169,7 +160,7 @@ class BigQueryConnector:
         else:
 
             # Retrieve BigQuery query parameters
-            parameters = self._build_query_parameters(query_config['query_parameters'])
+            parameters = self._build_query_parameters(query_config.query_parameters)
 
             self._logger.info('execute_query_from_config - Querying BigQuery with Parameters')
 
