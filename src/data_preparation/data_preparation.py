@@ -81,7 +81,6 @@ class StackOverflowDataPreparation:
             # Retrieve table name
             table_name = input_table_config.table_name
 
-            # TODO: There is no table name :(
             self._logger.info('_load_input_tables - Input table: %s', table_name)
 
             # Switch if table exists or not
