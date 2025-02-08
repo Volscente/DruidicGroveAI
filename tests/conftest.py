@@ -66,23 +66,16 @@ def fixture_read_query_config(
         query_config: dict = config['read_query_config']
 ) -> dict:
     """
-    Fixture for a Dictionary including reading query configurations.
-    Parameter configurations structure:
-            query_path: <query_local_path>
-            query_parameters:
-                <parameter_name>:
-                    name: <parameter_name>
-                    type: <parameter_bigquery_type>
-                    value: <parameter_value>
+    Fixture for a BigQueryQueryConfig read query configobject
 
     Args:
         query_config (Dictionary): Query configurations
 
     Returns:
-        query_config (Dictionary): Query configurations
+        (BigQueryQueryConfig): Query configurations as object
     """
 
-    return query_config
+    return BigQueryQueryConfig(**query_config)
 
 
 @pytest.fixture
@@ -90,23 +83,16 @@ def fixture_create_table_query_config(
         query_config: dict = config['create_table_query_config']
 ) -> dict:
     """
-    Fixture for a Dictionary including creating table query configurations.
-    Parameter configurations structure:
-            query_path: <query_local_path>
-            query_parameters:
-                <parameter_name>:
-                    name: <parameter_name>
-                    type: <parameter_bigquery_type>
-                    value: <parameter_value>
+    Fixture for a BigQueryQueryConfig create table query config object
 
     Args:
         query_config (Dictionary): Query configurations
 
     Returns:
-        query_config (Dictionary): Query configurations
+        (BigQueryQueryConfig): Query configurations as object
     """
 
-    return query_config
+    return BigQueryQueryConfig(**query_config)
 
 
 @pytest.fixture
@@ -119,7 +105,7 @@ def fixture_raw_dataset_config(
         query_config (Dictionary): Query configurations
 
     Returns:
-        raw_dataset_config (BigQueryQueryConfig): Query configurations
+        (BigQueryQueryConfig): Query configurations as object
     """
     return BigQueryQueryConfig(**query_config)
 
