@@ -5,7 +5,7 @@ datasets and tables
 # Import Standard Modules
 import os
 from pathlib import Path
-from typing import Union
+from typing import Union, List
 import pandas as pd
 from google.cloud import bigquery
 
@@ -35,8 +35,10 @@ class BigQueryConnector:
         _build_query_parameters: Build BigQuery query parameters from a dictionary in which each key is a BigQuery Parameter
         execute_query_from_config: Read the query from local path and retrieve data from BigQuery
     """
-    def __init__(self,
-                 client_config: BigQueryClientConfig):
+    def __init__(
+            self,
+            client_config: BigQueryClientConfig
+    ):
         """
         Constructor of the class BigqueryConnector
 
@@ -77,8 +79,11 @@ class BigQueryConnector:
 
         self._logger.debug('_set_client - End')
 
-    def _build_query_parameters(self,
-                                query_parameters: List[BigQueryQueryParameter]) -> list:
+    # noinspection PyArgumentList
+    def _build_query_parameters(
+            self,
+            query_parameters: List[BigQueryQueryParameter]
+    ) -> List[Union[bigquery.ArrayQueryParameter, bigquery.ScalarQueryParameter]]:
         """
         Build BigQuery query parameters from an object BigQueryQueryParameter
 
@@ -120,8 +125,10 @@ class BigQueryConnector:
 
         return bigquery_query_parameters
 
-    def execute_query_from_config(self,
-                                  query_config: BigQueryQueryConfig) -> Union[pd.DataFrame, bool]:
+    def execute_query_from_config(
+            self,
+            query_config: BigQueryQueryConfig
+    ) -> Union[pd.DataFrame, bool]:
         """
         Execute a query from local path and with a certain set of parameter configurations.
         The query can either read data or create a table on BigQuery.
@@ -193,9 +200,11 @@ class BigQueryConnector:
 
         return result
 
-    def table_exists(self,
-                     table_name: str,
-                     dataset_name: str) -> bool:
+    def table_exists(
+            self,
+            table_name: str,
+            dataset_name: str
+    ) -> bool:
         """
         Check if a table exists in a dataset
 

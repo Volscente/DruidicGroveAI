@@ -29,11 +29,13 @@ class StackOverflowDataPreparation:
 
     Methods:
     """
-    def __init__(self,
-                 input_tables_configs: List[BigQueryQueryConfig],
-                 dataset_name: str,
-                 raw_dataset_config: BigQueryQueryConfig,
-                 bigquery_client_config: BigQueryClientConfig):
+    def __init__(
+            self,
+            input_tables_configs: List[BigQueryQueryConfig],
+            dataset_name: str,
+            raw_dataset_config: BigQueryQueryConfig,
+            bigquery_client_config: BigQueryClientConfig
+    ):
         """
         Constructor of the class StackOverflowDataPreparation
 

@@ -6,6 +6,7 @@ for running PyTest tests
 import pathlib
 import pytest
 from dynaconf import Dynaconf
+from typing import List
 
 # Import Package Modules
 from src.types import (
@@ -93,6 +94,28 @@ def fixture_create_table_query_config(
     """
 
     return BigQueryQueryConfig(**query_config)
+
+
+@pytest.fixture
+def fixture_input_table_configs(
+        input_tables_config: dict = config['data_preparation']['input_tables']
+) -> List[BigQueryQueryConfig]:
+    """
+    Fixture for providing the input table configurations required for testing or running
+    data preparation pipelines.
+
+    Args:
+        input_tables_config (Dictionary): The configuration dictionary containing details of
+            input tables required for data preparation.
+
+    Returns:
+        List[BigQueryQueryConfig]: List of BigQueryQueryConfig objects representing the input tables.
+    """
+
+    print(input_tables_config)
+
+    return None
+
 
 
 @pytest.fixture

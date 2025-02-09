@@ -18,7 +18,9 @@ logger = get_logger(os.path.basename(__file__).split('.')[0],
                     'log_configuration.yaml')
 
 
-def read_file_from_path(file_path: pathlib.Path) -> str:
+def read_file_from_path(
+        file_path: pathlib.Path
+) -> str:
     """
     Read a file from local path
 
