@@ -8,8 +8,10 @@ import pathlib
 import yaml
 
 
-def get_logger(logger_name: str,
-               configuration_file_path: pathlib.Path) -> logging.Logger:
+def get_logger(
+        logger_name: str,
+        configuration_file_path: pathlib.Path
+) -> logging.Logger:
     """
     Set the configuration for the logging module and return the requested logger
 
