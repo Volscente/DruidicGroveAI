@@ -109,12 +109,24 @@ def fixture_input_table_configs(
             input tables required for data preparation.
 
     Returns:
-        List[BigQueryQueryConfig]: List of BigQueryQueryConfig objects representing the input tables.
+        config_list (List[BigQueryQueryConfig]): List of BigQueryQueryConfig objects representing the input tables.
     """
+    # Initialise the list
+    config_list = []
 
-    print(input_tables_config)
+    # Fetch the input table configs
+    for table in input_tables_config:
 
-    return None
+        # Retrieve table config
+        table_config = input_tables_config[table]
+
+        # Create the BigQuery config
+        bigquery_query_config = BigQueryQueryConfig(**table_config)
+
+        # Add to the list
+        config_list.append(bigquery_query_config)
+
+    return config_list
 
 
 
@@ -136,9 +148,9 @@ def fixture_raw_dataset_config(
 @pytest.fixture
 def fixture_stackoverflow_data_preparation(
         fixture_bigquery_client_config: BigQueryClientConfig,
+        fixture_input_table_configs: List[BigQueryQueryConfig],
         fixture_raw_dataset_config: BigQueryQueryConfig,
         dataset_name: str = config['data_preparation']['dataset_name'],
-        input_tables_config: dict = config['data_preparation']['input_tables']
 ) -> StackOverflowDataPreparation:
     """
     Fixture for a StackOverflowDataPreparation object
@@ -146,9 +158,9 @@ def fixture_stackoverflow_data_preparation(
 
     Args:
         fixture_bigquery_client_config (BigQueryClientConfig): Configurations for a BigQueryConnector object
+        fixture_input_table_configs (List[BigQueryQueryConfig]): Input table configurations
         fixture_raw_dataset_config (BigQueryQueryConfig): Configurations for a BigQueryQueryConfig object for raw dataset
         dataset_name (String): Dataset name
-        input_tables_config (Dictionary): Input table query configurations
 
     Returns:
         stackoverflow_data_preparation (StackOverflowDataPreparation): Object for data preparation
@@ -157,7 +169,7 @@ def fixture_stackoverflow_data_preparation(
     # Instance a StackOverflowDataPreparation object
     stackoverflow_data_preparation = StackOverflowDataPreparation(
         dataset_name=dataset_name,
-        input_tables_config=input_tables_config,
+        input_tables_configs=fixture_input_table_configs,
         raw_dataset_config=fixture_raw_dataset_config,
         bigquery_client_config=fixture_bigquery_client_config
     )
