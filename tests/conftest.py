@@ -11,7 +11,8 @@ from typing import List
 # Import Package Modules
 from src.types import (
     BigQueryClientConfig,
-    BigQueryQueryConfig
+    BigQueryQueryConfig,
+    BigQueryQueryParameter
 )
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
@@ -65,7 +66,7 @@ def fixture_bigquery_connector(
 @pytest.fixture
 def fixture_read_query_config(
         query_config: dict = config['read_query_config']
-) -> dict:
+) -> BigQueryQueryConfig:
     """
     Fixture for a BigQueryQueryConfig read query configobject
 
@@ -75,14 +76,19 @@ def fixture_read_query_config(
     Returns:
         (BigQueryQueryConfig): Query configurations as object
     """
+    # Unpack configs
+    query_path, query_parameters = query_config['query_path'], query_config['query_parameters']
 
-    return BigQueryQueryConfig(**query_config)
+    return BigQueryQueryConfig(
+        query_path=query_path,
+        query_parameters=[BigQueryQueryParameter(**query_parameter) for query_parameter in query_parameters]
+    )
 
 
 @pytest.fixture
 def fixture_create_table_query_config(
         query_config: dict = config['create_table_query_config']
-) -> dict:
+) -> BigQueryQueryConfig:
     """
     Fixture for a BigQueryQueryConfig create table query config object
 

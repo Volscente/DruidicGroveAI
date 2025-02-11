@@ -41,11 +41,11 @@ class BigQueryQueryConfig(BaseModel):
 
     Attributes:
         query_path (String): Query file path
-        query_parameters [Optional](List[BigQueryQueryParameter]): List of BigQuery parameters
+        query_parameters [Optional](List[BigQueryQueryParameter]): List of BigQuery parameters or a single parameter
         local_path [Optional](String): Local path where to save the data
         table_name [Optional](String): Table name
     """
     query_path: str
-    query_parameters: Optional[List[BigQueryQueryParameter]] = None
+    query_parameters: Optional[Union[List[BigQueryQueryParameter], BigQueryQueryParameter]] = None
     local_path: Optional[str] = None
     table_name: Optional[str] = None

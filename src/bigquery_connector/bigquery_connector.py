@@ -88,11 +88,11 @@ class BigQueryConnector:
         Build BigQuery query parameters from an object BigQueryQueryParameter
 
         Args:
-            query_parameters (List[BigQueryQueryParameter]): Query parameters
+            query_parameters: List[BigQueryQueryParameter] Query parameters
 
         Returns
-            bigquery_query_parameters (List[Union[bigquery.ArrayQueryParameter,
-                                                  bigquery.ScalarQueryParameter]]):
+            bigquery_query_parameters:
+                List[Union[bigquery.ArrayQueryParameter, bigquery.ScalarQueryParameter]]
                 BigQuery list of parameters
         """
 
@@ -133,10 +133,13 @@ class BigQueryConnector:
         Execute a query from local path and with a certain set of parameter configurations.
         The query can either read data or create a table on BigQuery.
 
-        Args:
-            query_config (BigQueryQueryConfig): Query configurations (path and parameters)
+        Parameters
+        ---------
+            :param BigQueryQueryConfig query_config:
+                Query configurations (path and parameters)
 
         Returns
+        --------
             result (Union[pd.DataFrame, bool]): The result of the query execution.
                 - pd.DataFrame: When the query is executed successfully and returns data.
                 - bool: `True` if the query executes successfully but does not return data

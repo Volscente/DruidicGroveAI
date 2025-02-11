@@ -8,6 +8,9 @@ import pytest
 
 # Import Package Modules
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
+from src.types import (
+    BigQueryQueryConfig
+)
 
 
 @pytest.mark.skip(
@@ -32,16 +35,16 @@ def test_set_client(
     assert credentials is not None
 
 
-@pytest.mark.skip(
-   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-)
+# @pytest.mark.skip(
+#    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+# )
 @pytest.mark.parametrize('bigquery_parameter', [
     (bigquery.ScalarQueryParameter(name='id', type_='INTEGER', value=3863)),
     (bigquery.ScalarQueryParameter(name='display_name', type_='STRING', value='Adam Hughes'))
 ])
 def test_build_query_parameters(
         fixture_bigquery_connector: BigQueryConnector,
-        fixture_read_query_config: dict,
+        fixture_read_query_config: BigQueryQueryConfig,
         bigquery_parameter: bigquery.ScalarQueryParameter
 ) -> bool:
     """
@@ -50,7 +53,7 @@ def test_build_query_parameters(
 
     Args:
         fixture_bigquery_connector (BigQueryConnector): BigQueryConnector object
-        fixture_read_query_config (Dictionary): Query parameters
+        fixture_read_query_config (BigQueryQueryConfig): Query parameters
         bigquery_parameter (bigquery.ScalarQueryParameter): BigQuery Parameter
 
     Returns:
@@ -58,7 +61,7 @@ def test_build_query_parameters(
 
     # Built BigQuery parameters
     built_bigquery_parameters = fixture_bigquery_connector._build_query_parameters(
-        query_parameters=fixture_read_query_config['query_parameters']
+        query_parameters=fixture_read_query_config.query_parameters
     )
 
     assert bigquery_parameter in built_bigquery_parameters
