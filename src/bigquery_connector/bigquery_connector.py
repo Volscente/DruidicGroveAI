@@ -27,13 +27,9 @@ class BigQueryConnector:
     in order to query BigQuery datasets and tables
 
     Attributes:
-        logger (logging.Logger): Object used for logging purposes
-        client_config (BigQueryClientConfig): It includes all necessary variables for instance a BigQuery Client instance
-
-    Methods:
-        _set_client: Set the attribute 'client' with an instance of the BigQuery Client
-        _build_query_parameters: Build BigQuery query parameters from a dictionary in which each key is a BigQuery Parameter
-        execute_query_from_config: Read the query from local path and retrieve data from BigQuery
+        _logger (logging.Logger): Object used for logging purposes
+        _client_config (BigQueryClientConfig): Configurations for instance a BigQuery Client instance
+        _client (bigquery.Client): BigQuery client object
     """
     def __init__(
             self,
@@ -63,10 +59,10 @@ class BigQueryConnector:
 
     def _set_client(self):
         """
-        Set the attribute 'client' with an instance of the BigQuery Client
+        Set the attribute ``_client`` with an instance of the BigQuery Client
 
         Returns:
-            client (bigquery.Client): BigQuery Client object
+            Set ``_client`` BigQuery Client object
         """
         self._logger.debug('_set_client - Start')
 
@@ -79,7 +75,6 @@ class BigQueryConnector:
 
         self._logger.debug('_set_client - End')
 
-    # noinspection PyArgumentList
     def _build_query_parameters(
             self,
             query_parameters: List[BigQueryQueryParameter]
@@ -88,12 +83,11 @@ class BigQueryConnector:
         Build BigQuery query parameters from an object BigQueryQueryParameter
 
         Args:
-            query_parameters: List[BigQueryQueryParameter] Query parameters
+            query_parameters (List[BigQueryQueryParameter]): Query parameters
 
-        Returns
-            bigquery_query_parameters:
-                List[Union[bigquery.ArrayQueryParameter, bigquery.ScalarQueryParameter]]
-                BigQuery list of parameters
+        Returns:
+            bigquery_query_parameters (List[Union[bigquery.ArrayQueryParameter, bigquery.ScalarQueryParameter]]):
+            BigQuery list of parameters
         """
 
         self._logger.debug('build_bigquery_query_parameters_from_dictionary - Start')
