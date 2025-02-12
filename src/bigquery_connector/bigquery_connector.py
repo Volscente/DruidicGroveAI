@@ -133,17 +133,15 @@ class BigQueryConnector:
         Execute a query from local path and with a certain set of parameter configurations.
         The query can either read data or create a table on BigQuery.
 
-        Parameters
-        ---------
-            :param BigQueryQueryConfig query_config:
-                Query configurations (path and parameters)
+        Args:
+            query_config (BigQueryQueryConfig): Query configurations (path and parameters)
 
-        Returns
-        --------
+        Returns:
             result (Union[pd.DataFrame, bool]): The result of the query execution.
-                - pd.DataFrame: When the query is executed successfully and returns data.
-                - bool: `True` if the query executes successfully but does not return data
-                  (e.g., a table creation query), or `False` if the execution fails.
+
+                  - pd.DataFrame: When the query is executed successfully and returns data.
+
+                  - bool: `True` if the query executes successfully but does not return data
         """
         self._logger.debug('execute_query_from_config - Start')
 
