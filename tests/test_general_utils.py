@@ -20,8 +20,10 @@ from src.general_utils.general_utils import (
      'test_read_query.sql',
      '/*')
 ])
-def test_read_file_from_path(input_path: pathlib.Path,
-                             expected_first_line: str) -> bool:
+def test_read_file_from_path(
+        input_path: pathlib.Path,
+        expected_first_line: str
+) -> bool:
     """
     Test the function src/general_utils/general_utils.read_file_from_path
     by reading a local file and compare the first line
@@ -29,8 +31,6 @@ def test_read_file_from_path(input_path: pathlib.Path,
     Args:
         input_path (pathlib.Path): Local file path
         expected_first_line (String): File first line
-
-    Returns:
     """
 
     # Read the file
@@ -57,8 +57,6 @@ def test_read_file_from_path_exceptions(
     Args:
         input_path (pathlib.Path): Wrong local file path
         expected_exception (Exception): Instance of triggered exception
-
-    Returns:
     """
 
     with pytest.raises(expected_exception):
