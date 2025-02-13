@@ -29,8 +29,6 @@ def test_bigquery_query_parameter(
         name (String): Parameter name
         parameter_type (String): Parameter type
         value (String): Value of the parameter
-
-    Returns:
     """
     # Create a BigQueryQueryParameter object
     bigquery_query_parameter = BigQueryQueryParameter(name=name,
@@ -56,8 +54,6 @@ def test_bigquery_query_parameter_exceptions(
     Args:
         name (String): Parameter name
         value (String): Value of the parameter
-
-    Returns:
     """
     # Create a BigQueryQueryParameter object without the 'type' attributes
     with pytest.raises(ValidationError):
@@ -71,7 +67,8 @@ def test_bigquery_query_parameter_exceptions(
 def test_bigquery_query_config(
         query_path: str,
         query_parameters: Tuple[str, str, str],
-        local_path: str) -> bool:
+        local_path: str
+) -> bool:
     """
     Test the class BigQueryQueryConfig
 
@@ -79,8 +76,6 @@ def test_bigquery_query_config(
         query_path (String): Query file path
         query_parameters (Tuple[str, str, str]): List of BigQuery parameters
         local_path (String): Local path where to save the data
-
-    Returns:
     """
     # Create the BigQueryQueryParameter object
     bigquery_query_parameter = BigQueryQueryParameter(name=query_parameters[0],
@@ -103,16 +98,15 @@ def test_bigquery_query_config(
 @pytest.mark.parametrize('query_parameters, local_path', [
     (('test_name', 'test_type', 'test_value'), 'test_local_path')
 ])
-def test_bigquery_query_config_exceptions(query_parameters: Tuple[str, str, str],
-                                          local_path: str) -> bool:
+def test_bigquery_query_config_exceptions(
+        query_parameters: Tuple[str, str, str],
+        local_path: str) -> bool:
     """
     Test the class BigQueryQueryConfig for exceptions
 
     Args:
         query_parameters (Tuple[str, str, str]): List of BigQuery parameters
         local_path (String): Local path where to save the data
-
-    Returns:
     """
     # Test for missing local_path
     bigquery_query_parameter = BigQueryQueryParameter(
