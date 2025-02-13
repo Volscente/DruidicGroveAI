@@ -45,6 +45,7 @@ def test_build_query_parameters(
         fixture_read_query_config: BigQueryQueryConfig,
         bigquery_parameter: bigquery.ScalarQueryParameter
 ) -> bool:
+    # TODO: Fix
     """
     Test the function src/bigquery_connector/bigquery_connector.BigQueryConnector._build_query_parameters
     by checking if the test bigquery_parameter is among the built ones
@@ -54,7 +55,6 @@ def test_build_query_parameters(
         fixture_read_query_config (BigQueryQueryConfig): Query parameters
         bigquery_parameter (bigquery.ScalarQueryParameter): BigQuery Parameter
     """
-
     # Built BigQuery parameters
     built_bigquery_parameters = fixture_bigquery_connector._build_query_parameters(
         query_parameters=fixture_read_query_config.query_parameters

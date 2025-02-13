@@ -81,7 +81,7 @@ def fixture_read_query_config(
 
     return BigQueryQueryConfig(
         query_path=query_path,
-        query_parameters=[BigQueryQueryParameter(**query_parameter) for query_parameter in query_parameters]
+        query_parameters=[BigQueryQueryParameter(**query_parameters[parameter_key]) for parameter_key in query_parameters]
     )
 
 
