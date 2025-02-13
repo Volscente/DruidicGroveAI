@@ -33,8 +33,6 @@ def test_load_input_tables(
         fixture_bigquery_connector (BigQueryConnector): Object for BigQuery connector to check if input tables exist
         input_tables (List[str]): List of input tables to check
         dataset_name (str): Name of the dataset to use
-
-    Returns:
     """
     # Load input tables
     fixture_stackoverflow_data_preparation._load_input_tables()
@@ -55,7 +53,8 @@ def test_load_raw_dataset(
         fixture_bigquery_connector: BigQueryConnector,
         dataset_name: str,
         table_name: str,
-        expected_rows: int) -> bool:
+        expected_rows: int
+) -> bool:
     """
     Test the function
     src/data_preparation/data_preparation.StackOverflowDataPreparation._load_raw_dataset
@@ -67,8 +66,6 @@ def test_load_raw_dataset(
         dataset_name (String): Dataset name to use
         table_name (String): Table name to use
         expected_rows (Integer): Expected number of rows in the table
-
-    Returns:
     """
     # Load the raw dataset
     fixture_stackoverflow_data_preparation._load_raw_dataset()
