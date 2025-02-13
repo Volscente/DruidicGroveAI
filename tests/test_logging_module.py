@@ -15,9 +15,11 @@ from logging_module.logging_module import get_logger
      pathlib.Path(__file__).parents[1] / 'src' / 'logging_module' / 'log_configuration.yaml',
      'general_utils'),
 ])
-def test_get_logger(input_logger: str,
-                    input_config_path: pathlib.Path,
-                    expected_name: str) -> bool:
+def test_get_logger(
+        input_logger: str,
+        input_config_path: pathlib.Path,
+        expected_name: str
+) -> bool:
     """
     Test the function src/logging_module/logging_module.get_logger
 
@@ -25,8 +27,6 @@ def test_get_logger(input_logger: str,
         input_logger (String): Logger name
         input_config_path (pathlib.Path): Local file path to the logging configuration
         expected_name (String): Expected logger name
-
-    Returns:
     """
 
     # Retrieve the logger
@@ -40,9 +40,11 @@ def test_get_logger(input_logger: str,
      pathlib.Path(__file__).parents[1] / 'src' / 'logging_module' / 'wrong_log_configuration.yaml',
      FileNotFoundError),
 ])
-def test_get_logger_exceptions(input_logger: str,
-                               input_config_path: pathlib.Path,
-                               expected_exception: Exception) -> bool:
+def test_get_logger_exceptions(
+        input_logger: str,
+        input_config_path: pathlib.Path,
+        expected_exception: Exception
+) -> bool:
     """
     Test the exceptions trigger by the
     function src/logging_module/logging_module.get_logger
@@ -51,8 +53,6 @@ def test_get_logger_exceptions(input_logger: str,
         input_logger (String): Logger name
         input_config_path (pathlib.Path): Local wrong file path to the logging configuration
         expected_exception (Exception): Expected triggered exception
-
-    Returns:
     """
 
     with pytest.raises(expected_exception):
