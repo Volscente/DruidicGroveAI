@@ -26,8 +26,6 @@ def test_set_client(
 
     Args:
         fixture_bigquery_connector (BigQueryConnector):  BigQuery Connector object
-
-    Returns:
     """
     # Retrieve credentials
     credentials = fixture_bigquery_connector._client._credentials
@@ -55,8 +53,6 @@ def test_build_query_parameters(
         fixture_bigquery_connector (BigQueryConnector): BigQueryConnector object
         fixture_read_query_config (BigQueryQueryConfig): Query parameters
         bigquery_parameter (bigquery.ScalarQueryParameter): BigQuery Parameter
-
-    Returns:
     """
 
     # Built BigQuery parameters
@@ -68,28 +64,60 @@ def test_build_query_parameters(
 
 
 @pytest.mark.skip(
+   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+)
+@pytest.mark.parametrize('table_name, dataset_name, expected_output', [
+    ('test_table_creation', 'dim_stackoverflow_data_model', True),
+    ('wrong_table', 'dim_stackoverflow_data_model', False)
+])
+def test_table_exists(
+        fixture_bigquery_connector: BigQueryConnector,
+        table_name: str,
+        dataset_name: str,
+        expected_output: bool
+) -> bool:
+    """
+    Test the function
+    src/bigquery_connector/bigquery_connector.BigQueryConnector.table_exists
+    by checking combination of table_name and dataset_name
+
+    Args:
+        fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
+        table_name (String ): Name of the table to check
+        dataset_name (String): Name of the dataset in which the table is located
+        expected_output (Boolean): Expected outcome of the function table_exists
+    """
+    # Check if the table exist
+    result = fixture_bigquery_connector.table_exists(
+        table_name=table_name,
+        dataset_name=dataset_name
+    )
+
+    assert result == expected_output
+
+
+@pytest.mark.skip(
     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
 )
 @pytest.mark.parametrize('fixture_name, expected_output', [
     ('fixture_read_query_config', {'index': 0, 'id': 3863, 'name': 'Adam Hughes'}),
     ('fixture_create_table_query_config', {'table_created': True})
 ])
-def test_execute_query_from_config(fixture_bigquery_connector: BigQueryConnector,
-                                   fixture_name: str,
-                                   expected_output: dict,
-                                   request: pytest.FixtureRequest) -> bool:
+def test_execute_query_from_config(
+        fixture_bigquery_connector: BigQueryConnector,
+        fixture_name: str,
+        expected_output: dict,
+        request: pytest.FixtureRequest
+) -> bool:
     """
     Test the function
     src/bigquery_connector/bigquery_connector.BigQueryConnector.execute_query_from_config
-
 
     Args:
         fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
         fixture_name (String): Name of the fixture to use
         expected_output (Dictionary): Expected output
         request (FixtureRequest): Object to load the required fixture
-
-    Returns:
     """
     # Load fixture
     query = request.getfixturevalue(fixture_name)
@@ -108,36 +136,3 @@ def test_execute_query_from_config(fixture_bigquery_connector: BigQueryConnector
         row_id, row_display_name = result.loc[expected_output['index'], 'id'], result.loc[expected_output['index'], 'display_name']
 
         assert expected_output['id'] == row_id and expected_output['name'] == row_display_name
-
-
-@pytest.mark.skip(
-   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-)
-@pytest.mark.parametrize('table_name, dataset_name, expected_output', [
-    ('test_table_creation', 'dim_stackoverflow_data_model', True),
-    ('wrong_table', 'dim_stackoverflow_data_model', False)
-])
-def test_table_exists(fixture_bigquery_connector: BigQueryConnector,
-                      table_name: str,
-                      dataset_name: str,
-                      expected_output: bool) -> bool:
-    """
-    Test the function
-    src/bigquery_connector/bigquery_connector.BigQueryConnector.table_exists
-    by checking combination of table_name and dataset_name
-
-    Args:
-        fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
-        table_name (String ): Name of the table to check
-        dataset_name (String): Name of the dataset in which the table is located
-        expected_output (Boolean): Expected outcome of the function table_exists
-
-    Returns:
-    """
-    # Check if the table exist
-    result = fixture_bigquery_connector.table_exists(
-        table_name=table_name,
-        dataset_name=dataset_name
-    )
-
-    assert result == expected_output
