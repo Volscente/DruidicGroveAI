@@ -13,9 +13,9 @@ from src.types import (
 )
 
 
-@pytest.mark.skip(
-   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-)
+# @pytest.mark.skip(
+#    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+# )
 def test_set_client(
         fixture_bigquery_connector: BigQueryConnector
 ) -> bool:
@@ -45,7 +45,6 @@ def test_build_query_parameters(
         fixture_read_query_config: BigQueryQueryConfig,
         bigquery_parameter: bigquery.ScalarQueryParameter
 ) -> bool:
-    # TODO: Fix
     """
     Test the function src/bigquery_connector/bigquery_connector.BigQueryConnector._build_query_parameters
     by checking if the test bigquery_parameter is among the built ones
@@ -63,9 +62,9 @@ def test_build_query_parameters(
     assert bigquery_parameter in built_bigquery_parameters
 
 
-@pytest.mark.skip(
-   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-)
+# @pytest.mark.skip(
+#    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+# )
 @pytest.mark.parametrize('table_name, dataset_name, expected_output', [
     ('test_table_creation', 'dim_stackoverflow_data_model', True),
     ('wrong_table', 'dim_stackoverflow_data_model', False)
@@ -96,9 +95,9 @@ def test_table_exists(
     assert result == expected_output
 
 
-@pytest.mark.skip(
-    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-)
+# @pytest.mark.skip(
+#     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+# )
 @pytest.mark.parametrize('fixture_name, expected_output', [
     ('fixture_read_query_config', {'index': 0, 'id': 3863, 'name': 'Adam Hughes'}),
     ('fixture_create_table_query_config', {'table_created': True})
