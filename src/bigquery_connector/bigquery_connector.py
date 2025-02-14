@@ -100,18 +100,15 @@ class BigQueryConnector:
         # Fetch all query parameters
         for query_parameter in query_parameters:
 
-            # Unpack parameters
-            parameter_name, parameter_type, parameter_value = query_parameter.name, query_parameter.type, query_parameter.value
-
             # Check if the ScalarQueryParameter or ArrayQueryParameter is required
             # The difference is in the type of values passed (No list: scalar, list: array)
             if isinstance(query_parameter.value, list):
 
                 # Build the parameter
-                bigquery_parameter = bigquery.ArrayQueryParameter(parameter_name, parameter_type, parameter_value)
+                bigquery_parameter = bigquery.ArrayQueryParameter(*query_parameter.__dict__.values())
             else:
                 # Build the parameter
-                bigquery_parameter = bigquery.ScalarQueryParameter(parameter_name, parameter_type, parameter_value)
+                bigquery_parameter = bigquery.ScalarQueryParameter(*query_parameter.__dict__.values())
 
             # Append to the list of parameters
             bigquery_query_parameters.append(bigquery_parameter)

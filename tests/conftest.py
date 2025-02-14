@@ -98,8 +98,11 @@ def fixture_create_table_query_config(
     Returns:
         (BigQueryQueryConfig): Query configurations as object
     """
+    # Unpack configs
+    query_path, query_parameters = query_config['query_path'], query_config['query_parameters']
 
-    return BigQueryQueryConfig(**query_config)
+    return BigQueryQueryConfig(query_path=query_path,
+                               query_parameters=[BigQueryQueryParameter(**query_parameters[query_parameter]) for query_parameter in query_parameters])
 
 
 @pytest.fixture
