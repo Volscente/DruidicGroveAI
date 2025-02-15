@@ -251,4 +251,4 @@ class BigQueryConnector:
         self._logger.info('wrap_dictionary_to_query_parameters - Start')
 
         # Unpack configs
-
+        # TODO: Check how to unpack the optional fields without if-else statements (Ask ChatGPT ofc!)
