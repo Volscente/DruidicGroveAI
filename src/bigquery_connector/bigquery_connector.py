@@ -230,3 +230,25 @@ class BigQueryConnector:
         self._logger.info('table_exists - End')
 
         return exists
+
+
+    def wrap_dictionary_to_query_parameters(
+            self,
+            dictionary: dict
+    ) -> List[BigQueryQueryParameter]:
+        """
+        Converts a dictionary of key-value pairs into a list of BigQueryQueryParameter
+        instances suitable for parameterized queries in BigQuery.
+
+        Args:
+            dictionary (dict): The dictionary containing key-value pairs to be
+                converted into BigQueryQueryParameter objects.
+
+        Returns:
+            List[BigQueryQueryParameter]: A list of query parameter objects created
+            from the provided dictionary.
+        """
+        self._logger.info('wrap_dictionary_to_query_parameters - Start')
+
+        # Unpack configs
+
