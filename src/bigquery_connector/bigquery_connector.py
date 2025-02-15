@@ -92,6 +92,8 @@ class BigQueryConnector:
 
         self._logger.debug('build_bigquery_query_parameters_from_dictionary - Start')
 
+        # TODO: Check if a dictionary is passed and suggest to use the other function first
+
         # Initialise empty list BigQuery query parameters
         bigquery_query_parameters = []
 
