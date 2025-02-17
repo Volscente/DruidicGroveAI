@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Union, List
 import pandas as pd
 from google.cloud import bigquery
-from scipy.special import parameters
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
@@ -252,8 +251,11 @@ class BigQueryConnector:
         else:
             self._logger.info('wrap_dictionary_to_query_parameters - Wrapping query parameters')
 
+            # Retrieve parameters
+            query_parameters = query_config_dictionary['query_parameters']
+
             # Wrap query parameters
-            wrapped_parameters = [BigQueryQueryParameter(**parameter) for parameter in query_config_dictionary['query_parameters']]
+            wrapped_parameters = [BigQueryQueryParameter(**query_parameters[parameter]) for parameter in query_parameters]
 
             # Update the dictionary with the wrapped parameters
             query_config_dictionary['query_parameters'] = wrapped_parameters
