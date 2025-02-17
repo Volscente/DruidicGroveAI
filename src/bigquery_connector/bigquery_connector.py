@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Union, List
 import pandas as pd
 from google.cloud import bigquery
+from scipy.special import parameters
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
@@ -91,8 +92,6 @@ class BigQueryConnector:
         """
 
         self._logger.debug('build_bigquery_query_parameters_from_dictionary - Start')
-
-        # TODO: Check if a dictionary is passed and suggest to use the other function first
 
         # Initialise empty list BigQuery query parameters
         bigquery_query_parameters = []
@@ -232,23 +231,31 @@ class BigQueryConnector:
         return exists
 
 
-    def wrap_dictionary_to_query_parameters(
+    def wrap_dictionary_to_query_config(
             self,
-            dictionary: dict
-    ) -> List[BigQueryQueryParameter]:
+            query_config_dictionary: dict
+    ) -> BigQueryQueryConfig:
         """
-        Converts a dictionary of key-value pairs into a list of BigQueryQueryParameter
-        instances suitable for parameterized queries in BigQuery.
+        Converts a dictionary of Query Configurations into a ``BigQueryQueryConfig`` object.
 
         Args:
-            dictionary (dict): The dictionary containing key-value pairs to be
-                converted into BigQueryQueryParameter objects.
+            query_config_dictionary (dict): The dictionary containing Query Configurations.
 
         Returns:
-            List[BigQueryQueryParameter]: A list of query parameter objects created
-            from the provided dictionary.
+            (BigQueryQueryConfig): Object with BigQuery query configurations.
         """
         self._logger.info('wrap_dictionary_to_query_parameters - Start')
 
-        # Unpack configs
-        # TODO: Check how to unpack the optional fields without if-else statements (Ask ChatGPT ofc!)
+        # Check if there are parameters
+        if query_config_dictionary['query_parameters'] is None:
+            self._logger.info('wrap_dictionary_to_query_parameters - No query parameters')
+        else:
+            self._logger.info('wrap_dictionary_to_query_parameters - Wrapping query parameters')
+
+            # Wrap query parameters
+            wrapped_parameters = [BigQueryQueryParameter(**parameter) for parameter in query_config_dictionary['query_parameters']]
+
+            # Update the dictionary with the wrapped parameters
+            query_config_dictionary['query_parameters'] = wrapped_parameters
+
+        return BigQueryQueryConfig(**query_config_dictionary)
