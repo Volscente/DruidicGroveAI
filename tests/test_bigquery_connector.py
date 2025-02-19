@@ -165,7 +165,7 @@ def test_wrap_dictionary_to_query_config(
     """
     Test the function
     src/bigquery_connector/bigquery_connector.BigQueryConnector.wrap_dictionary_to_query_config
-    by check the output BigQueryQueryConfig object.
+    by checking the number of attributes and if the object type is ``BigQueryQueryConfig``.
 
     Args:
         fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
@@ -174,6 +174,6 @@ def test_wrap_dictionary_to_query_config(
     """
     # Wrap the parameters
     wrapped_parameters = fixture_bigquery_connector.wrap_dictionary_to_query_config(query_config_dict)
-    # TODO: Find good test
 
-    assert True
+    assert wrapped_parameters.__len__() == expected_configs
+    assert isinstance(wrapped_parameters, BigQueryQueryConfig)

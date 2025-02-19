@@ -49,3 +49,11 @@ class BigQueryQueryConfig(BaseModel):
     query_parameters: Optional[Union[List[BigQueryQueryParameter], BigQueryQueryParameter]] = None
     local_path: Optional[str] = None
     table_name: Optional[str] = None
+
+    def __len__(self) -> int:
+        """
+        Compute the number of non-None attributes
+        Returns:
+            (Integer): Number of non-None attributes
+        """
+        return sum(1 for field, value in self.__dict__.items() if value is not None)

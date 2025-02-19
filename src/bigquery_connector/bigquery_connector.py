@@ -246,7 +246,7 @@ class BigQueryConnector:
         self._logger.info('wrap_dictionary_to_query_parameters - Start')
 
         # Check if there are parameters
-        if query_config_dictionary['query_parameters'] is None:
+        if 'query_parameters' not in query_config_dictionary.keys():
             self._logger.info('wrap_dictionary_to_query_parameters - No query parameters')
         else:
             self._logger.info('wrap_dictionary_to_query_parameters - Wrapping query parameters')
