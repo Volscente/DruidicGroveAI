@@ -228,3 +228,36 @@ class BigQueryConnector:
         self._logger.info('table_exists - End')
 
         return exists
+
+
+    def wrap_dictionary_to_query_config(
+            self,
+            query_config_dictionary: dict
+    ) -> BigQueryQueryConfig:
+        """
+        Converts a dictionary of Query Configurations into a ``BigQueryQueryConfig`` object.
+
+        Args:
+            query_config_dictionary (dict): The dictionary containing Query Configurations.
+
+        Returns:
+            (BigQueryQueryConfig): Object with BigQuery query configurations.
+        """
+        self._logger.info('wrap_dictionary_to_query_parameters - Start')
+
+        # Check if there are parameters
+        if 'query_parameters' not in query_config_dictionary.keys():
+            self._logger.info('wrap_dictionary_to_query_parameters - No query parameters')
+        else:
+            self._logger.info('wrap_dictionary_to_query_parameters - Wrapping query parameters')
+
+            # Retrieve parameters
+            query_parameters = query_config_dictionary['query_parameters']
+
+            # Wrap query parameters
+            wrapped_parameters = [BigQueryQueryParameter(**query_parameters[parameter]) for parameter in query_parameters]
+
+            # Update the dictionary with the wrapped parameters
+            query_config_dictionary['query_parameters'] = wrapped_parameters
+
+        return BigQueryQueryConfig(**query_config_dictionary)

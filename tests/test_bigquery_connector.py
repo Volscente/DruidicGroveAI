@@ -135,3 +135,45 @@ def test_execute_query_from_config(
         row_id, row_display_name = result.loc[expected_output['index'], 'id'], result.loc[expected_output['index'], 'display_name']
 
         assert expected_output['id'] == row_id and expected_output['name'] == row_display_name
+
+@pytest.mark.parametrize('query_config_dict, expected_configs', [
+    ({
+        "query_path": "./queries/test.sql",
+        "query_parameters": {
+            "row_id": {
+                "name": "row_id",
+                "type": "INTEGER",
+                "value": 1
+            },
+            "display_name": {
+                "name": "display_name",
+                "type": "STRING",
+                "value": "Adams Douglas"
+            }
+        },
+        "local_path": "./data/test.csv"
+    }, 3),
+    ({
+        "query_path": './queries/test_2.sql'
+    }, 1)
+])
+def test_wrap_dictionary_to_query_config(
+        fixture_bigquery_connector: BigQueryConnector,
+        query_config_dict: dict,
+        expected_configs: int
+) -> bool:
+    """
+    Test the function
+    src/bigquery_connector/bigquery_connector.BigQueryConnector.wrap_dictionary_to_query_config
+    by checking the number of attributes and if the object type is ``BigQueryQueryConfig``.
+
+    Args:
+        fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
+        query_config_dict (Dictionary): Query configurations dictionary
+        expected_configs (Integer): Expected number of configurations
+    """
+    # Wrap the parameters
+    wrapped_parameters = fixture_bigquery_connector.wrap_dictionary_to_query_config(query_config_dict)
+
+    assert wrapped_parameters.__len__() == expected_configs
+    assert isinstance(wrapped_parameters, BigQueryQueryConfig)

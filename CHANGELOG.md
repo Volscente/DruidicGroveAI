@@ -1,3 +1,12 @@
+# v.1.0.10
+
+------
+
+- [x] Add Function `wrap_dictionary_to_query_config` in `src/bigquery_connector/bigquery_connector.BigQueryConnector`
+- [x] Add PyTest `test_wrap_dictionary_to_query_config` in `tests/test_bigquery_connector.py`
+- [x] Refactor Notebook `stackoverflow_eda.ipynb` in `notebooks/stackoverflow/eda`
+
+
 # v.1.0.9
 
 ------
