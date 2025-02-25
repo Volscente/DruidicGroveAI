@@ -11,9 +11,9 @@ from src.data_preparation.data_preparation import StackOverflowDataPreparation
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 
 
-# @pytest.mark.skip(
-#     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-# )
+@pytest.mark.skip(
+    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+)
 @pytest.mark.parametrize('input_tables, dataset_name', [
     (['test_users_information', 'test_top_rarest_badges', 'test_post_answers'], 'dim_stackoverflow_data_model')
 ])
@@ -42,9 +42,9 @@ def test_load_input_tables(
     assert fixture_bigquery_connector.table_exists(input_tables[2], dataset_name)
 
 
-# @pytest.mark.skip(
-#     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-# )
+@pytest.mark.skip(
+    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+)
 @pytest.mark.parametrize('dataset_name, table_name, expected_rows', [
     ('dim_stackoverflow_data_model', 'test_raw_dataset', 2)
 ])
