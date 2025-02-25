@@ -353,6 +353,62 @@
             <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
             <td style="border: 1px solid; padding: 8px;">The user number of views value</td>
           </tr>
+          <tr id="raw_user_website_url">
+            <td style="border: 1px solid; padding: 8px;">010</td>
+            <td style="border: 1px solid; padding: 8px;">user_website_url</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user profile website url</td>
+          </tr>
+          <tr id="raw_badge_count">
+            <td style="border: 1px solid; padding: 8px;">011</td>
+            <td style="border: 1px solid; padding: 8px;">badge_count</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user number of badges in the last years</td>
+          </tr>
+          <tr id="raw_badges_list">
+            <td style="border: 1px solid; padding: 8px;">012</td>
+            <td style="border: 1px solid; padding: 8px;">badges_list</td>
+            <td style="border: 1px solid; padding: 8px;">Repeated String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user earned badges in the last years</td>
+          </tr>
+          <tr id="raw_has_most_rare_badges">
+            <td style="border: 1px solid; padding: 8px;">013</td>
+            <td style="border: 1px solid; padding: 8px;">has_most_rare_badges</td>
+            <td style="border: 1px solid; padding: 8px;">Boolean</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information JOIN deep-learning-438509.curated_stackoverflow_data_model.top_rarest_badges</td>
+            <td style="border: 1px solid; padding: 8px;">Flag indicating whether the user has one of the most rare badges (Just one is enough)</td>
+          </tr>
+          <tr id="raw_answer_body">
+            <td style="border: 1px solid; padding: 8px;">014</td>
+            <td style="border: 1px solid; padding: 8px;">answer_body</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;">The body of the answer posted by the user</td>
+          </tr>
+          <tr id="raw_answer_comment_count">
+            <td style="border: 1px solid; padding: 8px;">015</td>
+            <td style="border: 1px solid; padding: 8px;">answer_comment_count</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;">Number of comments on the post answer</td>
+          </tr>
+          <tr id="raw_answer_creation_date">
+            <td style="border: 1px solid; padding: 8px;">016</td>
+            <td style="border: 1px solid; padding: 8px;">answer_creation_date</td>
+            <td style="border: 1px solid; padding: 8px;">Timestamp</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;">The timestamp in which the answer has been posted</td>
+          </tr>
+          <tr id="raw_answer_score">
+            <td style="border: 1px solid; padding: 8px;">017</td>
+            <td style="border: 1px solid; padding: 8px;">answer_score</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;">The score given to the answer (Up votes minus Down votes)</td>
+          </tr>
         </table>
       </div>
       <div id="Data Preparation">
