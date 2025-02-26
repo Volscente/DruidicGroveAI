@@ -165,7 +165,7 @@ def test_wrap_dictionary_to_query_config(
     """
     Test the function
     src/bigquery_connector/bigquery_connector.BigQueryConnector.wrap_dictionary_to_query_config
-    by checking the number of attributes and if the object type is ``BigQueryQueryConfig``.
+    by checking the number of non-none attributes and if the object type is ``BigQueryQueryConfig``.
 
     Args:
         fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
@@ -175,5 +175,5 @@ def test_wrap_dictionary_to_query_config(
     # Wrap the parameters
     wrapped_parameters = fixture_bigquery_connector.wrap_dictionary_to_query_config(query_config_dict)
 
-    assert wrapped_parameters.__len__() == expected_configs
+    assert wrapped_parameters.count_non_none_attributes() == expected_configs
     assert isinstance(wrapped_parameters, BigQueryQueryConfig)

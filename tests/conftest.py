@@ -4,9 +4,9 @@ for running PyTest tests
 """
 # Import Standard Libraries
 import pathlib
+from typing import List
 import pytest
 from dynaconf import Dynaconf
-from typing import List
 
 # Import Package Modules
 from src.types import (

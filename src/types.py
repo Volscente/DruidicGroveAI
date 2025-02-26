@@ -50,9 +50,10 @@ class BigQueryQueryConfig(BaseModel):
     local_path: Optional[str] = None
     table_name: Optional[str] = None
 
-    def __len__(self) -> int:
+    def count_non_none_attributes(self) -> int:
         """
         Compute the number of non-None attributes
+
         Returns:
             (Integer): Number of non-None attributes
         """

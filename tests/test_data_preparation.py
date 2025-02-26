@@ -3,8 +3,8 @@ This test module includes all the tests for the
 module src.data_preparation
 """
 # Import Standard Libraries
-import pytest
 from typing import List
+import pytest
 
 # Import Package Modules
 from src.data_preparation.data_preparation import StackOverflowDataPreparation

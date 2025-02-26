@@ -92,7 +92,7 @@ class StackOverflowDataPreparation:
                 self._logger.info('_load_input_tables - Input table does not exist')
 
                 # Create input table
-                self._bigquery_connector.execute_query_from_config(self.input_table_config)
+                self._bigquery_connector.execute_query_from_config(input_table_config)
 
         self._logger.info('__load_input_tables - Input tables successfully created')
 
