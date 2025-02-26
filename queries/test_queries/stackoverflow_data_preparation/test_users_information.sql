@@ -36,3 +36,21 @@ SELECT
     'https://groups.google.com/group/alterative' AS user_website_url,
     153 AS badge_count,
     ARRAY['JS', 'ReactJS', 'HTML', 'CSS'] AS badges_list
+
+UNION ALL
+
+-- User 3
+SELECT
+    3 AS user_id,
+    'Zaraki Kempachi' AS user_name,
+    '<p>I am a back-end engineer specialised in PHP and Rust. I also like to play with Docker and Kubernetes</p>' AS user_about_me,
+    TIMESTAMP('2015-05-15 17:24:46') AS user_creation_date,
+    'Japan' AS user_location,
+    2122 AS user_reputation,
+    287 AS user_up_votes,
+    78 AS user_down_votes,
+    355 AS user_views,
+    'https://i.stack.imgur.com/l3tPt.png?s=225&g=1' AS user_profile_image_url,
+    'https://groups.google.com/group/alterative_group_name' AS user_website_url,
+    120 AS badge_count,
+    ARRAY['Docker', 'PHP', 'Rust'] AS badges_list

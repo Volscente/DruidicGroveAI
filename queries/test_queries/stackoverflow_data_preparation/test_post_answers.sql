@@ -23,7 +23,7 @@ _post_answers AS (
     UNION ALL
     -- Post Answer 2
     SELECT
-        3 AS answer_user_id,
+        4 AS answer_user_id,
         "Maybe you want to create a sub-procedure for this? Try with bash!" AS answer_body,
         3 AS answer_comment_count,
         TIMESTAMP("2015-03-14 17:07:01") AS answer_creation_date,

@@ -26,8 +26,14 @@ dataset_name = 'dim_stackoverflow_data_model'
 
 [pytest.data_preparation.input_tables]
 test_users_information.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_users_information.sql'
+test_users_information.table_name = 'test_users_information'
 test_top_rarest_badges.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_top_rarest_badges.sql'
+test_top_rarest_badges.table_name = 'test_top_rarest_badges'
 test_post_answers.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_post_answers.sql'
+test_post_answers.table_name = 'test_post_answers'
+
+[pytest.data_preparation.raw_dataset]
+query_path = 'queries/test_queries/stackoverflow_data_preparation/test_raw_dataset.sql'
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------
@@ -109,3 +115,7 @@ query_parameters.creation_date_end.name = 'creation_date_end'
 query_parameters.creation_date_end.type = 'TIMESTAMP'
 query_parameters.creation_date_end.value = '2022-09-25 00:00:00 UTC'
 local_path = 'data/stackoverflow/data_preparation/post_answers.csv'
+
+[data_preparation.raw_dataset]
+query_path = 'queries/stackoverflow/data_preparation/raw_dataset.sql'
+local_path = 'data/stackoverflow/data_preparation/raw_dataset.csv'

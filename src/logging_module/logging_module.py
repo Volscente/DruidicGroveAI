@@ -8,17 +8,19 @@ import pathlib
 import yaml
 
 
-def get_logger(logger_name: str,
-               configuration_file_path: pathlib.Path) -> logging.Logger:
+def get_logger(
+        logger_name: str,
+        configuration_file_path: pathlib.Path
+) -> logging.Logger:
     """
     Set the configuration for the logging module and return the requested logger
 
     Args:
-        logger_name: String name of the logger to retrieve from configuration file
-        configuration_file_path: pathlib.Path location of the configuration file
+        logger_name (String): Name of the logger to retrieve from configuration file
+        configuration_file_path (pathlib.Path): Location of the configuration file
 
     Returns:
-        logger: logging.Logger object
+        logger (logging.Logger): Object to log information
     """
 
     if configuration_file_path.exists():

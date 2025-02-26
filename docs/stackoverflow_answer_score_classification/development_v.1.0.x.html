@@ -268,12 +268,156 @@
           </table>
         </div>
       </div>
+      <div id="Raw Dataset">
+        <h2 class="sticky-header">Raw Dataset</h2>
+        <b>Definition:</b> It includes a ready join of the <i>Input Tables</i> on which apply the Data Preparation transformations.
+        <br>
+        <b>SQL Query:</b> <i>queries/stackoverflow/data_preparation/raw_dataset.sql</i>
+        <br>
+        <b>Table:</b> <i>deep-learning-438509.curated_stackoverflow_data_model.raw_dataset</i>
+        <br>
+        <b>Comments:</b>
+          <ul style="margin-top: 0; margin-bottom: 0">
+            <li>The table contains only information between the following dates <b>25/05/20222</b> and <b>25/09/2022</b>️</li>
+            <li>The table contains only information from <i>Users Information</i> table of filtered user</li>
+          </ul>
+        <b>Data Schema:</b>
+        <table class="big_table">
+          <tr class="header_row">
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field ID</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Field Name</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Data Type</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Source Table</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Notes</b></td>
+          </tr>
+          <tr id="raw_user_name">
+            <td style="border: 1px solid; padding: 8px;">001</td>
+            <td style="border: 1px solid; padding: 8px;">user_name</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">Username on Stack Overflow</td>
+          </tr>
+          <tr id="raw_user_about_me">
+            <td style="border: 1px solid; padding: 8px;">002</td>
+            <td style="border: 1px solid; padding: 8px;">user_about_me</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The "About Me" section on user profile</td>
+          </tr>
+          <tr id="raw_user_creation_date">
+            <td style="border: 1px solid; padding: 8px;">003</td>
+            <td style="border: 1px solid; padding: 8px;">user_creation_date</td>
+            <td style="border: 1px solid; padding: 8px;">Timestamp</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The timestamp when the user was created</td>
+          </tr>
+          <tr id="raw_user_location">
+            <td style="border: 1px solid; padding: 8px;">004</td>
+            <td style="border: 1px solid; padding: 8px;">user_location</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The location on user profile</td>
+          </tr>
+          <tr id="raw_user_reputation">
+            <td style="border: 1px solid; padding: 8px;">005</td>
+            <td style="border: 1px solid; padding: 8px;">user_reputation</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user reputation value</td>
+          </tr>
+          <tr id="raw_user_up_votes">
+            <td style="border: 1px solid; padding: 8px;">006</td>
+            <td style="border: 1px solid; padding: 8px;">user_up_votes</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user up votes value</td>
+          </tr>
+          <tr id="raw_user_down_votes">
+            <td style="border: 1px solid; padding: 8px;">007</td>
+            <td style="border: 1px solid; padding: 8px;">user_down_votes</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user down votes value</td>
+          </tr>
+          <tr id="raw_user_views">
+            <td style="border: 1px solid; padding: 8px;">008</td>
+            <td style="border: 1px solid; padding: 8px;">user_views</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user number of views value</td>
+          </tr>
+          <tr id="raw_user_profile_image_url">
+            <td style="border: 1px solid; padding: 8px;">009</td>
+            <td style="border: 1px solid; padding: 8px;">user_profile_image_url</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user number of views value</td>
+          </tr>
+          <tr id="raw_user_website_url">
+            <td style="border: 1px solid; padding: 8px;">010</td>
+            <td style="border: 1px solid; padding: 8px;">user_website_url</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user profile website url</td>
+          </tr>
+          <tr id="raw_badge_count">
+            <td style="border: 1px solid; padding: 8px;">011</td>
+            <td style="border: 1px solid; padding: 8px;">badge_count</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user number of badges in the last years</td>
+          </tr>
+          <tr id="raw_badges_list">
+            <td style="border: 1px solid; padding: 8px;">012</td>
+            <td style="border: 1px solid; padding: 8px;">badges_list</td>
+            <td style="border: 1px solid; padding: 8px;">Repeated String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
+            <td style="border: 1px solid; padding: 8px;">The user earned badges in the last years</td>
+          </tr>
+          <tr id="raw_has_most_rare_badges">
+            <td style="border: 1px solid; padding: 8px;">013</td>
+            <td style="border: 1px solid; padding: 8px;">has_most_rare_badges</td>
+            <td style="border: 1px solid; padding: 8px;">Boolean</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information JOIN deep-learning-438509.curated_stackoverflow_data_model.top_rarest_badges</td>
+            <td style="border: 1px solid; padding: 8px;">Flag indicating whether the user has one of the most rare badges (Just one is enough)</td>
+          </tr>
+          <tr id="raw_answer_body">
+            <td style="border: 1px solid; padding: 8px;">014</td>
+            <td style="border: 1px solid; padding: 8px;">answer_body</td>
+            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;">The body of the answer posted by the user</td>
+          </tr>
+          <tr id="raw_answer_comment_count">
+            <td style="border: 1px solid; padding: 8px;">015</td>
+            <td style="border: 1px solid; padding: 8px;">answer_comment_count</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;">Number of comments on the post answer</td>
+          </tr>
+          <tr id="raw_answer_creation_date">
+            <td style="border: 1px solid; padding: 8px;">016</td>
+            <td style="border: 1px solid; padding: 8px;">answer_creation_date</td>
+            <td style="border: 1px solid; padding: 8px;">Timestamp</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;">The timestamp in which the answer has been posted</td>
+          </tr>
+          <tr id="raw_answer_score">
+            <td style="border: 1px solid; padding: 8px;">017</td>
+            <td style="border: 1px solid; padding: 8px;">answer_score</td>
+            <td style="border: 1px solid; padding: 8px;">Integer</td>
+            <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.post_answers</td>
+            <td style="border: 1px solid; padding: 8px;">The score given to the answer (Up votes minus Down votes)</td>
+          </tr>
+        </table>
+      </div>
       <div id="Data Preparation">
         <h2 class="sticky-header">Data Preparation</h2>
         <h3>Transformations</h3>
         <ul>
           <li>Encode <b>user_about_me</b> in <b>user_about_me_encoded</b></li>
           <li>Extract year from <b>user_creation_date</b> in <b>user_creation_year</b></li>
+          <li>Encode the feature <b>user_name</b> in <b>user_name_encoded</b></li>
           <li>Encode <b>user_location</b> in <b>user_location_encoded</b></li>
           <li>Standardise and remove outliers from: <b>user_reputation, user_up_votes, user_down_votes, user_views</b></li>
           <li>Engineer the flag <b>user_has_profile_image_url</b> when the user has the <b>user_profile_image_url</b> filled</li>
@@ -311,11 +455,11 @@
           </tr>
           <tr id="training_user_name">
             <td style="border: 1px solid; padding: 8px;">001</td>
-            <td style="border: 1px solid; padding: 8px;">user_name</td>
-            <td style="border: 1px solid; padding: 8px;">String</td>
+            <td style="border: 1px solid; padding: 8px;">user_name_encoded</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
             <td style="border: 1px solid; padding: 8px;">deep-learning-438509.curated_stackoverflow_data_model.users_information</td>
             <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FEATURE-0047AB" alt="Feature"/></td>
-            <td style="border: 1px solid; padding: 8px;">The user display name</td>
+            <td style="border: 1px solid; padding: 8px;">The user display name encoded</td>
           </tr>
           <tr id="training_user_about_me_encoded">
             <td style="border: 1px solid; padding: 8px;">002</td>
