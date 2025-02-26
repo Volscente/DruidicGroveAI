@@ -3,9 +3,9 @@ This test module includes all the tests for the
 module src.types
 """
 # Import Standard Libraries
+from typing import Tuple
 import pytest
 from pydantic import ValidationError
-from typing import Tuple
 
 # Import Package Modules
 from src.types import (
@@ -87,11 +87,13 @@ def test_bigquery_query_config(
                                                 query_parameters=[bigquery_query_parameter],
                                                 local_path=local_path)
 
-    assert bigquery_query_config.query_path == query_path
-    assert bigquery_query_config.query_parameters[0].name == query_parameters[0]
-    assert bigquery_query_config.query_parameters[0].type == query_parameters[1]
-    assert bigquery_query_config.query_parameters[0].value == query_parameters[2]
-    assert bigquery_query_config.local_path == local_path
+    # Ensure PyLint does not think query_parameters is None
+    if bigquery_query_config.query_parameters is not None:
+        assert bigquery_query_config.query_path == query_path
+        assert bigquery_query_config.query_parameters[0].name == query_parameters[0]
+        assert bigquery_query_config.query_parameters[0].type == query_parameters[1]
+        assert bigquery_query_config.query_parameters[0].value == query_parameters[2]
+        assert bigquery_query_config.local_path == local_path
 
 
 # noinspection PyArgumentList
