@@ -15,3 +15,7 @@ logger = get_logger(os.path.basename(__file__).split('.')[0],
                     'src' /
                     'logging_module' /
                     'log_configuration.yaml')
+
+
+def encode_with_autotokenizer():
+    pass
