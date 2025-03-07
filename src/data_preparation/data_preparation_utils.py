@@ -3,7 +3,10 @@ The module includes functions for implementing data transformations
 """
 # Import Standard Libraries
 import os
+import pandas as pd
 import pathlib
+import torch
+from transformers import AutoTokenizer, AutoModel
 
 
 # Import Package Modules
@@ -17,5 +20,16 @@ logger = get_logger(os.path.basename(__file__).split('.')[0],
                     'log_configuration.yaml')
 
 
-def encode_with_autotokenizer():
-    pass
+def encode_text(
+        data: pd.DataFrame,
+        model_name: str
+) -> pd.DataFrame:
+    logger.debug('encode_text - Start')
+
+    # Instance the tokenizer
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+    # Instance the transformer
+    model = AutoModel.from_pretrained(model_name)
+
+    logger.debug('encode_text - Start')
