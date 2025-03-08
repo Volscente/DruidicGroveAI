@@ -65,11 +65,13 @@ class EncodingTextConfig(BaseModel):
     Encode a Text with AutoTokenizer
 
     Attributes:
+        model_name (String): The name of the model
         return_tensors (String): Output tensor types
         truncation (Boolean): Truncation
         padding (Boolean): Padding
         max_length (Integer): Maximum length of tokens
     """
+    model_name: str
     return_tensors: str = Literal['pt']
     truncation: bool = True
     padding: bool = True
