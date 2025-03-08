@@ -58,3 +58,19 @@ class BigQueryQueryConfig(BaseModel):
             (Integer): Number of non-None attributes
         """
         return sum(1 for field, value in self.__dict__.items() if value is not None)
+
+class EncodingTextConfig(BaseModel):
+    """
+    The class implements a Pydantic type for the configuration in order to
+    Encode a Text with AutoTokenizer
+
+    Attributes:
+        return_tensors (String): Output tensor types
+        truncation (Boolean): Truncation
+        padding (Boolean): Padding
+        max_length (Integer): Maximum length of tokens
+    """
+    return_tensors: str = Literal['pt']
+    truncation: bool = True
+    padding: bool = True
+    max_length: int = 512
