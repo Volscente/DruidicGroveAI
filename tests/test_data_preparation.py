@@ -9,6 +9,9 @@ import pytest
 # Import Package Modules
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
+from src.data_preparation.data_preparation_utils import (
+    encode_text
+)
 
 
 @pytest.mark.skip(
@@ -79,3 +82,11 @@ def test_load_raw_dataset(
     ).result().to_dataframe().iloc[0, 0]
 
     assert rows_number == expected_rows
+
+
+@pytest.mark.parametrize('text', [
+    'This is a sample test. Please encode it, oh great Omnissiah'
+])
+def test_encode_text(
+        text: str
+) -> bool:
