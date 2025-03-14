@@ -12,7 +12,8 @@ from dynaconf import Dynaconf
 from src.types import (
     BigQueryClientConfig,
     BigQueryQueryConfig,
-    BigQueryQueryParameter
+    BigQueryQueryParameter,
+    EncodingTextConfig
 )
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
@@ -184,3 +185,20 @@ def fixture_stackoverflow_data_preparation(
     )
 
     return stackoverflow_data_preparation
+
+
+@pytest.fixture
+def fixture_encode_text_config(
+        encode_text_config: dict = config['data_preparation']['encode_text_config']
+) -> EncodingTextConfig:
+    """
+    Fixture for an EncodeTextConfig object
+    from src/types.EncodingTextConfig class definition.
+
+    Args:
+        encode_text_config (Dictionary): Configurations for a EncodeTextConfig object
+
+    Returns:
+        (EncodingTextConfig): EncodeTextConfig object with configurations for encoding text
+    """
+    return EncodingTextConfig(**encode_text_config)
