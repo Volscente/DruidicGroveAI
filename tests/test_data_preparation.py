@@ -12,6 +12,9 @@ from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation_utils import (
     encode_text
 )
+from src.types import (
+    EncodingTextConfig
+)
 
 
 @pytest.mark.skip(
@@ -88,5 +91,17 @@ def test_load_raw_dataset(
     'This is a sample test. Please encode it, oh great Omnissiah'
 ])
 def test_encode_text(
-        text: str
+        text: str,
+        fixture_encode_text_config: EncodingTextConfig
 ) -> bool:
+    """
+    Test the function
+    src/data_preparation/data_preparation_utils.encode_text
+    by passing an input text, encoding it and checking if the encoded text is correct.
+
+    Args:
+        text (String): Input text
+        fixture_encode_text_config (EncodingTextConfig): Object including text encoding configurations
+    """
+    # Encode the text
+    encode_text(text, fixture_encode_text_config)

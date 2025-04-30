@@ -61,11 +61,12 @@ class BigQueryQueryConfig(BaseModel):
 
 class EncodingTextConfig(BaseModel):
     """
-    The class implements a Pydantic type for the configuration in order to
-    Encode a Text with AutoTokenizer
+    The class implements a Pydantic type for the configuration to
+    generate embeddings from a Text and compress them into a lower
+    dimensional vector
 
     Attributes:
-        model_name (String): The name of the model
+        model_name (String): The name of the model to generate embeddings
         return_tensors (String): Output tensor types
         truncation (Boolean): Truncation
         padding (Boolean): Padding
