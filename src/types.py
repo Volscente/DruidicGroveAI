@@ -8,8 +8,7 @@ from pydantic import BaseModel
 
 class BigQueryClientConfig(BaseModel):
     """
-    The class implements a Pydantic type for a BigQuery Client
-    configuration.
+    BigQuery Client configuration
 
     Attributes:
         project_id (String): The Google Cloud project ID, which is
@@ -20,8 +19,7 @@ class BigQueryClientConfig(BaseModel):
 
 class BigQueryQueryParameter(BaseModel):
     """
-    The class implements a Pydantic type for a BigQuery Query
-    parameter
+    BigQuery Query parameter
 
     Attributes:
         name (String): Parameter name
@@ -36,8 +34,7 @@ class BigQueryQueryParameter(BaseModel):
 
 class BigQueryQueryConfig(BaseModel):
     """
-    The class implements a Pydantic type for a BigQuery Query
-    configuration
+    BigQuery Query configuration
 
     Attributes:
         query_path (String): Query file path
@@ -59,10 +56,24 @@ class BigQueryQueryConfig(BaseModel):
         """
         return sum(1 for field, value in self.__dict__.items() if value is not None)
 
+class EmbeddingsConfig(BaseModel):
+    """
+    Configuration for embedding generation model
+
+    Attributes:
+        method (String): The embedding approach to use (e.g., SentenceTransformer)
+        model_name (String): The name of the model to use
+        numpy_tensor (Boolean): Output tensor to be numpy array
+    """
+    method: str
+    model_name: str
+    numpy_tensor: Optional[bool] = False
+
+
+
 class EncodingTextConfig(BaseModel):
     """
-    The class implements a Pydantic type for the configuration to
-    generate embeddings from a Text and compress them into a lower
+    Configuration to encode Text and compress them into a lower
     dimensional vector
 
     Attributes:
@@ -72,6 +83,7 @@ class EncodingTextConfig(BaseModel):
         padding (Boolean): Padding
         max_length (Integer): Maximum length of tokens
     """
+    # TODO: Refactor
     model_name: str
     return_tensors: str = Literal['pt']
     truncation: bool = True

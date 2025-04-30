@@ -5,6 +5,7 @@ The module includes functions for implementing data transformations
 import os
 import pandas as pd
 import pathlib
+from typing import List
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
@@ -19,6 +20,8 @@ logger = get_logger(os.path.basename(__file__).split('.')[0],
                     'logging_module' /
                     'log_configuration.yaml')
 
+
+def generate_embeddings(texts: List[str]):
 
 def encode_text(
         text: str,
