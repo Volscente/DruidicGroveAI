@@ -63,7 +63,7 @@ class EmbeddingsConfig(BaseModel):
     Attributes:
         method (String): The embedding approach to use (e.g., SentenceTransformer)
         model_name (String): The name of the model to use
-        numpy_tensor (Boolean): Output tensor to be numpy array
+        numpy_tensor (Boolean): Output tensor to be a numpy array
     """
     method: str
     model_name: str

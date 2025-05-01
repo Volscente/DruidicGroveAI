@@ -110,7 +110,7 @@ class StackOverflowDataPreparation:
 
         self._logger.info('_load_raw_dataset - Load raw dataset')
 
-        # Switch if raw dataset exists or not
+        # Switch if the raw dataset exists or not
         if self._bigquery_connector.table_exists(table_name='raw_dataset', dataset_name=self._dataset_name):
             self._logger.info('_load_raw_dataset - Raw dataset already exists')
         else:
