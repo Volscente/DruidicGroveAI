@@ -3,16 +3,18 @@ This test module includes all the tests for the
 module src.data_preparation
 """
 # Import Standard Libraries
-from typing import List
+from typing import List, Tuple
 import pytest
 
 # Import Package Modules
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation_utils import (
+    generate_embeddings,
     encode_text
 )
 from src.types import (
+    EmbeddingsConfig,
     EncodingTextConfig
 )
 
@@ -87,11 +89,12 @@ def test_load_raw_dataset(
     assert rows_number == expected_rows
 
 
-@pytest.mark.parametrize('text', [
-    'This is a sample test. Please encode it, oh great Omnissiah'
+@pytest.mark.parametrize('text, expected_shape', [
+    ('This is a sample test. Please encode it, oh great Omnissiah', (384,))
 ])
 def test_generate_embeddings(
     text: str,
+    expected_shape: Tuple[int, int],
     fixture_embeddings_config: EmbeddingsConfig
 ) -> bool:
     """
@@ -100,13 +103,13 @@ def test_generate_embeddings(
 
     Args:
         text (String): Input text
+        expected_shape (Tuple[int, int]): Expected shape of the output
         fixture_embeddings_config (EmbeddingsConfig): Object including embedding configurations
     """
     # Generate embeddings
     embeddings = generate_embeddings(text, fixture_embeddings_config)
 
-    # TODO: Fix
-    assert True
+    assert embeddings.shape == expected_shape
 
 
 @pytest.mark.parametrize('text', [
