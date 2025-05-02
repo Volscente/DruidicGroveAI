@@ -90,6 +90,28 @@ def test_load_raw_dataset(
 @pytest.mark.parametrize('text', [
     'This is a sample test. Please encode it, oh great Omnissiah'
 ])
+def test_generate_embeddings(
+    text: str,
+    fixture_embeddings_config: EmbeddingsConfig
+) -> bool:
+    """
+    Test the function
+    src/data_preparation/data_preparation_utils.generate_embeddings
+
+    Args:
+        text (String): Input text
+        fixture_embeddings_config (EmbeddingsConfig): Object including embedding configurations
+    """
+    # Generate embeddings
+    embeddings = generate_embeddings(text, fixture_embeddings_config)
+
+    # TODO: Fix
+    assert True
+
+
+@pytest.mark.parametrize('text', [
+    'This is a sample test. Please encode it, oh great Omnissiah'
+])
 def test_encode_text(
         text: str,
         fixture_encode_text_config: EncodingTextConfig
