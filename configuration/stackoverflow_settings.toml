@@ -35,6 +35,11 @@ test_post_answers.table_name = 'test_post_answers'
 [pytest.data_preparation.raw_dataset]
 query_path = 'queries/test_queries/stackoverflow_data_preparation/test_raw_dataset.sql'
 
+[pytest.data_preparation.embeddings_config]
+method = 'SentenceTransformer'
+model_name = 'all-MiniLM-L6-v2'
+numpy_tensor = true
+
 [pytest.data_preparation.encode_text_config]
 model_name = 'distilbert-base-uncased'
 return_tensors = 'pt'

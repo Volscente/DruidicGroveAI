@@ -13,12 +13,13 @@ from src.types import (
     BigQueryClientConfig,
     BigQueryQueryConfig,
     BigQueryQueryParameter,
+    EmbeddingsConfig,
     EncodingTextConfig
 )
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 
-# Read configuration file
+# Read the configuration file
 config = Dynaconf(settings_files=[pathlib.Path(__file__).parents[1]
                                   / 'configuration'
                                   / 'stackoverflow_settings.toml'],
@@ -188,6 +189,22 @@ def fixture_stackoverflow_data_preparation(
 
 
 @pytest.fixture
+def fixture_embeddings_config(
+        embeddings_config: dict = config['data_preparation']['embeddings_config']
+) -> EmbeddingsConfig:
+    """
+    Fixture for an EmbeddingsConfig object
+    from src/types.EmbeddingsConfig class definition.
+
+    Args:
+        embeddings_config (Dictionary): Configurations for an EmbeddingsConfig object
+
+    Returns:
+        (EmbeddingsConfig): EmbeddingsConfig object with configurations for embedding generation
+    """
+    return EmbeddingsConfig(**embeddings_config)
+
+@pytest.fixture
 def fixture_encode_text_config(
         encode_text_config: dict = config['data_preparation']['encode_text_config']
 ) -> EncodingTextConfig:
@@ -196,7 +213,7 @@ def fixture_encode_text_config(
     from src/types.EncodingTextConfig class definition.
 
     Args:
-        encode_text_config (Dictionary): Configurations for a EncodeTextConfig object
+        encode_text_config (Dictionary): Configurations for an EncodeTextConfig object
 
     Returns:
         (EncodingTextConfig): EncodeTextConfig object with configurations for encoding text
