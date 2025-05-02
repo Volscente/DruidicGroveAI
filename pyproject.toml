@@ -6,7 +6,7 @@ authors = ["Simone Porreca <porrecasimone@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.13"
 pytest = "^8.2.0"
 pandas = "^2.2.3"
 pyaml = "^24.9.0"
