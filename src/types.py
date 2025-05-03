@@ -56,18 +56,41 @@ class BigQueryQueryConfig(BaseModel):
         """
         return sum(1 for field, value in self.__dict__.items() if value is not None)
 
+
+class SentenceTransformersConfig(BaseModel):
+    """
+    Configuration for embedding generation with SentenceTransformers library
+
+    Attributes:
+        model_name (String): The name of the model to use
+        numpy_tensor (Boolean): Output tensor to be a numpy array
+    """
+    model_name: str
+    numpy_tensor:bool = False
+
+
 class EmbeddingsConfig(BaseModel):
     """
     Configuration for embedding generation model
 
     Attributes:
         method (String): The embedding approach to use (e.g., SentenceTransformer)
-        model_name (String): The name of the model to use
-        numpy_tensor (Boolean): Output tensor to be a numpy array
+        embedding_model_config (Union[SentenceTransformersConfig]): Model configuration
     """
     method: str
-    model_name: str
-    numpy_tensor: Optional[bool] = False
+    embedding_model_config: Union[SentenceTransformersConfig]
+
+
+class PCAConfig(BaseModel):
+    """
+
+    """
+    n_components: int
+
+
+class CompressEmbeddingsConfig(BaseModel):
+    method: str
+    pca_config: Optional[PCAConfig] = None
 
 
 
@@ -77,15 +100,7 @@ class EncodingTextConfig(BaseModel):
     dimensional vector
 
     Attributes:
-        model_name (String): The name of the model to generate embeddings
-        return_tensors (String): Output tensor types
-        truncation (Boolean): Truncation
-        padding (Boolean): Padding
-        max_length (Integer): Maximum length of tokens
+
     """
-    # TODO: Refactor
-    model_name: str
-    return_tensors: str = Literal['pt']
-    truncation: bool = True
-    padding: bool = True
-    max_length: int = 512
+    embeddings_config: EmbeddingsConfig
+    compress_embeddings_config: CompressEmbeddingsConfig
