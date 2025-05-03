@@ -83,14 +83,24 @@ class EmbeddingsConfig(BaseModel):
 
 class PCAConfig(BaseModel):
     """
+    Configuration for a PCA model
 
+    Attributes:
+        n_components (Integer): Number of components
     """
     n_components: int
 
 
 class CompressEmbeddingsConfig(BaseModel):
+    """
+    Configuration for compressing embeddings model
+
+    Attributes:
+        method (String): The compress approach to use (e.g., PCA)
+        compress_model_config (Union[PCAConfig]): Model configuration
+    """
     method: str
-    pca_config: Optional[PCAConfig] = None
+    compress_model_config: Union[PCAConfig]
 
 
 
