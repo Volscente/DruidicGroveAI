@@ -13,6 +13,7 @@ from src.types import (
     BigQueryClientConfig,
     BigQueryQueryConfig,
     BigQueryQueryParameter,
+    SentenceTransformersConfig,
     EmbeddingsConfig,
     EncodingTextConfig
 )
@@ -186,6 +187,22 @@ def fixture_stackoverflow_data_preparation(
     )
 
     return stackoverflow_data_preparation
+
+def fixture_sentence_transformers_config(
+        sentence_transformers_config: dict = config['data_preparation']['sentence_transformers_config']
+) -> SentenceTransformersConfig:
+    """
+    Fixture for a SentenceTransformersConfig object
+    from src/types.SentenceTransformersConfig class definition.
+
+    Args:
+        sentence_transformers_config (Dictionary): Configurations for a SentenceTransformersConfig object
+
+    Returns:
+        (SentenceTransformersConfig): SentenceTransformersConfig object with configurations for embedding generation
+    """
+    return SentenceTransformersConfig(**sentence_transformers_config)
+
 
 
 @pytest.fixture
