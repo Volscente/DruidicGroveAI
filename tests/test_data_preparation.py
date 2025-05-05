@@ -81,7 +81,7 @@ def test_load_raw_dataset(
     # Retrieve project id
     project_id = fixture_bigquery_connector._client_config.project_id
 
-    # Retrieve number of rows
+    # Retrieve the number of rows
     rows_number = fixture_bigquery_connector._client.query(
         f"SELECT COUNT(*) FROM `{project_id}.{dataset_name}.{table_name}`"
     ).result().to_dataframe().iloc[0, 0]

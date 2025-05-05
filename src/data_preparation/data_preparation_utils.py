@@ -50,10 +50,10 @@ def generate_embeddings(
             logger.info('generate_embeddings - SentenceTransformer embedding approach')
 
             # Instance model
-            model = SentenceTransformer(embeddings_config.model_name)
+            model = SentenceTransformer(embeddings_config.embedding_model_config.model_name)
 
             # generate embeddings
-            sentence_embeddings = model.encode(texts, convert_to_numpy=embeddings_config.numpy_tensor)
+            sentence_embeddings = model.encode(texts, convert_to_numpy=embeddings_config.embedding_model_config.numpy_tensor)
         case _:
             logger.error('generate_embeddings - Unknown embedding method: %s', method)
             raise ValueError('Invalid embedding method')
