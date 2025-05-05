@@ -207,6 +207,7 @@ def fixture_sentence_transformers_config(
 
 @pytest.fixture
 def fixture_embeddings_config(
+        embedding_model_config: SentenceTransformersConfig = fixture_sentence_transformers_config,
         embeddings_config: dict = config['data_preparation']['embeddings_config']
 ) -> EmbeddingsConfig:
     """
@@ -214,12 +215,16 @@ def fixture_embeddings_config(
     from src/types.EmbeddingsConfig class definition.
 
     Args:
+        embedding_model_config (SentenceTransformersConfig): Configurations for a SentenceTransformersConfig object
         embeddings_config (Dictionary): Configurations for an EmbeddingsConfig object
 
     Returns:
         (EmbeddingsConfig): EmbeddingsConfig object with configurations for embedding generation
     """
-    return EmbeddingsConfig(**embeddings_config)
+    return EmbeddingsConfig(
+        method=embeddings_config['method'],
+        embedding_model_config=embedding_model_config
+    )
 
 @pytest.fixture
 def fixture_encode_text_config(
