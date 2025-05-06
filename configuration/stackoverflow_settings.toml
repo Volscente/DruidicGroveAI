@@ -45,6 +45,9 @@ method = 'SentenceTransformer'
 [pytest.data_preparation.pca_config]
 n_components = 64
 
+[pytest.data_preparation.compress_embeddings_config]
+method = 'PCA'
+
 [pytest.data_preparation.encode_text_config]
 model_name = 'distilbert-base-uncased'
 return_tensors = 'pt'

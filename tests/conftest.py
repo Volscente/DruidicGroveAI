@@ -247,22 +247,26 @@ def fixture_pca_config(
     return PCAConfig(**pca_config)
 
 
-# @pytest.fixture
-# def fixture_compress_embeddings_config(
-#     fixture_pca_config: PCAConfig,
-#     compress_embeddings_config: dict = config['data_preparation']['compress_embeddings_config']
-# ) -> CompressEmbeddingsConfig:
-#     """
-#     Fixture for a CompressEmbeddingsConfig object
-#     from src/types.CompressEmbeddingsConfig class definition.
-#
-#     Args:
-#         fixture_pca_config
-#         compress_embeddings_config:
-#
-#     Returns:
-#
-#     """
+@pytest.fixture
+def fixture_compress_embeddings_config(
+    fixture_pca_config: PCAConfig,
+    compress_embeddings_config: dict = config['data_preparation']['compress_embeddings_config']
+) -> CompressEmbeddingsConfig:
+    """
+    Fixture for a CompressEmbeddingsConfig object
+    from src/types.CompressEmbeddingsConfig class definition.
+
+    Args:
+        fixture_pca_config (PCAConfig): Configurations for a PCAConfig object
+        compress_embeddings_config (Dictionary): Configurations for a CompressEmbeddingsConfig object
+
+    Returns:
+        (CompressEmbeddingsConfig): CompressEmbeddingsConfig object with configurations for compressing embeddings
+    """
+    return CompressEmbeddingsConfig(
+        method=compress_embeddings_config['method'],
+        compress_model_config=fixture_pca_config
+    )
 
 @pytest.fixture
 def fixture_encode_text_config(
