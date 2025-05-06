@@ -43,7 +43,7 @@ numpy_tensor = true
 method = 'SentenceTransformer'
 
 [pytest.data_preparation.pca_config]
-n_components = 64
+n_components = 4
 
 [pytest.data_preparation.compress_embeddings_config]
 method = 'PCA'

@@ -3,18 +3,21 @@ This test module includes all the tests for the
 module src.data_preparation
 """
 # Import Standard Libraries
-from typing import List, Tuple
+import numpy as np
 import pytest
+from typing import List, Tuple
 
 # Import Package Modules
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation_utils import (
     generate_embeddings,
+    compress_embeddings,
     encode_text
 )
 from src.types import (
     EmbeddingsConfig,
+    CompressEmbeddingsConfig,
     EncodingTextConfig
 )
 
@@ -110,6 +113,30 @@ def test_generate_embeddings(
     embeddings = generate_embeddings(text, fixture_embeddings_config)
 
     assert embeddings.shape == expected_shape
+
+
+@pytest.mark.parametrize('input_embeddings, expected_shape', [
+    (np.random.random((3, 16)), (3, 4))
+])
+def test_compress_embeddings(
+        input_embeddings: np.ndarray,
+        expected_shape: Tuple[int, int],
+        fixture_compress_embeddings_config: CompressEmbeddingsConfig
+) -> bool:
+    """
+    Test the function
+    src/data_preparation/data_preparation_utils.compress_embeddings
+
+    Args:
+        input_embeddings (numpy.ndarray): Input embeddings
+        expected_shape (Tuple[int, int]): Expected compressed embeddings' shape
+        fixture_compress_embeddings_config (CompressEmbeddingsConfig): Object compressing embedding configurations
+    """
+    # TODO: Fix
+    # Compress embeddings
+    compressed_embeddings = compress_embeddings(input_embeddings, fixture_compress_embeddings_config)
+
+    assert compressed_embeddings.shape == expected_shape
 
 
 @pytest.mark.parametrize('text', [
