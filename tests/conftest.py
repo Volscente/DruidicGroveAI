@@ -190,6 +190,7 @@ def fixture_stackoverflow_data_preparation(
 
     return stackoverflow_data_preparation
 
+@pytest.fixture
 def fixture_sentence_transformers_config(
         sentence_transformers_config: dict = config['data_preparation']['sentence_transformers_config']
 ) -> SentenceTransformersConfig:
@@ -209,7 +210,7 @@ def fixture_sentence_transformers_config(
 
 @pytest.fixture
 def fixture_embeddings_config(
-        embeddings_model_config: SentenceTransformersConfig = fixture_sentence_transformers_config(),
+        fixture_sentence_transformers_config: SentenceTransformersConfig,
         embeddings_config: dict = config['data_preparation']['embeddings_config']
 ) -> EmbeddingsConfig:
     """
@@ -217,7 +218,7 @@ def fixture_embeddings_config(
     from src/types.EmbeddingsConfig class definition.
 
     Args:
-        embeddings_model_config (SentenceTransformersConfig): Configurations for a SentenceTransformersConfig object
+        fixture_sentence_transformers_config (SentenceTransformersConfig): Configurations for a SentenceTransformersConfig object
         embeddings_config (Dictionary): Configurations for an EmbeddingsConfig object
 
     Returns:
@@ -225,7 +226,7 @@ def fixture_embeddings_config(
     """
     return EmbeddingsConfig(
         method=embeddings_config['method'],
-        embedding_model_config=embeddings_model_config
+        embedding_model_config=fixture_sentence_transformers_config
     )
 
 
@@ -244,6 +245,24 @@ def fixture_pca_config(
         (PCAConfig): PCAConfig object with configurations for PCA
     """
     return PCAConfig(**pca_config)
+
+
+# @pytest.fixture
+# def fixture_compress_embeddings_config(
+#     fixture_pca_config: PCAConfig,
+#     compress_embeddings_config: dict = config['data_preparation']['compress_embeddings_config']
+# ) -> CompressEmbeddingsConfig:
+#     """
+#     Fixture for a CompressEmbeddingsConfig object
+#     from src/types.CompressEmbeddingsConfig class definition.
+#
+#     Args:
+#         fixture_pca_config
+#         compress_embeddings_config:
+#
+#     Returns:
+#
+#     """
 
 @pytest.fixture
 def fixture_encode_text_config(

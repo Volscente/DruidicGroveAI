@@ -14,6 +14,7 @@ from typing import List
 from src.logging_module.logging_module import get_logger
 from src.types import (
     EmbeddingsConfig,
+    CompressEmbeddingsConfig,
     EncodingTextConfig
 )
 
