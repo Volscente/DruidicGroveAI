@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import pathlib
 from sentence_transformers import SentenceTransformer
+from sklearn.decomposition import PCA
 from typing import List
 
 # Import Package Modules
@@ -61,6 +62,44 @@ def generate_embeddings(
     logger.debug('generate_embeddings - End')
 
     return sentence_embeddings
+
+
+def compress_embeddings(
+        input_embeddings: np.ndarray,
+        compress_embeddings_config: CompressEmbeddingsConfig
+) -> np.ndarray:
+    """
+    Compress the input embeddings with the corresponding selected method in
+    `compress_embeddings_config.method`.
+
+    Args:
+        input_embeddings (numpy.ndarray): Input embeddings
+        compress_embeddings_config (CompressEmbeddingsConfig): Compress algorithm configs
+
+    Returns:
+        compressed_embeddings (numpy.ndarray): Output embeddings compressed
+    """
+    logger.debug('compress_embeddings - Start')
+
+    # Retrieve compress method
+    method = compress_embeddings_config.method
+
+    # Switch based on the compress method
+    match method:
+        case 'PCA':
+            logger.info('compress_embeddings - PCA compress approach')
+
+            # Instance model
+            model = PCA(n_components=64)
+
+            # Compress embeddings
+            compressed_embeddings = model.fit_transform(input_embeddings)
+
+        case _:
+            logger.error('compress_embeddings - Unknown compression method: %s', method)
+            raise ValueError('Invalid compression method')
+
+    logger.debug('compress_embeddings - End')
 
 
 def encode_text(
