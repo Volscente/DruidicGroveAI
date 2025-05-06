@@ -15,6 +15,8 @@ from src.types import (
     BigQueryQueryParameter,
     SentenceTransformersConfig,
     EmbeddingsConfig,
+    PCAConfig,
+    CompressEmbeddingsConfig,
     EncodingTextConfig
 )
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
@@ -226,6 +228,23 @@ def fixture_embeddings_config(
         embedding_model_config=embeddings_model_config
     )
 
+
+@pytest.fixture
+def fixture_pca_config(
+        pca_config: dict = config['data_preparation']['pca_config']
+) -> PCAConfig:
+    """
+    Fixture for a PCAConfig object
+    from src/types.PCAConfig class definition.
+
+    Args:
+        pca_config (Dictionary): PCA configurations
+
+    Returns:
+        (PCAConfig): PCAConfig object with configurations for PCA
+    """
+    return PCAConfig(**pca_config)
+
 @pytest.fixture
 def fixture_encode_text_config(
         encode_text_config: dict = config['data_preparation']['encode_text_config']
@@ -240,4 +259,5 @@ def fixture_encode_text_config(
     Returns:
         (EncodingTextConfig): EncodeTextConfig object with configurations for encoding text
     """
+    # TODO: Refactor
     return EncodingTextConfig(**encode_text_config)
