@@ -91,7 +91,7 @@ def compress_embeddings(
             logger.info('compress_embeddings - PCA compress approach')
 
             # Instance model
-            model = PCA(n_components=64)
+            model = PCA(n_components=compress_embeddings_config.compress_model_config.n_components)
 
             # Compress embeddings
             compressed_embeddings = model.fit_transform(input_embeddings)
@@ -101,6 +101,8 @@ def compress_embeddings(
             raise ValueError('Invalid compression method')
 
     logger.debug('compress_embeddings - End')
+
+    return compressed_embeddings
 
 
 def encode_text(

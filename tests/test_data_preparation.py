@@ -93,10 +93,11 @@ def test_load_raw_dataset(
 
 
 @pytest.mark.parametrize('text, expected_shape', [
-    ('This is a sample test. Please encode it, oh great Omnissiah', (384,))
+    (['This is a sample test. Please encode it, oh great Omnissiah'], (1, 384)),
+    (['text 1', 'text 2'], (2, 384))
 ])
 def test_generate_embeddings(
-    text: str,
+    text: List[str],
     expected_shape: Tuple[int, int],
     fixture_embeddings_config: EmbeddingsConfig
 ) -> bool:
@@ -105,7 +106,7 @@ def test_generate_embeddings(
     src/data_preparation/data_preparation_utils.generate_embeddings
 
     Args:
-        text (String): Input text
+        text (List[str]): Input text
         expected_shape (Tuple[int, int]): Expected shape of the output
         fixture_embeddings_config (EmbeddingsConfig): Object including embedding configurations
     """
