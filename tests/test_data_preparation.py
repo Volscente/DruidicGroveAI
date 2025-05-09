@@ -117,7 +117,7 @@ def test_generate_embeddings(
 
 
 @pytest.mark.parametrize('input_embeddings, expected_shape', [
-    (np.random.random((3, 16)), (3, 4))
+    (np.random.random((20, 16)), (20, 4))
 ])
 def test_compress_embeddings(
         input_embeddings: np.ndarray,
@@ -133,7 +133,6 @@ def test_compress_embeddings(
         expected_shape (Tuple[int, int]): Expected compressed embeddings' shape
         fixture_compress_embeddings_config (CompressEmbeddingsConfig): Object compressing embedding configurations
     """
-    # TODO: Fix
     # Compress embeddings
     compressed_embeddings = compress_embeddings(input_embeddings, fixture_compress_embeddings_config)
 

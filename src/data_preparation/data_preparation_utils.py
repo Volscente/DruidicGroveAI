@@ -39,7 +39,7 @@ def generate_embeddings(
         embeddings_config (EmbeddingsConfig): Object including embedding configurations
 
     Returns:
-        sentence_embeddings (numpy.ndarray): Embedded texts
+        sentence_embeddings (numpy.ndarray): Embedded texts (n_samples, embeddings_size)
     """
     logger.debug('generate_embeddings - Start')
 
@@ -74,11 +74,11 @@ def compress_embeddings(
     `compress_embeddings_config.method`.
 
     Args:
-        input_embeddings (numpy.ndarray): Input embeddings
+        input_embeddings (numpy.ndarray): Input embeddings (n_samples, embeddings_size)
         compress_embeddings_config (CompressEmbeddingsConfig): Compress algorithm configs
 
     Returns:
-        compressed_embeddings (numpy.ndarray): Output embeddings compressed
+        compressed_embeddings (numpy.ndarray): Output embeddings compressed (n_samples, n_components)
     """
     logger.debug('compress_embeddings - Start')
 
