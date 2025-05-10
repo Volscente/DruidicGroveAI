@@ -106,9 +106,27 @@ def compress_embeddings(
 
 
 def encode_text(
-        text: str,
+        texts: List[str],
         config: EncodingTextConfig,
-) -> pd.DataFrame:
+) -> np.ndarray:
+    """
+    Encode an input text through embeddings and compress their dimensionality.
+
+    Args:
+        texts (List[str]): Input texts
+        config (EncodingTextConfig): Object including embedding configurations
+
+    Returns:
+        compressed_embeddings (numpy.ndarray): Output embeddings compressed (n_samples, n_components)
+    """
     logger.debug('encode_text - Start')
 
+    # Generate embeddings
+    embeddings = generate_embeddings(texts, config.embeddings_config)
+
+    # Compress embeddings
+    compressed_embeddings = compress_embeddings(embeddings, config.compress_embeddings_config)
+
     logger.debug('encode_text - End')
+
+    return compressed_embeddings
