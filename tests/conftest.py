@@ -268,6 +268,7 @@ def fixture_compress_embeddings_config(
         compress_model_config=fixture_pca_config
     )
 
+
 @pytest.fixture
 def fixture_encode_text_config(
         encode_text_config: dict = config['data_preparation']['encode_text_config']
@@ -284,3 +285,9 @@ def fixture_encode_text_config(
     """
     # TODO: Refactor
     return EncodingTextConfig(**encode_text_config)
+
+@pytest.fixture
+def fixture_sentences(
+        file_path: str
+):
+    pass
