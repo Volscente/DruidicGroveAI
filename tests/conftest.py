@@ -271,20 +271,24 @@ def fixture_compress_embeddings_config(
 
 @pytest.fixture
 def fixture_encode_text_config(
-        encode_text_config: dict = config['data_preparation']['encode_text_config']
+        fixture_embeddings_config: EmbeddingsConfig,
+        fixture_compress_embeddings_config: CompressEmbeddingsConfig,
 ) -> EncodingTextConfig:
     """
     Fixture for an EncodeTextConfig object
     from src/types.EncodingTextConfig class definition.
 
     Args:
-        encode_text_config (Dictionary): Configurations for an EncodeTextConfig object
+        fixture_embeddings_config (EmbeddingsConfig): Configuration for embedding generation
+        fixture_compress_embeddings_config (CompressEmbeddingsConfig): Configuration for embedding compression
 
     Returns:
         (EncodingTextConfig): EncodeTextConfig object with configurations for encoding text
     """
-    # TODO: Refactor
-    return EncodingTextConfig(**encode_text_config)
+    return EncodingTextConfig(
+        embeddings_config=fixture_embeddings_config,
+        compress_embeddings_config=fixture_compress_embeddings_config
+    )
 
 @pytest.fixture
 def fixture_sentences(

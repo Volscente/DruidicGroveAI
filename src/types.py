@@ -110,7 +110,8 @@ class EncodingTextConfig(BaseModel):
     dimensional vector
 
     Attributes:
-
+        embeddings_config (EmbeddingsConfig): Configuration for embedding generation
+        compress_embeddings_config (CompressEmbeddingsConfig): Configuration for embedding compression
     """
     embeddings_config: EmbeddingsConfig
     compress_embeddings_config: CompressEmbeddingsConfig
