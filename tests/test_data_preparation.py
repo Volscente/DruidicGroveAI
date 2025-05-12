@@ -139,11 +139,8 @@ def test_compress_embeddings(
     assert compressed_embeddings.shape == expected_shape
 
 
-@pytest.mark.parametrize('text', [
-    'This is a sample test. Please encode it, oh great Omnissiah'
-])
 def test_encode_text(
-        text: str,
+        fixture_sentences: List[str],
         fixture_encode_text_config: EncodingTextConfig
 ) -> bool:
     """
@@ -152,8 +149,10 @@ def test_encode_text(
     by passing an input text, encoding it and checking if the encoded text is correct.
 
     Args:
-        text (String): Input text
+        fixture_sentences (List[str]): Input text sentences
         fixture_encode_text_config (EncodingTextConfig): Object including text encoding configurations
     """
     # Encode the text
-    encode_text(text, fixture_encode_text_config)
+    encoded_texts = encode_text(fixture_sentences, fixture_encode_text_config)
+
+    assert encoded_texts.shape == (400, 4)

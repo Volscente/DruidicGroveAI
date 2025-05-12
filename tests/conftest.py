@@ -318,6 +318,6 @@ def fixture_sentences(
 
     # Read the file
     with open(file_path, 'r', encoding='utf-8') as file:
-        sentences = [line.strip() for line in file.readline()]
+        sentences = [line.strip() for line in file.readlines()]
 
     return sentences
