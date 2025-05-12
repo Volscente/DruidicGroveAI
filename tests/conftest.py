@@ -3,6 +3,7 @@ This test module includes all the fixtures necessary
 for running PyTest tests
 """
 # Import Standard Libraries
+import os
 import pathlib
 from typing import List
 import pytest
@@ -18,6 +19,9 @@ from src.types import (
     PCAConfig,
     CompressEmbeddingsConfig,
     EncodingTextConfig
+)
+from src.general_utils.general_utils import (
+    read_file_from_path
 )
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
@@ -292,6 +296,28 @@ def fixture_encode_text_config(
 
 @pytest.fixture
 def fixture_sentences(
-        file_path: str
-):
-    pass
+        file_path: str = 'data/test/sentences.txt'
+) -> List[str]:
+    """
+    Fixture for a list of sentences to encode.
+
+    Args:
+        file_path (String): Path to the file containing the sentences.
+
+    Returns:
+        (List[str]): List of sentences to encode
+    """
+    # Initialise sentences
+    sentences = []
+
+    # Retrieve the root path
+    root_path = pathlib.Path(os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH'))
+
+    # Update the file_path with the project root directory
+    file_path = root_path / pathlib.Path(file_path)
+
+    # Read the file
+    with open(file_path, 'r', encoding='utf-8') as file:
+        sentences = [line.strip() for line in file.readline()]
+
+    return sentences
