@@ -66,7 +66,7 @@ class SentenceTransformersConfig(BaseModel):
         numpy_tensor (Boolean): Output tensor to be a numpy array
     """
     model_name: str
-    numpy_tensor:bool = False
+    numpy_tensor: bool = False
 
 
 class EmbeddingsConfig(BaseModel):
