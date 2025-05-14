@@ -3,9 +3,9 @@ This test module includes all the tests for the
 module src.data_preparation
 """
 # Import Standard Libraries
+from typing import List, Tuple
 import numpy as np
 import pytest
-from typing import List, Tuple
 
 # Import Package Modules
 from src.data_preparation.data_preparation import StackOverflowDataPreparation

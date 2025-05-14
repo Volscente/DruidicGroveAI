@@ -20,9 +20,6 @@ from src.types import (
     CompressEmbeddingsConfig,
     EncodingTextConfig
 )
-from src.general_utils.general_utils import (
-    read_file_from_path
-)
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 
