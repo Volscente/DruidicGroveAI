@@ -1,0 +1,22 @@
+[project]
+name = "druidicgroveai"
+version = "1.0.12"
+description = "DruidicGroveAI is a research-focused repository dedicated to exploring the latest advancements in deep learning."
+authors = [
+  {name = "Simone Porreca", email = "porrecasimone@gmail.com"},
+]
+requires-python = ">=3.13"
+dependencies = []
+readme = "README.md"
+license = "GPL-3.0"
+license-files = ["LICENSE"]
+keywords = ["Machine Learning", "ML", "Python", "Transformer", "Embedding"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+[project.urls]
