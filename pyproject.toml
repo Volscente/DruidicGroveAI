@@ -20,3 +20,7 @@ classifiers = [
 ]
 
 [project.urls]
+Documentation = "https://volscente.github.io/DruidicGroveAI/"
+Repository = "https://github.com/Volscente/DruidicGroveAI"
+Backlog = "https://github.com/users/Volscente/projects/15"
+Changelog = "https://github.com/Volscente/DruidicGroveAI/blob/main/CHANGELOG.md"
