@@ -41,3 +41,17 @@ dev = [
     "scipy>=1.15.3",
     "seaborn>=0.13.2",
 ]
+
+[tool.pytest.ini_options]
+# Filter deprecation warning from google-cloud-bigquery
+filterwarnings = [
+    "ignore:Deprecated call to `pkg_resources\\.declare_namespace\\('.*'\\):DeprecationWarning",
+    "ignore::DeprecationWarning",
+    "ignore:BigQuery Storage module not found, fetch data with the REST endpoint instead:UserWarning"
+]
+# Set the PYTHONPATH
+pythonpath = [
+  "src"
+]
+# Read from the .env file
+env_files = [".env"]
