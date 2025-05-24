@@ -19,8 +19,8 @@ lint_sql file="./queries":
 
 # Run Pytest
 test:
-  poetry run pytest
+  uv run pytest
 
 # Launch Jupyter Lab
 jupy:
-  poetry run jupyter lab
+  uv run jupyter lab
