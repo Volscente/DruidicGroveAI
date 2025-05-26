@@ -57,3 +57,9 @@ You can install it by following the [Documentation](https://just.systems/man/en/
 Afterward, you can execute existing commands located in the `justfile`.
 
 Type `just` to list all available commands.
+
+# Contributing
+## Ruff
+```bash
+uv run ruff check
+```
