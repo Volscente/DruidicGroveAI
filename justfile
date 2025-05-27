@@ -7,10 +7,10 @@ set dotenv-load
 help:
     @just --justfile {{justfile()}} --list --unsorted
 
-# PyLint
+# Ruff
 lint:
-  # Python PyLint lint from ./src and ./tests
-  ./scripts/pylint_lint.sh
+  # Python ruff lint
+  ./scripts/ruff_lint.sh
 
 # SQLFluff
 lint_sql file="./queries":
