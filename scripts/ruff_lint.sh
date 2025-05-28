@@ -6,8 +6,11 @@ echo
 echo "-------- Ruff Lint --------"
 echo
 
-# Lint
-ruff check
+# Check
+ruff check --fix
+
+# Format
+ruff format
 
 echo
 echo "--------------------------------"
