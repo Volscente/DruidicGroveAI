@@ -2,6 +2,7 @@
 This test module includes all the fixtures necessary
 for running PyTest tests
 """
+
 # Import Standard Libraries
 import pathlib
 from typing import List
@@ -9,25 +10,25 @@ import pytest
 from dynaconf import Dynaconf
 
 # Import Package Modules
-from src.types import (
-    BigQueryClientConfig,
-    BigQueryQueryConfig,
-    BigQueryQueryParameter
-)
+from src.types import BigQueryClientConfig, BigQueryQueryConfig, BigQueryQueryParameter
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 
 # Read configuration file
-config = Dynaconf(settings_files=[pathlib.Path(__file__).parents[1]
-                                  / 'configuration'
-                                  / 'stackoverflow_settings.toml'],
-                  environments=True,
-                  env='pytest')
+config = Dynaconf(
+    settings_files=[
+        pathlib.Path(__file__).parents[1]
+        / "configuration"
+        / "stackoverflow_settings.toml"
+    ],
+    environments=True,
+    env="pytest",
+)
 
 
 @pytest.fixture
 def fixture_bigquery_client_config(
-        project_id: str = config['client']['project_id']
+    project_id: str = config["client"]["project_id"],
 ) -> BigQueryClientConfig:
     """
     This fixture returns a BigQueryClientConfig object
@@ -46,7 +47,7 @@ def fixture_bigquery_client_config(
 
 @pytest.fixture
 def fixture_bigquery_connector(
-        fixture_bigquery_client_config: BigQueryClientConfig
+    fixture_bigquery_client_config: BigQueryClientConfig,
 ) -> BigQueryConnector:
     """
     This fixture returns a BigQueryConnector object
@@ -65,7 +66,7 @@ def fixture_bigquery_connector(
 
 @pytest.fixture
 def fixture_read_query_config(
-        query_config: dict = config['read_query_config']
+    query_config: dict = config["read_query_config"],
 ) -> BigQueryQueryConfig:
     """
     Fixture for a BigQueryQueryConfig read query configobject
@@ -77,17 +78,23 @@ def fixture_read_query_config(
         (BigQueryQueryConfig): Query configurations as object
     """
     # Unpack configs
-    query_path, query_parameters = query_config['query_path'], query_config['query_parameters']
+    query_path, query_parameters = (
+        query_config["query_path"],
+        query_config["query_parameters"],
+    )
 
     return BigQueryQueryConfig(
         query_path=query_path,
-        query_parameters=[BigQueryQueryParameter(**query_parameters[parameter_key]) for parameter_key in query_parameters]
+        query_parameters=[
+            BigQueryQueryParameter(**query_parameters[parameter_key])
+            for parameter_key in query_parameters
+        ],
     )
 
 
 @pytest.fixture
 def fixture_create_table_query_config(
-        query_config: dict = config['create_table_query_config']
+    query_config: dict = config["create_table_query_config"],
 ) -> BigQueryQueryConfig:
     """
     Fixture for a BigQueryQueryConfig create table query config object
@@ -99,15 +106,23 @@ def fixture_create_table_query_config(
         (BigQueryQueryConfig): Query configurations as object
     """
     # Unpack configs
-    query_path, query_parameters = query_config['query_path'], query_config['query_parameters']
+    query_path, query_parameters = (
+        query_config["query_path"],
+        query_config["query_parameters"],
+    )
 
-    return BigQueryQueryConfig(query_path=query_path,
-                               query_parameters=[BigQueryQueryParameter(**query_parameters[query_parameter]) for query_parameter in query_parameters])
+    return BigQueryQueryConfig(
+        query_path=query_path,
+        query_parameters=[
+            BigQueryQueryParameter(**query_parameters[query_parameter])
+            for query_parameter in query_parameters
+        ],
+    )
 
 
 @pytest.fixture
 def fixture_input_table_configs(
-        input_tables_config: dict = config['data_preparation']['input_tables']
+    input_tables_config: dict = config["data_preparation"]["input_tables"],
 ) -> List[BigQueryQueryConfig]:
     """
     Fixture for providing the input table configurations required for testing or running
@@ -125,7 +140,6 @@ def fixture_input_table_configs(
 
     # Fetch the input table configs
     for table in input_tables_config:
-
         # Retrieve table config
         table_config = input_tables_config[table]
 
@@ -138,10 +152,9 @@ def fixture_input_table_configs(
     return config_list
 
 
-
 @pytest.fixture
 def fixture_raw_dataset_config(
-        query_config: dict = config['data_preparation']['raw_dataset']
+    query_config: dict = config["data_preparation"]["raw_dataset"],
 ) -> BigQueryQueryConfig:
     """
     Fixture for a BigQueryQueryConfig object including the Test Raw Dataset configurations
@@ -156,10 +169,10 @@ def fixture_raw_dataset_config(
 
 @pytest.fixture
 def fixture_stackoverflow_data_preparation(
-        fixture_bigquery_client_config: BigQueryClientConfig,
-        fixture_input_table_configs: List[BigQueryQueryConfig],
-        fixture_raw_dataset_config: BigQueryQueryConfig,
-        dataset_name: str = config['data_preparation']['dataset_name'],
+    fixture_bigquery_client_config: BigQueryClientConfig,
+    fixture_input_table_configs: List[BigQueryQueryConfig],
+    fixture_raw_dataset_config: BigQueryQueryConfig,
+    dataset_name: str = config["data_preparation"]["dataset_name"],
 ) -> StackOverflowDataPreparation:
     """
     Fixture for a StackOverflowDataPreparation object
@@ -180,7 +193,7 @@ def fixture_stackoverflow_data_preparation(
         dataset_name=dataset_name,
         input_tables_configs=fixture_input_table_configs,
         raw_dataset_config=fixture_raw_dataset_config,
-        bigquery_client_config=fixture_bigquery_client_config
+        bigquery_client_config=fixture_bigquery_client_config,
     )
 
     return stackoverflow_data_preparation

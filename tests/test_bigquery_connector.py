@@ -2,23 +2,20 @@
 This test module includes all the tests for the
 module src.bigquery_connector
 """
+
 # Import Standard Libraries
 from google.cloud import bigquery
 import pytest
 
 # Import Package Modules
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
-from src.types import (
-    BigQueryQueryConfig
-)
+from src.types import BigQueryQueryConfig
 
 
 @pytest.mark.skip(
-   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
 )
-def test_set_client(
-        fixture_bigquery_connector: BigQueryConnector
-) -> bool:
+def test_set_client(fixture_bigquery_connector: BigQueryConnector) -> bool:
     """
     Test the function
     src/bigquery_connector/bigquery_connector.BigQueryConnector._set_client
@@ -34,16 +31,23 @@ def test_set_client(
 
 
 @pytest.mark.skip(
-   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
 )
-@pytest.mark.parametrize('bigquery_parameter', [
-    (bigquery.ScalarQueryParameter(name='id', type_='INTEGER', value=3863)),
-    (bigquery.ScalarQueryParameter(name='display_name', type_='STRING', value='Adam Hughes'))
-])
+@pytest.mark.parametrize(
+    "bigquery_parameter",
+    [
+        (bigquery.ScalarQueryParameter(name="id", type_="INTEGER", value=3863)),
+        (
+            bigquery.ScalarQueryParameter(
+                name="display_name", type_="STRING", value="Adam Hughes"
+            )
+        ),
+    ],
+)
 def test_build_query_parameters(
-        fixture_bigquery_connector: BigQueryConnector,
-        fixture_read_query_config: BigQueryQueryConfig,
-        bigquery_parameter: bigquery.ScalarQueryParameter
+    fixture_bigquery_connector: BigQueryConnector,
+    fixture_read_query_config: BigQueryQueryConfig,
+    bigquery_parameter: bigquery.ScalarQueryParameter,
 ) -> bool:
     """
     Test the function src/bigquery_connector/bigquery_connector.BigQueryConnector._build_query_parameters
@@ -63,17 +67,20 @@ def test_build_query_parameters(
 
 
 @pytest.mark.skip(
-   reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
 )
-@pytest.mark.parametrize('table_name, dataset_name, expected_output', [
-    ('test_table_creation', 'dim_stackoverflow_data_model', True),
-    ('wrong_table', 'dim_stackoverflow_data_model', False)
-])
+@pytest.mark.parametrize(
+    "table_name, dataset_name, expected_output",
+    [
+        ("test_table_creation", "dim_stackoverflow_data_model", True),
+        ("wrong_table", "dim_stackoverflow_data_model", False),
+    ],
+)
 def test_table_exists(
-        fixture_bigquery_connector: BigQueryConnector,
-        table_name: str,
-        dataset_name: str,
-        expected_output: bool
+    fixture_bigquery_connector: BigQueryConnector,
+    table_name: str,
+    dataset_name: str,
+    expected_output: bool,
 ) -> bool:
     """
     Test the function
@@ -88,8 +95,7 @@ def test_table_exists(
     """
     # Check if the table exist
     result = fixture_bigquery_connector.table_exists(
-        table_name=table_name,
-        dataset_name=dataset_name
+        table_name=table_name, dataset_name=dataset_name
     )
 
     assert result == expected_output
@@ -98,15 +104,18 @@ def test_table_exists(
 @pytest.mark.skip(
     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
 )
-@pytest.mark.parametrize('fixture_name, expected_output', [
-    ('fixture_read_query_config', {'index': 0, 'id': 3863, 'name': 'Adam Hughes'}),
-    ('fixture_create_table_query_config', {'table_created': True})
-])
+@pytest.mark.parametrize(
+    "fixture_name, expected_output",
+    [
+        ("fixture_read_query_config", {"index": 0, "id": 3863, "name": "Adam Hughes"}),
+        ("fixture_create_table_query_config", {"table_created": True}),
+    ],
+)
 def test_execute_query_from_config(
-        fixture_bigquery_connector: BigQueryConnector,
-        fixture_name: str,
-        expected_output: dict,
-        request: pytest.FixtureRequest
+    fixture_bigquery_connector: BigQueryConnector,
+    fixture_name: str,
+    expected_output: dict,
+    request: pytest.FixtureRequest,
 ) -> bool:
     """
     Test the function
@@ -122,48 +131,52 @@ def test_execute_query_from_config(
     query = request.getfixturevalue(fixture_name)
 
     # Read data
-    result = fixture_bigquery_connector.execute_query_from_config(
-        query_config=query
-    )
+    result = fixture_bigquery_connector.execute_query_from_config(query_config=query)
 
     # Switch between data read and table creation
-    if 'table_created' in expected_output.keys():
-        assert result == expected_output['table_created']
+    if "table_created" in expected_output.keys():
+        assert result == expected_output["table_created"]
     else:
-
         # Retrieve id and display_name
-        row_id, row_display_name = result.loc[expected_output['index'], 'id'], result.loc[expected_output['index'], 'display_name']
+        row_id, row_display_name = (
+            result.loc[expected_output["index"], "id"],
+            result.loc[expected_output["index"], "display_name"],
+        )
 
-        assert expected_output['id'] == row_id and expected_output['name'] == row_display_name
+        assert (
+            expected_output["id"] == row_id
+            and expected_output["name"] == row_display_name
+        )
+
 
 @pytest.mark.skip(
     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
 )
-@pytest.mark.parametrize('query_config_dict, expected_configs', [
-    ({
-        "query_path": "./queries/test.sql",
-        "query_parameters": {
-            "row_id": {
-                "name": "row_id",
-                "type": "INTEGER",
-                "value": 1
+@pytest.mark.parametrize(
+    "query_config_dict, expected_configs",
+    [
+        (
+            {
+                "query_path": "./queries/test.sql",
+                "query_parameters": {
+                    "row_id": {"name": "row_id", "type": "INTEGER", "value": 1},
+                    "display_name": {
+                        "name": "display_name",
+                        "type": "STRING",
+                        "value": "Adams Douglas",
+                    },
+                },
+                "local_path": "./data/test.csv",
             },
-            "display_name": {
-                "name": "display_name",
-                "type": "STRING",
-                "value": "Adams Douglas"
-            }
-        },
-        "local_path": "./data/test.csv"
-    }, 3),
-    ({
-        "query_path": './queries/test_2.sql'
-    }, 1)
-])
+            3,
+        ),
+        ({"query_path": "./queries/test_2.sql"}, 1),
+    ],
+)
 def test_wrap_dictionary_to_query_config(
-        fixture_bigquery_connector: BigQueryConnector,
-        query_config_dict: dict,
-        expected_configs: int
+    fixture_bigquery_connector: BigQueryConnector,
+    query_config_dict: dict,
+    expected_configs: int,
 ) -> bool:
     """
     Test the function
@@ -176,7 +189,9 @@ def test_wrap_dictionary_to_query_config(
         expected_configs (Integer): Expected number of configurations
     """
     # Wrap the parameters
-    wrapped_parameters = fixture_bigquery_connector.wrap_dictionary_to_query_config(query_config_dict)
+    wrapped_parameters = fixture_bigquery_connector.wrap_dictionary_to_query_config(
+        query_config_dict
+    )
 
     assert wrapped_parameters.count_non_none_attributes() == expected_configs
     assert isinstance(wrapped_parameters, BigQueryQueryConfig)
