@@ -4,6 +4,10 @@
 
 - [x] Refactor `pyproject.toml`
 - [x] Add `.python-version`
+- [x] Add `ruff_lint.sh` in `scripts`
+- [x] Refactor `justfile`
+- [x] Refactor `pyproject.toml` with ruff configurations
+- [x] Add `.pre-commit-config.yaml`
 
 
 # v.1.0.11
