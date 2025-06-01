@@ -58,8 +58,11 @@ Afterward, you can execute existing commands located in the `justfile`.
 
 Type `just` to list all available commands.
 
-# Contributing
-## Ruff
+## Pre-commit
 ```bash
-uv run ruff check
+# Install
+pre-commit install
+
+# Check locally
+pre-commit run --all-files
 ```
