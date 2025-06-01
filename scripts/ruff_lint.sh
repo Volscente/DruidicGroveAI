@@ -9,7 +9,7 @@ echo
 # Check
 ruff check --fix
 
-# Format .src and .tests
+# Format .src and .tests folders
 ruff format
 
 echo
