@@ -17,6 +17,10 @@ lint_sql file="./queries":
   # SQL Fix and lint
   ./scripts/sqlfluff_fix_and_lint.sh {{file}}
 
+# Run pre-commit
+pre:
+  pre-commit run --all-files
+
 # Run Pytest
 test:
   uv run pytest
