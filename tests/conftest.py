@@ -17,9 +17,7 @@ from src.data_preparation.data_preparation import StackOverflowDataPreparation
 # Read configuration file
 config = Dynaconf(
     settings_files=[
-        pathlib.Path(__file__).parents[1]
-        / "configuration"
-        / "stackoverflow_settings.toml"
+        pathlib.Path(__file__).parents[1] / "configuration" / "stackoverflow_settings.toml"
     ],
     environments=True,
     env="pytest",

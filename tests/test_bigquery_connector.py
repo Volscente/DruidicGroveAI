@@ -37,11 +37,7 @@ def test_set_client(fixture_bigquery_connector: BigQueryConnector) -> bool:
     "bigquery_parameter",
     [
         (bigquery.ScalarQueryParameter(name="id", type_="INTEGER", value=3863)),
-        (
-            bigquery.ScalarQueryParameter(
-                name="display_name", type_="STRING", value="Adam Hughes"
-            )
-        ),
+        (bigquery.ScalarQueryParameter(name="display_name", type_="STRING", value="Adam Hughes")),
     ],
 )
 def test_build_query_parameters(
@@ -143,10 +139,7 @@ def test_execute_query_from_config(
             result.loc[expected_output["index"], "display_name"],
         )
 
-        assert (
-            expected_output["id"] == row_id
-            and expected_output["name"] == row_display_name
-        )
+        assert expected_output["id"] == row_id and expected_output["name"] == row_display_name
 
 
 @pytest.mark.skip(

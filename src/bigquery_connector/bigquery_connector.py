@@ -153,9 +153,7 @@ class BigQueryConnector:
 
         # Check if there are parameters
         if query_config.query_parameters is None:
-            self._logger.info(
-                "execute_query_from_config - Querying BigQuery without Parameters"
-            )
+            self._logger.info("execute_query_from_config - Querying BigQuery without Parameters")
 
             # Execute the job in BigQuery
             job = self._client.query(query)
@@ -164,9 +162,7 @@ class BigQueryConnector:
             # Retrieve BigQuery query parameters
             parameters = self._build_query_parameters(query_config.query_parameters)
 
-            self._logger.info(
-                "execute_query_from_config - Querying BigQuery with Parameters"
-            )
+            self._logger.info("execute_query_from_config - Querying BigQuery with Parameters")
 
             # Execute the job BigQuery with parameters
             job = self._client.query(
@@ -188,9 +184,7 @@ class BigQueryConnector:
             result = job.done()
 
         else:
-            self._logger.info(
-                "execute_query_from_config - Converting data to Pandas DataFrame"
-            )
+            self._logger.info("execute_query_from_config - Converting data to Pandas DataFrame")
 
             # Convert data to a Pandas DataFrame
             result = result.to_dataframe()
@@ -212,9 +206,7 @@ class BigQueryConnector:
         """
         self._logger.info("table_exists - Start")
 
-        self._logger.info(
-            "table_exists - Retrieve list of tables for dataset: %s", dataset_name
-        )
+        self._logger.info("table_exists - Retrieve list of tables for dataset: %s", dataset_name)
 
         # Retrieve list of tables
         tables = self._client.list_tables(dataset_name)
@@ -231,9 +223,7 @@ class BigQueryConnector:
 
         return exists
 
-    def wrap_dictionary_to_query_config(
-        self, query_config_dictionary: dict
-    ) -> BigQueryQueryConfig:
+    def wrap_dictionary_to_query_config(self, query_config_dictionary: dict) -> BigQueryQueryConfig:
         """
         Converts a dictionary of Query Configurations into a ``BigQueryQueryConfig`` object.
 
@@ -247,13 +237,9 @@ class BigQueryConnector:
 
         # Check if there are parameters
         if "query_parameters" not in query_config_dictionary.keys():
-            self._logger.info(
-                "wrap_dictionary_to_query_parameters - No query parameters"
-            )
+            self._logger.info("wrap_dictionary_to_query_parameters - No query parameters")
         else:
-            self._logger.info(
-                "wrap_dictionary_to_query_parameters - Wrapping query parameters"
-            )
+            self._logger.info("wrap_dictionary_to_query_parameters - Wrapping query parameters")
 
             # Retrieve parameters
             query_parameters = query_config_dictionary["query_parameters"]

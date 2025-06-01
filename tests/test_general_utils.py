@@ -24,9 +24,7 @@ from src.general_utils.general_utils import read_file_from_path
         )
     ],
 )
-def test_read_file_from_path(
-    input_path: pathlib.Path, expected_first_line: str
-) -> bool:
+def test_read_file_from_path(input_path: pathlib.Path, expected_first_line: str) -> bool:
     """
     Test the function src/general_utils/general_utils.read_file_from_path
     by reading a local file and compare the first line
@@ -46,10 +44,7 @@ def test_read_file_from_path(
     "input_path, expected_exception",
     [
         (
-            pathlib.Path(__file__).parents[2]
-            / "queries"
-            / "test_queries"
-            / "wrong_file.sql",
+            pathlib.Path(__file__).parents[2] / "queries" / "test_queries" / "wrong_file.sql",
             FileNotFoundError,
         )
     ],

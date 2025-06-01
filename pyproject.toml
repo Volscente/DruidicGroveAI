@@ -45,6 +45,7 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
+
 # Filter deprecation warning from google-cloud-bigquery
 filterwarnings = [
     "ignore:Deprecated call to `pkg_resources\\.declare_namespace\\('.*'\\):DeprecationWarning",
@@ -57,3 +58,16 @@ pythonpath = [
 ]
 # Read from the .env file
 env_files = [".env"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F"]  # E=pycodestyle, F=pyflakes
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"

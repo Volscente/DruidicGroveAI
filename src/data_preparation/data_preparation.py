@@ -88,9 +88,7 @@ class StackOverflowDataPreparation:
             if self._bigquery_connector.table_exists(
                 table_name=table_name, dataset_name=self._dataset_name
             ):
-                self._logger.info(
-                    "_load_input_tables - Input table %s already exists", table_name
-                )
+                self._logger.info("_load_input_tables - Input table %s already exists", table_name)
             else:
                 self._logger.info("_load_input_tables - Input table does not exist")
 

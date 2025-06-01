@@ -16,17 +16,12 @@ from logging_module.logging_module import get_logger
     [
         (
             "general_utils",
-            pathlib.Path(__file__).parents[1]
-            / "src"
-            / "logging_module"
-            / "log_configuration.yaml",
+            pathlib.Path(__file__).parents[1] / "src" / "logging_module" / "log_configuration.yaml",
             "general_utils",
         ),
     ],
 )
-def test_get_logger(
-    input_logger: str, input_config_path: pathlib.Path, expected_name: str
-) -> bool:
+def test_get_logger(input_logger: str, input_config_path: pathlib.Path, expected_name: str) -> bool:
     """
     Test the function src/logging_module/logging_module.get_logger
 

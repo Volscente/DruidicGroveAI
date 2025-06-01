@@ -40,9 +40,7 @@ def read_file_from_path(file_path: pathlib.Path) -> str:
         root_path = pathlib.Path(os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH"))
     else:
         logger.error("read_file_from_path - DRUIDIC_GROVE_AI_ROOT_PATH is not set")
-        raise EnvironmentError(
-            "Environment variable 'DRUIDIC_GROVE_AI_ROOT_PATH' is not set"
-        )
+        raise EnvironmentError("Environment variable 'DRUIDIC_GROVE_AI_ROOT_PATH' is not set")
 
     logger.debug("read_file_from_path - Root directory: %s", root_path.as_posix())
 
@@ -59,9 +57,7 @@ def read_file_from_path(file_path: pathlib.Path) -> str:
     else:
         raise FileNotFoundError(f"Unable to locate file: {file_path.as_posix()}")
 
-    logger.info(
-        "read_file_from_path - Successfully file read from %s", file_path.as_posix()
-    )
+    logger.info("read_file_from_path - Successfully file read from %s", file_path.as_posix())
 
     logger.debug("read_file_from_path - End")
 

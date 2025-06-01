@@ -9,9 +9,7 @@ import pathlib
 import yaml
 
 
-def get_logger(
-    logger_name: str, configuration_file_path: pathlib.Path
-) -> logging.Logger:
+def get_logger(logger_name: str, configuration_file_path: pathlib.Path) -> logging.Logger:
     """
     Set the configuration for the logging module and return the requested logger
 
@@ -35,8 +33,6 @@ def get_logger(
         logger = logging.getLogger(logger_name)
 
     else:
-        raise FileNotFoundError(
-            f"get_logger - File {configuration_file_path.as_posix()} not found"
-        )
+        raise FileNotFoundError(f"get_logger - File {configuration_file_path.as_posix()} not found")
 
     return logger

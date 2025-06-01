@@ -12,9 +12,7 @@ from pydantic import ValidationError
 from src.types import BigQueryQueryParameter, BigQueryQueryConfig
 
 
-@pytest.mark.parametrize(
-    "name, parameter_type, value", [("test_name", "test_type", "test_value")]
-)
+@pytest.mark.parametrize("name, parameter_type, value", [("test_name", "test_type", "test_value")])
 def test_bigquery_query_parameter(name: str, parameter_type: str, value: str) -> bool:
     """
     Test the class BigQueryQueryParameter
@@ -25,9 +23,7 @@ def test_bigquery_query_parameter(name: str, parameter_type: str, value: str) ->
         value (String): Value of the parameter
     """
     # Create a BigQueryQueryParameter object
-    bigquery_query_parameter = BigQueryQueryParameter(
-        name=name, type=parameter_type, value=value
-    )
+    bigquery_query_parameter = BigQueryQueryParameter(name=name, type=parameter_type, value=value)
 
     assert bigquery_query_parameter.name == name
     assert bigquery_query_parameter.type == parameter_type
@@ -105,6 +101,4 @@ def test_bigquery_query_config_exceptions(
         name=query_parameters[0], type=query_parameters[1], value=query_parameters[2]
     )
     with pytest.raises(ValidationError):
-        BigQueryQueryConfig(
-            query_parameters=[bigquery_query_parameter], local_path=local_path
-        )
+        BigQueryQueryConfig(query_parameters=[bigquery_query_parameter], local_path=local_path)
