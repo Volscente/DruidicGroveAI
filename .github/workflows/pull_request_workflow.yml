@@ -45,5 +45,6 @@ jobs:
         - name: Ruff format
           run: ruff format
 
+        # Unit tests
         - name: Run Unit Tests with PyTest
           run: uv run pytest

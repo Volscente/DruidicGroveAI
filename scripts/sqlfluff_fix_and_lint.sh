@@ -16,8 +16,8 @@ echo "-------- SQLFluff Fix & Lint --------"
 echo
 
 # Fix & lint
-poetry run sqlfluff fix --dialect bigquery --exclude-rules "LT05, AM04" "$file" \
-&& poetry run sqlfluff lint --dialect bigquery --exclude-rules "LT05, AM04" "$file"
+sqlfluff fix --dialect bigquery --exclude-rules "LT05, AM04" "$file" \
+&& sqlfluff lint --dialect bigquery --exclude-rules "LT05, AM04" "$file"
 
 echo
 echo "----------------------------------------"
