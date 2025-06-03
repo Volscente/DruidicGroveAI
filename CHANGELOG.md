@@ -2,8 +2,12 @@
 
 -----
 
-- [x] Refactor `pyproject.toml`
-- [x] Add `.python-version`
+- [x] Add `ruff_lint.sh` in `scripts`
+- [x] Refactor `justfile`
+- [x] Refactor `pyproject.toml` with ruff configurations
+- [x] Add `.pre-commit-config.yaml`
+- [x] Refactor `.github/workflows/pull_request_workflow.yml`
+- [x] Refactor Script `sqlfluff_fix_and_lint.sh` in `scripts/`
 
 
 # v.1.0.11

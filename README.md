@@ -57,3 +57,12 @@ You can install it by following the [Documentation](https://just.systems/man/en/
 Afterward, you can execute existing commands located in the `justfile`.
 
 Type `just` to list all available commands.
+
+## Pre-commit
+```bash
+# Install
+pre-commit install
+
+# Check locally
+pre-commit run --all-files
+```

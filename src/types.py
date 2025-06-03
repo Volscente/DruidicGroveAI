@@ -1,6 +1,7 @@
 """
 This module includes Pydantic types for the whole project
 """
+
 # Import Standard Modules
 from typing import Literal, Optional, Union, List
 from pydantic import BaseModel
@@ -15,7 +16,8 @@ class BigQueryClientConfig(BaseModel):
         project_id (String): The Google Cloud project ID, which is
             restricted to 'deep-learning-438509'.
     """
-    project_id: str = Literal['deep-learning-438509']
+
+    project_id: str = Literal["deep-learning-438509"]
 
 
 class BigQueryQueryParameter(BaseModel):
@@ -29,6 +31,7 @@ class BigQueryQueryParameter(BaseModel):
         value (Union[str, int, float]): The value of the parameter, which
                can be a string, integer, or float.
     """
+
     name: str
     type: str
     value: Union[str, int, float, List]
@@ -45,6 +48,7 @@ class BigQueryQueryConfig(BaseModel):
         local_path (String): [Optional] Local path where to save the data
         table_name (String): [Optional] Table name
     """
+
     query_path: str
     query_parameters: Optional[List[BigQueryQueryParameter]] = None
     local_path: Optional[str] = None

@@ -38,7 +38,10 @@ _badges_relevant_users AS (
         badges.class AS badge_class,
         badges.tag_based AS badge_tag_based,
         # Compute the number of badges per user
-        ROW_NUMBER() OVER (PARTITION BY users.id ORDER BY badges.date DESC) AS badge_rank
+        ROW_NUMBER() OVER (
+            PARTITION BY users.id
+            ORDER BY badges.date DESC
+        ) AS badge_rank
     FROM
         _relevant_users AS users
     LEFT JOIN _badges AS badges
