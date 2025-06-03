@@ -39,11 +39,11 @@ jobs:
 
         # Lint python files
         - name: Ruff lint
-          run: ruff check --fix
+          run: uv run ruff check --fix
 
         # Format files
         - name: Ruff format
-          run: ruff format
+          run: uv run ruff format
 
         # Unit tests
         - name: Run Unit Tests with PyTest
