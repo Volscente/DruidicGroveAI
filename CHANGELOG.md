@@ -1,3 +1,15 @@
+# v.1.0.12
+
+-----
+
+- [x] Add `ruff_lint.sh` in `scripts`
+- [x] Refactor `justfile`
+- [x] Refactor `pyproject.toml` with ruff configurations
+- [x] Add `.pre-commit-config.yaml`
+- [x] Refactor `.github/workflows/pull_request_workflow.yml`
+- [x] Refactor Script `sqlfluff_fix_and_lint.sh` in `scripts/`
+
+
 # v.1.0.11
 
 ------
@@ -10,7 +22,7 @@
 - [x] Add PyTest `test_bigquery_query_config` in `tests/test_types.py`
 - [x] Add PyTest `test_bigquery_query_config_exceptions` in `tests/test_types.py`
 - [x] Add Function `_load_raw_dataset` in `src/data_preparation/data_preparation.StackOverflowDataPreparation`
-- [x] Add Query  `test_raw_dataset.sql` in `queries/test_queries/stackoverflow_data_preparation`
+- [x] Add Query `test_raw_dataset.sql` in `queries/test_queries/stackoverflow_data_preparation`
 - [x] Add PyTest Fixture `fixture_raw_dataset_config` in `tests/conftest.py`
 - [x] Add PyTest `test_load_raw_dataset` in `tests/test_data_preparation.py`
 - [x] Refactor PyTest `test_load_input_tables` in `tests/test_data_preparation.py`
