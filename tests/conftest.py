@@ -2,6 +2,7 @@
 This test module includes all the fixtures necessary
 for running PyTest tests
 """
+
 # Import Standard Libraries
 import os
 import pathlib
@@ -18,22 +19,24 @@ from src.types import (
     EmbeddingsConfig,
     PCAConfig,
     CompressEmbeddingsConfig,
-    EncodingTextConfig
+    EncodingTextConfig,
 )
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 
-# Read the configuration file
-config = Dynaconf(settings_files=[pathlib.Path(__file__).parents[1]
-                                  / 'configuration'
-                                  / 'stackoverflow_settings.toml'],
-                  environments=True,
-                  env='pytest')
+# Read configuration file
+config = Dynaconf(
+    settings_files=[
+        pathlib.Path(__file__).parents[1] / "configuration" / "stackoverflow_settings.toml"
+    ],
+    environments=True,
+    env="pytest",
+)
 
 
 @pytest.fixture
 def fixture_bigquery_client_config(
-        project_id: str = config['client']['project_id']
+    project_id: str = config["client"]["project_id"],
 ) -> BigQueryClientConfig:
     """
     This fixture returns a BigQueryClientConfig object
@@ -52,7 +55,7 @@ def fixture_bigquery_client_config(
 
 @pytest.fixture
 def fixture_bigquery_connector(
-        fixture_bigquery_client_config: BigQueryClientConfig
+    fixture_bigquery_client_config: BigQueryClientConfig,
 ) -> BigQueryConnector:
     """
     This fixture returns a BigQueryConnector object
@@ -71,7 +74,7 @@ def fixture_bigquery_connector(
 
 @pytest.fixture
 def fixture_read_query_config(
-        query_config: dict = config['read_query_config']
+    query_config: dict = config["read_query_config"],
 ) -> BigQueryQueryConfig:
     """
     Fixture for a BigQueryQueryConfig read query configobject
@@ -83,17 +86,23 @@ def fixture_read_query_config(
         (BigQueryQueryConfig): Query configurations as object
     """
     # Unpack configs
-    query_path, query_parameters = query_config['query_path'], query_config['query_parameters']
+    query_path, query_parameters = (
+        query_config["query_path"],
+        query_config["query_parameters"],
+    )
 
     return BigQueryQueryConfig(
         query_path=query_path,
-        query_parameters=[BigQueryQueryParameter(**query_parameters[parameter_key]) for parameter_key in query_parameters]
+        query_parameters=[
+            BigQueryQueryParameter(**query_parameters[parameter_key])
+            for parameter_key in query_parameters
+        ],
     )
 
 
 @pytest.fixture
 def fixture_create_table_query_config(
-        query_config: dict = config['create_table_query_config']
+    query_config: dict = config["create_table_query_config"],
 ) -> BigQueryQueryConfig:
     """
     Fixture for a BigQueryQueryConfig create table query config object
@@ -105,15 +114,23 @@ def fixture_create_table_query_config(
         (BigQueryQueryConfig): Query configurations as object
     """
     # Unpack configs
-    query_path, query_parameters = query_config['query_path'], query_config['query_parameters']
+    query_path, query_parameters = (
+        query_config["query_path"],
+        query_config["query_parameters"],
+    )
 
-    return BigQueryQueryConfig(query_path=query_path,
-                               query_parameters=[BigQueryQueryParameter(**query_parameters[query_parameter]) for query_parameter in query_parameters])
+    return BigQueryQueryConfig(
+        query_path=query_path,
+        query_parameters=[
+            BigQueryQueryParameter(**query_parameters[query_parameter])
+            for query_parameter in query_parameters
+        ],
+    )
 
 
 @pytest.fixture
 def fixture_input_table_configs(
-        input_tables_config: dict = config['data_preparation']['input_tables']
+    input_tables_config: dict = config["data_preparation"]["input_tables"],
 ) -> List[BigQueryQueryConfig]:
     """
     Fixture for providing the input table configurations required for testing or running
@@ -131,7 +148,6 @@ def fixture_input_table_configs(
 
     # Fetch the input table configs
     for table in input_tables_config:
-
         # Retrieve table config
         table_config = input_tables_config[table]
 
@@ -144,10 +160,9 @@ def fixture_input_table_configs(
     return config_list
 
 
-
 @pytest.fixture
 def fixture_raw_dataset_config(
-        query_config: dict = config['data_preparation']['raw_dataset']
+    query_config: dict = config["data_preparation"]["raw_dataset"],
 ) -> BigQueryQueryConfig:
     """
     Fixture for a BigQueryQueryConfig object including the Test Raw Dataset configurations
@@ -162,10 +177,10 @@ def fixture_raw_dataset_config(
 
 @pytest.fixture
 def fixture_stackoverflow_data_preparation(
-        fixture_bigquery_client_config: BigQueryClientConfig,
-        fixture_input_table_configs: List[BigQueryQueryConfig],
-        fixture_raw_dataset_config: BigQueryQueryConfig,
-        dataset_name: str = config['data_preparation']['dataset_name'],
+    fixture_bigquery_client_config: BigQueryClientConfig,
+    fixture_input_table_configs: List[BigQueryQueryConfig],
+    fixture_raw_dataset_config: BigQueryQueryConfig,
+    dataset_name: str = config["data_preparation"]["dataset_name"],
 ) -> StackOverflowDataPreparation:
     """
     Fixture for a StackOverflowDataPreparation object
@@ -186,14 +201,15 @@ def fixture_stackoverflow_data_preparation(
         dataset_name=dataset_name,
         input_tables_configs=fixture_input_table_configs,
         raw_dataset_config=fixture_raw_dataset_config,
-        bigquery_client_config=fixture_bigquery_client_config
+        bigquery_client_config=fixture_bigquery_client_config,
     )
 
     return stackoverflow_data_preparation
 
+
 @pytest.fixture
 def fixture_sentence_transformers_config(
-        sentence_transformers_config: dict = config['data_preparation']['sentence_transformers_config']
+    sentence_transformers_config: dict = config["data_preparation"]["sentence_transformers_config"],
 ) -> SentenceTransformersConfig:
     """
     Fixture for a SentenceTransformersConfig object
@@ -208,11 +224,10 @@ def fixture_sentence_transformers_config(
     return SentenceTransformersConfig(**sentence_transformers_config)
 
 
-
 @pytest.fixture
 def fixture_embeddings_config(
-        fixture_sentence_transformers_config: SentenceTransformersConfig,
-        embeddings_config: dict = config['data_preparation']['embeddings_config']
+    fixture_sentence_transformers_config: SentenceTransformersConfig,
+    embeddings_config: dict = config["data_preparation"]["embeddings_config"],
 ) -> EmbeddingsConfig:
     """
     Fixture for an EmbeddingsConfig object
@@ -226,15 +241,13 @@ def fixture_embeddings_config(
         (EmbeddingsConfig): EmbeddingsConfig object with configurations for embedding generation
     """
     return EmbeddingsConfig(
-        method=embeddings_config['method'],
-        embedding_model_config=fixture_sentence_transformers_config
+        method=embeddings_config["method"],
+        embedding_model_config=fixture_sentence_transformers_config,
     )
 
 
 @pytest.fixture
-def fixture_pca_config(
-        pca_config: dict = config['data_preparation']['pca_config']
-) -> PCAConfig:
+def fixture_pca_config(pca_config: dict = config["data_preparation"]["pca_config"]) -> PCAConfig:
     """
     Fixture for a PCAConfig object
     from src/types.PCAConfig class definition.
@@ -251,7 +264,7 @@ def fixture_pca_config(
 @pytest.fixture
 def fixture_compress_embeddings_config(
     fixture_pca_config: PCAConfig,
-    compress_embeddings_config: dict = config['data_preparation']['compress_embeddings_config']
+    compress_embeddings_config: dict = config["data_preparation"]["compress_embeddings_config"],
 ) -> CompressEmbeddingsConfig:
     """
     Fixture for a CompressEmbeddingsConfig object
@@ -265,15 +278,14 @@ def fixture_compress_embeddings_config(
         (CompressEmbeddingsConfig): CompressEmbeddingsConfig object with configurations for compressing embeddings
     """
     return CompressEmbeddingsConfig(
-        method=compress_embeddings_config['method'],
-        compress_model_config=fixture_pca_config
+        method=compress_embeddings_config["method"], compress_model_config=fixture_pca_config
     )
 
 
 @pytest.fixture
 def fixture_encode_text_config(
-        fixture_embeddings_config: EmbeddingsConfig,
-        fixture_compress_embeddings_config: CompressEmbeddingsConfig,
+    fixture_embeddings_config: EmbeddingsConfig,
+    fixture_compress_embeddings_config: CompressEmbeddingsConfig,
 ) -> EncodingTextConfig:
     """
     Fixture for an EncodeTextConfig object
@@ -288,13 +300,12 @@ def fixture_encode_text_config(
     """
     return EncodingTextConfig(
         embeddings_config=fixture_embeddings_config,
-        compress_embeddings_config=fixture_compress_embeddings_config
+        compress_embeddings_config=fixture_compress_embeddings_config,
     )
 
+
 @pytest.fixture
-def fixture_sentences(
-        file_path: str = 'data/test/sentences.txt'
-) -> List[str]:
+def fixture_sentences(file_path: str = "data/test/sentences.txt") -> List[str]:
     """
     Fixture for a list of sentences to encode.
 
@@ -308,13 +319,13 @@ def fixture_sentences(
     sentences = []
 
     # Retrieve the root path
-    root_path = pathlib.Path(os.getenv('DRUIDIC_GROVE_AI_ROOT_PATH'))
+    root_path = pathlib.Path(os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH"))
 
     # Update the file_path with the project root directory
     file_path = root_path / pathlib.Path(file_path)
 
     # Read the file
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         sentences = [line.strip() for line in file.readlines()]
 
     return sentences

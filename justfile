@@ -7,20 +7,24 @@ set dotenv-load
 help:
     @just --justfile {{justfile()}} --list --unsorted
 
-# PyLint
+# Ruff
 lint:
-  # Python PyLint lint from ./src and ./tests
-  ./scripts/pylint_lint.sh
+  # Python ruff lint
+  ./scripts/ruff_lint.sh
 
 # SQLFluff
 lint_sql file="./queries":
   # SQL Fix and lint
   ./scripts/sqlfluff_fix_and_lint.sh {{file}}
 
+# Run pre-commit
+pre:
+  pre-commit run --all-files
+
 # Run Pytest
 test:
-  poetry run pytest
+  uv run pytest
 
 # Launch Jupyter Lab
 jupy:
-  poetry run jupyter lab
+  uv run jupyter lab

@@ -1,6 +1,7 @@
 """
 This module includes Pydantic types for the whole project
 """
+
 # Import Standard Modules
 from typing import Literal, Optional, Union, List
 from pydantic import BaseModel
@@ -14,7 +15,8 @@ class BigQueryClientConfig(BaseModel):
         project_id (String): The Google Cloud project ID, which is
             restricted to 'deep-learning-438509'.
     """
-    project_id: str = Literal['deep-learning-438509']
+
+    project_id: str = Literal["deep-learning-438509"]
 
 
 class BigQueryQueryParameter(BaseModel):
@@ -27,6 +29,7 @@ class BigQueryQueryParameter(BaseModel):
         value (Union[str, int, float]): The value of the parameter, which
                can be a string, integer, or float.
     """
+
     name: str
     type: str
     value: Union[str, int, float, List]
@@ -42,6 +45,7 @@ class BigQueryQueryConfig(BaseModel):
         local_path (String): [Optional] Local path where to save the data
         table_name (String): [Optional] Table name
     """
+
     query_path: str
     query_parameters: Optional[List[BigQueryQueryParameter]] = None
     local_path: Optional[str] = None
@@ -65,6 +69,7 @@ class SentenceTransformersConfig(BaseModel):
         model_name (String): The name of the model to use
         numpy_tensor (Boolean): Output tensor to be a numpy array
     """
+
     model_name: str
     numpy_tensor: bool = False
 
@@ -77,6 +82,7 @@ class EmbeddingsConfig(BaseModel):
         method (String): The embedding approach to use (e.g., SentenceTransformer)
         embedding_model_config (Union[SentenceTransformersConfig]): Model configuration
     """
+
     method: str
     embedding_model_config: Union[SentenceTransformersConfig]
 
@@ -88,6 +94,7 @@ class PCAConfig(BaseModel):
     Attributes:
         n_components (Integer): Number of components
     """
+
     n_components: int
 
 
@@ -99,9 +106,9 @@ class CompressEmbeddingsConfig(BaseModel):
         method (String): The compress approach to use (e.g., PCA)
         compress_model_config (Union[PCAConfig]): Model configuration
     """
+
     method: str
     compress_model_config: Union[PCAConfig]
-
 
 
 class EncodingTextConfig(BaseModel):
@@ -113,5 +120,6 @@ class EncodingTextConfig(BaseModel):
         embeddings_config (EmbeddingsConfig): Configuration for embedding generation
         compress_embeddings_config (CompressEmbeddingsConfig): Configuration for embedding compression
     """
+
     embeddings_config: EmbeddingsConfig
     compress_embeddings_config: CompressEmbeddingsConfig

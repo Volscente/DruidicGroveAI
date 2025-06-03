@@ -1,4 +1,4 @@
-# v.1.0.12
+# v.1.0.13
 
 ------
 
@@ -20,6 +20,18 @@
 - [x] Add PyTest Fixture `fixture_encoding_text_config` in `tests/conftest.py`
 - [x] Add PyTest Fixture `fixture_sentences` in `tests/conftest.py`
 - [x] Add PyTest `test_encode_text` in `tests/test_data_preparation`
+
+# v.1.0.12
+
+-----
+
+- [x] Add `ruff_lint.sh` in `scripts`
+- [x] Refactor `justfile`
+- [x] Refactor `pyproject.toml` with ruff configurations
+- [x] Add `.pre-commit-config.yaml`
+- [x] Refactor `.github/workflows/pull_request_workflow.yml`
+- [x] Refactor Script `sqlfluff_fix_and_lint.sh` in `scripts/`
+
 
 # v.1.0.11
 
