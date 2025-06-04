@@ -35,7 +35,7 @@ jobs:
 
         # Install dependencies
         - name: Install the project
-          run: uv sync --locked --all-extras --dev
+          run: uv sync --all-extras --dev
 
         # Lint python files
         - name: Ruff lint
