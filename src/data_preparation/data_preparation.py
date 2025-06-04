@@ -56,14 +56,14 @@ class StackOverflowDataPreparation:
         self._dataset_name = dataset_name
         self._raw_dataset_config = raw_dataset_config
 
-        self._logger.info("__init__ - Start")
+        self._logger.debug("__init__ - Start")
 
         self._logger.info("__init__ - Initialise the BigQueryConnector object")
 
         # Init a BigQueryConnector object based on the configurations stored in bigquery_client_config
         self._bigquery_connector = BigQueryConnector(bigquery_client_config)
 
-        self._logger.info("__init__ - End")
+        self._logger.debug("__init__ - End")
 
     def _load_input_tables(self) -> None:
         """
@@ -73,7 +73,7 @@ class StackOverflowDataPreparation:
         Returns:
             Create the input tables in BigQuery
         """
-        self._logger.info("_load_input_tables - Start")
+        self._logger.debug("_load_input_tables - Start")
 
         self._logger.info("_load_input_tables - Fetch input tables")
 
@@ -97,7 +97,7 @@ class StackOverflowDataPreparation:
 
         self._logger.info("__load_input_tables - Input tables successfully created")
 
-        self._logger.info("__load_input_tables - End")
+        self._logger.debug("__load_input_tables - End")
 
     def _load_raw_dataset(self) -> None:
         """
@@ -107,7 +107,7 @@ class StackOverflowDataPreparation:
         Returns:
             Create the raw dataset in BigQuery
         """
-        self._logger.info("_load_raw_dataset - Start")
+        self._logger.debug("_load_raw_dataset - Start")
 
         self._logger.info("_load_raw_dataset - Load raw dataset")
 
@@ -122,4 +122,4 @@ class StackOverflowDataPreparation:
             # Create raw dataset
             self._bigquery_connector.execute_query_from_config(self._raw_dataset_config)
 
-        self._logger.info("_load_raw_dataset - End")
+        self._logger.debug("_load_raw_dataset - End")

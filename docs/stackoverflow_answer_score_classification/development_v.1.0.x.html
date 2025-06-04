@@ -414,21 +414,128 @@
       <div id="Data Preparation">
         <h2 class="sticky-header">Data Preparation</h2>
         <h3>Transformations</h3>
-        <ul>
-          <li>Encode <b>user_about_me</b> in <b>user_about_me_encoded</b></li>
-          <li>Extract year from <b>user_creation_date</b> in <b>user_creation_year</b></li>
-          <li>Encode the feature <b>user_name</b> in <b>user_name_encoded</b></li>
-          <li>Encode <b>user_location</b> in <b>user_location_encoded</b></li>
-          <li>Standardise and remove outliers from: <b>user_reputation, user_up_votes, user_down_votes, user_views</b></li>
-          <li>Engineer the flag <b>user_has_profile_image_url</b> when the user has the <b>user_profile_image_url</b> filled</li>
-          <li>Engineer the flag <b>user_has_website_url</b> when the user has the <b>user_website_url</b> filled</li>
-          <li>Compute the value <b>user_badge_count</b> as the amount of badges earned by the user</li>
-          <li>Engineer <b>has_most_rare_badges</b> if the user has one of the most rare badges from Table <i>curated_stackoverflow_data_model.top_rarest_badges</i></li>
-          <li>Encode the <b>answer_body</b> in <b>answer_body_encoded</b></li>
-          <li>Extract year from <b>answer_creation_date</b> in <b>answer_creation_year</b></li>
-          <li>Extract month from <b>answer_creation_date</b> in <b>answer_creation_month</b></li>
-          <li>Encode <b>badges_list</b> in <b>badges_encoded</b></li>
-        </ul>
+        <table class="big_table">
+          <tr class="header_row">
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Original Field</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Transformed Field</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Transformation</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Function</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Technology</b></td>
+            <td style="border: 1px solid #3c5a40; padding: 8px;"><b>Notes</b></td>
+          </tr>
+          <tr id="data_preparation_user_about_me">
+            <td style="border: 1px solid; padding: 8px;">user_about_me</td>
+            <td style="border: 1px solid; padding: 8px;">user_about_me_encoded</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/ENCODING-9b2226" alt="Encoding"/></td>
+            <td style="border: 1px solid; padding: 8px;"><i>encode_text()</i></td>
+            <td style="border: 1px solid; padding: 8px;">SentenceTransformer + PCA</td>
+            <td style="border: 1px solid; padding: 8px;">Model: <i>all-MiniLM-L6-v2</i></td>
+          </tr>
+          <tr id="data_preparation_user_creation_date">
+            <td style="border: 1px solid; padding: 8px;">user_creation_date</td>
+            <td style="border: 1px solid; padding: 8px;">user_creation_year</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/DATE EXTRACTION-ee9b00" alt="Date Extraction"/></td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+          </tr>
+          <tr id="data_preparation_user_name">
+            <td style="border: 1px solid; padding: 8px;">user_about_me</td>
+            <td style="border: 1px solid; padding: 8px;">user_name_encoded</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/ENCODING-9b2226" alt="Encoding"/></td>
+            <td style="border: 1px solid; padding: 8px;"><i>encode_text()</i></td>
+            <td style="border: 1px solid; padding: 8px;">SentenceTransformer + PCA</td>
+            <td style="border: 1px solid; padding: 8px;">Model: <i>all-MiniLM-L6-v2</i></td>
+          </tr>
+          <tr id="data_preparation_user_location">
+            <td style="border: 1px solid; padding: 8px;">user_about_me</td>
+            <td style="border: 1px solid; padding: 8px;">user_location_encoded</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/ENCODING-9b2226" alt="Encoding"/></td>
+            <td style="border: 1px solid; padding: 8px;"><i>encode_text()</i></td>
+            <td style="border: 1px solid; padding: 8px;">SentenceTransformer + PCA</td>
+            <td style="border: 1px solid; padding: 8px;">Model: <i>all-MiniLM-L6-v2</i></td>
+          </tr>
+          <tr id="data_preparation_user_reputation">
+            <td style="border: 1px solid; padding: 8px;">user_reputation</td>
+            <td style="border: 1px solid; padding: 8px;">user_reputation</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/NUMERICAL-005f73" alt="Numerical"/></td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">Standardisation - Outliers - NaN Values</td>
+          </tr>
+          <tr id="data_preparation_user_up_votes">
+            <td style="border: 1px solid; padding: 8px;">user_up_votes</td>
+            <td style="border: 1px solid; padding: 8px;">user_up_votes</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/NUMERICAL-005f73" alt="Numerical"/></td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">Standardisation - Outliers - NaN Values</td>
+          </tr>
+          <tr id="data_preparation_user_down_votes">
+            <td style="border: 1px solid; padding: 8px;">user_down_votes</td>
+            <td style="border: 1px solid; padding: 8px;">user_down_votes</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/NUMERICAL-005f73" alt="Numerical"/></td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">Standardisation - Outliers - NaN Values</td>
+          </tr>
+          <tr id="data_preparation_user_views">
+            <td style="border: 1px solid; padding: 8px;">user_views</td>
+            <td style="border: 1px solid; padding: 8px;">user_views</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/NUMERICAL-005f73" alt="Numerical"/></td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">Standardisation - Outliers - NaN Values</td>
+          </tr>
+          <tr id="data_preparation_user_profile_image_url">
+            <td style="border: 1px solid; padding: 8px;">user_profile_image_url</td>
+            <td style="border: 1px solid; padding: 8px;">user_has_profile_image_url</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FLAG-e9d8a6" alt="Flag"/></td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;"></td>
+          </tr>
+          <tr id="data_preparation_user_website_url">
+            <td style="border: 1px solid; padding: 8px;">user_website_url</td>
+            <td style="border: 1px solid; padding: 8px;">user_has_website_url</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/FLAG-e9d8a6" alt="Flag"/></td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;"></td>
+          </tr>
+          <tr id="data_preparation_answer_body">
+            <td style="border: 1px solid; padding: 8px;">answer_body</td>
+            <td style="border: 1px solid; padding: 8px;">answer_body_encoded</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/ENCODING-9b2226" alt="Encoding"/></td>
+            <td style="border: 1px solid; padding: 8px;"><i>encode_text()</i></td>
+            <td style="border: 1px solid; padding: 8px;">SentenceTransformer + PCA</td>
+            <td style="border: 1px solid; padding: 8px;">Model: <i>all-MiniLM-L6-v2</i></td>
+          </tr>
+          <tr id="data_preparation_answer_creation_year">
+            <td style="border: 1px solid; padding: 8px;">answer_creation_date</td>
+            <td style="border: 1px solid; padding: 8px;">answer_creation_year</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/DATE EXTRACTION-ee9b00" alt="Date Extraction"/></td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+          </tr>
+          <tr id="data_preparation_answer_creation_month">
+            <td style="border: 1px solid; padding: 8px;">answer_creation_date</td>
+            <td style="border: 1px solid; padding: 8px;">answer_creation_month</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/DATE EXTRACTION-ee9b00" alt="Date Extraction"/></td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+            <td style="border: 1px solid; padding: 8px;">⚠️ TBD ⚠️</td>
+          </tr>
+          <tr id="data_preparation_badges_encoded">
+            <td style="border: 1px solid; padding: 8px;">badges_list</td>
+            <td style="border: 1px solid; padding: 8px;">badges_encoded</td>
+            <td style="border: 1px solid; padding: 8px;"><img src="https://img.shields.io/badge/ENCODING-9b2226" alt="Encoding"/></td>
+            <td style="border: 1px solid; padding: 8px;"><i>encode_text()</i></td>
+            <td style="border: 1px solid; padding: 8px;">SentenceTransformer + PCA</td>
+            <td style="border: 1px solid; padding: 8px;">Model: <i>all-MiniLM-L6-v2</i></td>
+          </tr>
+        </table>
       </div>
       <div id="Training Dataset">
         <h2 class="sticky-header">Training Dataset</h2>

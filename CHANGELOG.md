@@ -1,3 +1,26 @@
+# v.1.0.13
+
+------
+
+- [x] Add Module `data_preparation_utils` in `src/data_preparation`
+- [x] Add Pydantic `SentenceTransformersConfig` in `src/types.py`
+- [x] Add Pydantic `EmbeddingsConfig` in `src/types.py`
+- [x] Add Function `generate_embeddings` in `src/data_preparation.data_preparation_utils.py`
+- [x] Add PyTest Fixture `fixture_sentence_transformers_config` in `tests/conftest.py`
+- [x] Add PyTest Fixture `fixture_embeddings_config` in `tests/conftest.py`
+- [x] Add PyTest `test_generate_embeddings` in `tests/test_data_preparation`
+- [x] Add Pydantic `PCAConfig` in `src/types.py`
+- [x] Add Pydantic `CompressEmbeddingsConfig` in `src/types.py`
+- [x] Add Function `compress_embeddings` in `src/data_preparation.data_preparation_utils.py`
+- [x] Add PyTest Fixture `fixture_pca_config` in `tests/conftest.py`
+- [x] Add PyTest Fixture `fixture_compress_embeddings_config` in `tests/conftest.py`
+- [x] Add PyTest `test_compress_embeddings` in `tests/test_data_preparation`
+- [x] Add Pydantic `EncodingTextConfig` in `src/types.py`
+- [x] Add Function `encode_text` in `src/data_preparation.data_preparation_utils.py`
+- [x] Add PyTest Fixture `fixture_encoding_text_config` in `tests/conftest.py`
+- [x] Add PyTest Fixture `fixture_sentences` in `tests/conftest.py`
+- [x] Add PyTest `test_encode_text` in `tests/test_data_preparation`
+
 # v.1.0.12
 
 -----
@@ -22,7 +45,7 @@
 - [x] Add PyTest `test_bigquery_query_config` in `tests/test_types.py`
 - [x] Add PyTest `test_bigquery_query_config_exceptions` in `tests/test_types.py`
 - [x] Add Function `_load_raw_dataset` in `src/data_preparation/data_preparation.StackOverflowDataPreparation`
-- [x] Add Query `test_raw_dataset.sql` in `queries/test_queries/stackoverflow_data_preparation`
+- [x] Add Query  `test_raw_dataset.sql` in `queries/test_queries/stackoverflow_data_preparation`
 - [x] Add PyTest Fixture `fixture_raw_dataset_config` in `tests/conftest.py`
 - [x] Add PyTest `test_load_raw_dataset` in `tests/test_data_preparation.py`
 - [x] Refactor PyTest `test_load_input_tables` in `tests/test_data_preparation.py`

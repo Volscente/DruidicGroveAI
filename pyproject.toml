@@ -1,6 +1,6 @@
 [project]
 name = "druidicgroveai"
-version = "1.0.12"
+version = "1.0.13"
 description = "DruidicGroveAI is a research-focused repository dedicated to exploring the latest advancements in deep learning."
 authors = [
   {name = "Simone Porreca", email = "porrecasimone@gmail.com"},
@@ -12,6 +12,7 @@ dependencies = [
     "pandas>=2.2.3",
     "pyaml>=25.5.0",
     "pydantic>=2.11.5",
+    "sentence-transformers>=4.1.0",
 ]
 readme = "README.md"
 license = "GPL-3.0"

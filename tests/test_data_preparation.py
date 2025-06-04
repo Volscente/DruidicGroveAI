@@ -4,12 +4,19 @@ module src.data_preparation
 """
 
 # Import Standard Libraries
-from typing import List
+from typing import List, Tuple
+import numpy as np
 import pytest
 
 # Import Package Modules
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
+from src.data_preparation.data_preparation_utils import (
+    generate_embeddings,
+    compress_embeddings,
+    encode_text,
+)
+from src.types import EmbeddingsConfig, CompressEmbeddingsConfig, EncodingTextConfig
 
 
 @pytest.mark.skip(
@@ -92,3 +99,71 @@ def test_load_raw_dataset(
     )
 
     assert rows_number == expected_rows
+
+
+@pytest.mark.parametrize(
+    "text, expected_shape",
+    [
+        (["This is a sample test. Please encode it, oh great Omnissiah"], (1, 384)),
+        (["text 1", "text 2"], (2, 384)),
+    ],
+)
+def test_generate_embeddings(
+    text: List[str], expected_shape: Tuple[int, int], fixture_embeddings_config: EmbeddingsConfig
+) -> bool:
+    """
+    Test the function
+    src/data_preparation/data_preparation_utils.generate_embeddings
+
+    Args:
+        text (List[str]): Input text
+        expected_shape (Tuple[int, int]): Expected shape of the output
+        fixture_embeddings_config (EmbeddingsConfig): Object including embedding configurations
+    """
+    # Generate embeddings
+    embeddings = generate_embeddings(text, fixture_embeddings_config)
+
+    assert embeddings.shape == expected_shape
+
+
+@pytest.mark.parametrize(
+    "input_embeddings, expected_shape", [(np.random.random((20, 16)), (20, 4))]
+)
+def test_compress_embeddings(
+    input_embeddings: np.ndarray,
+    expected_shape: Tuple[int, int],
+    fixture_compress_embeddings_config: CompressEmbeddingsConfig,
+) -> bool:
+    """
+    Test the function
+    src/data_preparation/data_preparation_utils.compress_embeddings
+
+    Args:
+        input_embeddings (numpy.ndarray): Input embeddings
+        expected_shape (Tuple[int, int]): Expected compressed embeddings' shape
+        fixture_compress_embeddings_config (CompressEmbeddingsConfig): Object compressing embedding configurations
+    """
+    # Compress embeddings
+    compressed_embeddings = compress_embeddings(
+        input_embeddings, fixture_compress_embeddings_config
+    )
+
+    assert compressed_embeddings.shape == expected_shape
+
+
+def test_encode_text(
+    fixture_sentences: List[str], fixture_encode_text_config: EncodingTextConfig
+) -> bool:
+    """
+    Test the function
+    src/data_preparation/data_preparation_utils.encode_text
+    by passing an input text, encoding it and checking if the encoded text is correct.
+
+    Args:
+        fixture_sentences (List[str]): Input text sentences
+        fixture_encode_text_config (EncodingTextConfig): Object including text encoding configurations
+    """
+    # Encode the text
+    encoded_texts = encode_text(fixture_sentences, fixture_encode_text_config)
+
+    assert encoded_texts.shape == (400, 4)

@@ -4,13 +4,23 @@ for running PyTest tests
 """
 
 # Import Standard Libraries
+import os
 import pathlib
 from typing import List
 import pytest
 from dynaconf import Dynaconf
 
 # Import Package Modules
-from src.types import BigQueryClientConfig, BigQueryQueryConfig, BigQueryQueryParameter
+from src.types import (
+    BigQueryClientConfig,
+    BigQueryQueryConfig,
+    BigQueryQueryParameter,
+    SentenceTransformersConfig,
+    EmbeddingsConfig,
+    PCAConfig,
+    CompressEmbeddingsConfig,
+    EncodingTextConfig,
+)
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 
@@ -195,3 +205,127 @@ def fixture_stackoverflow_data_preparation(
     )
 
     return stackoverflow_data_preparation
+
+
+@pytest.fixture
+def fixture_sentence_transformers_config(
+    sentence_transformers_config: dict = config["data_preparation"]["sentence_transformers_config"],
+) -> SentenceTransformersConfig:
+    """
+    Fixture for a SentenceTransformersConfig object
+    from src/types.SentenceTransformersConfig class definition.
+
+    Args:
+        sentence_transformers_config (Dictionary): Configurations for a SentenceTransformersConfig object
+
+    Returns:
+        (SentenceTransformersConfig): SentenceTransformersConfig object with configurations for embedding generation
+    """
+    return SentenceTransformersConfig(**sentence_transformers_config)
+
+
+@pytest.fixture
+def fixture_embeddings_config(
+    fixture_sentence_transformers_config: SentenceTransformersConfig,
+    embeddings_config: dict = config["data_preparation"]["embeddings_config"],
+) -> EmbeddingsConfig:
+    """
+    Fixture for an EmbeddingsConfig object
+    from src/types.EmbeddingsConfig class definition.
+
+    Args:
+        fixture_sentence_transformers_config (SentenceTransformersConfig): Configurations for a SentenceTransformersConfig object
+        embeddings_config (Dictionary): Configurations for an EmbeddingsConfig object
+
+    Returns:
+        (EmbeddingsConfig): EmbeddingsConfig object with configurations for embedding generation
+    """
+    return EmbeddingsConfig(
+        method=embeddings_config["method"],
+        embedding_model_config=fixture_sentence_transformers_config,
+    )
+
+
+@pytest.fixture
+def fixture_pca_config(pca_config: dict = config["data_preparation"]["pca_config"]) -> PCAConfig:
+    """
+    Fixture for a PCAConfig object
+    from src/types.PCAConfig class definition.
+
+    Args:
+        pca_config (Dictionary): PCA configurations
+
+    Returns:
+        (PCAConfig): PCAConfig object with configurations for PCA
+    """
+    return PCAConfig(**pca_config)
+
+
+@pytest.fixture
+def fixture_compress_embeddings_config(
+    fixture_pca_config: PCAConfig,
+    compress_embeddings_config: dict = config["data_preparation"]["compress_embeddings_config"],
+) -> CompressEmbeddingsConfig:
+    """
+    Fixture for a CompressEmbeddingsConfig object
+    from src/types.CompressEmbeddingsConfig class definition.
+
+    Args:
+        fixture_pca_config (PCAConfig): Configurations for a PCAConfig object
+        compress_embeddings_config (Dictionary): Configurations for a CompressEmbeddingsConfig object
+
+    Returns:
+        (CompressEmbeddingsConfig): CompressEmbeddingsConfig object with configurations for compressing embeddings
+    """
+    return CompressEmbeddingsConfig(
+        method=compress_embeddings_config["method"], compress_model_config=fixture_pca_config
+    )
+
+
+@pytest.fixture
+def fixture_encode_text_config(
+    fixture_embeddings_config: EmbeddingsConfig,
+    fixture_compress_embeddings_config: CompressEmbeddingsConfig,
+) -> EncodingTextConfig:
+    """
+    Fixture for an EncodeTextConfig object
+    from src/types.EncodingTextConfig class definition.
+
+    Args:
+        fixture_embeddings_config (EmbeddingsConfig): Configuration for embedding generation
+        fixture_compress_embeddings_config (CompressEmbeddingsConfig): Configuration for embedding compression
+
+    Returns:
+        (EncodingTextConfig): EncodeTextConfig object with configurations for encoding text
+    """
+    return EncodingTextConfig(
+        embeddings_config=fixture_embeddings_config,
+        compress_embeddings_config=fixture_compress_embeddings_config,
+    )
+
+
+@pytest.fixture
+def fixture_sentences(file_path: str = "data/test/sentences.txt") -> List[str]:
+    """
+    Fixture for a list of sentences to encode.
+
+    Args:
+        file_path (String): Path to the file containing the sentences.
+
+    Returns:
+        (List[str]): List of sentences to encode
+    """
+    # Initialise sentences
+    sentences = []
+
+    # Retrieve the root path
+    root_path = pathlib.Path(os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH"))
+
+    # Update the file_path with the project root directory
+    file_path = root_path / pathlib.Path(file_path)
+
+    # Read the file
+    with open(file_path, "r", encoding="utf-8") as file:
+        sentences = [line.strip() for line in file.readlines()]
+
+    return sentences

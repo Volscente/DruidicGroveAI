@@ -34,6 +34,23 @@ test_post_answers.table_name = 'test_post_answers'
 
 [pytest.data_preparation.raw_dataset]
 query_path = 'queries/test_queries/stackoverflow_data_preparation/test_raw_dataset.sql'
+
+[pytest.data_preparation.sentence_transformers_config]
+model_name = 'all-MiniLM-L6-v2'
+numpy_tensor = true
+
+[pytest.data_preparation.embeddings_config]
+method = 'SentenceTransformer'
+
+[pytest.data_preparation.pca_config]
+n_components = 4
+
+[pytest.data_preparation.compress_embeddings_config]
+method = 'PCA'
+
+[pytest.data_preparation.encode_text_config]
+model_name = 'distilbert-base-uncased'
+return_tensors = 'pt'
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------
