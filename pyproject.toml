@@ -12,6 +12,7 @@ dependencies = [
     "pandas>=2.2.3",
     "pyaml>=25.5.0",
     "pydantic>=2.11.5",
+    "sentence-transformers>=4.1.0",
 ]
 readme = "README.md"
 license = "GPL-3.0"
