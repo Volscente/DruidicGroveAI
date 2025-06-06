@@ -134,5 +134,31 @@ def encode_text(
     return compressed_embeddings
 
 
-def extract_date_information(date_input: pd.Timestamp, config: DateExtractionConfig) -> int:
-    pass
+def extract_date_information(data: pd.DataFrame, config: DateExtractionConfig) -> pd.DataFrame:
+    """
+    Extract date information from a column included in the ``config.column_name`` like the year, the month, etc.
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (DateExtractionConfig): Configuration including the column_name and date information to extract
+
+    Returns:
+        (pd.DataFrame): Output data with additional columns
+    """
+    logger.debug("extract_date_information - Start")
+
+    # Retrieve column name
+    column_name = config.column_name
+
+    # Convert column to datetime
+    data[column_name] = pd.to_datetime(data[column_name])
+
+    # Extract date information
+    if config.extract_year:
+        data[f"{column_name}_year"] = data[column_name].dt.year
+    elif config.extract_month:
+        data[f"{column_name}_month"] = data[column_name].dt.month
+
+    logger.debug("extract_date_information - End")
+
+    return data
