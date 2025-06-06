@@ -167,3 +167,7 @@ def test_encode_text(
     encoded_texts = encode_text(fixture_sentences, fixture_encode_text_config)
 
     assert encoded_texts.shape == (400, 4)
+
+
+def test_extract_date_information():
+    pass

@@ -51,6 +51,11 @@ method = 'PCA'
 [pytest.data_preparation.encode_text_config]
 model_name = 'distilbert-base-uncased'
 return_tensors = 'pt'
+
+[pytest.data_preparation.date_extraction_config]
+column_name = 'creation_date'
+extract_year = true
+extract_month = true
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------
