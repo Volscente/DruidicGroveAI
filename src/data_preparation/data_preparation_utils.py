@@ -13,7 +13,7 @@ from typing import List
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
-from src.types import (
+from src.custom_types import (
     EmbeddingsConfig,
     CompressEmbeddingsConfig,
     EncodingTextConfig,

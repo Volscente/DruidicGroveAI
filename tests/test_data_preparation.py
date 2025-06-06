@@ -5,6 +5,7 @@ module src.data_preparation
 
 # Import Standard Libraries
 from typing import List, Tuple
+import pandas as pd
 import numpy as np
 import pytest
 
@@ -15,8 +16,14 @@ from src.data_preparation.data_preparation_utils import (
     generate_embeddings,
     compress_embeddings,
     encode_text,
+    extract_date_information,
 )
-from src.types import EmbeddingsConfig, CompressEmbeddingsConfig, EncodingTextConfig
+from src.custom_types import (
+    EmbeddingsConfig,
+    CompressEmbeddingsConfig,
+    EncodingTextConfig,
+    DateExtractionConfig,
+)
 
 
 @pytest.mark.skip(
@@ -169,5 +176,30 @@ def test_encode_text(
     assert encoded_texts.shape == (400, 4)
 
 
-def test_extract_date_information():
-    pass
+@pytest.mark.parametrize(
+    "input_data, expected_columns",
+    [
+        (
+            pd.DataFrame({"creation_date": ["01/01/2020", "01/01/2021", "01/01/2022"]}),
+            ["creation_date", "creation_date_year", "creation_date_month"],
+        )
+    ],
+)
+def test_extract_date_information(
+    fixture_date_extraction_config: DateExtractionConfig,
+    input_data: pd.DataFrame,
+    expected_columns: List[str],
+) -> bool:
+    """
+    Test the function
+    src/data_preparation/data_preparation_utils.extract_date_information
+
+    Args:
+        fixture_date_extraction_config (DateExtractionConfig): Object including date extraction config
+        input_data (pd.DataFrame): Input data
+        expected_columns (List[str]): Expected columns
+    """
+    # Extract date information
+    output_data = extract_date_information(input_data, fixture_date_extraction_config)
+
+    assert output_data.columns == expected_columns
