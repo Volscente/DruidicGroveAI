@@ -156,7 +156,7 @@ def extract_date_information(data: pd.DataFrame, config: DateExtractionConfig) -
     # Extract date information
     if config.extract_year:
         data[f"{column_name}_year"] = data[column_name].dt.year
-    elif config.extract_month:
+    if config.extract_month:
         data[f"{column_name}_month"] = data[column_name].dt.month
 
     logger.debug("extract_date_information - End")

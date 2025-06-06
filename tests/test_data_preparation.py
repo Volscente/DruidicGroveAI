@@ -202,4 +202,4 @@ def test_extract_date_information(
     # Extract date information
     output_data = extract_date_information(input_data, fixture_date_extraction_config)
 
-    assert output_data.columns == expected_columns
+    assert output_data.columns.to_list() == expected_columns
