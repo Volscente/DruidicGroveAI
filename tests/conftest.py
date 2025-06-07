@@ -11,7 +11,7 @@ import pytest
 from dynaconf import Dynaconf
 
 # Import Package Modules
-from src.types import (
+from src.custom_types import (
     BigQueryClientConfig,
     BigQueryQueryConfig,
     BigQueryQueryParameter,
@@ -20,11 +20,12 @@ from src.types import (
     PCAConfig,
     CompressEmbeddingsConfig,
     EncodingTextConfig,
+    DateExtractionConfig,
 )
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation import StackOverflowDataPreparation
 
-# Read configuration file
+# Read the configuration file
 config = Dynaconf(
     settings_files=[
         pathlib.Path(__file__).parents[1] / "configuration" / "stackoverflow_settings.toml"
@@ -329,3 +330,20 @@ def fixture_sentences(file_path: str = "data/test/sentences.txt") -> List[str]:
         sentences = [line.strip() for line in file.readlines()]
 
     return sentences
+
+
+@pytest.fixture
+def fixture_date_extraction_config(
+    date_extraction_config: dict = config["data_preparation"]["date_extraction_config"],
+) -> DateExtractionConfig:
+    """
+    Fixture for a DateExtractionConfig object
+    from src/types.DateExtractionConfig class definition.
+
+    Args:
+        date_extraction_config (Dictionary): Configurations for a DateExtractionConfig object
+
+    Returns:
+        (DateExtractionConfig): Object with all configs for a DateExtractionConfig set to True
+    """
+    return DateExtractionConfig(**date_extraction_config)

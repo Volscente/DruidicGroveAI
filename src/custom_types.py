@@ -123,3 +123,18 @@ class EncodingTextConfig(BaseModel):
 
     embeddings_config: EmbeddingsConfig
     compress_embeddings_config: CompressEmbeddingsConfig
+
+
+class DateExtractionConfig(BaseModel):
+    """
+    Configuration to extract information from a date field
+
+    Attributes:
+        column_name (String): Column name containing the date
+        extract_year (Boolean): Flag to indicate to extract the year
+        extract_month (Boolean): Flag to indicate to extract the month
+    """
+
+    column_name: str
+    extract_year: bool
+    extract_month: bool

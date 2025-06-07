@@ -51,6 +51,11 @@ method = 'PCA'
 [pytest.data_preparation.encode_text_config]
 model_name = 'distilbert-base-uncased'
 return_tensors = 'pt'
+
+[pytest.data_preparation.date_extraction_config]
+column_name = 'creation_date'
+extract_year = true
+extract_month = true
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------
@@ -136,3 +141,4 @@ local_path = 'data/stackoverflow/data_preparation/post_answers.csv'
 [data_preparation.raw_dataset]
 query_path = 'queries/stackoverflow/data_preparation/raw_dataset.sql'
 local_path = 'data/stackoverflow/data_preparation/raw_dataset.csv'
+# -------------------------------------------

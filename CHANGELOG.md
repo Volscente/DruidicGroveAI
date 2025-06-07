@@ -1,3 +1,12 @@
+# v.1.0.14
+
+------
+
+- [x] Add Pydantic Type `DateExtractionConfig` in `src/types.py`
+- [x] Add Function `extract_date_information` in `src/data_preparation/data_preparation_utils.py`
+- [x] Add PyTest Fixture `fixture_date_extraction_config` in `tests/conftest.py`
+- [x] Add PyTest `test_extract_date_information` in `tests/test_data_preparation.py`
+
 # v.1.0.13
 
 ------
