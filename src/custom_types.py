@@ -138,3 +138,10 @@ class DateExtractionConfig(BaseModel):
     column_name: str
     extract_year: bool
     extract_month: bool
+
+
+class NumericalFeaturesConfig(BaseModel):
+    column_name: str
+    standardisation: Optional[Literal["min_max_scaler", "standard_scaler"]] = None
+    drop_outliers: Optional[Literal["z_score", "iqr"]] = None
+    nan_values: Optional[Literal["drop_nan", "simple_imputer"]] = None
