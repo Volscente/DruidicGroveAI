@@ -3,8 +3,17 @@ This module includes Pydantic types for the whole project
 """
 
 # Import Standard Modules
+from enum import Enum
 from typing import Literal, Optional, Union, List
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
+
+class GPCProjects(str, Enum):
+    """
+    Available GPC Projects
+    """
+
+    DEEP_LEARNING = "deep-learning-438509"
 
 
 class BigQueryClientConfig(BaseModel):
@@ -12,11 +21,13 @@ class BigQueryClientConfig(BaseModel):
     BigQuery Client configuration
 
     Attributes:
-        project_id (String): The Google Cloud project ID, which is
+        project_id (GPCProjects): The Google Cloud project ID, which is
             restricted to 'deep-learning-438509'.
     """
 
-    project_id: str = Literal["deep-learning-438509"]
+    project_id: GPCProjects = Field(
+        default=GPCProjects.DEEP_LEARNING, description="Project ID on Google Cloud Platform"
+    )
 
 
 class BigQueryQueryParameter(BaseModel):
