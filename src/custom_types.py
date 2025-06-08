@@ -83,21 +83,23 @@ class SentenceTransformersConfig(BaseModel):
         numpy_tensor (Boolean): Output tensor to be a numpy array
     """
 
-    model_name: str
-    numpy_tensor: bool = False
+    model_name: str = Field("all-MiniLM-L6-v2", description="Model name")
+    numpy_tensor: bool = Field(False, description="Output tensor to be a numpy array")
 
 
 class EmbeddingsConfig(BaseModel):
     """
-    Configuration for embedding generation model
+    Configuration for an embedding generation model
 
     Attributes:
         method (String): The embedding approach to use (e.g., SentenceTransformer)
         embedding_model_config (Union[SentenceTransformersConfig]): Model configuration
     """
 
-    method: str
-    embedding_model_config: Union[SentenceTransformersConfig]
+    method: str = Field("SentenceTransformer", description="Embedding approach to use")
+    embedding_model_config: Union[SentenceTransformersConfig] = Field(
+        ..., description="Model configuration"
+    )
 
 
 class PCAConfig(BaseModel):
@@ -108,7 +110,7 @@ class PCAConfig(BaseModel):
         n_components (Integer): Number of components
     """
 
-    n_components: int
+    n_components: int = Field(..., description="Number of components")
 
 
 class CompressEmbeddingsConfig(BaseModel):
@@ -120,8 +122,8 @@ class CompressEmbeddingsConfig(BaseModel):
         compress_model_config (Union[PCAConfig]): Model configuration
     """
 
-    method: str
-    compress_model_config: Union[PCAConfig]
+    method: str = Field("PCA", description="Compress approach to use")
+    compress_model_config: Union[PCAConfig] = Field(..., description="Model configuration")
 
 
 class EncodingTextConfig(BaseModel):
@@ -134,8 +136,12 @@ class EncodingTextConfig(BaseModel):
         compress_embeddings_config (CompressEmbeddingsConfig): Configuration for embedding compression
     """
 
-    embeddings_config: EmbeddingsConfig
-    compress_embeddings_config: CompressEmbeddingsConfig
+    embeddings_config: EmbeddingsConfig = Field(
+        ..., description="Configuration for embedding generation"
+    )
+    compress_embeddings_config: CompressEmbeddingsConfig = Field(
+        ..., description="Configuration for embedding compression"
+    )
 
 
 class DateExtractionConfig(BaseModel):
@@ -148,9 +154,9 @@ class DateExtractionConfig(BaseModel):
         extract_month (Boolean): Flag to indicate to extract the month
     """
 
-    column_name: str
-    extract_year: bool
-    extract_month: bool
+    column_name: str = Field(..., description="Column name containing the date")
+    extract_year: bool = Field(..., description="Flag to indicate to extract the year")
+    extract_month: bool = Field(..., description="Flag to indicate to extract the month")
 
 
 class NumericalFeaturesConfig(BaseModel):
