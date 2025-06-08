@@ -4,7 +4,7 @@ This module includes Pydantic types for the whole project
 
 # Import Standard Modules
 from enum import Enum
-from typing import Literal, Optional, Union, List
+from typing import Optional, Union, List
 from pydantic import BaseModel, Field
 
 
@@ -159,8 +159,37 @@ class DateExtractionConfig(BaseModel):
     extract_month: bool = Field(..., description="Flag to indicate to extract the month")
 
 
+class StandardisationMethod(str, Enum):
+    MIN_MAX = "min_max_scaler"
+    STANDARD = "standard_scaler"
+
+
+class OutlierMethod(str, Enum):
+    Z_SCORE = "z_score"
+    IQR = "iqr"
+
+
+class NanStrategy(str, Enum):
+    DROP = "drop_nan"
+    IMPUTE = "simple_imputer"
+
+
 class NumericalFeaturesConfig(BaseModel):
-    column_name: str
-    standardisation: Optional[Literal["min_max_scaler", "standard_scaler"]] = None
-    drop_outliers: Optional[Literal["z_score", "iqr"]] = None
-    nan_values: Optional[Literal["drop_nan", "simple_imputer"]] = None
+    """
+    Configuration for numerical features transformation
+
+    Attributes:
+        column_name (String): Name of the numerical column to process
+        standardisation (Optional[StandardisationMethod]): Standardisation method to apply
+        drop_outliers (Optional[OutlierMethod]): Outlier removal method to use
+        nan_values (Optional[NanStrategy]): Strategy to handle missing values
+    """
+
+    column_name: str = Field(..., description="Name of the numerical column to process")
+    standardisation: Optional[StandardisationMethod] = Field(
+        None, description="Standardisation method to apply"
+    )
+    drop_outliers: Optional[OutlierMethod] = Field(
+        None, description="Outlier removal method to use"
+    )
+    nan_values: Optional[NanStrategy] = Field(None, description="Strategy to handle missing values")
