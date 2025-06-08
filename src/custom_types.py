@@ -32,7 +32,7 @@ class BigQueryClientConfig(BaseModel):
 
 class BigQueryQueryParameter(BaseModel):
     """
-    BigQuery Query parameter
+    BigQuery Query parameter object, including all required fields for defining the parameter
 
     Attributes:
         name (String): Parameter name
@@ -41,14 +41,14 @@ class BigQueryQueryParameter(BaseModel):
                can be a string, integer, or float.
     """
 
-    name: str
-    type: str
-    value: Union[str, int, float, List]
+    name: str = Field(..., description="Parameter name")
+    type: str = Field(..., description="Parameter type according to BigQuery Python SDK")
+    value: Union[str, int, float, List] = Field(..., description="Parameter value")
 
 
 class BigQueryQueryConfig(BaseModel):
     """
-    BigQuery Query configuration
+    BigQuery Query configuration including all elements for executing a query
 
     Attributes:
         query_path (String): Query file path
@@ -57,10 +57,12 @@ class BigQueryQueryConfig(BaseModel):
         table_name (String): [Optional] Table name
     """
 
-    query_path: str
-    query_parameters: Optional[List[BigQueryQueryParameter]] = None
-    local_path: Optional[str] = None
-    table_name: Optional[str] = None
+    query_path: str = Field(..., description="Query file path")
+    query_parameters: Optional[List[BigQueryQueryParameter]] = Field(
+        None, description="List of BigQuery parameters"
+    )
+    local_path: Optional[str] = Field(None, description="Local path where to save the data")
+    table_name: Optional[str] = Field(None, description="Table name")
 
     def count_non_none_attributes(self) -> int:
         """
