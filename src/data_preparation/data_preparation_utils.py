@@ -9,6 +9,7 @@ import pandas as pd
 import pathlib
 from sentence_transformers import SentenceTransformer
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import MinMaxScaler
 from typing import List
 
 # Import Package Modules
@@ -18,6 +19,7 @@ from src.custom_types import (
     CompressEmbeddingsConfig,
     EncodingTextConfig,
     DateExtractionConfig,
+    NumericalFeaturesConfig,
 )
 
 # Setup logger
@@ -160,5 +162,46 @@ def extract_date_information(data: pd.DataFrame, config: DateExtractionConfig) -
         data[f"{column_name}_month"] = data[column_name].dt.month
 
     logger.debug("extract_date_information - End")
+
+    return data
+
+
+def standardise_features(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.DataFrame:
+    """
+    Apply the specific standardisation method in ``config.standardisation`` on the data column ``config.column_name``
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (NumericalFeaturesConfig): Object including transformation configurations
+
+    Returns:
+        (pd.DataFrame): Output data with additional columns
+    """
+    logger.debug("standardise_features - Start")
+
+    # Retrieve configurations
+    column_name = config.column_name
+    standardisation = config.standardisation
+
+    logger.info("standardise_features - Column: %", column_name)
+
+    # Switch based on the standardisation method
+    match standardisation:
+        case "min_max_scaler":
+            logger.info("standardise_features - MinMaxScaler standardisation approach")
+
+            # Instance the MinMaxScaler
+            min_max_scaler = MinMaxScaler()
+
+            # Apply transformation
+            data.loc[:, "{column_name}_standardised"] = min_max_scaler.fit_transform(
+                data[[column_name]]
+            )
+
+        case _:
+            logger.error("standardise_features - Unknown standardisation method: %s", column_name)
+            raise ValueError("Invalid standardisation method")
+
+    logger.debug("standardise_features - End")
 
     return data
