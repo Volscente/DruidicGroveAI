@@ -203,3 +203,9 @@ def test_extract_date_information(
     output_data = extract_date_information(input_data, fixture_date_extraction_config)
 
     assert output_data.columns.to_list() == expected_columns
+
+
+@pytest.mark.parametrize("input_date, expected_values")
+def test_standardise_features() -> bool:
+    # TODO: array_1 == pytest.approx(array_2, abs=0.1)
+    return True
