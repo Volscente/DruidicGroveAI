@@ -10,6 +10,7 @@ import pathlib
 from sentence_transformers import SentenceTransformer
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
+from scipy.stats import zscore
 from typing import List
 
 # Import Package Modules
@@ -205,3 +206,32 @@ def standardise_features(data: pd.DataFrame, config: NumericalFeaturesConfig) ->
     logger.debug("standardise_features - End")
 
     return data
+
+
+def drop_outliers(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.DataFrame:
+    """
+    Apply the specific drop outliers method in ``config.drop_outliers`` on the data column ``config.column_name``
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (NumericalFeaturesConfig): Object including transformation configurations
+
+    Returns:
+        (pd.DataFrame): Output data with additional columns
+    """
+    logger.debug("drop_outliers - Start")
+
+    # Retrieve configurations
+    column_name = config.column
+    drop_outliers_method = config.drop_outliers
+
+    logger.info("drop_outliers - Column: %s", column_name)
+
+    match drop_outliers_method:
+        case "z_score":
+            logger.info("drop_outliers - Z-score Drop Outliers approach")
+
+            # Compute z-score
+            data.loc[:, f"{column_name}_z_score"] = zscore(data[column_name])
+
+    return 1
