@@ -183,7 +183,7 @@ def standardise_features(data: pd.DataFrame, config: NumericalFeaturesConfig) ->
     column_name = config.column_name
     standardisation = config.standardisation
 
-    logger.info("standardise_features - Column: %", column_name)
+    logger.info("standardise_features - Column: %s", column_name)
 
     # Switch based on the standardisation method
     match standardisation:
@@ -194,7 +194,7 @@ def standardise_features(data: pd.DataFrame, config: NumericalFeaturesConfig) ->
             min_max_scaler = MinMaxScaler()
 
             # Apply transformation
-            data.loc[:, "{column_name}_standardised"] = min_max_scaler.fit_transform(
+            data.loc[:, f"{column_name}_standardised"] = min_max_scaler.fit_transform(
                 data[[column_name]]
             )
 

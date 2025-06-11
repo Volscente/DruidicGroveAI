@@ -17,12 +17,14 @@ from src.data_preparation.data_preparation_utils import (
     compress_embeddings,
     encode_text,
     extract_date_information,
+    standardise_features,
 )
 from src.custom_types import (
     EmbeddingsConfig,
     CompressEmbeddingsConfig,
     EncodingTextConfig,
     DateExtractionConfig,
+    NumericalFeaturesConfig,
 )
 
 
@@ -205,7 +207,29 @@ def test_extract_date_information(
     assert output_data.columns.to_list() == expected_columns
 
 
-@pytest.mark.parametrize("input_date, expected_values")
-def test_standardise_features() -> bool:
-    # TODO: array_1 == pytest.approx(array_2, abs=0.1)
-    return True
+@pytest.mark.parametrize(
+    "input_data, expected_values",
+    [(pd.DataFrame({"reputation": [12.5, 15.8, 19.7, 50.2]}), [0.0, 0.08, 0.19, 1.0])],
+)
+def test_standardise_features(
+    fixture_numerical_features_config: NumericalFeaturesConfig,
+    input_data: pd.DataFrame,
+    expected_values: List[float],
+) -> bool:
+    """
+    Test the function src/data_preparation/data_preparation_utils.standardise_features.
+
+    Args:
+        fixture_numerical_features_config (NumericalFeaturesConfig): Object including numerical feature transformation configurations
+        input_data (pd.DataFrame): Input data
+        expected_values (List[float]): Expected standardised values
+    """
+    # Apply the standardisation
+    input_data = standardise_features(input_data, fixture_numerical_features_config)
+
+    # Compute column column
+    output_column_name = f"{fixture_numerical_features_config.column_name}_standardised"
+
+    assert input_data.loc[:, output_column_name].to_list() == pytest.approx(
+        expected_values, abs=0.1
+    )
