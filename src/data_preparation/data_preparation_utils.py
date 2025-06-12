@@ -200,7 +200,9 @@ def standardise_features(data: pd.DataFrame, config: NumericalFeaturesConfig) ->
             )
 
         case _:
-            logger.error("standardise_features - Unknown standardisation method: %s", column_name)
+            logger.error(
+                "standardise_features - Unknown standardisation method: %s", standardisation
+            )
             raise ValueError("Invalid standardisation method")
 
     logger.debug("standardise_features - End")
@@ -222,8 +224,8 @@ def drop_outliers(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.Dat
     logger.debug("drop_outliers - Start")
 
     # Retrieve configurations
-    column_name = config.column
-    drop_outliers_method = config.drop_outliers
+    column_name = config.column_name
+    drop_outliers_method = config.drop_outliers.method
 
     logger.info("drop_outliers - Column: %s", column_name)
 
@@ -232,6 +234,15 @@ def drop_outliers(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.Dat
             logger.info("drop_outliers - Z-score Drop Outliers approach")
 
             # Compute z-score
-            data.loc[:, f"{column_name}_z_score"] = zscore(data[column_name])
+            data.loc[:, f"{column_name}_{drop_outliers_method}"] = zscore(data[column_name])
 
-    return 1
+            # Drop outliers
+            data = data[
+                data[f"{column_name}_{drop_outliers_method}"].abs() <= config.drop_outliers.n_std
+            ]
+
+        case _:
+            logger.error("drop_outliers - Unknown drop outliers method: %s", drop_outliers_method)
+            raise ValueError("Invalid drop outliers method")
+
+    return data

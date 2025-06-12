@@ -18,6 +18,7 @@ from src.data_preparation.data_preparation_utils import (
     encode_text,
     extract_date_information,
     standardise_features,
+    drop_outliers,
 )
 from src.custom_types import (
     EmbeddingsConfig,
@@ -233,3 +234,29 @@ def test_standardise_features(
     assert input_data.loc[:, output_column_name].to_list() == pytest.approx(
         expected_values, abs=0.1
     )
+
+
+@pytest.mark.parametrize(
+    "input_data, expected_values",
+    [(pd.DataFrame({"reputation": [12.5, 15.8, 19.7, 980.2]}), [12.5, 15.8, 19.7])],
+)
+def test_drop_outliers(
+    fixture_numerical_features_config: NumericalFeaturesConfig,
+    input_data: pd.DataFrame,
+    expected_values: List[float],
+) -> bool:
+    """
+    Test the function src/data_preparation/data_preparation_utils.drop_outliers.
+
+    Args:
+        fixture_numerical_features_config (NumericalFeaturesConfig): Object including numerical feature transformation configurations
+        input_data (pd.DataFrame): Input data
+        expected_values (List[float]): Expected standardised values
+    """
+    # Apply the drop of outliers
+    input_data = drop_outliers(input_data, fixture_numerical_features_config)
+
+    # Compute column column
+    output_column_name = f"{fixture_numerical_features_config.column_name}"
+
+    assert input_data.loc[:, output_column_name].to_list() == expected_values
