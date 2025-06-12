@@ -174,6 +174,19 @@ class NanStrategy(str, Enum):
     IMPUTE = "simple_imputer"
 
 
+class OutlierConfig(BaseModel):
+    """
+    Configuration for drop outlier transformation
+
+    Attributes:
+        method (Optional[OutlierMethod]): Outlier removal method to use
+        n_std (Optional[int]): Number of standard deviations to use
+    """
+
+    method: Optional[OutlierMethod] = Field(None, description="Outlier removal method to use")
+    n_std: Optional[int] = Field(None, description="Number of standard deviations to use")
+
+
 class NumericalFeaturesConfig(BaseModel):
     """
     Configuration for numerical features transformation
@@ -189,7 +202,7 @@ class NumericalFeaturesConfig(BaseModel):
     standardisation: Optional[StandardisationMethod] = Field(
         None, description="Standardisation method to apply"
     )
-    drop_outliers: Optional[OutlierMethod] = Field(
-        None, description="Outlier removal method to use"
+    drop_outliers: Optional[OutlierConfig] = Field(
+        None, description="Outlier removal configuration to use"
     )
     nan_values: Optional[NanStrategy] = Field(None, description="Strategy to handle missing values")
