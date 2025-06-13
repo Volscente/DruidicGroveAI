@@ -261,3 +261,36 @@ def drop_outliers(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.Dat
             raise ValueError("Invalid drop outliers method")
 
     return data
+
+
+def manage_nan_values(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.DataFrame:
+    """
+    Apply the specific drop outliers method in ``config.nan_values`` on the data column ``config.column_name``
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (NumericalFeaturesConfig): Object including transformation configurations
+
+    Returns:
+        (pd.DataFrame): Output data with applied transformation
+    """
+    logger.debug("manage_nan_values - Start")
+
+    # Retrieve configurations
+    column_name = config.column_name
+    nan_values_method = config.nan_values
+
+    logger.info("manage_nan_values - Column: %s", column_name)
+
+    match nan_values_method:
+        case "drop_nan":
+            logger.info("manage_nan_values - Drop NaN values")
+
+            # Drop NaN values
+            data = data.dropna(subset=[column_name])
+
+        case _:
+            logger.error("manage_nan_values - Unknown nan values method: %s", nan_values_method)
+            raise ValueError("Invalid nan values method")
+
+    return data
