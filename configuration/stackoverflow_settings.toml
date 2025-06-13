@@ -60,9 +60,7 @@ extract_month = true
 [pytest.data_preparation.numerical_features_config]
 column_name = 'reputation'
 standardisation = 'min_max_scaler'
-drop_outliers.method = 'z_score'
-drop_outliers.n_std = 1
-nan_values = 'drop_nan'
+drop_outliers.method = 'iqr'
 
 # --------------------------------
 

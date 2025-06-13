@@ -241,6 +241,21 @@ def drop_outliers(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.Dat
                 data[f"{column_name}_{drop_outliers_method}"].abs() <= config.drop_outliers.n_std
             ]
 
+        case "iqr":
+            logger.info("drop_outliers - IQR Drop Outliers approach")
+
+            # Compute Q1 and Q3
+            q1 = data[column_name].quantile(0.25)
+            q3 = data[column_name].quantile(0.75)
+            iqr = q3 - q1
+
+            # Define the bounds
+            lower_bound = q1 - 1.5 * iqr
+            upper_bound = q3 + 1.5 * iqr
+
+            # Filter outliers
+            data = data[(data[column_name] >= lower_bound) & (data[column_name] <= upper_bound)]
+
         case _:
             logger.error("drop_outliers - Unknown drop outliers method: %s", drop_outliers_method)
             raise ValueError("Invalid drop outliers method")
