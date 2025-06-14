@@ -19,6 +19,7 @@ from src.data_preparation.data_preparation_utils import (
     extract_date_information,
     standardise_features,
     drop_outliers,
+    manage_nan_values,
 )
 from src.custom_types import (
     EmbeddingsConfig,
@@ -260,3 +261,26 @@ def test_drop_outliers(
     output_column_name = f"{fixture_numerical_features_config.column_name}"
 
     assert input_data.loc[:, output_column_name].to_list() == expected_values
+
+
+@pytest.mark.parametrize(
+    "input_data, expected_output_rows",
+    [(pd.DataFrame({"reputation": [12.5, 15.8, 19.7, None], "views": [10, 20, np.nan, 50]}), 3)],
+)
+def test_manage_nan_values(
+    fixture_numerical_features_config: NumericalFeaturesConfig,
+    input_data: pd.DataFrame,
+    expected_output_rows: int,
+) -> bool:
+    """
+    Test the function src/data_preparation/data_preparation_utils.manage_nan_values.
+
+    Args:
+        fixture_numerical_features_config (NumericalFeaturesConfig): Object including numerical feature transformation configurations
+        input_data (pd.DataFrame): Input data
+        expected_output_rows (int): Expected number of rows in the output data
+    """
+    # Apply the drop of outliers
+    input_data = manage_nan_values(input_data, fixture_numerical_features_config)
+
+    assert input_data.shape[0] == expected_output_rows
