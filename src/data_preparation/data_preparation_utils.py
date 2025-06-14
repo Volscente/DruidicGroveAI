@@ -293,4 +293,6 @@ def manage_nan_values(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd
             logger.error("manage_nan_values - Unknown nan values method: %s", nan_values_method)
             raise ValueError("Invalid nan values method")
 
+    logger.debug("manage_nan_values - End")
+
     return data
