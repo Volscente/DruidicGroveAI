@@ -296,3 +296,30 @@ def manage_nan_values(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd
     logger.debug("manage_nan_values - End")
 
     return data
+
+
+def prepare_numerical_features(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.DataFrame:
+    """
+    Apply a set of transformation to the selected column in ``config.column_name``.
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (NumericalFeaturesConfig): Set of transformation configurations
+
+    Returns:
+        (pd.DataFrame): Prepared data
+    """
+    logger.debug("prepare_numerical_features - Start")
+
+    # Apply drop outliers
+    data = drop_outliers(data, config)
+
+    # Apply nan values
+    data = manage_nan_values(data, config)
+
+    # Apply standardisation
+    data = standardise_features(data, config)
+
+    logger.debug("prepare_numerical_features - End")
+
+    return data

@@ -61,6 +61,7 @@ extract_month = true
 column_name = 'reputation'
 standardisation = 'min_max_scaler'
 drop_outliers.method = 'iqr'
+nan_values = 'drop_nan'
 
 # --------------------------------
 
