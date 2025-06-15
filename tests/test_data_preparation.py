@@ -20,6 +20,7 @@ from src.data_preparation.data_preparation_utils import (
     standardise_features,
     drop_outliers,
     manage_nan_values,
+    prepare_numerical_features,
 )
 from src.custom_types import (
     EmbeddingsConfig,
@@ -284,3 +285,38 @@ def test_manage_nan_values(
     input_data = manage_nan_values(input_data, fixture_numerical_features_config)
 
     assert input_data.shape[0] == expected_output_rows
+
+
+@pytest.mark.parametrize(
+    "input_data, expected_values",
+    [
+        (
+            pd.DataFrame(
+                {"reputation": [12.5, 15.8, 19.7, None, 800.0], "views": [10, 20, np.nan, 50, 600]}
+            ),
+            [0.0, 0.4, 1.0],
+        )
+    ],
+)
+def test_prepare_numerical_features(
+    fixture_numerical_features_config: NumericalFeaturesConfig,
+    input_data: pd.DataFrame,
+    expected_values: List[float],
+) -> bool:
+    """
+    Test the function src/data_preparation/data_preparation_utils.prepare_numerical_features.
+
+    Args:
+        fixture_numerical_features_config (NumericalFeaturesConfig): Object including numerical feature transformation configurations
+        input_data (pd.DataFrame): Input data
+        expected_values (List[float]): Expected transformed column values
+    """
+    # Apply transformations
+    input_data = prepare_numerical_features(input_data, fixture_numerical_features_config)
+
+    # Compute column column
+    output_column_name = f"{fixture_numerical_features_config.column_name}_standardised"
+
+    assert input_data.loc[:, output_column_name].to_list() == pytest.approx(
+        expected_values, abs=0.1
+    )
