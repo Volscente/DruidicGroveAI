@@ -9,6 +9,8 @@ import pandas as pd
 import pathlib
 from sentence_transformers import SentenceTransformer
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import MinMaxScaler
+from scipy.stats import zscore
 from typing import List
 
 # Import Package Modules
@@ -18,6 +20,7 @@ from src.custom_types import (
     CompressEmbeddingsConfig,
     EncodingTextConfig,
     DateExtractionConfig,
+    NumericalFeaturesConfig,
 )
 
 # Setup logger
@@ -160,5 +163,163 @@ def extract_date_information(data: pd.DataFrame, config: DateExtractionConfig) -
         data[f"{column_name}_month"] = data[column_name].dt.month
 
     logger.debug("extract_date_information - End")
+
+    return data
+
+
+def standardise_features(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.DataFrame:
+    """
+    Apply the specific standardisation method in ``config.standardisation`` on the data column ``config.column_name``
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (NumericalFeaturesConfig): Object including transformation configurations
+
+    Returns:
+        (pd.DataFrame): Output data with additional columns
+    """
+    logger.debug("standardise_features - Start")
+
+    # Retrieve configurations
+    column_name = config.column_name
+    standardisation = config.standardisation
+
+    logger.info("standardise_features - Column: %s", column_name)
+
+    # Switch based on the standardisation method
+    match standardisation:
+        case "min_max_scaler":
+            logger.info("standardise_features - MinMaxScaler standardisation approach")
+
+            # Instance the MinMaxScaler
+            min_max_scaler = MinMaxScaler()
+
+            # Apply transformation
+            data.loc[:, f"{column_name}_standardised"] = min_max_scaler.fit_transform(
+                data[[column_name]]
+            )
+
+        case _:
+            logger.error(
+                "standardise_features - Unknown standardisation method: %s", standardisation
+            )
+            raise ValueError("Invalid standardisation method")
+
+    logger.debug("standardise_features - End")
+
+    return data
+
+
+def drop_outliers(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.DataFrame:
+    """
+    Apply the specific drop outliers method in ``config.drop_outliers`` on the data column ``config.column_name``
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (NumericalFeaturesConfig): Object including transformation configurations
+
+    Returns:
+        (pd.DataFrame): Output data with additional columns
+    """
+    logger.debug("drop_outliers - Start")
+
+    # Retrieve configurations
+    column_name = config.column_name
+    drop_outliers_method = config.drop_outliers.method
+
+    logger.info("drop_outliers - Column: %s", column_name)
+
+    match drop_outliers_method:
+        case "z_score":
+            logger.info("drop_outliers - Z-score Drop Outliers approach")
+
+            # Compute z-score
+            data.loc[:, f"{column_name}_{drop_outliers_method}"] = zscore(data[column_name])
+
+            # Drop outliers
+            data = data[
+                data[f"{column_name}_{drop_outliers_method}"].abs() <= config.drop_outliers.n_std
+            ]
+
+        case "iqr":
+            logger.info("drop_outliers - IQR Drop Outliers approach")
+
+            # Compute Q1 and Q3
+            q1 = data[column_name].quantile(0.25)
+            q3 = data[column_name].quantile(0.75)
+            iqr = q3 - q1
+
+            # Define the bounds
+            lower_bound = q1 - 1.5 * iqr
+            upper_bound = q3 + 1.5 * iqr
+
+            # Filter outliers
+            data = data[(data[column_name] >= lower_bound) & (data[column_name] <= upper_bound)]
+
+        case _:
+            logger.error("drop_outliers - Unknown drop outliers method: %s", drop_outliers_method)
+            raise ValueError("Invalid drop outliers method")
+
+    return data
+
+
+def manage_nan_values(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.DataFrame:
+    """
+    Apply the specific drop outliers method in ``config.nan_values`` on the data column ``config.column_name``
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (NumericalFeaturesConfig): Object including transformation configurations
+
+    Returns:
+        (pd.DataFrame): Output data with applied transformation
+    """
+    logger.debug("manage_nan_values - Start")
+
+    # Retrieve configurations
+    column_name = config.column_name
+    nan_values_method = config.nan_values
+
+    logger.info("manage_nan_values - Column: %s", column_name)
+
+    match nan_values_method:
+        case "drop_nan":
+            logger.info("manage_nan_values - Drop NaN values")
+
+            # Drop NaN values
+            data = data.dropna(subset=[column_name])
+
+        case _:
+            logger.error("manage_nan_values - Unknown nan values method: %s", nan_values_method)
+            raise ValueError("Invalid nan values method")
+
+    logger.debug("manage_nan_values - End")
+
+    return data
+
+
+def prepare_numerical_features(data: pd.DataFrame, config: NumericalFeaturesConfig) -> pd.DataFrame:
+    """
+    Apply a set of transformation to the selected column in ``config.column_name``.
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (NumericalFeaturesConfig): Set of transformation configurations
+
+    Returns:
+        (pd.DataFrame): Prepared data
+    """
+    logger.debug("prepare_numerical_features - Start")
+
+    # Apply drop outliers
+    data = drop_outliers(data, config)
+
+    # Apply nan values
+    data = manage_nan_values(data, config)
+
+    # Apply standardisation
+    data = standardise_features(data, config)
+
+    logger.debug("prepare_numerical_features - End")
 
     return data

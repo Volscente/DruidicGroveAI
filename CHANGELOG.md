@@ -6,6 +6,18 @@
 - [x] Add Function `extract_date_information` in `src/data_preparation/data_preparation_utils.py`
 - [x] Add PyTest Fixture `fixture_date_extraction_config` in `tests/conftest.py`
 - [x] Add PyTest `test_extract_date_information` in `tests/test_data_preparation.py`
+- [x] Refactor Pydantic types in `src/custom_types.py`
+- [x] Add Pydantic `NumericalFeaturesConfig` in `src/custom_types.py`
+- [x] Add Function `standardise_features` in `src/data_preparation/data_preparation_utils.py`
+- [x] Add PyTest Fixture `fixture_numerical_features_config` in `tests/conftest.py`
+- [x] Add PyTest `test_standardise_features` in `tests/test_data_preparation.py`
+- [x] Add Pydantic `OutlierConfig` in `src/custom_types.py`
+- [x] Add Function `drop_outliers` in `src/data_preparation/data_preparation_utils.py`
+- [x] Add PyTest `test_drop_outliers` in `tests/test_data_preparation.py`
+- [x] Add Function `manage_nan_values` in `src/data_preparation/data_preparation_utils.py`
+- [x] Add PyTest `test_manage_nan_values` in `tests/test_data_preparation.py`
+- [x] Add Function `prepare_numerical_features` in `src/data_preparation/data_preparation_utils.py`
+- [x] Add PyTest `test_prepare_numerical_features` in `tests/test_data_preparation.py`
 
 # v.1.0.13
 

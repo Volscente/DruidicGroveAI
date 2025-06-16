@@ -56,6 +56,13 @@ return_tensors = 'pt'
 column_name = 'creation_date'
 extract_year = true
 extract_month = true
+
+[pytest.data_preparation.numerical_features_config]
+column_name = 'reputation'
+standardisation = 'min_max_scaler'
+drop_outliers.method = 'iqr'
+nan_values = 'drop_nan'
+
 # --------------------------------
 
 # -------- Exploratory Data Analysis --------
