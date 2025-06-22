@@ -21,6 +21,7 @@ from src.custom_types import (
     EncodingTextConfig,
     DateExtractionConfig,
     NumericalFeaturesConfig,
+    FlagFeatureConfig,
 )
 
 # Setup logger
@@ -321,5 +322,30 @@ def prepare_numerical_features(data: pd.DataFrame, config: NumericalFeaturesConf
     data = standardise_features(data, config)
 
     logger.debug("prepare_numerical_features - End")
+
+    return data
+
+
+def create_flag_feature(data: pd.DataFrame, config: FlagFeatureConfig) -> pd.DataFrame:
+    """
+    Create a flag by checking if the column is filled or not.
+
+    Args:
+        data (pd.DataFrame): Input data
+        config (FlagFeatureConfig): Configuration with input and output column names
+
+    Returns:
+        (pd.DataFrame): Output data with additional column
+    """
+    logger.debug("create_flag_feature - Start")
+
+    logger.info("create_flag_feature - Column: %s", config.column_name)
+
+    # Add flag feature column
+    data.loc[:, config.output_column_name] = (
+        data[config.column_name].isnull() | data[config.column_name] == ""
+    )
+
+    logger.debug("create_flag_feature - End")
 
     return data
