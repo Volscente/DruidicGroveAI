@@ -206,3 +206,16 @@ class NumericalFeaturesConfig(BaseModel):
         None, description="Outlier removal configuration to use"
     )
     nan_values: Optional[NanStrategy] = Field(None, description="Strategy to handle missing values")
+
+
+class FlagFeatureConfig(BaseModel):
+    """
+    Configuration for creating a flag feature
+
+    Attributes:
+        column_name (String): Name of the column to process
+        output_column_name (String): Name of the output column
+    """
+
+    column_name: str = Field(..., description="Name of the column to process")
+    output_column_name: str = Field(..., description="Name of the output column")
