@@ -1,3 +1,9 @@
+# Description
+This PR resolves the issue ... by ...
+
+# Changelog
+- [ ] Lorem Ipsum
+
 # Checklist
 ## Mandatory
 - [ ] The title of the Pull Request starts with the JIRA ticket number (if provided)
