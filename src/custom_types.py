@@ -214,6 +214,8 @@ class FlagFeatureConfig(BaseModel):
 
     Attributes:
         column_name (String): Name of the numerical column to process
+        output_column_name (String): Name of the output column
     """
 
     column_name: str = Field(..., description="Name of the column to process")
+    output_column_name: str = Field(..., description="Name of the output column")
