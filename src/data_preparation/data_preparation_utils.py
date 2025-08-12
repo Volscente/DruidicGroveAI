@@ -328,23 +328,21 @@ def prepare_numerical_features(data: pd.DataFrame, config: NumericalFeaturesConf
 
 def create_flag_feature(data: pd.DataFrame, config: FlagFeatureConfig) -> pd.DataFrame:
     """
-    Create a flag by checking if the column is filled or not.
+    Create a flag feature from the column in ``config.column_name``.
 
     Args:
         data (pd.DataFrame): Input data
-        config (FlagFeatureConfig): Configuration with input and output column names
+        config (FlagFeatureConfig): Information on the column to use
 
     Returns:
-        (pd.DataFrame): Output data with additional column
+        (pd.DataFrame): Prepared data
     """
     logger.debug("create_flag_feature - Start")
 
-    logger.info("create_flag_feature - Column: %s", config.column_name)
+    logger.info("create_flag_feature - 🏳️ Column: %s", config.column_name)
 
-    # Add flag feature column
-    data.loc[:, config.output_column_name] = (
-        data[config.column_name].isnull() | data[config.column_name] == ""
-    )
+    # Create a flag feature where the column has a value
+    data.loc[:, config.output_column_name] = data.loc[:, config.column_name].notna()
 
     logger.debug("create_flag_feature - End")
 
