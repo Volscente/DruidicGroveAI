@@ -21,6 +21,7 @@ from src.data_preparation.data_preparation_utils import (
     drop_outliers,
     manage_nan_values,
     prepare_numerical_features,
+    create_flag_feature,
 )
 from src.custom_types import (
     EmbeddingsConfig,
@@ -28,6 +29,7 @@ from src.custom_types import (
     EncodingTextConfig,
     DateExtractionConfig,
     NumericalFeaturesConfig,
+    FlagFeatureConfig,
 )
 
 
@@ -320,3 +322,30 @@ def test_prepare_numerical_features(
     assert input_data.loc[:, output_column_name].to_list() == pytest.approx(
         expected_values, abs=0.1
     )
+
+
+@pytest.mark.parametrize(
+    "input_data, config, expected_values",
+    [
+        (
+            pd.DataFrame({"name": ["James", None, "Anthony"]}),
+            FlagFeatureConfig(column_name="name", output_column_name="name_flag"),
+            [True, False, True],
+        )
+    ],
+)
+def test_create_flag_feature(
+    input_data: pd.DataFrame, config: FlagFeatureConfig, expected_values: List[float]
+) -> bool:
+    """
+    Test the function src/data_preparation/data_preparation_utils.create_flag_feature.
+
+    Args:
+        input_data (pd.DataFrame): Input data
+        config (FlagFeatureConfig): Object including flag feature transformation configurations
+        expected_values (List[float]): Expected transformed column values
+    """
+    # Compute the flag feature
+    transformed_data = create_flag_feature(input_data, config)
+
+    assert transformed_data.loc[:, config.output_column_name].to_list() == expected_values

@@ -342,7 +342,7 @@ def create_flag_feature(data: pd.DataFrame, config: FlagFeatureConfig) -> pd.Dat
     logger.info("create_flag_feature - 🏳️ Column: %s", config.column_name)
 
     # Create a flag feature where the column has a value
-    data.loc[:, config.output_column_name] = data.loc[:, config.column_name].isna()
+    data.loc[:, config.output_column_name] = data.loc[:, config.column_name].notna()
 
     logger.debug("create_flag_feature - End")
 
