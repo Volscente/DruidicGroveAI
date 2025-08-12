@@ -18,6 +18,9 @@
 - [x] Add PyTest `test_manage_nan_values` in `tests/test_data_preparation.py`
 - [x] Add Function `prepare_numerical_features` in `src/data_preparation/data_preparation_utils.py`
 - [x] Add PyTest `test_prepare_numerical_features` in `tests/test_data_preparation.py`
+- [x] Add Pydantic Type `FlagFeatureConfig` in `src/custom_types.py`
+- [x] Add function `create_flag_feature` in `src/data_preparation/data_preparation_utils.py`
+- [x] Add PyTest `test_create_flag_feature` in `tests/test_data_preparation.py`
 
 # v.1.0.13
 
