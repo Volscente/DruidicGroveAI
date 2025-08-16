@@ -210,10 +210,10 @@ class NumericalFeaturesConfig(BaseModel):
 
 class FlagFeatureConfig(BaseModel):
     """
-    Configuration for creating a flag feature
+    Configuration for flag features transformation
 
     Attributes:
-        column_name (String): Name of the column to process
+        column_name (String): Name of the numerical column to process
         output_column_name (String): Name of the output column
     """
 
