@@ -33,9 +33,9 @@ from src.custom_types import (
 )
 
 
-@pytest.mark.skip(
-    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-)
+# @pytest.mark.skip(
+#     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+# )
 @pytest.mark.parametrize(
     "input_tables, dataset_name",
     [
