@@ -1,5 +1,5 @@
 """
-The module includes Fixtures related to the module "data_preparation".".
+The module includes Fixtures related to the module "data_preparation".
 """
 
 # Import Standard Libraries
