@@ -1,9 +1,9 @@
 # -------- Configurations pytest tests --------
 [pytest]
-[pytest.client]
+[pytest.bigquery.client]
 project_id = 'deep-learning-438509'
 
-[pytest.read_query_config]
+[pytest.bigquery.read_query_config]
 query_path = 'queries/test_queries/bigquery_connector/test_read_query.sql'
 query_parameters.id.name = 'id'
 query_parameters.id.type = 'INTEGER'
@@ -12,7 +12,7 @@ query_parameters.display_name.name = 'display_name'
 query_parameters.display_name.type = 'STRING'
 query_parameters.display_name.value = 'Adam Hughes'
 
-[pytest.create_table_query_config]
+[pytest.bigquery.create_table_query_config]
 query_path = 'queries/test_queries/bigquery_connector/test_create_table_query.sql'
 query_parameters.id.name = 'id'
 query_parameters.id.type = 'INTEGER'
@@ -21,10 +21,10 @@ query_parameters.display_name.name = 'display_name'
 query_parameters.display_name.type = 'STRING'
 query_parameters.display_name.value = 'test_name'
 
-[pytest.data_preparation]
+[pytest.bigquery.data_preparation]
 dataset_name = 'dim_stackoverflow_data_model'
 
-[pytest.data_preparation.input_tables]
+[pytest.bigquery.data_preparation.input_tables]
 test_users_information.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_users_information.sql'
 test_users_information.table_name = 'test_users_information'
 test_top_rarest_badges.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_top_rarest_badges.sql'
@@ -32,7 +32,7 @@ test_top_rarest_badges.table_name = 'test_top_rarest_badges'
 test_post_answers.query_path = 'queries/test_queries/stackoverflow_data_preparation/test_post_answers.sql'
 test_post_answers.table_name = 'test_post_answers'
 
-[pytest.data_preparation.raw_dataset]
+[pytest.bigquery.data_preparation.raw_dataset]
 query_path = 'queries/test_queries/stackoverflow_data_preparation/test_raw_dataset.sql'
 
 [pytest.data_preparation.sentence_transformers_config]

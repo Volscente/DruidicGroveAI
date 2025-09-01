@@ -13,10 +13,10 @@ from src.custom_types import BigQueryClientConfig, BigQueryQueryConfig
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 
 
-class StackOverflowDataPreparation:
+class StackOverflowBigQueryDataPreparation:
     """
     The class implements a Data Preparation object for the Stack Overflow
-    Answer Score Classification use case
+    Answer Score Classification use case using BigQuery connector.
 
     Attributes:
         _logger (logging.Logger): Object used for logging purposes
