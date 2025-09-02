@@ -20,11 +20,12 @@ from src.custom_types import (
     NumericalFeaturesConfig,
 )
 
+# Retrieve the root path
+root_path = os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH")
+
 # Read the configuration file
 config = Dynaconf(
-    settings_files=[
-        pathlib.Path(__file__).parents[1] / "configuration" / "stackoverflow_settings.toml"
-    ],
+    settings_files=[pathlib.Path(root_path) / "configuration" / "stackoverflow_settings.toml"],
     environments=True,
     env="pytest",
 )

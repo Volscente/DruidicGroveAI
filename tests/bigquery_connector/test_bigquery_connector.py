@@ -12,9 +12,9 @@ from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.custom_types import BigQueryQueryConfig
 
 
-# @pytest.mark.skip(
-#     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-# )
+@pytest.mark.skip(
+    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+)
 def test_set_client(fixture_bigquery_connector: BigQueryConnector) -> bool:
     """
     Test the function
@@ -22,7 +22,7 @@ def test_set_client(fixture_bigquery_connector: BigQueryConnector) -> bool:
     by instantiating a BigQueryConnector object and check the "client" attribute
 
     Args:
-        fixture_bigquery_connector (BigQueryConnector):  BigQuery Connector object
+        fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
     """
     # Retrieve credentials
     credentials = fixture_bigquery_connector._client._credentials
@@ -62,9 +62,9 @@ def test_build_query_parameters(
     assert bigquery_parameter in built_bigquery_parameters
 
 
-@pytest.mark.skip(
-    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-)
+# @pytest.mark.skip(
+#     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+# )
 @pytest.mark.parametrize(
     "table_name, dataset_name, expected_output",
     [
@@ -81,7 +81,7 @@ def test_table_exists(
     """
     Test the function
     src/bigquery_connector/bigquery_connector.BigQueryConnector.table_exists
-    by checking combination of table_name and dataset_name
+    by checking the combination of table_name and dataset_name
 
     Args:
         fixture_bigquery_connector (BigQueryConnector): BigQuery Connector object
@@ -89,7 +89,7 @@ def test_table_exists(
         dataset_name (String): Name of the dataset in which the table is located
         expected_output (Boolean): Expected outcome of the function table_exists
     """
-    # Check if the table exist
+    # Check if the table exists
     result = fixture_bigquery_connector.table_exists(
         table_name=table_name, dataset_name=dataset_name
     )
