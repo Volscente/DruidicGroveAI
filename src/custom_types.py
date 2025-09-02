@@ -8,28 +8,6 @@ from typing import Optional, Union, List
 from pydantic import BaseModel, Field
 
 
-class GPCProjects(str, Enum):
-    """
-    Available GPC Projects
-    """
-
-    DEEP_LEARNING = "deep-learning-438509"
-
-
-class BigQueryClientConfig(BaseModel):
-    """
-    BigQuery Client configuration
-
-    Attributes:
-        project_id (GPCProjects): The Google Cloud project ID, which is
-            restricted to 'deep-learning-438509'.
-    """
-
-    project_id: GPCProjects = Field(
-        default=GPCProjects.DEEP_LEARNING, description="Project ID on Google Cloud Platform"
-    )
-
-
 class BigQueryQueryParameter(BaseModel):
     """
     BigQuery Query parameter object, including all required fields for defining the parameter
