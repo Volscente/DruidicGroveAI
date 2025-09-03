@@ -9,7 +9,7 @@ import pytest
 
 # Import Package Modules
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
-from src.custom_types import BigQueryQueryConfig
+from src.bigquery_connector.bigquery_types import BigQueryQueryConfig
 
 
 @pytest.mark.skip(

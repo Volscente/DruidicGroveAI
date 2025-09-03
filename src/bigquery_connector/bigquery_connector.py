@@ -12,7 +12,11 @@ from google.cloud import bigquery
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
-from src.custom_types import BigQueryClientConfig, BigQueryQueryParameter, BigQueryQueryConfig
+from src.bigquery_connector.bigquery_types import (
+    BigQueryClientConfig,
+    BigQueryQueryParameter,
+    BigQueryQueryConfig,
+)
 from src.general_utils.general_utils import read_file_from_path
 
 

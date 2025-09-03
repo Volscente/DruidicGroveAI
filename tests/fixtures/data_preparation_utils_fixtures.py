@@ -10,7 +10,7 @@ from dynaconf import Dynaconf
 import pytest
 
 # Import Package Modules
-from src.custom_types import (
+from src.data_preparation.data_preparation_types import (
     SentenceTransformersConfig,
     EmbeddingsConfig,
     PCAConfig,

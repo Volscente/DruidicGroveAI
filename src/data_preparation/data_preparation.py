@@ -9,7 +9,7 @@ from typing import List
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
-from src.custom_types import BigQueryClientConfig, BigQueryQueryConfig
+from src.bigquery_connector.bigquery_types import BigQueryClientConfig, BigQueryQueryConfig
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 
 

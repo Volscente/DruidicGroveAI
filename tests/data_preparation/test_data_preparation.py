@@ -23,7 +23,7 @@ from src.data_preparation.data_preparation_utils import (
     prepare_numerical_features,
     create_flag_feature,
 )
-from src.custom_types import (
+from src.data_preparation.data_preparation_types import (
     EmbeddingsConfig,
     CompressEmbeddingsConfig,
     EncodingTextConfig,

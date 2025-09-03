@@ -9,7 +9,7 @@ import pytest
 from pydantic import ValidationError
 
 # Import Package Modules
-from src.custom_types import BigQueryQueryParameter, BigQueryQueryConfig
+from src.bigquery_connector.bigquery_types import BigQueryQueryParameter, BigQueryQueryConfig
 
 
 @pytest.mark.parametrize("name, parameter_type, value", [("test_name", "test_type", "test_value")])

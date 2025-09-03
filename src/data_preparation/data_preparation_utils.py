@@ -15,7 +15,7 @@ from typing import List
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
-from src.custom_types import (
+from src.data_preparation.data_preparation_types import (
     EmbeddingsConfig,
     CompressEmbeddingsConfig,
     EncodingTextConfig,

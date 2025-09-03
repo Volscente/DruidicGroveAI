@@ -9,7 +9,7 @@ import pytest
 from dynaconf import Dynaconf
 
 # Import Package Modules
-from src.custom_types import (
+from src.bigquery_connector.bigquery_types import (
     BigQueryClientConfig,
     BigQueryQueryConfig,
     BigQueryQueryParameter,

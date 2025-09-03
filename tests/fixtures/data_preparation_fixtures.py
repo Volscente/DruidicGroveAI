@@ -10,7 +10,7 @@ from dynaconf import Dynaconf
 from typing import List
 
 # Import Package Modules
-from src.custom_types import BigQueryClientConfig, BigQueryQueryConfig
+from src.bigquery_connector.bigquery_types import BigQueryClientConfig, BigQueryQueryConfig
 from src.data_preparation.data_preparation import StackOverflowBigQueryDataPreparation
 
 # Retrieve the root path
