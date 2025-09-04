@@ -10,7 +10,7 @@ import numpy as np
 import pytest
 
 # Import Package Modules
-from src.data_preparation.data_preparation import StackOverflowDataPreparation
+from src.data_preparation.data_preparation import StackOverflowBigQueryDataPreparation
 from src.bigquery_connector.bigquery_connector import BigQueryConnector
 from src.data_preparation.data_preparation_utils import (
     generate_embeddings,
@@ -33,9 +33,9 @@ from src.data_preparation.data_preparation_types import (
 )
 
 
-@pytest.mark.skip(
-    reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
-)
+# @pytest.mark.skip(
+#     reason="This test is skipped because GCP credentials are not stored on GitHub Secret"
+# )
 @pytest.mark.parametrize(
     "input_tables, dataset_name",
     [
@@ -46,18 +46,18 @@ from src.data_preparation.data_preparation_types import (
     ],
 )
 def test_load_input_tables(
-    fixture_stackoverflow_data_preparation: StackOverflowDataPreparation,
+    fixture_stackoverflow_data_preparation: StackOverflowBigQueryDataPreparation,
     fixture_bigquery_connector: BigQueryConnector,
     input_tables: List[str],
     dataset_name: str,
 ) -> bool:
     """
     Test the function
-    src/data_preparation/data_preparation.StackOverflowDataPreparation._load_input_tables
+    src/data_preparation/data_preparation.StackOverflowBigQueryDataPreparation._load_input_tables
     by ensuring the input tables exist on BigQuery
 
     Args:
-        fixture_stackoverflow_data_preparation (StackOverflowDataPreparation): Object for data preparation
+        fixture_stackoverflow_data_preparation (StackOverflowBigQueryDataPreparation): Object for data preparation
         fixture_bigquery_connector (BigQueryConnector): Object for BigQuery connector to check if input tables exist
         input_tables (List[str]): List of input tables to check
         dataset_name (str): Name of the dataset to use
@@ -78,7 +78,7 @@ def test_load_input_tables(
     [("dim_stackoverflow_data_model", "test_raw_dataset", 2)],
 )
 def test_load_raw_dataset(
-    fixture_stackoverflow_data_preparation: StackOverflowDataPreparation,
+    fixture_stackoverflow_data_preparation: StackOverflowBigQueryDataPreparation,
     fixture_bigquery_connector: BigQueryConnector,
     dataset_name: str,
     table_name: str,
@@ -86,11 +86,11 @@ def test_load_raw_dataset(
 ) -> bool:
     """
     Test the function
-    src/data_preparation/data_preparation.StackOverflowDataPreparation._load_raw_dataset
+    src/data_preparation/data_preparation.StackOverflowBigQueryDataPreparation._load_raw_dataset
     by count the number of rows in the created table
 
     Args:
-        fixture_stackoverflow_data_preparation (StackOverflowDataPreparation): Data preparation object
+        fixture_stackoverflow_data_preparation (StackOverflowBigQueryDataPreparation): Data preparation object
         fixture_bigquery_connector (BigQueryConnector): BigQuery connector object for querying the table
         dataset_name (String): Dataset name to use
         table_name (String): Table name to use
