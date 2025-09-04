@@ -4,6 +4,7 @@ module src.logging_module.logging_module
 """
 
 # Import Standard Modules
+import os
 import pathlib
 import pytest
 
@@ -16,7 +17,10 @@ from logging_module.logging_module import get_logger
     [
         (
             "general_utils",
-            pathlib.Path(__file__).parents[1] / "src" / "logging_module" / "log_configuration.yaml",
+            pathlib.Path(pathlib.Path(os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH")))
+            / "src"
+            / "logging_module"
+            / "log_configuration.yaml",
             "general_utils",
         ),
     ],

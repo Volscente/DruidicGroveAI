@@ -4,6 +4,7 @@ module src.general_utils.general_utils
 """
 
 # Import Standard Modules
+import os
 import pathlib
 import pytest
 
@@ -15,7 +16,7 @@ from src.general_utils.general_utils import read_file_from_path
     "input_path, expected_first_line",
     [
         (
-            pathlib.Path(__file__).parents[1]
+            pathlib.Path(os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH"))
             / "queries"
             / "test_queries"
             / "bigquery_connector"
