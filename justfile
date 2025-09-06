@@ -34,3 +34,11 @@ gcloud_login:
     gcloud auth login
     gcloud config set project $PROJECT_ID
     gcloud auth application-default login
+
+# Start PostgreSQL service
+postgres_start:
+    brew services start postgresql@14
+
+# Stop PostgreSQL service
+postgres_stop:
+    brew services stop postgresql@14
