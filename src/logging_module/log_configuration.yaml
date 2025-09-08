@@ -26,3 +26,7 @@ loggers:
     level: INFO
     handlers: [ console ]
     propagate: no
+  PostgreSQLConnector:
+    level: INFO
+    handlers: [ console ]
+    propagate: no
