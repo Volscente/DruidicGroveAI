@@ -63,10 +63,7 @@ class BigQueryConnector:
 
     def _set_client(self):
         """
-        Set the attribute ``_client`` with an instance of the BigQuery Client
-
-        Returns:
-            Set ``_client`` BigQuery Client object
+        Set the attribute ``_client`` with an instance of the BigQuery Client.
         """
         self._logger.debug("_set_client - Start")
 

@@ -6,6 +6,7 @@ with the PostgreSQL database.
 # Import Standard Libraries
 import os
 from pathlib import Path
+import psycopg2
 
 # Import Package Modules
 from src.logging_module.logging_module import get_logger
@@ -41,4 +42,17 @@ class PostgreSQLConnector:
         self._client_config = client_config
 
     def _set_client(self):
-        pass
+        """
+        Set the attribute ``_client`` with an instance of the PostgreSQL Client.
+        """
+        self._logger.debug("_set_client - Start")
+
+        self._logger.info("_set_client - Set the PostgreSQL client")
+
+        # Initialise the client
+        self._client = psycopg2.connect(*self._client_config)
+
+        # TODO: Check attributes to log
+        # TODO: Set the cursor
+
+        self._logger.debug("_set_client - End")
