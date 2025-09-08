@@ -29,6 +29,11 @@ class BigQueryConnector:
         _logger (logging.Logger): Object used for logging purposes
         _client_config (BigQueryClientConfig): Configurations for instance a BigQuery Client instance
         _client (bigquery.Client): BigQuery client object
+
+    Methods:
+        execute_query_from_config: Execute a query from local path and with a certain set of parameter configurations.
+        table_exists: Check if a table exists in a dataset
+        wrap_dictionary_to_query_config: Converts a dictionary of Query Configurations into a ``BigQueryQueryConfig`` object.
     """
 
     def __init__(self, client_config: BigQueryClientConfig):
