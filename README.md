@@ -24,6 +24,12 @@ Create a `.env` file in the root folder like
 DRUIDIC_GROVE_AI_ROOT_PATH="/<absolute_path>/DruidicGroveAI"
 ```
 
+## PostgreSQL
+```bash
+# Create a new user
+createuser --interactive -P
+```
+
 ## Setup gcloud CLI
 Install `gcloud` on the local machine ([Guide](https://cloud.google.com/sdk/docs/install)).
 
