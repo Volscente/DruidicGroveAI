@@ -10,6 +10,7 @@ import pytest
 
 # Import Package Modules
 from src.postgresql_connector.postgresql_types import PostgreSQLClientConfig
+from src.postgresql_connector.postgresql_connector import PostgreSQLConnector
 
 
 # Retrieve the root path
@@ -29,7 +30,7 @@ def fixture_postgresql_client_config(
 ) -> PostgreSQLClientConfig:
     """
     Fixture for a PostgreSQLClientConfig object
-    from src/postgresql_connector/postgresql_types.py
+    from src/postgresql_connector/postgresql_types.py.
 
     Args:
         client_config (Dictionary): Configurations for a PostgreSQLClientConfig object
@@ -38,3 +39,19 @@ def fixture_postgresql_client_config(
         (PostgreSQLClientConfig): Object of PostgreSQL client configurations
     """
     return PostgreSQLClientConfig(**client_config)
+
+
+@pytest.fixture
+def fixture_postgresql_connector(
+    fixture_postgresql_client_config: PostgreSQLClientConfig,
+) -> PostgreSQLConnector:
+    """
+    Fixture for a PostgreSQLConnector object in order to connect to a PostgreSQL Database.
+
+    Args:
+        fixture_postgresql_client_config (PostgreSQLClientConfig): Client configurations
+
+    Returns:
+        (PostgreSQLConnector): Object of PostgreSQL Connector
+    """
+    return PostgreSQLConnector(client_config=fixture_postgresql_client_config)
