@@ -7,4 +7,5 @@ pytest_plugins = [
     "tests.fixtures.bigquery_fixtures",
     "tests.fixtures.data_preparation_fixtures",
     "tests.fixtures.data_preparation_utils_fixtures",
+    "tests.fixtures.postgresql_fixtures",
 ]

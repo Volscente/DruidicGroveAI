@@ -1,6 +1,6 @@
 """
 This test module includes all the tests for the
-module src.data_preparation
+module src.data_preparation.
 """
 
 # Import Standard Libraries

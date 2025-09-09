@@ -41,6 +41,9 @@ class PostgreSQLConnector:
         # Initialise attributes
         self._client_config = client_config
 
+        # Set client
+        self._set_client()
+
     def _set_client(self):
         """
         Set the attribute ``_client`` with an instance of the PostgreSQL Client.
@@ -50,6 +53,7 @@ class PostgreSQLConnector:
         self._logger.info("_set_client - Set the PostgreSQL client")
 
         # Initialise the client
+        # TODO_FIX: The PostgreSQLClientConfig does not work and it does not recognise the passed arguments.
         self._client = psycopg2.connect(*self._client_config)
 
         # TODO: Check attributes to log
