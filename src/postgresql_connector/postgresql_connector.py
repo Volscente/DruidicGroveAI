@@ -54,9 +54,11 @@ class PostgreSQLConnector:
 
         # Initialise the client
         # TODO_FIX: The PostgreSQLClientConfig does not work and it does not recognise the passed arguments.
-        self._client = psycopg2.connect(*self._client_config)
+        # TypeError: connect() takes from 0 to 3 positional arguments but 5 were given
+        self._client = psycopg2.connect(**self._client_config.model_dump())
 
         # TODO: Check attributes to log
         # TODO: Set the cursor
+        self._logger.info(f"_set_client - 🛢 Connected to Database {self._client.info.dbname}")
 
         self._logger.debug("_set_client - End")
