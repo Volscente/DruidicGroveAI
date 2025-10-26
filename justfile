@@ -13,9 +13,9 @@ lint:
   ./scripts/ruff_lint.sh
 
 # SQLFluff
-lint_sql file="./queries":
+lint_sql file="./queries" dialect="postgres":
   # SQL Fix and lint
-  ./scripts/sqlfluff_fix_and_lint.sh {{file}}
+  ./scripts/sqlfluff_fix_and_lint.sh {{file}} {{dialect}}
 
 # Run pre-commit
 pre:
