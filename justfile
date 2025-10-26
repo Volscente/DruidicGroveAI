@@ -28,3 +28,9 @@ test:
 # Launch Jupyter Lab
 jupy:
   uv run jupyter lab
+
+# Login with gcloud
+gcloud_login:
+    gcloud auth login
+    gcloud config set project $PROJECT_ID
+    gcloud auth application-default login
