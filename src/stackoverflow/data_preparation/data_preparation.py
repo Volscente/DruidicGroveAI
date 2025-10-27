@@ -13,5 +13,5 @@ logging.basicConfig(
 )
 
 
-class AnswerClassification:
+class AnswerScoreDataPreparator:
     pass
