@@ -10,14 +10,15 @@ fi
 
 # Assign path to fix & lint
 file="$1"
+dialect="$2"
 
 echo
 echo "-------- SQLFluff Fix & Lint --------"
 echo
 
 # Fix & lint
-sqlfluff fix --dialect bigquery --exclude-rules "LT05, AM04" "$file" \
-&& sqlfluff lint --dialect bigquery --exclude-rules "LT05, AM04" "$file"
+sqlfluff fix --dialect "$dialect" --exclude-rules "LT05, AM04" "$file" \
+&& sqlfluff lint --dialect "$dialect" --exclude-rules "LT05, AM04" "$file"
 
 echo
 echo "----------------------------------------"
