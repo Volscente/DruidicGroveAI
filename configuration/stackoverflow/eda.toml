@@ -1,6 +1,3 @@
-# -------- Configurations pytest tests --------
-# --------------------------------
-
 # -------- Exploratory Data Analysis --------
 [eda]
 read_local = true
