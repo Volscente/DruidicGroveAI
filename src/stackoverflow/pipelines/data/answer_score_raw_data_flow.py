@@ -23,3 +23,8 @@ class AnswerScoreRawDataFlow(FlowSpec):
     @step
     def end(self):
         print("✅ StackOverflow Badge Classification raw data created.")
+
+
+if __name__ == "__main__":
+    # TODO: It does not work if I do not add this!
+    AnswerScoreRawDataFlow()
