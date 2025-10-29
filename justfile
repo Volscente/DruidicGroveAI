@@ -34,3 +34,9 @@ gcloud_login:
     gcloud auth login
     gcloud config set project $PROJECT_ID
     gcloud auth application-default login
+
+# -------- StackOverflow Answer Classification use Case --------
+# Execute the Raw Data Metaflow pipeline
+answer_raw_data:
+    uv run python -m src.stackoverflow.pipelines.data.answer_score_raw_data_flow run
+# --------------------------------------------------------------

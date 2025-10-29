@@ -26,5 +26,4 @@ class AnswerScoreRawDataFlow(FlowSpec):
 
 
 if __name__ == "__main__":
-    # TODO: It does not work if I do not add this!
     AnswerScoreRawDataFlow()
