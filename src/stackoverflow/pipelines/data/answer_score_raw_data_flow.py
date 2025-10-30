@@ -8,6 +8,7 @@ import os
 import logging
 from pathlib import Path
 from metaflow import FlowSpec, step
+from dynaconf import Dynaconf
 
 # Setup logging
 logging.basicConfig(
@@ -29,16 +30,31 @@ class AnswerScoreRawDataFlow(FlowSpec):
             self.root_path = Path(os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH"))
             logging.info(f"🛤️  Root path: {self.root_path}")
 
-        self.next(self.end)
+        self.next(self.load_configuration)
 
-    # @step
-    # def load_configuration(self):
-    #     # Read the configuration file
-    #     config = Dynaconf(
-    #         settings_files=[root_path / "configuration" / "datagrimorium_settings.toml"],
-    #         environments=True,
-    #         env="pytest",
-    #     )
+    @step
+    def load_configuration(self):
+        # Read the configuration file
+        self.config = Dynaconf(
+            settings_files=[
+                self.root_path / "configuration" / "stackoverflow" / "raw_data_layer.toml"
+            ],
+            environments=True,
+            env="raw_data_layer",
+        )
+
+        self.next(self.download_data, foreach="config")
+
+    @step
+    def download_data(self):
+        logging.info(self.input)
+        self.next(self.write_data)
+
+    @step
+    def write_data(self, inputs):
+        # TODO: the writing has to be done in parallel, this is just for testing.
+        print(inputs)
+        self.next(self.end)
 
     @step
     def end(self):
