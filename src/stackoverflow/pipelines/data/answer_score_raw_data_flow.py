@@ -19,14 +19,14 @@ logging.basicConfig(
 class AnswerScoreRawDataFlow(FlowSpec):
     @step
     def start(self):
-        logging.info("🏁 Starting AnswerScoreRawDataFlow")
+        logging.info("🏁  Starting AnswerScoreRawDataFlow")
 
         # Retrieve the root path
         if os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH") is None:
-            raise ValueError("🚨 DRUIDIC_GROVE_AI_ROOT_PATH environment variable is not set.")
+            raise ValueError("🚨  DRUIDIC_GROVE_AI_ROOT_PATH environment variable is not set.")
         else:
             self.root_path = Path(os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH"))
-            logging.info(f"🛤️ Root path: {self.root_path}")
+            logging.info(f"🛤️  Root path: {self.root_path}")
 
         self.next(self.end)
 
