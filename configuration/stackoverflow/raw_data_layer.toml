@@ -1,0 +1,4 @@
+[raw_data_layer]
+[user_information]
+query_path = 'queries/stackoverflow/data_preparation/raw_data_layer/user_information.sql'
+local_path = './user_information.csv'
