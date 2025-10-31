@@ -43,7 +43,10 @@ class AnswerScoreRawDataFlow(FlowSpec):
             env="raw_data_layer",
         )
 
-        self.next(self.download_data, foreach="config")
+        # List of tables
+        self.raw_tables = list(self.config.as_dict().keys())
+
+        self.next(self.download_data, foreach="raw_tables")
 
     @step
     def download_data(self):
