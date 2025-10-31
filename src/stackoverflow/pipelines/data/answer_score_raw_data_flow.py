@@ -21,6 +21,9 @@ logging.basicConfig(
 class AnswerScoreRawDataFlow(FlowSpec):
     @step
     def start(self):
+        """
+        Set the root path for the Raw Data Flow.
+        """
         logging.info("🏁  Starting AnswerScoreRawDataFlow")
 
         # Retrieve the root path
@@ -34,6 +37,9 @@ class AnswerScoreRawDataFlow(FlowSpec):
 
     @step
     def load_configuration(self):
+        """
+        Load the configuration for the Raw Data Flow.
+        """
         # Read the configuration file
         self.config = Dynaconf(
             settings_files=[
@@ -43,6 +49,8 @@ class AnswerScoreRawDataFlow(FlowSpec):
             env="raw_data_layer",
         ).as_dict()
 
+        # TODO: Setup BigQuery connector
+
         # List of tables
         self.raw_tables = list(self.config.keys())
 
@@ -50,7 +58,11 @@ class AnswerScoreRawDataFlow(FlowSpec):
 
     @step
     def download_data(self):
-        logging.info(self.input)
+        """
+        Download the data for the Raw Data layer from each table.
+        """
+        logging.info(f"📖  Read data for the Raw Table: {self.input.lower()}")
+
         self.next(self.write_data)
 
     @step
