@@ -122,7 +122,7 @@ wheels = [
 
 [[package]]
 name = "data-grimorium"
-version = "1.0.3"
+version = "1.0.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "db-dtypes" },
@@ -134,9 +134,9 @@ dependencies = [
     { name = "scikit-learn" },
     { name = "sentence-transformers" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/55/77/cae2947b8b148c21f08541e53c65acb41161ac3e4dcae9a13c77fe132b90/data_grimorium-1.0.3.tar.gz", hash = "sha256:1e95190f6c286ecbf1f57759113f2b421c9a352b951a630f729cebd37ea215e5", size = 24980, upload-time = "2025-10-30T18:33:59.017Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b3/79/9c1f5da72944391cd3ec4ad78195ee8985be7b57a2942b2a93fee108b540/data_grimorium-1.0.4.tar.gz", hash = "sha256:2bfe95e44138f3c97d9643c2603f6851eb66d0bbb9b0ea44a73f9d0c82600d3a", size = 24944, upload-time = "2025-11-01T14:35:05.934Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/96/cd/adabd26de75c618a09e28a1b2b3e0d2f09575d3e6ccca9f1605ba62828d2/data_grimorium-1.0.3-py3-none-any.whl", hash = "sha256:d9e6dfbf2daf1f257aec0d7900ccd09944955e51a2ab7204fdb2d59471a04dec", size = 26585, upload-time = "2025-10-30T18:33:58.145Z" },
+    { url = "https://files.pythonhosted.org/packages/c1/a3/b4bd2b611ea3538620026a2287cae10113fe78321845c49f7ba1e94f3612/data_grimorium-1.0.4-py3-none-any.whl", hash = "sha256:668e3c9b97f39d213f81a47212645d8ea6e0a27231ce2d5a508feedbdd36d1e2", size = 26574, upload-time = "2025-11-01T14:35:04.928Z" },
 ]
 
 [[package]]
@@ -179,7 +179,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "data-grimorium", specifier = ">=1.0.3" },
+    { name = "data-grimorium", specifier = ">=1.0.4" },
     { name = "metaflow", specifier = ">=2.19.4" },
 ]
 
