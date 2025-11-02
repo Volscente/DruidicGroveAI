@@ -46,7 +46,7 @@ class AnswerScoreDataPreparator:
             BQClientConfig(project_id=os.getenv("PROJECT_ID")), root_path=self._root_path
         )
 
-    def _download_raw_data(self, query_config: dict) -> None:
+    def download_raw_data(self, query_config: dict) -> None:
         """
         Download raw data from BigQuery and save it to local files.
 
