@@ -8,9 +8,9 @@ import os
 import logging
 from pathlib import Path
 from data_grimorium.bigquery_connector.bigquery_connector import BigQueryConnector
-from data_grimorium.bigquery_connector.bigquery_types import (
-    BQClientConfig,
-)
+from data_grimorium.bigquery_connector.bigquery_types import BQClientConfig
+from data_grimorium.postgresql_connector.postgresql_connector import PostgreSQLConnector
+from data_grimorium.postgresql_connector.postgresql_types import PostgreSQLClientConfig
 
 
 # Setup logging
@@ -41,9 +41,21 @@ class AnswerScoreDataPreparator:
         # Initialise attributes
         self._root_path = Path(os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH"))
 
-        # # Initialise BigQuery Connector
+        # Initialise BigQuery Connector
         self._bigquery_connector = BigQueryConnector(
             BQClientConfig(project_id=os.getenv("PROJECT_ID")), root_path=self._root_path
+        )
+
+        # Initialise PostgreSQL Connector
+        self.postgres_connector = PostgreSQLConnector(
+            client_config=PostgreSQLClientConfig(
+                dbname=os.getenv("POSTGRESQL_DB"),
+                user=os.getenv("POSTGRESQL_USER"),
+                password=os.getenv("POSTGRESQL_PASSWORD"),
+                host=os.getenv("POSTGRESQL_HOST"),
+                port=os.getenv("POSTGRESQL_PORT"),
+            ),
+            root_path=self._root_path,
         )
 
     def download_raw_data(self, query_config: dict) -> None:
@@ -70,3 +82,13 @@ class AnswerScoreDataPreparator:
 
         # Write data
         data.to_csv(save_path, index=False)
+
+    def upload_raw_data(self) -> None:
+        """
+        Upload raw data to PostgreSQL.
+
+        Args:
+
+        Returns:
+
+        """
