@@ -60,11 +60,18 @@ class AnswerScoreRawDataFlow(FlowSpec):
         """
         Download the data for the Raw Data layer from each table.
         """
-        # Instance the Data Preparator
-        data_preparator = AnswerScoreDataPreparator()
+        # Compute file path
+        file_path = self.root_path / self.config[self.input]["local_path"]
 
-        # Download data
-        data_preparator._download_raw_data(query_config=self.config[self.input])
+        # Check if the data are already present, otherwise download them
+        if file_path.exists():
+            logging.info(f"CSV file {file_path} already exists.")
+        else:
+            # Instance the Data Preparator
+            data_preparator = AnswerScoreDataPreparator()
+
+            # Download the data
+            data_preparator._download_raw_data(query_config=self.config[self.input])
 
         self.next(self.upload_data)
 

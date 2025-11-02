@@ -2,3 +2,7 @@
 [raw_data_layer.user_information]
 query_path = 'queries/stackoverflow/data_preparation/raw_data_layer/user_information.sql'
 local_path = './user_information.csv'
+
+[raw_data_layer.badges]
+query_path = 'queries/stackoverflow/data_preparation/raw_data_layer/badges.sql'
+local_path = './badges.csv'

@@ -54,15 +54,17 @@ class AnswerScoreDataPreparator:
             query_config (dict): Query configuration for the raw data to download and upload to PostgreSQL.
         """
         # Wrap dictionary to query parameters
-        raw_data_query = self._bigquery_connector.wrap_dictionary_to_query_config(query_config)
+        raw_data_query_config = self._bigquery_connector.wrap_dictionary_to_query_config(
+            query_config
+        )
 
-        logging.info(f"📥 Downloading raw data from {raw_data_query.table_name}")
+        logging.info(f"📥 Downloading raw data from {raw_data_query_config.table_name}")
 
         # Download the raw data
-        data = self._bigquery_connector.execute_query_from_config(raw_data_query)
+        data = self._bigquery_connector.execute_query_from_config(raw_data_query_config)
 
         # Local path where to save data
-        save_path = self._root_path / raw_data_query.local_path
+        save_path = self._root_path / raw_data_query_config.local_path
 
         logging.info(f"💾 Saving raw data to {save_path}")
 
