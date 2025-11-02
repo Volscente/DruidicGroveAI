@@ -9,7 +9,6 @@ import logging
 from pathlib import Path
 from data_grimorium.bigquery_connector.bigquery_connector import BigQueryConnector
 from data_grimorium.bigquery_connector.bigquery_types import (
-    BQQueryConfig,
     BQClientConfig,
 )
 
@@ -38,26 +37,29 @@ class AnswerScoreDataPreparator:
     def __init__(self):
         """
         Initialize the class.
-
-        Args:
-
         """
         # Initialise attributes
         self._root_path = Path(os.getenv("DRUIDIC_GROVE_AI_ROOT_PATH"))
 
-    def _download_raw_data(self, raw_data_query: BQQueryConfig) -> None:
+        # # Initialise BigQuery Connector
+        self._bigquery_connector = BigQueryConnector(
+            BQClientConfig(project_id=os.getenv("PROJECT_ID")), root_path=self._root_path
+        )
+
+    def _download_raw_data(self, query_config: dict) -> None:
         """
         Download raw data from BigQuery and save it to local files.
+
+        Args:
+            query_config (dict): Query configuration for the raw data to download and upload to PostgreSQL.
         """
-        # Initialise BigQuery Connector
-        connector = BigQueryConnector(
-            BQClientConfig(project_id="deep-learning-438509"), root_path=self._root_path
-        )
+        # Wrap dictionary to query parameters
+        raw_data_query = self._bigquery_connector.wrap_dictionary_to_query_config(query_config)
 
         logging.info(f"📥 Downloading raw data from {raw_data_query.table_name}")
 
         # Download the raw data
-        data = connector.execute_query_from_config(raw_data_query)
+        data = self._bigquery_connector.execute_query_from_config(raw_data_query)
 
         # Local path where to save data
         save_path = self._root_path / raw_data_query.local_path

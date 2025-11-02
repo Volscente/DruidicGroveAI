@@ -9,8 +9,7 @@ import logging
 from pathlib import Path
 from metaflow import FlowSpec, step
 from dynaconf import Dynaconf
-from data_grimorium.bigquery_connector.bigquery_connector import BigQueryConnector
-from data_grimorium.bigquery_connector.bigquery_types import BQClientConfig
+from stackoverflow.data_preparation.data_preparation import AnswerScoreDataPreparator
 
 # Setup logging
 logging.basicConfig(
@@ -61,26 +60,18 @@ class AnswerScoreRawDataFlow(FlowSpec):
         """
         Download the data for the Raw Data layer from each table.
         """
-        # setup BigQuery Connector
-        connector = BigQueryConnector(
-            client_config=BQClientConfig(project_id=os.getenv("PROJECT_ID")),
-            root_path=self.root_path,
-        )
-
-        logging.info(f"📖  Read data for the Raw Table: {self.input.lower()}")
+        # Instance the Data Preparator
+        data_preparator = AnswerScoreDataPreparator()
 
         # Download data
-        query_config = connector.wrap_dictionary_to_query_config(self.config[self.input])
-        data = connector.execute_query_from_config(query_config)
+        data_preparator._download_raw_data(query_config=self.config[self.input])
 
-        data.to_csv(self.root_path / self.config[self.input]["local_path"], index=False)
-
-        self.next(self.write_data)
+        self.next(self.upload_data)
 
     @step
-    def write_data(self, inputs):
-        # TODO: the writing has to be done in parallel, this is just for testing.
-        print(inputs)
+    def upload_data(self, inputs):
+        logging.info(inputs)
+
         self.next(self.end)
 
     @step
