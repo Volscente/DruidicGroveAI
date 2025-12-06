@@ -36,7 +36,7 @@ gcloud_login:
     gcloud auth application-default login
 
 # ------------------ StackOverflow Answer Classification use Case ------------------
-# Execute the Raw Data Metaflow pipeline
+# Execute the Raw Data Metaflow pipeline. Available commands: 'run', 'show'
 answer_raw_data command:
   uv run python -m src.stackoverflow.pipelines.data.answer_score_raw_data_flow {{command}}
 # ----------------------------------------------------------------------------------
