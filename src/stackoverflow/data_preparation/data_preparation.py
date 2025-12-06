@@ -6,6 +6,7 @@ steps for the StackOverflow use cases.
 # Import Standard Modules
 import os
 import logging
+import pandas as pd
 from pathlib import Path
 from data_grimorium.bigquery_connector.bigquery_connector import BigQueryConnector
 from data_grimorium.bigquery_connector.bigquery_types import BQClientConfig
@@ -23,15 +24,17 @@ logging.basicConfig(
 
 class AnswerScoreDataPreparator:
     """
-    The class implements a Data Preparator for the
-    StackOverflow Answer Score Classification
-    use case.
+    The class implements a Data Preparator for the StackOverflow Answer Score
+    Classification use case. It includes functions for downloading the raw data,
+    upload them into a dedicated PostgreSQL database and transform the data in order to
+    make them ready for the model training.
 
     Attributes:
         _raw_data_queries (List[BQQueryConfig]): List of raw data queries to download
         _root_path (Path): Root path of the package
 
     Methods:
+        download_raw_data: Download raw data from BigQuery and save it to local .csv files.
     """
 
     def __init__(self):
@@ -58,16 +61,16 @@ class AnswerScoreDataPreparator:
             root_path=self._root_path,
         )
 
-    def download_raw_data(self, query_config: dict) -> None:
+    def download_raw_data(self, download_query_config: dict) -> None:
         """
-        Download raw data from BigQuery and save it to local files.
+        Download raw data from BigQuery and save it to local .csv files.
 
         Args:
-            query_config (dict): Query configuration for the raw data to download and upload to PostgreSQL.
+            download_query_config (dict): query path, table name and local path where to save .CSV file.
         """
         # Wrap dictionary to query parameters
         raw_data_query_config = self._bigquery_connector.wrap_dictionary_to_query_config(
-            query_config
+            download_query_config
         )
 
         logging.info(f"📥 Downloading raw data from {raw_data_query_config.table_name}")
@@ -83,12 +86,26 @@ class AnswerScoreDataPreparator:
         # Write data
         data.to_csv(save_path, index=False)
 
-    def upload_raw_data(self) -> None:
+    def upload_raw_data(self, upload_query_config: dict) -> None:
         """
-        Upload raw data to PostgreSQL.
+        Upload raw data to PostgreSQL from local .csv files.
 
         Args:
-
-        Returns:
-
+            upload_query_config (dict): Local paths to the .csv files.
         """
+        logging.info(f"🚀 Uploading raw data into table {upload_query_config['table_name']}")
+
+        # Check if the table already exists
+        if not self.postgres_connector.table_exists(upload_query_config["table_name"]):
+            # Full path to .csv file
+            file_path = self._root_path / upload_query_config["local_path"]
+
+            logging.info(f"📖 Reading from {file_path.as_posix()}")
+
+            # Read data
+            data_to_upload = pd.read_csv(file_path)
+
+            # Upload data
+            self.postgres_connector.upload_dataframe(
+                data=data_to_upload, table_name=upload_query_config["table_name"], replace=False
+            )
