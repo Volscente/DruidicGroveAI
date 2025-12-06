@@ -41,6 +41,8 @@ class AnswerScoreRawDataFlow(FlowSpec):
         """
         Load the configuration for the Raw Data Flow.
         """
+        logging.info("🛠️  Loading Configuration")
+
         # Read the configuration file
         self.config = Dynaconf(
             settings_files=[
@@ -65,25 +67,37 @@ class AnswerScoreRawDataFlow(FlowSpec):
 
         # Check if the data are already present, otherwise download them
         if file_path.exists():
-            logging.info(f"CSV file {file_path} already exists.")
+            logging.info(f"⏭️  .csv file {file_path} already exists.")
         else:
             # Instance the Data Preparator
-            data_preparator = AnswerScoreDataPreparator()
+            self.data_preparator = AnswerScoreDataPreparator()
 
             # Download the data
-            data_preparator._download_raw_data(query_config=self.config[self.input])
+            self.data_preparator.download_raw_data(download_query_config=self.config[self.input])
 
         self.next(self.upload_data)
 
     @step
-    def upload_data(self, inputs):
-        logging.info(inputs)
+    def upload_data(self):
+        """
+        Upload each downloaded .csv file into PostgreSQL database.
+        """
+        self.data_preparator.upload_raw_data(upload_query_config=self.config[self.input])
+
+        self.next(self.join_data)
+
+    @step
+    def join_data(self, inputs):
+        """
+        Join the inputs.
+        """
+        logging.info("🎯  Tables created!")
 
         self.next(self.end)
 
     @step
     def end(self):
-        print("✅ StackOverflow Badge Classification raw data created.")
+        logging.info("✅  StackOverflow Badge Classification raw data created.")
 
 
 if __name__ == "__main__":
