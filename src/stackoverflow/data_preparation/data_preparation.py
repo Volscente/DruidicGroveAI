@@ -66,7 +66,7 @@ class AnswerScoreDataPreparator:
         Download raw data from BigQuery and save it to local .csv files.
 
         Args:
-            download_query_config (dict): query path, table name and local path where to save .CSV file.
+            download_query_config (dict): query_path, table_name and local_path where to save .CSV file.
         """
         # Wrap dictionary to query parameters
         raw_data_query_config = self._bigquery_connector.wrap_dictionary_to_query_config(

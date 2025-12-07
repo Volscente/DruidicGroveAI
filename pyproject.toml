@@ -8,7 +8,7 @@ authors = [
 requires-python = ">=3.13"
 dependencies = [
     "data-grimorium>=1.0.5",
-    "metaflow>=2.19.6",
+    "metaflow>=2.19.13",
 ]
 readme = "README.md"
 license = "GPL-3.0"
@@ -30,7 +30,10 @@ Changelog = "https://github.com/Volscente/DruidicGroveAI/blob/main/CHANGELOG.md"
 
 [dependency-groups]
 dev = [
-    "pre-commit>=4.3.0",
+    "pre-commit>=4.5.0",
+    "pytest>=9.0.2",
+    "pytest-dotenv>=0.5.2",
+    "ruff>=0.14.8",
 ]
 
 [tool.pytest.ini_options]
