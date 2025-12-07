@@ -86,13 +86,19 @@ class AnswerScoreDataPreparator:
         # Write data
         data.to_csv(save_path, index=False)
 
-    def upload_raw_data(self, upload_query_config: dict) -> None:
+    def upload_raw_data(self, upload_query_config: dict) -> int:
         """
         Upload raw data to PostgreSQL from local .csv files.
 
         Args:
             upload_query_config (dict): table_name and local_path where the .csv data are stored.
+
+        Returns:
+            (int): Number of rows uploaded.
         """
+        # Initialise number of returned rows
+        rows = 0
+
         logging.info(f"🚀 Uploading raw data into table {upload_query_config['table_name']}")
 
         # Check if the table already exists
@@ -106,6 +112,11 @@ class AnswerScoreDataPreparator:
             data_to_upload = pd.read_csv(file_path)
 
             # Upload data
-            self.postgres_connector.upload_dataframe(
+            rows = self.postgres_connector.upload_dataframe(
                 data=data_to_upload, table_name=upload_query_config["table_name"], replace=False
             )
+
+        else:
+            logging.info(f"⏭️ Table {upload_query_config['table_name']} already exists.")
+
+        return rows
