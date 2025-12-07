@@ -91,7 +91,7 @@ class AnswerScoreDataPreparator:
         Upload raw data to PostgreSQL from local .csv files.
 
         Args:
-            upload_query_config (dict): Local paths to the .csv files.
+            upload_query_config (dict): table_name and local_path where the .csv data are stored.
         """
         logging.info(f"🚀 Uploading raw data into table {upload_query_config['table_name']}")
 
