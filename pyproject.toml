@@ -9,6 +9,7 @@ requires-python = ">=3.13"
 dependencies = [
     "data-grimorium>=1.0.5",
     "metaflow>=2.19.13",
+    "pandas-stubs~=2.3.3",
 ]
 readme = "README.md"
 license = "GPL-3.0"

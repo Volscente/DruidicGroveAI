@@ -17,7 +17,7 @@ from src.stackoverflow.data_preparation.data_preparation import AnswerScoreDataP
             {
                 "query_path": "data/test/data_preparation/test_download_raw_data_query.sql",
                 "table_name": "test_table",
-                "local_path": "data/test/test_download_raw_data.csv",
+                "local_path": "data/test/data_preparation/test_download_raw_data.csv",
             },
             1,
         )
@@ -29,7 +29,8 @@ def test_download_raw_data(
     expected_rows: int,
 ) -> bool:
     """
-    Test the stackoverflow/data_preparation/data_preparation.AnswerScoreDataPreparator.download_raw_data function.
+    Test the stackoverflow/data_preparation/data_preparation.AnswerScoreDataPreparator.download_raw_data function
+    by reading data through a SQL query file and compare the retrieved number of rows.
 
     Args:
         fixture_answer_score_data_preparator (AnswerScoreDataPreparator): Object for data preparation.
@@ -48,3 +49,36 @@ def test_download_raw_data(
 
     # Check the number of rows
     assert data.shape[0] == expected_rows
+
+
+@pytest.mark.parametrize(
+    "download_query_config, expected_rows",
+    [
+        (
+            {
+                "query_path": "data/test/data_preparation/test_download_raw_data_query.sql",
+                "table_name": "test_table",
+                "local_path": "data/test/data_preparation/test_download_raw_data.csv",
+            },
+            1,
+        )
+    ],
+)
+def test_upload_raw_data(
+    fixture_answer_score_data_preparator: AnswerScoreDataPreparator,
+    download_query_config: dict,
+    expected_rows: int,
+) -> bool:
+    """
+    Test the stackoverflow/data_preparation/data_preparation.AnswerScoreDataPreparator.upload_raw_data function
+    by uploading a local .csv file into the PostgreSQL database.
+
+    Args:
+        fixture_answer_score_data_preparator (AnswerScoreDataPreparator): Object for data preparation.
+        download_query_config (dict): query_path, table_name and local_path with the .csv file location.
+        expected_rows (int): Number of uploaded rows.
+    """
+    # Upload the data
+    rows = fixture_answer_score_data_preparator.upload_raw_data(download_query_config)
+
+    assert rows == expected_rows

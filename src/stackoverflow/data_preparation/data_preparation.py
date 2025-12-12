@@ -102,7 +102,7 @@ class AnswerScoreDataPreparator:
         logging.info(f"🚀 Uploading raw data into table {upload_query_config['table_name']}")
 
         # Check if the table already exists
-        if not self.postgres_connector.table_exists(upload_query_config["table_name"]):
+        if not self.postgres_connector.tables_exists(upload_query_config["table_name"]):
             # Full path to .csv file
             file_path = self._root_path / upload_query_config["local_path"]
 
