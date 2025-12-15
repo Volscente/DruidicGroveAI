@@ -3,8 +3,6 @@
  * Such users performed their last access between @last_access_starts_at and @last_access_ends_at
  * from the maximum last access datetime of all users.
  */
-CREATE OR REPLACE TABLE `deep-learning-438509.curated_stackoverflow_data_model.users_information` AS
-
 -- Select most relevant users with last access date in a given interval
 WITH _most_recent_last_access_users AS (
     SELECT users.*

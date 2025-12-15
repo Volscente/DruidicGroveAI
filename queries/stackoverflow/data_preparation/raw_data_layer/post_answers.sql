@@ -1,17 +1,21 @@
 /*
- * Create a table including information from post answers for users in the table
- * deep-learning-438509.curated_stackoverflow_data_model.users_information.
+ * Create a table including information from post answers for relevant users
+ * Such users performed their last access between @last_access_starts_at and @last_access_ends_at.
  * They are retrieve from the time interval between @creation_date_start and @creation_date_end.
  * NOTE: The latest post answer's creation date is 25/09/2022 (Checked on 04/12/2024)
  * NOTE: 'owner_user_id' is the 'id' column of the user who posted the answer
  */
-CREATE OR REPLACE TABLE `deep-learning-438509.curated_stackoverflow_data_model.post_answers` AS
-
 -- Retrieve relevant users IDs
 WITH _users AS (
-    SELECT user_id
+    SELECT users.id AS user_id
     FROM
-        `deep-learning-438509.curated_stackoverflow_data_model.users_information`
+        `bigquery-public-data.stackoverflow.users` AS users
+    WHERE
+        -- Filter for last access date
+        users.last_access_date BETWEEN @last_access_starts_at AND @last_access_ends_at
+        -- Filter for relevant information filled
+        AND users.display_name IS NOT NULL
+        AND users.location IS NOT NULL
 ),
 
 -- Retrieve post answers for the relevant users
