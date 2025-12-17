@@ -345,6 +345,7 @@ dev = [
     { name = "pre-commit" },
     { name = "pytest" },
     { name = "pytest-dotenv" },
+    { name = "python-dotenv" },
     { name = "ruff" },
     { name = "seaborn" },
 ]
@@ -365,6 +366,7 @@ dev = [
     { name = "pre-commit", specifier = ">=4.5.0" },
     { name = "pytest", specifier = ">=9.0.2" },
     { name = "pytest-dotenv", specifier = ">=0.5.2" },
+    { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "ruff", specifier = ">=0.14.8" },
     { name = "seaborn", specifier = ">=0.13.2" },
 ]

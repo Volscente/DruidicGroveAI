@@ -1,16 +1,9 @@
-# -------- Exploratory Data Analysis --------
-[eda]
-read_local = true
-
 [eda.bigquery_client]
 project_id = 'deep-learning-438509'
 
-[eda.relevant_users]
-query_path = 'queries/stackoverflow/eda/users/relevant_users.sql'
-query_parameters.hours_interval.name = 'hours_interval'
-query_parameters.hours_interval.type = 'INTEGER'
-query_parameters.hours_interval.value = 8
-local_path = 'data/stackoverflow/eda/relevant_users.csv'
+[eda.users_query]
+query_path = 'queries/stackoverflow/eda/users.sql'
+table_name = 'Users'
 
 [eda.badges_relevant_users]
 query_path = 'queries/stackoverflow/eda/badges/badges_relevant_users.sql'
@@ -32,53 +25,3 @@ query_parameters.hours_interval.name = 'months_interval'
 query_parameters.hours_interval.type = 'INTEGER'
 query_parameters.hours_interval.value = 4
 local_path = 'data/stackoverflow/eda/post_answers_relevant_users.csv'
-# -------------------------------------------
-
-# ------------ Data Preparation -------------
-[data_preparation]
-read_local = true
-dataset_name = 'curated_stackoverflow_data_model'
-
-[data_preparation.bigquery_client]
-project_id = 'deep-learning-438509'
-
-[data_preparation.input_tables.top_rarest_badges]
-query_path = 'queries/stackoverflow/data_preparation/top_rarest_badges.sql'
-query_parameters.date_start.name = 'date_start'
-query_parameters.date_start.type = 'DATE'
-query_parameters.date_start.value = '2013-01-01'
-query_parameters.date_end.name = 'date_end'
-query_parameters.date_end.type = 'DATE'
-query_parameters.date_end.value = '2023-12-31'
-query_parameters.min_users_earned.name = 'min_users_earned'
-query_parameters.min_users_earned.type = 'INTEGER'
-query_parameters.min_users_earned.value = '20'
-query_parameters.top_rarest_badges.name = 'top_rarest_badges'
-query_parameters.top_rarest_badges.type = 'INTEGER'
-query_parameters.top_rarest_badges.value = '100'
-local_path = 'data/stackoverflow/data_preparation/top_rarest_badges.sql.csv'
-
-[data_preparation.input_tables.users_information]
-query_path = 'queries/stackoverflow/data_preparation/users_information.sql'
-query_parameters.last_access_starts_at.name = 'last_access_starts_at'
-query_parameters.last_access_starts_at.type = 'TIMESTAMP'
-query_parameters.last_access_starts_at.value = '2022-09-24 21:55:00 UTC'
-query_parameters.last_access_ends_at.name = 'last_access_ends_at'
-query_parameters.last_access_ends_at.type = 'TIMESTAMP'
-query_parameters.last_access_ends_at.value = '2022-09-25 6:00:00 UTC'
-local_path = 'data/stackoverflow/data_preparation/users_information.csv'
-
-[data_preparation.input_tables.post_answers]
-query_path = 'queries/stackoverflow/data_preparation/post_answers.sql'
-query_parameters.creation_date_start.name = 'creation_date_start'
-query_parameters.creation_date_start.type = 'TIMESTAMP'
-query_parameters.creation_date_start.value = '2022-05-25 00:00:00 UTC'
-query_parameters.creation_date_end.name = 'creation_date_end'
-query_parameters.creation_date_end.type = 'TIMESTAMP'
-query_parameters.creation_date_end.value = '2022-09-25 00:00:00 UTC'
-local_path = 'data/stackoverflow/data_preparation/post_answers.csv'
-
-[data_preparation.raw_dataset]
-query_path = 'queries/stackoverflow/data_preparation/raw_dataset.sql'
-local_path = 'data/stackoverflow/data_preparation/raw_dataset.csv'
-# -------------------------------------------
