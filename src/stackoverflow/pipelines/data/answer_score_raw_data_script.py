@@ -40,7 +40,7 @@ data_preparator = AnswerScoreDataPreparator()
 
 # Loop over the raw data tables
 for raw_data_config in config:
-    logging.info(f" 🚀Uploading {raw_data_config} data")
+    logging.info(f"🚀 Uploading {raw_data_config} data")
 
     # Compute file path
     file_path = root_path / config[raw_data_config]["local_path"]

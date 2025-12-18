@@ -43,3 +43,17 @@ query_parameters.creation_date_end.type = 'TIMESTAMP'
 query_parameters.creation_date_end.value = '2022-09-25 00:00:00 UTC'
 local_path = 'data/stackoverflow/raw_data_layer/post_answers.csv'
 table_name = 'post_answers'
+
+[raw_data_layer.badges_relevant_users]
+query_path = 'queries/stackoverflow/data_preparation/raw_data_layer/badges_relevant_users.sql'
+query_parameters.last_access_starts_at.name = 'last_access_starts_at'
+query_parameters.last_access_starts_at.type = 'TIMESTAMP'
+query_parameters.last_access_starts_at.value = '2022-09-24 21:55:00 UTC'
+query_parameters.last_access_ends_at.name = 'last_access_ends_at'
+query_parameters.last_access_ends_at.type = 'TIMESTAMP'
+query_parameters.last_access_ends_at.value = '2022-09-25 6:00:00 UTC'
+query_parameters.hours_interval.name = 'years_interval'
+query_parameters.hours_interval.type = 'INTEGER'
+query_parameters.hours_interval.value = 10
+local_path = 'data/stackoverflow/raw_data_layer/badges_relevant_users.csv'
+table_name = 'badges_relevant_users'
