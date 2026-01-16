@@ -1,0 +1,35 @@
+[eda.bigquery_client]
+project_id = 'deep-learning-438509'
+
+[eda.users_query]
+query_path = 'queries/stackoverflow/eda/users.sql'
+table_name = 'Users'
+
+[eda.badges_relevant_users_query]
+query_path = 'queries/stackoverflow/eda/badges_relevant_users.sql'
+table_name = 'badges_relevant_users'
+
+[eda.number_badges_relevant_users_query]
+
+
+
+#[eda.badges_relevant_users]
+#query_path = 'queries/stackoverflow/eda/badges/badges_relevant_users.sql'
+#query_parameters.hours_interval.name = 'years_interval'
+#query_parameters.hours_interval.type = 'INTEGER'
+#query_parameters.hours_interval.value = 3
+#local_path = 'data/stackoverflow/eda/badges_relevant_users.csv'
+#
+#[eda.number_badges_relevant_users]
+#query_path = 'queries/stackoverflow/eda/badges/number_badges_relevant_users.sql'
+#query_parameters.hours_interval.name = 'years_interval'
+#query_parameters.hours_interval.type = 'INTEGER'
+#query_parameters.hours_interval.value = 10
+#local_path = 'data/stackoverflow/eda/number_badges_relevant_users.csv'
+#
+#[eda.post_answers]
+#query_path = 'queries/stackoverflow/eda/posts_answers/post_answers_relevant_users.sql'
+#query_parameters.hours_interval.name = 'months_interval'
+#query_parameters.hours_interval.type = 'INTEGER'
+#query_parameters.hours_interval.value = 4
+#local_path = 'data/stackoverflow/eda/post_answers_relevant_users.csv'

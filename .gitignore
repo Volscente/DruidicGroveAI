@@ -161,3 +161,4 @@ cython_debug/
 
 # Ignore local files
 /data/stackoverflow
+/.metaflow
