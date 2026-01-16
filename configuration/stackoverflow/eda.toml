@@ -5,7 +5,11 @@ project_id = 'deep-learning-438509'
 query_path = 'queries/stackoverflow/eda/users.sql'
 table_name = 'Users'
 
-[eda.badges_relevant_users_config]
+[eda.badges_relevant_users_query]
+query_path = 'queries/stackoverflow/eda/badges_relevant_users.sql'
+table_name = 'badges_relevant_users'
+
+[eda.number_badges_relevant_users_query]
 
 
 
