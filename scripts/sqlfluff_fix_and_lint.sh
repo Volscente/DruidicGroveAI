@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# First fix and then lint BigQuery SQL Queries
+# First fix and then lint SQL Queries based on the dialect
 
 # Check for the presence of argument file
 if [ $# -ne 1 ]; then

@@ -9,7 +9,6 @@ requires-python = ">=3.13"
 dependencies = [
     "data-grimorium>=1.0.6",
     "ipykernel>=7.1.0",
-    "metaflow>=2.19.13",
     "pandas-stubs~=2.3.3",
     "scipy-stubs~=1.16.3",
 ]
