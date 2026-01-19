@@ -24,28 +24,6 @@ Create a `.env` file in the root folder like
 DRUIDIC_GROVE_AI_ROOT_PATH="/<absolute_path>/DruidicGroveAI"
 ```
 
-## Setup gcloud CLI
-Install `gcloud` on the local machine ([Guide](https://cloud.google.com/sdk/docs/install)).
-
-Authenticate locally to GCP:
-```bash
-gcloud auth login
-```
-
-Set the project ID.
-```bash
-# List all the projects
-gcloud projects list
-
-# Set the project
-gcloud config set project <project_id>
-```
-
-Create authentication keys.
-```bash
-gcloud auth application-default login
-```
-
 ## Justfile
 > `just` is a handy way to save and run project-specific commands
 > 
