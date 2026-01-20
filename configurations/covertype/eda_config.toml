@@ -1,0 +1,4 @@
+# ------------ Data Sources ------------
+[data_sources]
+covertype_data_path = "data/covertype/covtype.csv"
+# --------------------------------------
