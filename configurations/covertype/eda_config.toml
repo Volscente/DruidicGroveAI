@@ -59,3 +59,11 @@ covertype_columns = [
     "Wilderness_Area4"
 ]
 # --------------------------------------
+# -------- Features to Analyse ---------
+[features_to_analyse]
+features = [
+    "Elevation",
+    "Aspect",
+    "Slope",
+    "Cover_Type"
+]
