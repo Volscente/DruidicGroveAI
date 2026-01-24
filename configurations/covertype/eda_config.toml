@@ -13,6 +13,9 @@ covertype_columns = [
     "Hillshade_3pm",
     "Horizontal_Distance_To_Fire_Points",
     "Wilderness_Area1",
+    "Wilderness_Area2",
+    "Wilderness_Area3",
+    "Wilderness_Area4",
     "Soil_Type1",
     "Soil_Type2",
     "Soil_Type3",
@@ -53,10 +56,7 @@ covertype_columns = [
     "Soil_Type38",
     "Soil_Type39",
     "Soil_Type40",
-    "Cover_Type",
-    "Wilderness_Area2",
-    "Wilderness_Area3",
-    "Wilderness_Area4"
+    "Cover_Type"
 ]
 # --------------------------------------
 # -------- Features to Analyse ---------
