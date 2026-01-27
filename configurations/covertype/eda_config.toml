@@ -64,6 +64,7 @@ covertype_columns = [
 features = [
     "Elevation",
     "Aspect",
-    "Slope",
-    "Cover_Type"
+    "Slope"
 ]
+labels = ["Cover_Type"]
+# --------------------------------------
