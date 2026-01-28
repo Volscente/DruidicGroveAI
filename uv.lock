@@ -307,6 +307,7 @@ dependencies = [
     { name = "data-grimorium" },
     { name = "ipykernel" },
     { name = "pandas-stubs" },
+    { name = "scikit-learn" },
     { name = "scipy-stubs" },
 ]
 
@@ -327,6 +328,7 @@ requires-dist = [
     { name = "data-grimorium", specifier = ">=1.0.6" },
     { name = "ipykernel", specifier = ">=7.1.0" },
     { name = "pandas-stubs", specifier = "~=2.3.3" },
+    { name = "scikit-learn", specifier = ">=1.7.2" },
     { name = "scipy-stubs", specifier = "~=1.16.3" },
 ]
 
