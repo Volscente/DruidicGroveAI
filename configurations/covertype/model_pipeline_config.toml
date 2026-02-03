@@ -62,6 +62,7 @@ features = [
     "Elevation",
     "Aspect",
     "Slope",
+    "Is_North_East",
     "Sin_Aspect",
     "Cos_Aspect",
     "Elevation_Zones_1",
