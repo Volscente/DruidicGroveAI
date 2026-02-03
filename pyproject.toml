@@ -1,6 +1,6 @@
 [project]
 name = "druidicgroveai"
-version = "0.1.1"
+version = "0.1.2"
 description = "DruidicGroveAI is a research-focused repository dedicated to exploring the latest advancements in deep learning."
 authors = [
   {name = "Simone Porreca", email = "porrecasimone@gmail.com"},
